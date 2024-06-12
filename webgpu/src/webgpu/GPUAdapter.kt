@@ -5,6 +5,9 @@ import not
 import java.lang.foreign.Arena
 import java.lang.foreign.MemorySegment
 import java.lang.foreign.ValueLayout
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class GPUAdapter(
     internal val adapter_: WGPUAdapter,
@@ -12,7 +15,7 @@ class GPUAdapter(
 ) {
 
 
-    fun requestDevice(descriptor: GPUDeviceDescriptor = GPUDeviceDescriptor()): GPUDevice {
+    suspend fun requestDevice(descriptor: GPUDeviceDescriptor = GPUDeviceDescriptor()): GPUDevice {
 
         val desc = WGPUDeviceDescriptor.allocate(arena)
         Converter.convert(arena, descriptor.label) { desc.label = it }
@@ -31,48 +34,50 @@ class GPUAdapter(
             desc.requiredLimits = limit.`$mem`
         }
 
-        var result: GPUDevice? = null
-
-        val callback = webgpu.callback.WGPURequestDeviceCallback { status, device, message, _ ->
-            when (status) {
-                WGPURequestDeviceStatus.Success -> {
-                    val errCallback = webgpu.callback.WGPUErrorCallback { type, errMsg, _ ->
-                        val msg = if (!errMsg) {
-                            "$type: Unknown error"
-                        } else {
-                            "$type: ${errMsg.getString(0)}"
+        return Arena.ofConfined().use { temp ->
+            suspendCoroutine<GPUDevice> {
+                val callback = webgpu.callback.WGPURequestDeviceCallback2 { status, device, message, _, _ ->
+                    when (status) {
+                        WGPURequestDeviceStatus.Success -> {
+                            val errCallback = webgpu.callback.WGPUErrorCallback { type, errMsg, _ ->
+                                val msg = if (!errMsg) {
+                                    "$type: Unknown error"
+                                } else {
+                                    "$type: ${errMsg.getString(0)}"
+                                }
+                                System.err.println(msg)
+                            }
+                            wgpuDeviceSetUncapturedErrorCallback(
+                                device,
+                                errCallback.allocate(Arena.ofAuto()),
+                                MemorySegment.NULL
+                            )
+                            it.resume(GPUDevice(device, descriptor, arena))
                         }
-                        System.err.println(msg)
+
+                        else -> {
+                            if (!message) {
+                                it.resumeWithException(IllegalStateException(status.toString()))
+                            } else {
+                                it.resumeWithException(IllegalStateException("$status: ${message.getString(0)}"))
+                            }
+                        }
                     }
-                    wgpuDeviceSetUncapturedErrorCallback(
-                        device,
-                        errCallback.allocate(Arena.ofAuto()),
-                        MemorySegment.NULL
-                    )
-                    result = (GPUDevice(device, descriptor, arena))
                 }
 
-                else -> {
-//                    if (!message) {
-//                        it.resumeWithException(IllegalStateException(status.toString()))
-//                    } else {
-//                        it.resumeWithException(IllegalStateException("$status: ${message.getString(0)}"))
-//                    }
+                val cb = WGPURequestDeviceCallbackInfo2.allocate(temp)
+                cb.callback = callback.allocate(temp)
+                cb.mode = WGPUCallbackMode.AllowSpontaneous
+
+                with(temp) {
+                    wgpuAdapterRequestDevice2(
+                        adapter_,
+                        desc.`$mem`,
+                        cb,
+                    )
                 }
             }
         }
-
-
-
-        wgpuAdapterRequestDevice(
-            adapter_,
-            desc.`$mem`,
-            callback.allocate(arena),
-            MemorySegment.NULL
-        )
-
-        return result ?: throw IllegalStateException("Failed to request device")
-
     }
 
     fun _internalAdapter(): WGPUAdapter {
