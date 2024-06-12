@@ -1,0 +1,10 @@
+product:
+  type: lib
+  platforms:
+    - jvm
+
+settings:
+  jvm:
+    release: 22
+  java:
+    source: 22

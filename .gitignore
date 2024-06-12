@@ -1,0 +1,9 @@
+/libs
+/.fleet
+/.gradle
+/.idea
+/.kotlin
+build
+.DS_Store
+
+libs

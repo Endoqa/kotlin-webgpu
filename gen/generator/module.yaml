@@ -1,0 +1,15 @@
+product: jvm/app
+
+
+dependencies:
+  - ../idl
+  - com.squareup:kotlinpoet:1.17.0
+  - ../idl-parser
+
+apply:
+  - ../../common.module-template.yaml
+
+settings:
+  kotlin:
+    freeCompilerArgs:
+      - -Xcontext-receivers

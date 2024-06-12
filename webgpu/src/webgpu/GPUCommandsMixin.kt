@@ -1,0 +1,4 @@
+package webgpu
+
+interface GPUCommandsMixin {
+}

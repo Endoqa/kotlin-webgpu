@@ -1,0 +1,13 @@
+product:
+  type: lib
+  platforms: [ jvm ]
+
+dependencies:
+  - ../webgpu-c
+
+
+apply:
+  - ../common.module-template.yaml
+settings:
+  kotlin:
+    optIns: [ kotlin.ExperimentalUnsignedTypes ]

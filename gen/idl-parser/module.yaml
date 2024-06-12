@@ -1,0 +1,19 @@
+product:
+  type: lib
+  platforms:
+    - jvm
+
+dependencies:
+  - ../tree-sitter
+  - ../idl
+  - com.squareup:kotlinpoet:1.17.0
+
+settings:
+  jvm:
+    release: 22
+  java:
+    source: 22
+
+  kotlin:
+    freeCompilerArgs:
+      - -Xcontext-receivers
