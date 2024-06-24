@@ -9,7 +9,7 @@ public data class GPUSamplerBindingLayout(
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUSamplerBindingLayout, native: WGPUSamplerBindingLayout) {
-            TODO()
+            native.type = interop.type
         }
     }
 }

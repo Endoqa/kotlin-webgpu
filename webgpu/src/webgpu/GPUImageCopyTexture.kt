@@ -12,7 +12,9 @@ public data class GPUImageCopyTexture(
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUImageCopyTexture, native: WGPUImageCopyTexture) {
-            TODO()
+            native.texture = interop.texture.texture
+            native.mipLevel = interop.mipLevel
+            GPUOrigin3D.convert(interop.origin, native.origin)
         }
     }
 }

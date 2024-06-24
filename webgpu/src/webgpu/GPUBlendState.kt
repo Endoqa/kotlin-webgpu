@@ -10,7 +10,8 @@ public data class GPUBlendState(
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUBlendState, native: WGPUBlendState) {
-            TODO()
+            GPUBlendComponent.convert(interop.color, native.color)
+            GPUBlendComponent.convert(interop.alpha, native.alpha)
         }
     }
 }

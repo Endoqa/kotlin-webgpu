@@ -11,7 +11,10 @@ public data class GPUVertexAttribute(
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUVertexAttribute, native: WGPUVertexAttribute) {
-            TODO()
+            native.format = interop.format
+            native.offset = interop.offset
+            native.shaderLocation = interop.shaderLocation
+            
         }
     }
 }

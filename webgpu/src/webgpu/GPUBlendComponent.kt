@@ -11,7 +11,9 @@ public data class GPUBlendComponent(
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUBlendComponent, native: WGPUBlendComponent) {
-            TODO()
+            native.operation = interop.operation
+            native.srcFactor = interop.srcFactor
+            native.dstFactor = interop.dstFactor
         }
     }
 }

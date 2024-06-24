@@ -9,15 +9,4 @@ public data class GPURenderBundleEncoderDescriptor(
     override val sampleCount: GPUSize32 = 1u,
     public val depthReadOnly: Boolean = false,
     public val stencilReadOnly: Boolean = false,
-) : GPURenderPassLayout {
-    public companion object {
-        context(Arena)
-        @JvmStatic
-        internal fun convert(
-            interop: GPURenderBundleEncoderDescriptor,
-            native: WGPURenderBundleEncoderDescriptor
-        ) {
-            TODO()
-        }
-    }
-}
+) : GPURenderPassLayout

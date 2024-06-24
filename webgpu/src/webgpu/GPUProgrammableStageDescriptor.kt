@@ -17,7 +17,23 @@ public data class GPUProgrammableStageDescriptor(
 
             // skip constants for now
 
-            TODO()
+            if (!interop.constants.isNullOrEmpty()) {
+
+                native.constantCount = Converter.convert(
+                    this@Arena,
+                    { native.constants = it },
+                    interop.constants.entries,
+                    WGPUConstantEntry.layout,
+                    { (k, v), mem ->
+                        val entry = WGPUConstantEntry(mem)
+                        Converter.convert(this@Arena, k) { entry.key = it }
+                        entry.value = v
+                    }
+                )
+
+
+            }
+
         }
     }
 }

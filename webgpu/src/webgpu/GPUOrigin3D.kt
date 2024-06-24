@@ -11,7 +11,9 @@ public data class GPUOrigin3D(
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUOrigin3D, native: WGPUOrigin3D) {
-            TODO()
+            native.x = interop.x
+            native.y = interop.y
+            native.z = interop.z
         }
     }
 }

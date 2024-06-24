@@ -14,7 +14,9 @@ public data class GPURenderPassTimestampWrites(
             interop: GPURenderPassTimestampWrites,
             native: WGPURenderPassTimestampWrites
         ) {
-            TODO()
+            native.querySet = interop.querySet.set_
+            native.beginningOfPassWriteIndex = interop.beginningOfPassWriteIndex
+            native.endOfPassWriteIndex = interop.endOfPassWriteIndex
         }
     }
 }

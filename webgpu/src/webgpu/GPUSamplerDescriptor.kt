@@ -14,12 +14,4 @@ public data class GPUSamplerDescriptor(
     public val lodMaxClamp: Float = 32f,
     public val compare: GPUCompareFunction = GPUCompareFunction.Undefined,
     public val maxAnisotropy: UShort = 1u,
-) : GPUObjectDescriptorBase {
-    public companion object {
-        context(Arena)
-        @JvmStatic
-        internal fun convert(interop: GPUSamplerDescriptor, native: WGPUSamplerDescriptor) {
-            TODO()
-        }
-    }
-}
+) : GPUObjectDescriptorBase 

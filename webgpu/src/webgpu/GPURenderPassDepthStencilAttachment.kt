@@ -1,5 +1,6 @@
 package webgpu
 
+import Converter
 import java.lang.foreign.Arena
 
 public data class GPURenderPassDepthStencilAttachment(
@@ -20,7 +21,15 @@ public data class GPURenderPassDepthStencilAttachment(
             interop: GPURenderPassDepthStencilAttachment,
             native: WGPURenderPassDepthStencilAttachment
         ) {
-            TODO()
+            native.view = interop.view.view_
+            native.depthClearValue = interop.depthClearValue
+            native.depthLoadOp = interop.depthLoadOp
+            native.depthStoreOp = interop.depthStoreOp
+            native.depthReadOnly = Converter.convert(interop.depthReadOnly)
+            native.stencilClearValue = interop.stencilClearValue
+            native.stencilLoadOp = interop.stencilLoadOp
+            native.stencilStoreOp = interop.stencilStoreOp
+            native.stencilReadOnly = Converter.convert(interop.stencilReadOnly)
         }
     }
 }

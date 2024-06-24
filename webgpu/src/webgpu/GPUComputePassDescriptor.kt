@@ -1,5 +1,6 @@
 package webgpu
 
+import Converter
 import java.lang.foreign.Arena
 
 public data class GPUComputePassDescriptor(
@@ -10,7 +11,12 @@ public data class GPUComputePassDescriptor(
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUComputePassDescriptor, native: WGPUComputePassDescriptor) {
-            TODO()
+            Converter.convert(this@Arena, interop.label) { native.label = it}
+            if (interop.timestampWrites != null) {
+                val writes = WGPUComputePassTimestampWrites.allocate(this@Arena)
+                GPUComputePassTimestampWrites.convert(interop.timestampWrites, writes)
+                native.timestampWrites = writes.`$mem`
+            }
         }
     }
 }

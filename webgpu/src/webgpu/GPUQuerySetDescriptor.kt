@@ -11,7 +11,7 @@ public data class GPUQuerySetDescriptor(
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUQuerySetDescriptor, native: WGPUQuerySetDescriptor) {
-            TODO()
+
         }
     }
 }

@@ -1,5 +1,6 @@
 package webgpu
 
+import Converter
 import java.lang.foreign.Arena
 
 public data class GPUBufferBindingLayout(
@@ -11,7 +12,9 @@ public data class GPUBufferBindingLayout(
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUBufferBindingLayout, native: WGPUBufferBindingLayout) {
-            TODO()
+            native.type = interop.type
+            native.hasDynamicOffset = Converter.convert(interop.hasDynamicOffset)
+            native.minBindingSize = interop.minBindingSize
         }
     }
 }

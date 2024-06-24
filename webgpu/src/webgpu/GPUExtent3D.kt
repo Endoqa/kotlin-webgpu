@@ -11,7 +11,9 @@ public data class GPUExtent3D(
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUExtent3D, native: WGPUExtent3D) {
-            TODO()
+            native.width = interop.width
+            native.height = interop.height
+            native.depthOrArrayLayers = native.depthOrArrayLayers
         }
     }
 }
