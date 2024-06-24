@@ -1,5 +1,6 @@
 package webgpu
 
+import Converter
 import java.lang.foreign.Arena
 
 public data class GPUPrimitiveState(
@@ -17,7 +18,15 @@ public data class GPUPrimitiveState(
             native.stripIndexFormat = interop.stripIndexFormat
             native.frontFace = interop.frontFace
             native.cullMode = interop.cullMode
-//            native.unclippedDepth = interop.unclippedDepth
+
+            if (interop.unclippedDepth) {
+                val depthClip = WGPUPrimitiveDepthClipControl.allocate(this@Arena)
+                depthClip.chain.sType = WGPUSType.PrimitiveDepthClipControl
+
+                depthClip.unclippedDepth = Converter.convert(true) // todo: just use 1u
+
+                native.nextInChain = depthClip.`$mem`
+            }
         }
     }
 }

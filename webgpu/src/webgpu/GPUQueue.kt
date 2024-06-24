@@ -14,7 +14,6 @@ class GPUQueue(
 ) {
 
 
-    //  undefined submit(sequence<GPUCommandBuffer> commandBuffers);
     fun submit(commandBuffers: List<GPUCommandBuffer>) {
         var commands: MemorySegment = MemorySegment.NULL
         val commandCount = Converter.convert(
@@ -28,7 +27,6 @@ class GPUQueue(
     }
 
 
-    //   Promise<undefined> onSubmittedWorkDone();
     suspend fun onSubmittedWorkDone() {
         Arena.ofConfined().use { temp ->
             suspendCoroutine<Unit> {
@@ -63,8 +61,4 @@ class GPUQueue(
         wgpuQueueWriteBuffer(queue_, buffer.buffer_, bufferOffset, data.asSlice(dataOffset.toLong()), size)
     }
 
-
-    fun writeTexture() {
-        TODO()
-    }
 }

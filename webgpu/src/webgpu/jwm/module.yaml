@@ -1,0 +1,13 @@
+product:
+  type: lib
+  platforms:
+    - jvm
+
+dependencies:
+  - io.github.humbleui:jwm:0.4.17: exported
+  - ../../webgpu-c: exported
+  - ../../webgpu: exported
+  - org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0-RC
+
+apply:
+  - ../../common.module-template.yaml

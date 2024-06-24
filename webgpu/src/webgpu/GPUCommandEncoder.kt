@@ -14,8 +14,42 @@ class GPUCommandEncoder(
 
     fun beginRenderPass(descriptor: GPURenderPassDescriptor): GPURenderPassEncoder {
         val desc = WGPURenderPassDescriptor.allocate(arena)
+
+        val maxDrawCountDesc = WGPURenderPassDescriptorMaxDrawCount.allocate(arena)
+        maxDrawCountDesc.chain.sType = WGPUSType.RenderPassDescriptorMaxDrawCount
+
+        
+        desc.nextInChain = maxDrawCountDesc.`$mem`
+
         with(arena) {
-            GPURenderPassDescriptor.convert(descriptor, desc)
+            Converter.convert(this, descriptor.label) { desc.label = it }
+            desc.colorAttachmentCount = Converter.convert(
+                this,
+                { desc.colorAttachments = it },
+                descriptor.colorAttachments,
+                WGPURenderPassColorAttachment.layout,
+                { attachment, mem ->
+                    GPURenderPassColorAttachment.convert(attachment, WGPURenderPassColorAttachment(mem))
+                }
+            )
+
+            if (descriptor.depthStencilAttachment != null) {
+                val depthStencilAttachment = WGPURenderPassDepthStencilAttachment.allocate(this)
+                GPURenderPassDepthStencilAttachment.convert(descriptor.depthStencilAttachment, depthStencilAttachment)
+                desc.depthStencilAttachment = depthStencilAttachment.`$mem`
+            }
+
+            if (descriptor.occlusionQuerySet != null) {
+                desc.occlusionQuerySet = descriptor.occlusionQuerySet.set_
+            }
+
+            if (descriptor.timestampWrites != null) {
+                val timestampWrites = WGPURenderPassTimestampWrites.allocate(this)
+                GPURenderPassTimestampWrites.convert(descriptor.timestampWrites, timestampWrites)
+                desc.timestampWrites = timestampWrites.`$mem`
+            }
+            maxDrawCountDesc.maxDrawCount = descriptor.maxDrawCount
+
         }
 
         val encoder = wgpuCommandEncoderBeginRenderPass(encoder_, desc.`$mem`)

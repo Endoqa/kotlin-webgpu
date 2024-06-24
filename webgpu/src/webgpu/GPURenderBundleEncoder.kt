@@ -36,8 +36,16 @@ class GPURenderBundleEncoder(
     }
 
     override fun setBindGroup(index: GPUIndex32, bindGroup: GPUBindGroup?, dynamicOffsets: UIntArray?) {
-//        wgpuRenderBundleEncoderSetBindGroup(encoder_, index, bindGroup?.bindGroup_, dynamicOffsets)
-        TODO()
+        if (dynamicOffsets.isNullOrEmpty()) {
+            wgpuRenderBundleEncoderSetBindGroup(
+                encoder_, index, bindGroup?.group_ ?: MemorySegment.NULL, 0uL, MemorySegment.NULL
+            )
+        } else {
+            wgpuRenderBundleEncoderSetBindGroup(
+                encoder_, index, bindGroup?.group_ ?: MemorySegment.NULL, dynamicOffsets.size.toULong(),
+                MemorySegment.ofArray(dynamicOffsets.asIntArray()) //todo: jvm object pinning? (or is it a copy?)
+            )
+        }
     }
 
     override fun setPipeline(pipeline: GPURenderPipeline) {

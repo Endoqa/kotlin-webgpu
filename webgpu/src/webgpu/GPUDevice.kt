@@ -155,8 +155,8 @@ class GPUDevice(
 
     fun createShaderModule(descriptor: GPUShaderModuleDescriptor): GPUShaderModule {
         val smDesc = WGPUShaderModuleDescriptor.allocate(arena)
+        
         val wgslDesc = WGPUShaderModuleWGSLDescriptor.allocate(arena)
-
         wgslDesc.chain.sType = WGPUSType.ShaderModuleWGSLDescriptor
 
         with(arena) {
