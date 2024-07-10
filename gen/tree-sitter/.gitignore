@@ -1,8 +1,0 @@
-.DS_Store
-/.gradle
-/gradle
-/.idea
-/.fleet
-/gradle.properties
-/gradlew**
-/**gradle**
