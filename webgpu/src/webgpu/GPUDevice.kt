@@ -297,6 +297,40 @@ class GPUDevice(
     }
 
 
+    fun pushErrorScope(filter: GPUErrorFilter) {
+        wgpuDevicePushErrorScope(device_, filter)
+    }
+
+    suspend fun popErrorScope(): GPUError? {
+        return Arena.ofConfined().use { temp ->
+            suspendCoroutine { cont ->
+                val callback = webgpu.callback.WGPUPopErrorScopeCallback2 { _, type, message, _, _ ->
+                    val m = if (!message) message.getString(0) else "no message"
+
+                    when (type) {
+                        WGPUErrorType.NoError -> cont.resume(null)
+                        WGPUErrorType.Validation -> cont.resume(GPUValidationError(m))
+                        WGPUErrorType.OutOfMemory -> cont.resume(GPUOutOfMemoryError(m))
+                        WGPUErrorType.Internal -> cont.resume(GPUInternalError(m))
+                        WGPUErrorType.Unknown,
+                        WGPUErrorType.DeviceLost -> cont.resumeWithException(IllegalStateException(m))
+
+                        else -> cont.resumeWithException(IllegalStateException("unhandled error type $type - $m"))
+                    }
+                }
+
+                val cb = WGPUPopErrorScopeCallbackInfo2.allocate(temp)
+                cb.mode = WGPUCallbackMode.AllowSpontaneous
+                cb.callback = callback.allocate(temp)
+
+                with(temp) {
+                    wgpuDevicePopErrorScope2(device_, cb)
+                }
+            }
+        }
+    }
+
+
     fun _internalDevice(): WGPUDevice {
         return device_
     }
