@@ -30,10 +30,10 @@ class GPUQueue(
     suspend fun onSubmittedWorkDone() {
         Arena.ofConfined().use { temp ->
             suspendCoroutine<Unit> {
-                val callback = webgpu.callback.WGPUQueueWorkDoneCallback2 { status, userdata1, userdata2 ->
+                val callback = webgpu.callback.WGPUQueueWorkDoneCallback2 { status, _, _ ->
                     when (status) {
                         WGPUQueueWorkDoneStatus.Success -> it.resume(Unit)
-                        else -> it.resumeWithException(RuntimeException("$status"))
+                        else -> it.resumeWithException(wgpuError(status, "on submitted work done failed"))
                     }
                 }
 

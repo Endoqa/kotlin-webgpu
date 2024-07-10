@@ -15,18 +15,15 @@ class GPU(
 ) {
 
 
-    suspend fun requestAdapter(options: GPURequestAdapterOptions = GPURequestAdapterOptions()): GPUAdapter =
+    suspend fun requestAdapter(
+        backendType: GPUBackendType,
+        options: GPURequestAdapterOptions = GPURequestAdapterOptions()
+    ): GPUAdapter =
         suspendCoroutine<GPUAdapter> { cont ->
             val callback = webgpu.callback.WGPURequestAdapterCallback2 { status, adapter, message, _, _ ->
                 when (status) {
                     WGPURequestAdapterStatus.Success -> cont.resume(GPUAdapter(adapter, arena))
-                    else -> {
-                        if (!message) {
-                            cont.resumeWithException(IllegalStateException(status.toString()))
-                        } else {
-                            cont.resumeWithException(IllegalStateException("$status: ${message.getString(0)}"))
-                        }
-                    }
+                    else -> cont.resumeWithException(wgpuError(status, message))
                 }
             }
 
@@ -36,7 +33,7 @@ class GPU(
                 opt.powerPreference = options.powerPreference
                 opt.forceFallbackAdapter = Converter.convert(options.forceFallbackAdapter)
                 opt.compatibleSurface = surface
-                opt.backendType = WGPUBackendType.Metal
+                opt.backendType = backendType //TODO auto detect
 
                 val cb = WGPURequestAdapterCallbackInfo2.allocate(temp)
                 cb.callback = callback.allocate(temp)

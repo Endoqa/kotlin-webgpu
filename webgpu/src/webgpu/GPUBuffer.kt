@@ -28,13 +28,7 @@ class GPUBuffer(
                 val callback = webgpu.callback.WGPUBufferMapCallback2 { status, message, _, _ ->
                     when (status) {
                         WGPUMapAsyncStatus.Success -> cont.resume(Unit)
-                        else -> {
-                            if (!message) {
-                                cont.resumeWithException(IllegalStateException("$status"))
-                            } else {
-                                cont.resumeWithException(IllegalStateException("$status: ${message.getString(0)}"))
-                            }
-                        }
+                        else -> cont.resumeWithException(wgpuError(status, message))
                     }
 
                 }

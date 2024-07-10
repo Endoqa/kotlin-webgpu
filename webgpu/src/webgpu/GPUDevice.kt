@@ -155,7 +155,7 @@ class GPUDevice(
 
     fun createShaderModule(descriptor: GPUShaderModuleDescriptor): GPUShaderModule {
         val smDesc = WGPUShaderModuleDescriptor.allocate(arena)
-        
+
         val wgslDesc = WGPUShaderModuleWGSLDescriptor.allocate(arena)
         wgslDesc.chain.sType = WGPUSType.ShaderModuleWGSLDescriptor
 
@@ -180,17 +180,33 @@ class GPUDevice(
         return Arena.ofConfined().use { temp ->
             suspendCoroutine<GPUComputePipeline> { cont ->
                 val callback =
-                    webgpu.callback.WGPUCreateComputePipelineAsyncCallback { status, pipeline, message, _ ->
-                        if (status == WGPUCreatePipelineAsyncStatus.Success) {
-                            cont.resume(GPUComputePipeline(pipeline, descriptor, temp))
-                        } else {
-                            cont.resumeWithException(IllegalStateException("$status"))
+                    webgpu.callback.WGPUCreateComputePipelineAsyncCallback2 { status, pipeline, message, _, _ ->
+                        when (status) {
+                            WGPUCreatePipelineAsyncStatus.Success -> cont.resume(
+                                GPUComputePipeline(
+                                    pipeline,
+                                    descriptor,
+                                    temp
+                                )
+                            )
+
+                            else -> cont.resumeWithException(wgpuError(status, message))
                         }
                     }
 
-                wgpuDeviceCreateComputePipelineAsync(
-                    device_, desc.`$mem`, callback.allocate(temp), MemorySegment.NULL
-                )
+                val cb = WGPUCreateComputePipelineAsyncCallbackInfo2.allocate(temp)
+                cb.mode = WGPUCallbackMode.AllowSpontaneous
+                cb.callback = callback.allocate(temp)
+
+
+                with(temp) {
+                    wgpuDeviceCreateComputePipelineAsync2(
+                        device_,
+                        desc.`$mem`,
+                        cb,
+                    )
+                }
+
             }
         }
     }
@@ -206,16 +222,15 @@ class GPUDevice(
             suspendCoroutine<GPURenderPipeline> { cont ->
                 val callback =
                     webgpu.callback.WGPUCreateRenderPipelineAsyncCallback2 { status, pipeline, message, _, _ ->
-                        println("status 1: $status")
-                        if (status == WGPUCreatePipelineAsyncStatus.Success) {
-                            cont.resume(GPURenderPipeline(pipeline, descriptor))
-                            println("status 2: $status")
-                        } else {
-                            if (!message) {
-                                cont.resumeWithException(IllegalStateException("$status"))
-                            } else {
-                                cont.resumeWithException(IllegalStateException("$status: ${message.getString(0)}"))
-                            }
+                        when (status) {
+                            WGPUCreatePipelineAsyncStatus.Success -> cont.resume(
+                                GPURenderPipeline(
+                                    pipeline,
+                                    descriptor
+                                )
+                            )
+
+                            else -> cont.resumeWithException(wgpuError(status, message))
                         }
                     }
 

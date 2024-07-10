@@ -10,23 +10,24 @@ class GPUShaderModule(
     internal val desc_: GPUShaderModuleDescriptor,
 ) {
 
-    //     Promise<GPUCompilationInfo> getCompilationInfo();
+
     suspend fun getCompilationInfo(): GPUCompilationInfo {
 
         return Arena.ofConfined().use { temp ->
             suspendCoroutine {
 
-                val callback = webgpu.callback.WGPUCompilationInfoCallback { status, info, userData ->
-                    when (status) {
-                        WGPUCompilationInfoRequestStatus.Success -> {
-                            it.resume(GPUCompilationInfo.from(WGPUCompilationInfo(info)))
-                        }
+                val callback =
+                    webgpu.callback.WGPUCompilationInfoCallback2 { status, info, _, _ ->
+                        when (status) {
+                            WGPUCompilationInfoRequestStatus.Success -> {
+                                it.resume(GPUCompilationInfo.from(WGPUCompilationInfo(info)))
+                            }
 
-                        else -> {
-                            it.resumeWithException(Exception("Compilation failed"))
+                            else -> {
+                                it.resumeWithException(wgpuError(status, "can't get compilation info"))
+                            }
                         }
                     }
-                }
 
                 val cb = WGPUCompilationInfoCallbackInfo2.allocate(temp)
                 cb.mode = WGPUCallbackMode.AllowSpontaneous

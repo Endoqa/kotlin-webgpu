@@ -35,33 +35,28 @@ class GPUAdapter(
         }
 
         return Arena.ofConfined().use { temp ->
-            suspendCoroutine<GPUDevice> {
+            suspendCoroutine<GPUDevice> { cont ->
                 val callback = webgpu.callback.WGPURequestDeviceCallback2 { status, device, message, _, _ ->
                     when (status) {
                         WGPURequestDeviceStatus.Success -> {
-                            val errCallback = webgpu.callback.WGPUErrorCallback { type, errMsg, _ ->
-                                val msg = if (!errMsg) {
-                                    "$type: Unknown error"
-                                } else {
-                                    "$type: ${errMsg.getString(0)}"
-                                }
-                                System.err.println(msg)
-                            }
-                            wgpuDeviceSetUncapturedErrorCallback(
-                                device,
-                                errCallback.allocate(Arena.ofAuto()),
-                                MemorySegment.NULL
-                            )
-                            it.resume(GPUDevice(device, descriptor, arena))
+                            //TODO: user defined error callback
+//                            val errCallback = webgpu.callback.WGPUErrorCallback { type, errMsg, _ ->
+//                                val msg = if (!errMsg) {
+//                                    "$type: Unknown error"
+//                                } else {
+//                                    "$type: ${errMsg.getString(0)}"
+//                                }
+//                                System.err.println(msg)
+//                            }
+//                            wgpuDeviceSetUncapturedErrorCallback(
+//                                device,
+//                                errCallback.allocate(Arena.ofAuto()),
+//                                MemorySegment.NULL
+//                            )
+                            cont.resume(GPUDevice(device, descriptor, arena))
                         }
 
-                        else -> {
-                            if (!message) {
-                                it.resumeWithException(IllegalStateException(status.toString()))
-                            } else {
-                                it.resumeWithException(IllegalStateException("$status: ${message.getString(0)}"))
-                            }
-                        }
+                        else -> cont.resumeWithException(wgpuError(status, message))
                     }
                 }
 

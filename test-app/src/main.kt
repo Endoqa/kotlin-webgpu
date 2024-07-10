@@ -65,7 +65,10 @@ context(Application)
 suspend fun appMain() = coroutineScope {
 
     val adapter =
-        navigator.gpu.requestAdapter(GPURequestAdapterOptions(powerPreference = GPUPowerPreference.HighPerformance))
+        navigator.gpu.requestAdapter(
+            GPUBackendType.Metal,
+            GPURequestAdapterOptions(powerPreference = GPUPowerPreference.HighPerformance)
+        )
     val device = adapter.requestDevice()
 
 
