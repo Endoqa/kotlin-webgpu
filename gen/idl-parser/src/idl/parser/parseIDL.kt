@@ -1,58 +1,72 @@
 package idl.parser
 
 import idl.IDL
-import tree_sitter.*
-import java.lang.foreign.*
+import tree_sitter.Language
+import tree_sitter.Parser
+import java.lang.foreign.Arena
+import java.lang.foreign.MemorySegment
 
 
-val languageMethod = Linker.nativeLinker().downcallHandle(
-    `$RuntimeHelper`.symbolLookup.find("tree_sitter_idl").get(),
-    FunctionDescriptor.of(ValueLayout.ADDRESS)
-)
-
-val idlLang: Pointer<TSLanguage> = languageMethod.invokeExact() as MemorySegment
-
-
-interface WithSource {
-    val source: Pointer<Byte>
+interface ParseContext {
+    val source: MemorySegment
+    val types: NodeType
 }
 
 
 context(Arena)
 fun parseIDL(source: String): IDL {
 
-    val parser = ts_parser_new()
-    ts_parser_set_language(parser, idlLang)
+    val parser = Parser()
+    val idlLang = Language.getLanguage("idl")
+    parser.setLanguage(idlLang)
 
 
     val sourceCode = allocateFrom(source)
-    val tree = ts_parser_parse_string(parser, MemorySegment.NULL, sourceCode, source.length.toUInt())
+    val tree = parser.parse(source)
 
-    val rootNode = ts_tree_root_node(tree)
+    val rootNode = tree.rootNode
 
     val idl = IDL()
 
-    with(object : WithSource {
-        override val source: Pointer<Byte>
+    val nodeType = NodeType(
+        dictionary_declaration = idlLang.getSymbolForName("dictionary_declaration", true),
+        enum_declaration = idlLang.getSymbolForName("enum_declaration", true),
+        typedef_declaration = idlLang.getSymbolForName("typedef_declaration", true),
+        string_literal = idlLang.getSymbolForName("string_literal", true),
+        number_literal = idlLang.getSymbolForName("number_literal", true),
+        hex_literal = idlLang.getSymbolForName("hex_literal", true),
+        object_literal = idlLang.getSymbolForName("object_literal", true),
+        array_literal = idlLang.getSymbolForName("array_literal", true),
+        boolean_literal = idlLang.getSymbolForName("boolean_literal", true),
+        primitive_type = idlLang.getSymbolForName("primitive_type", true),
+        identifier = idlLang.getSymbolForName("identifier", true),
+        parameterized = idlLang.getSymbolForName("parameterized", true)
+    )
+
+    val context = object : ParseContext {
+        override val source: MemorySegment
             get() = sourceCode
 
-    }) {
-        for (i in 0u until ts_node_named_child_count(rootNode)) {
-            val child = ts_node_named_child(rootNode, i)
-            val nodeType = ts_node_type(child).getString(0)
+        override val types: NodeType
+            get() = nodeType
+    }
 
-            when (nodeType) {
-                "dictionary_declaration" -> {
+    with(context) {
+        rootNode.namedChildren.forEach { child ->
+
+
+            when (child.symbol) {
+                types.dictionary_declaration -> {
                     val dict = parseDict(child)
                     idl.roots[dict.name] = dict
                 }
 
-                "enum_declaration" -> {
+                types.enum_declaration -> {
                     val enum = parseEnum(child)
                     idl.roots[enum.name] = enum
                 }
 
-                "typedef_declaration" -> {
+                types.typedef_declaration -> {
                     val typedef = parseTypedef(child)
                     idl.roots[typedef.name] = typedef
                 }

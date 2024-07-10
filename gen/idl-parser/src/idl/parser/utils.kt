@@ -15,3 +15,5 @@ fun String.hyphenToCamelCase(): String {
         }
     }
 }
+
+fun impossible(): Nothing = error("impossible")

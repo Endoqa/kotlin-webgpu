@@ -1,13 +1,16 @@
 product: jvm/app
 
 
+apply:
+  - ../gen-common.module-template.yaml
+  - ../../common.module-template.yaml
+
+
 dependencies:
   - ../idl
   - com.squareup:kotlinpoet:1.17.0
   - ../idl-parser
 
-apply:
-  - ../../common.module-template.yaml
 
 settings:
   kotlin:

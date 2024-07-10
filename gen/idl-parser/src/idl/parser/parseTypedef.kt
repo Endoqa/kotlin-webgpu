@@ -1,14 +1,13 @@
 package idl.parser
 
 import idl.TypeDef
-import tree_sitter.TSNode
-import tree_sitter.ts_node_child_by_field_name
+import tree_sitter.Node
 import java.lang.foreign.Arena
 
-context(Arena, WithSource)
-fun parseTypedef(node: TSNode): TypeDef {
-    val typeNode = ts_node_child_by_field_name(node, "type")
-    val nameNode = ts_node_child_by_field_name(node, "name")
+context(Arena, ParseContext)
+fun parseTypedef(node: Node): TypeDef {
+    val typeNode = node["type"] ?: impossible()
+    val nameNode = node["name"] ?: impossible()
 
 
     val typedef = TypeDef(nameNode.content, parseTypeNode(typeNode))

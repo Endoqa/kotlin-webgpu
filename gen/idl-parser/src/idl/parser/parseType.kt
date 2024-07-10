@@ -4,53 +4,49 @@ import idl.IdentifierType
 import idl.ParameterizedType
 import idl.PrimitiveType
 import idl.Type
-import tree_sitter.*
+import tree_sitter.Node
 import java.lang.foreign.Arena
 
-context(Arena, WithSource)
-internal fun parseTypeNode(node: TSNode): Type {
-    val typeNode = ts_node_child_by_field_name(node, "type")
-    val nullableNode = ts_node_child_by_field_name(node, "nullable")
+context(Arena, ParseContext)
+internal fun parseTypeNode(node: Node): Type {
+    val typeNode = node["type"] ?: impossible()
+    val nullableNode = node["nullable"]
 
     // check with ts_node_null
-    val nullable = !ts_node_is_null(nullableNode)
+    val nullable = nullableNode != null
 
     return parseBaseType(typeNode).copy(nullable = nullable)
 }
 
 
-context(Arena, WithSource)
-private fun parseBaseType(node: TSNode): Type {
-    val nodeType = ts_node_type(node).getString(0)
+context(Arena, ParseContext)
+private fun parseBaseType(node: Node): Type {
 
-    return when (nodeType) {
-        "primitive_type" -> {
+    return when (node.symbol) {
+        types.primitive_type -> {
             val primitiveType = node.content
             Type(PrimitiveType(primitiveType))
         }
 
-        "identifier" -> {
+        types.identifier -> {
             val name = node.content
             Type(IdentifierType(name))
         }
 
-        "parameterized" -> {
-            val name = ts_node_child_by_field_name(node, "name").content
-            val types = ts_node_child_by_field_name(node, "types")
+        types.parameterized -> {
+            val name = (node["name"] ?: impossible()).content
+            val types = node["types"] ?: impossible()
 
-            println()
-            println(ts_node_named_child_count(types))
 
-            val params = (0u until ts_node_named_child_count(types)).map {
-                val typeNode = ts_node_named_child(types, it)
-                parseTypeNode(typeNode)
+            val params = types.namedChildren.map {
+                parseTypeNode(it)
             }
 
 
             Type(ParameterizedType(IdentifierType(name), params))
         }
 
-        else -> error("Unknown base type $nodeType")
+        else -> error("Unknown base type ${node.symbol}")
 
 
     }

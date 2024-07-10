@@ -1,16 +1,13 @@
 package idl.parser
 
-import tree_sitter.Pointer
-import tree_sitter.TSNode
-import tree_sitter.ts_node_end_byte
-import tree_sitter.ts_node_start_byte
+import tree_sitter.Node
 import java.lang.foreign.Arena
 import java.lang.foreign.MemorySegment
 
 
-private fun TSNode.content(src: Pointer<Byte>): String {
-    val startByte = ts_node_start_byte(this)
-    val endByte = ts_node_end_byte(this)
+private fun Node.content(src: MemorySegment): String {
+    val startByte = this.startByte
+    val endByte = this.endByte
 
     return Arena.ofConfined().use { temp ->
         val content = temp.allocate((endByte - startByte + 1u).toLong())
@@ -30,6 +27,6 @@ private fun TSNode.content(src: Pointer<Byte>): String {
 
 }
 
-context(WithSource)
-val TSNode.content: String
+context(ParseContext)
+val Node.content: String
     get() = content(source)

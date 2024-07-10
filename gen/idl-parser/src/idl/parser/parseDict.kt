@@ -2,25 +2,27 @@ package idl.parser
 
 import idl.Dictionary
 import idl.DictionaryMember
-import tree_sitter.*
+import tree_sitter.Node
 import java.lang.foreign.Arena
 
-context(Arena, WithSource)
-fun parseDict(node: TSNode): Dictionary {
-    val name = ts_node_child_by_field_name(node, "name").content
-    val declsNode = ts_node_child_by_field_name(node, "decls")
-    val inheritsNode = ts_node_child_by_field_name(node, "inherit")
+context(Arena, ParseContext)
+fun parseDict(node: Node): Dictionary {
+//    val name = ts_node_child_by_field_name(node, "name").content
+//    val declsNode = ts_node_child_by_field_name(node, "decls")
+//    val inheritsNode = ts_node_child_by_field_name(node, "inherit")
 
-    val members = if (ts_node_is_null(declsNode)) {
-        println(name + " has no members")
+    val name = node["name"] ?: error("impossible")
+    val declsNode = node["decls"]
+    val inheritsNode = node["inherit"]
+
+    val members = if (declsNode == null) {
+        println(name.content + " has no members")
         emptyList()
     } else {
-        (0u until ts_node_named_child_count(declsNode)).mapNotNull {
-            val memberNode = ts_node_named_child(declsNode, it)
-            val memberType = ts_node_type(memberNode).getString(0)
+        declsNode.namedChildren.mapNotNull { memberNode ->
 
-            if (memberType != "dictionary_member") {
-                println("Unknown member type $memberType")
+            if (memberNode.symbol != types.dictionary_declaration) {
+                println("Unknown member type ${memberNode.symbol}")
                 null
             } else {
                 parseMember(memberNode)
@@ -29,31 +31,31 @@ fun parseDict(node: TSNode): Dictionary {
     }
 
     val inherits =
-        if (ts_node_is_null(inheritsNode)) null else inheritsNode.content
+        inheritsNode?.content
 
 
-    return Dictionary(name, inherits, members.toMutableList())
+    return Dictionary(name.content, inherits, members.toMutableList())
 
 }
 
-context(Arena, WithSource)
-private fun parseMember(node: TSNode): DictionaryMember {
+context(Arena, ParseContext)
+private fun parseMember(node: Node): DictionaryMember {
 
-    val requiredNode = ts_node_child_by_field_name(node, "required")
-    val typeNode = ts_node_child_by_field_name(node, "type")
-    val name = ts_node_child_by_field_name(node, "name").content
-    val valueNode = ts_node_child_by_field_name(node, "value")
+    val requiredNode = node["required"]
+    val typeNode = node["type"] ?: impossible()
+    val name = node["name"] ?: impossible()
+    val valueNode = node["value"]
 
-    val required = !ts_node_is_null(requiredNode)
+    val required = requiredNode != null
 
     val type = parseTypeNode(typeNode)
 
 
     val member = DictionaryMember(
-        name = name,
+        name = name.content,
         type = type,
         required = required,
-        default = if (ts_node_is_null(valueNode)) null else parseLiteral(valueNode)
+        default = if (valueNode == null) null else parseLiteral(valueNode)
     )
 
 

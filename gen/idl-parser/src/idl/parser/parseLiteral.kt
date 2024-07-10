@@ -1,8 +1,7 @@
 package idl.parser
 
 import idl.*
-import tree_sitter.TSNode
-import tree_sitter.ts_node_type
+import tree_sitter.Node
 import java.lang.foreign.Arena
 
 
@@ -22,34 +21,32 @@ import java.lang.foreign.Arena
 //        $.boolean_literal,
 //        $.array_literal,
 //      ),
-context(Arena, WithSource)
-fun parseLiteral(node: TSNode): Literal {
-    val nodeType = ts_node_type(node).getString(0)
-
-    return when (nodeType) {
-        "string_literal" -> {
+context(Arena, ParseContext)
+fun parseLiteral(node: Node): Literal {
+    return when (node.symbol) {
+        types.string_literal -> {
             val content = node.content
             StringLiteral(content.substring(1, content.length - 1))
         }
 
-        "number_literal", "hex_literal" -> {
+        types.number_literal, types.hex_literal -> {
             val content = node.content
             NumberLiteral(content)
         }
 
-        "object_literal" -> {
+        types.object_literal -> {
             ObjectLiteral
         }
 
-        "array_literal" -> {
+        types.array_literal -> {
             ArrayLiteral
         }
 
-        "boolean_literal" -> {
+        types.boolean_literal -> {
             val content = node.content
             BooleanLiteral(content == "true")
         }
 
-        else -> error("Unknown literal type $nodeType")
+        else -> error("Unknown literal type ${node.symbol}")
     }
 }
