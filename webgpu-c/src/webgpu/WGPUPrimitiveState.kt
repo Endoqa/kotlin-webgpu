@@ -9,44 +9,44 @@ public value class WGPUPrimitiveState(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = WGPUPrimitiveState.nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUPrimitiveState.nextInChainHandle.set(this.`$mem`, 0L, value)
+            nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var topology: WGPUPrimitiveTopology
         get() = WGPUPrimitiveTopology.fromInt(
-            WGPUPrimitiveState.topologyHandle.get(this.`$mem`, 0L) as
+            topologyHandle.get(this.`$mem`, 0L) as
                     Int
         )
         set(`value`) {
-            WGPUPrimitiveState.topologyHandle.set(this.`$mem`, 0L, value.value)
+            topologyHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public var stripIndexFormat: WGPUIndexFormat
         get() = WGPUIndexFormat.fromInt(
-            WGPUPrimitiveState.stripIndexFormatHandle.get(this.`$mem`, 0L)
+            stripIndexFormatHandle.get(this.`$mem`, 0L)
                     as Int
         )
         set(`value`) {
-            WGPUPrimitiveState.stripIndexFormatHandle.set(this.`$mem`, 0L, value.value)
+            stripIndexFormatHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public var frontFace: WGPUFrontFace
-        get() = WGPUFrontFace.fromInt(WGPUPrimitiveState.frontFaceHandle.get(this.`$mem`, 0L) as Int)
+        get() = WGPUFrontFace.fromInt(frontFaceHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
-            WGPUPrimitiveState.frontFaceHandle.set(this.`$mem`, 0L, value.value)
+            frontFaceHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public var cullMode: WGPUCullMode
-        get() = WGPUCullMode.fromInt(WGPUPrimitiveState.cullModeHandle.get(this.`$mem`, 0L) as Int)
+        get() = WGPUCullMode.fromInt(cullModeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
-            WGPUPrimitiveState.cullModeHandle.set(this.`$mem`, 0L, value.value)
+            cullModeHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUPrimitiveState.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -80,6 +80,6 @@ public value class WGPUPrimitiveState(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUPrimitiveState =
-            WGPUPrimitiveState(alloc.allocate(WGPUPrimitiveState.layout))
+            WGPUPrimitiveState(alloc.allocate(layout))
     }
 }

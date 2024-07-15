@@ -15,7 +15,6 @@ public enum class WGPUHeapProperty(
     HostCoherent(0x00000004),
     HostUncached(0x00000008),
     HostCached(0x00000010),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -35,13 +34,12 @@ public enum class WGPUHeapProperty(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUHeapProperty = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> DeviceLocal
-            0x00000002 -> HostVisible
-            0x00000004 -> HostCoherent
-            0x00000008 -> HostUncached
-            0x00000010 -> HostCached
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            DeviceLocal.value -> DeviceLocal
+            HostVisible.value -> HostVisible
+            HostCoherent.value -> HostCoherent
+            HostUncached.value -> HostUncached
+            HostCached.value -> HostCached
             else -> error("enum not found")
         }
     }

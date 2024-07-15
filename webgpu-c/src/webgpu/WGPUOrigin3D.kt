@@ -9,26 +9,26 @@ public value class WGPUOrigin3D(
     public val `$mem`: MemorySegment,
 ) {
     public var x: uint32_t
-        get() = (WGPUOrigin3D.xHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (xHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUOrigin3D.xHandle.set(this.`$mem`, 0L, value.toInt())
+            xHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public var y: uint32_t
-        get() = (WGPUOrigin3D.yHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (yHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUOrigin3D.yHandle.set(this.`$mem`, 0L, value.toInt())
+            yHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public var z: uint32_t
-        get() = (WGPUOrigin3D.zHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (zHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUOrigin3D.zHandle.set(this.`$mem`, 0L, value.toInt())
+            zHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUOrigin3D.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -49,6 +49,6 @@ public value class WGPUOrigin3D(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUOrigin3D =
-            WGPUOrigin3D(alloc.allocate(WGPUOrigin3D.layout))
+            WGPUOrigin3D(alloc.allocate(layout))
     }
 }

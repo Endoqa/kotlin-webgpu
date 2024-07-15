@@ -9,50 +9,50 @@ public value class WGPUVertexState(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = WGPUVertexState.nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUVertexState.nextInChainHandle.set(this.`$mem`, 0L, value)
+            nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var module: WGPUShaderModule
-        get() = WGPUVertexState.moduleHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = moduleHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUVertexState.moduleHandle.set(this.`$mem`, 0L, value)
+            moduleHandle.set(this.`$mem`, 0L, value)
         }
 
     public var entryPoint: Pointer<Byte>
-        get() = WGPUVertexState.entryPointHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = entryPointHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUVertexState.entryPointHandle.set(this.`$mem`, 0L, value)
+            entryPointHandle.set(this.`$mem`, 0L, value)
         }
 
     public var constantCount: ULong
-        get() = (WGPUVertexState.constantCountHandle.get(this.`$mem`, 0L) as Long).toULong()
+        get() = (constantCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
-            WGPUVertexState.constantCountHandle.set(this.`$mem`, 0L, value.toLong())
+            constantCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
     public var constants: Pointer<WGPUConstantEntry>
-        get() = WGPUVertexState.constantsHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = constantsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUVertexState.constantsHandle.set(this.`$mem`, 0L, value)
+            constantsHandle.set(this.`$mem`, 0L, value)
         }
 
     public var bufferCount: ULong
-        get() = (WGPUVertexState.bufferCountHandle.get(this.`$mem`, 0L) as Long).toULong()
+        get() = (bufferCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
-            WGPUVertexState.bufferCountHandle.set(this.`$mem`, 0L, value.toLong())
+            bufferCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
     public var buffers: Pointer<WGPUVertexBufferLayout>
-        get() = WGPUVertexState.buffersHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = buffersHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUVertexState.buffersHandle.set(this.`$mem`, 0L, value)
+            buffersHandle.set(this.`$mem`, 0L, value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUVertexState.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -96,6 +96,6 @@ public value class WGPUVertexState(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUVertexState =
-            WGPUVertexState(alloc.allocate(WGPUVertexState.layout))
+            WGPUVertexState(alloc.allocate(layout))
     }
 }

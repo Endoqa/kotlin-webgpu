@@ -19,12 +19,12 @@ public enum class WGPUTextureFormat(
     R16Float(0x00000007),
     RG8Unorm(0x00000008),
     RG8Snorm(0x00000009),
-    RG8Uint(0x0000000a),
-    RG8Sint(0x0000000b),
-    R32Float(0x0000000c),
-    R32Uint(0x0000000d),
-    R32Sint(0x0000000e),
-    RG16Uint(0x0000000f),
+    RG8Uint(0x0000000A),
+    RG8Sint(0x0000000B),
+    R32Float(0x0000000C),
+    R32Uint(0x0000000D),
+    R32Sint(0x0000000E),
+    RG16Uint(0x0000000F),
     RG16Sint(0x00000010),
     RG16Float(0x00000011),
     RGBA8Unorm(0x00000012),
@@ -35,12 +35,12 @@ public enum class WGPUTextureFormat(
     BGRA8Unorm(0x00000017),
     BGRA8UnormSrgb(0x00000018),
     RGB10A2Uint(0x00000019),
-    RGB10A2Unorm(0x0000001a),
-    RG11B10Ufloat(0x0000001b),
-    RGB9E5Ufloat(0x0000001c),
-    RG32Float(0x0000001d),
-    RG32Uint(0x0000001e),
-    RG32Sint(0x0000001f),
+    RGB10A2Unorm(0x0000001A),
+    RG11B10Ufloat(0x0000001B),
+    RGB9E5Ufloat(0x0000001C),
+    RG32Float(0x0000001D),
+    RG32Uint(0x0000001E),
+    RG32Sint(0x0000001F),
     RGBA16Uint(0x00000020),
     RGBA16Sint(0x00000021),
     RGBA16Float(0x00000022),
@@ -51,12 +51,12 @@ public enum class WGPUTextureFormat(
     Depth16Unorm(0x00000027),
     Depth24Plus(0x00000028),
     Depth24PlusStencil8(0x00000029),
-    Depth32Float(0x0000002a),
-    Depth32FloatStencil8(0x0000002b),
-    BC1RGBAUnorm(0x0000002c),
-    BC1RGBAUnormSrgb(0x0000002d),
-    BC2RGBAUnorm(0x0000002e),
-    BC2RGBAUnormSrgb(0x0000002f),
+    Depth32Float(0x0000002A),
+    Depth32FloatStencil8(0x0000002B),
+    BC1RGBAUnorm(0x0000002C),
+    BC1RGBAUnormSrgb(0x0000002D),
+    BC2RGBAUnorm(0x0000002E),
+    BC2RGBAUnormSrgb(0x0000002F),
     BC3RGBAUnorm(0x00000030),
     BC3RGBAUnormSrgb(0x00000031),
     BC4RUnorm(0x00000032),
@@ -67,12 +67,12 @@ public enum class WGPUTextureFormat(
     BC6HRGBFloat(0x00000037),
     BC7RGBAUnorm(0x00000038),
     BC7RGBAUnormSrgb(0x00000039),
-    ETC2RGB8Unorm(0x0000003a),
-    ETC2RGB8UnormSrgb(0x0000003b),
-    ETC2RGB8A1Unorm(0x0000003c),
-    ETC2RGB8A1UnormSrgb(0x0000003d),
-    ETC2RGBA8Unorm(0x0000003e),
-    ETC2RGBA8UnormSrgb(0x0000003f),
+    ETC2RGB8Unorm(0x0000003A),
+    ETC2RGB8UnormSrgb(0x0000003B),
+    ETC2RGB8A1Unorm(0x0000003C),
+    ETC2RGB8A1UnormSrgb(0x0000003D),
+    ETC2RGBA8Unorm(0x0000003E),
+    ETC2RGBA8UnormSrgb(0x0000003F),
     EACR11Unorm(0x00000040),
     EACR11Snorm(0x00000041),
     EACRG11Unorm(0x00000042),
@@ -83,12 +83,12 @@ public enum class WGPUTextureFormat(
     ASTC5x4UnormSrgb(0x00000047),
     ASTC5x5Unorm(0x00000048),
     ASTC5x5UnormSrgb(0x00000049),
-    ASTC6x5Unorm(0x0000004a),
-    ASTC6x5UnormSrgb(0x0000004b),
-    ASTC6x6Unorm(0x0000004c),
-    ASTC6x6UnormSrgb(0x0000004d),
-    ASTC8x5Unorm(0x0000004e),
-    ASTC8x5UnormSrgb(0x0000004f),
+    ASTC6x5Unorm(0x0000004A),
+    ASTC6x5UnormSrgb(0x0000004B),
+    ASTC6x6Unorm(0x0000004C),
+    ASTC6x6UnormSrgb(0x0000004D),
+    ASTC8x5Unorm(0x0000004E),
+    ASTC8x5UnormSrgb(0x0000004F),
     ASTC8x6Unorm(0x00000050),
     ASTC8x6UnormSrgb(0x00000051),
     ASTC8x8Unorm(0x00000052),
@@ -99,12 +99,12 @@ public enum class WGPUTextureFormat(
     ASTC10x6UnormSrgb(0x00000057),
     ASTC10x8Unorm(0x00000058),
     ASTC10x8UnormSrgb(0x00000059),
-    ASTC10x10Unorm(0x0000005a),
-    ASTC10x10UnormSrgb(0x0000005b),
-    ASTC12x10Unorm(0x0000005c),
-    ASTC12x10UnormSrgb(0x0000005d),
-    ASTC12x12Unorm(0x0000005e),
-    ASTC12x12UnormSrgb(0x0000005f),
+    ASTC10x10Unorm(0x0000005A),
+    ASTC10x10UnormSrgb(0x0000005B),
+    ASTC12x10Unorm(0x0000005C),
+    ASTC12x10UnormSrgb(0x0000005D),
+    ASTC12x12Unorm(0x0000005E),
+    ASTC12x12UnormSrgb(0x0000005F),
     R16Unorm(0x00000060),
     RG16Unorm(0x00000061),
     RGBA16Unorm(0x00000062),
@@ -115,11 +115,9 @@ public enum class WGPUTextureFormat(
     R10X6BG10X6Biplanar420Unorm(0x00000067),
     R8BG8A8Triplanar420Unorm(0x00000068),
     R8BG8Biplanar422Unorm(0x00000069),
-    R8BG8Biplanar444Unorm(0x0000006a),
-    R10X6BG10X6Biplanar422Unorm(0x0000006b),
-    R10X6BG10X6Biplanar444Unorm(0x0000006c),
-    External(0x0000006d),
-    Force32(0x7fffffff),
+    R8BG8Biplanar444Unorm(0x0000006A),
+    R10X6BG10X6Biplanar422Unorm(0x0000006B),
+    R10X6BG10X6Biplanar444Unorm(0x0000006C),
     ;
 
     public companion object {
@@ -139,117 +137,115 @@ public enum class WGPUTextureFormat(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUTextureFormat = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> R8Unorm
-            0x00000002 -> R8Snorm
-            0x00000003 -> R8Uint
-            0x00000004 -> R8Sint
-            0x00000005 -> R16Uint
-            0x00000006 -> R16Sint
-            0x00000007 -> R16Float
-            0x00000008 -> RG8Unorm
-            0x00000009 -> RG8Snorm
-            0x0000000a -> RG8Uint
-            0x0000000b -> RG8Sint
-            0x0000000c -> R32Float
-            0x0000000d -> R32Uint
-            0x0000000e -> R32Sint
-            0x0000000f -> RG16Uint
-            0x00000010 -> RG16Sint
-            0x00000011 -> RG16Float
-            0x00000012 -> RGBA8Unorm
-            0x00000013 -> RGBA8UnormSrgb
-            0x00000014 -> RGBA8Snorm
-            0x00000015 -> RGBA8Uint
-            0x00000016 -> RGBA8Sint
-            0x00000017 -> BGRA8Unorm
-            0x00000018 -> BGRA8UnormSrgb
-            0x00000019 -> RGB10A2Uint
-            0x0000001a -> RGB10A2Unorm
-            0x0000001b -> RG11B10Ufloat
-            0x0000001c -> RGB9E5Ufloat
-            0x0000001d -> RG32Float
-            0x0000001e -> RG32Uint
-            0x0000001f -> RG32Sint
-            0x00000020 -> RGBA16Uint
-            0x00000021 -> RGBA16Sint
-            0x00000022 -> RGBA16Float
-            0x00000023 -> RGBA32Float
-            0x00000024 -> RGBA32Uint
-            0x00000025 -> RGBA32Sint
-            0x00000026 -> Stencil8
-            0x00000027 -> Depth16Unorm
-            0x00000028 -> Depth24Plus
-            0x00000029 -> Depth24PlusStencil8
-            0x0000002a -> Depth32Float
-            0x0000002b -> Depth32FloatStencil8
-            0x0000002c -> BC1RGBAUnorm
-            0x0000002d -> BC1RGBAUnormSrgb
-            0x0000002e -> BC2RGBAUnorm
-            0x0000002f -> BC2RGBAUnormSrgb
-            0x00000030 -> BC3RGBAUnorm
-            0x00000031 -> BC3RGBAUnormSrgb
-            0x00000032 -> BC4RUnorm
-            0x00000033 -> BC4RSnorm
-            0x00000034 -> BC5RGUnorm
-            0x00000035 -> BC5RGSnorm
-            0x00000036 -> BC6HRGBUfloat
-            0x00000037 -> BC6HRGBFloat
-            0x00000038 -> BC7RGBAUnorm
-            0x00000039 -> BC7RGBAUnormSrgb
-            0x0000003a -> ETC2RGB8Unorm
-            0x0000003b -> ETC2RGB8UnormSrgb
-            0x0000003c -> ETC2RGB8A1Unorm
-            0x0000003d -> ETC2RGB8A1UnormSrgb
-            0x0000003e -> ETC2RGBA8Unorm
-            0x0000003f -> ETC2RGBA8UnormSrgb
-            0x00000040 -> EACR11Unorm
-            0x00000041 -> EACR11Snorm
-            0x00000042 -> EACRG11Unorm
-            0x00000043 -> EACRG11Snorm
-            0x00000044 -> ASTC4x4Unorm
-            0x00000045 -> ASTC4x4UnormSrgb
-            0x00000046 -> ASTC5x4Unorm
-            0x00000047 -> ASTC5x4UnormSrgb
-            0x00000048 -> ASTC5x5Unorm
-            0x00000049 -> ASTC5x5UnormSrgb
-            0x0000004a -> ASTC6x5Unorm
-            0x0000004b -> ASTC6x5UnormSrgb
-            0x0000004c -> ASTC6x6Unorm
-            0x0000004d -> ASTC6x6UnormSrgb
-            0x0000004e -> ASTC8x5Unorm
-            0x0000004f -> ASTC8x5UnormSrgb
-            0x00000050 -> ASTC8x6Unorm
-            0x00000051 -> ASTC8x6UnormSrgb
-            0x00000052 -> ASTC8x8Unorm
-            0x00000053 -> ASTC8x8UnormSrgb
-            0x00000054 -> ASTC10x5Unorm
-            0x00000055 -> ASTC10x5UnormSrgb
-            0x00000056 -> ASTC10x6Unorm
-            0x00000057 -> ASTC10x6UnormSrgb
-            0x00000058 -> ASTC10x8Unorm
-            0x00000059 -> ASTC10x8UnormSrgb
-            0x0000005a -> ASTC10x10Unorm
-            0x0000005b -> ASTC10x10UnormSrgb
-            0x0000005c -> ASTC12x10Unorm
-            0x0000005d -> ASTC12x10UnormSrgb
-            0x0000005e -> ASTC12x12Unorm
-            0x0000005f -> ASTC12x12UnormSrgb
-            0x00000060 -> R16Unorm
-            0x00000061 -> RG16Unorm
-            0x00000062 -> RGBA16Unorm
-            0x00000063 -> R16Snorm
-            0x00000064 -> RG16Snorm
-            0x00000065 -> RGBA16Snorm
-            0x00000066 -> R8BG8Biplanar420Unorm
-            0x00000067 -> R10X6BG10X6Biplanar420Unorm
-            0x00000068 -> R8BG8A8Triplanar420Unorm
-            0x00000069 -> R8BG8Biplanar422Unorm
-            0x0000006a -> R8BG8Biplanar444Unorm
-            0x0000006b -> R10X6BG10X6Biplanar422Unorm
-            0x0000006c -> R10X6BG10X6Biplanar444Unorm
-            0x0000006d -> External
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            R8Unorm.value -> R8Unorm
+            R8Snorm.value -> R8Snorm
+            R8Uint.value -> R8Uint
+            R8Sint.value -> R8Sint
+            R16Uint.value -> R16Uint
+            R16Sint.value -> R16Sint
+            R16Float.value -> R16Float
+            RG8Unorm.value -> RG8Unorm
+            RG8Snorm.value -> RG8Snorm
+            RG8Uint.value -> RG8Uint
+            RG8Sint.value -> RG8Sint
+            R32Float.value -> R32Float
+            R32Uint.value -> R32Uint
+            R32Sint.value -> R32Sint
+            RG16Uint.value -> RG16Uint
+            RG16Sint.value -> RG16Sint
+            RG16Float.value -> RG16Float
+            RGBA8Unorm.value -> RGBA8Unorm
+            RGBA8UnormSrgb.value -> RGBA8UnormSrgb
+            RGBA8Snorm.value -> RGBA8Snorm
+            RGBA8Uint.value -> RGBA8Uint
+            RGBA8Sint.value -> RGBA8Sint
+            BGRA8Unorm.value -> BGRA8Unorm
+            BGRA8UnormSrgb.value -> BGRA8UnormSrgb
+            RGB10A2Uint.value -> RGB10A2Uint
+            RGB10A2Unorm.value -> RGB10A2Unorm
+            RG11B10Ufloat.value -> RG11B10Ufloat
+            RGB9E5Ufloat.value -> RGB9E5Ufloat
+            RG32Float.value -> RG32Float
+            RG32Uint.value -> RG32Uint
+            RG32Sint.value -> RG32Sint
+            RGBA16Uint.value -> RGBA16Uint
+            RGBA16Sint.value -> RGBA16Sint
+            RGBA16Float.value -> RGBA16Float
+            RGBA32Float.value -> RGBA32Float
+            RGBA32Uint.value -> RGBA32Uint
+            RGBA32Sint.value -> RGBA32Sint
+            Stencil8.value -> Stencil8
+            Depth16Unorm.value -> Depth16Unorm
+            Depth24Plus.value -> Depth24Plus
+            Depth24PlusStencil8.value -> Depth24PlusStencil8
+            Depth32Float.value -> Depth32Float
+            Depth32FloatStencil8.value -> Depth32FloatStencil8
+            BC1RGBAUnorm.value -> BC1RGBAUnorm
+            BC1RGBAUnormSrgb.value -> BC1RGBAUnormSrgb
+            BC2RGBAUnorm.value -> BC2RGBAUnorm
+            BC2RGBAUnormSrgb.value -> BC2RGBAUnormSrgb
+            BC3RGBAUnorm.value -> BC3RGBAUnorm
+            BC3RGBAUnormSrgb.value -> BC3RGBAUnormSrgb
+            BC4RUnorm.value -> BC4RUnorm
+            BC4RSnorm.value -> BC4RSnorm
+            BC5RGUnorm.value -> BC5RGUnorm
+            BC5RGSnorm.value -> BC5RGSnorm
+            BC6HRGBUfloat.value -> BC6HRGBUfloat
+            BC6HRGBFloat.value -> BC6HRGBFloat
+            BC7RGBAUnorm.value -> BC7RGBAUnorm
+            BC7RGBAUnormSrgb.value -> BC7RGBAUnormSrgb
+            ETC2RGB8Unorm.value -> ETC2RGB8Unorm
+            ETC2RGB8UnormSrgb.value -> ETC2RGB8UnormSrgb
+            ETC2RGB8A1Unorm.value -> ETC2RGB8A1Unorm
+            ETC2RGB8A1UnormSrgb.value -> ETC2RGB8A1UnormSrgb
+            ETC2RGBA8Unorm.value -> ETC2RGBA8Unorm
+            ETC2RGBA8UnormSrgb.value -> ETC2RGBA8UnormSrgb
+            EACR11Unorm.value -> EACR11Unorm
+            EACR11Snorm.value -> EACR11Snorm
+            EACRG11Unorm.value -> EACRG11Unorm
+            EACRG11Snorm.value -> EACRG11Snorm
+            ASTC4x4Unorm.value -> ASTC4x4Unorm
+            ASTC4x4UnormSrgb.value -> ASTC4x4UnormSrgb
+            ASTC5x4Unorm.value -> ASTC5x4Unorm
+            ASTC5x4UnormSrgb.value -> ASTC5x4UnormSrgb
+            ASTC5x5Unorm.value -> ASTC5x5Unorm
+            ASTC5x5UnormSrgb.value -> ASTC5x5UnormSrgb
+            ASTC6x5Unorm.value -> ASTC6x5Unorm
+            ASTC6x5UnormSrgb.value -> ASTC6x5UnormSrgb
+            ASTC6x6Unorm.value -> ASTC6x6Unorm
+            ASTC6x6UnormSrgb.value -> ASTC6x6UnormSrgb
+            ASTC8x5Unorm.value -> ASTC8x5Unorm
+            ASTC8x5UnormSrgb.value -> ASTC8x5UnormSrgb
+            ASTC8x6Unorm.value -> ASTC8x6Unorm
+            ASTC8x6UnormSrgb.value -> ASTC8x6UnormSrgb
+            ASTC8x8Unorm.value -> ASTC8x8Unorm
+            ASTC8x8UnormSrgb.value -> ASTC8x8UnormSrgb
+            ASTC10x5Unorm.value -> ASTC10x5Unorm
+            ASTC10x5UnormSrgb.value -> ASTC10x5UnormSrgb
+            ASTC10x6Unorm.value -> ASTC10x6Unorm
+            ASTC10x6UnormSrgb.value -> ASTC10x6UnormSrgb
+            ASTC10x8Unorm.value -> ASTC10x8Unorm
+            ASTC10x8UnormSrgb.value -> ASTC10x8UnormSrgb
+            ASTC10x10Unorm.value -> ASTC10x10Unorm
+            ASTC10x10UnormSrgb.value -> ASTC10x10UnormSrgb
+            ASTC12x10Unorm.value -> ASTC12x10Unorm
+            ASTC12x10UnormSrgb.value -> ASTC12x10UnormSrgb
+            ASTC12x12Unorm.value -> ASTC12x12Unorm
+            ASTC12x12UnormSrgb.value -> ASTC12x12UnormSrgb
+            R16Unorm.value -> R16Unorm
+            RG16Unorm.value -> RG16Unorm
+            RGBA16Unorm.value -> RGBA16Unorm
+            R16Snorm.value -> R16Snorm
+            RG16Snorm.value -> RG16Snorm
+            RGBA16Snorm.value -> RGBA16Snorm
+            R8BG8Biplanar420Unorm.value -> R8BG8Biplanar420Unorm
+            R10X6BG10X6Biplanar420Unorm.value -> R10X6BG10X6Biplanar420Unorm
+            R8BG8A8Triplanar420Unorm.value -> R8BG8A8Triplanar420Unorm
+            R8BG8Biplanar422Unorm.value -> R8BG8Biplanar422Unorm
+            R8BG8Biplanar444Unorm.value -> R8BG8Biplanar444Unorm
+            R10X6BG10X6Biplanar422Unorm.value -> R10X6BG10X6Biplanar422Unorm
+            R10X6BG10X6Biplanar444Unorm.value -> R10X6BG10X6Biplanar444Unorm
             else -> error("enum not found")
         }
     }

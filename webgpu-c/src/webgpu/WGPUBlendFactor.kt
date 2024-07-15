@@ -19,15 +19,14 @@ public enum class WGPUBlendFactor(
     Dst(0x00000007),
     OneMinusDst(0x00000008),
     DstAlpha(0x00000009),
-    OneMinusDstAlpha(0x0000000a),
-    SrcAlphaSaturated(0x0000000b),
-    Constant(0x0000000c),
-    OneMinusConstant(0x0000000d),
-    Src1(0x0000000e),
-    OneMinusSrc1(0x0000000f),
+    OneMinusDstAlpha(0x0000000A),
+    SrcAlphaSaturated(0x0000000B),
+    Constant(0x0000000C),
+    OneMinusConstant(0x0000000D),
+    Src1(0x0000000E),
+    OneMinusSrc1(0x0000000F),
     Src1Alpha(0x00000010),
     OneMinusSrc1Alpha(0x00000011),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -47,25 +46,24 @@ public enum class WGPUBlendFactor(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUBlendFactor = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Zero
-            0x00000002 -> One
-            0x00000003 -> Src
-            0x00000004 -> OneMinusSrc
-            0x00000005 -> SrcAlpha
-            0x00000006 -> OneMinusSrcAlpha
-            0x00000007 -> Dst
-            0x00000008 -> OneMinusDst
-            0x00000009 -> DstAlpha
-            0x0000000a -> OneMinusDstAlpha
-            0x0000000b -> SrcAlphaSaturated
-            0x0000000c -> Constant
-            0x0000000d -> OneMinusConstant
-            0x0000000e -> Src1
-            0x0000000f -> OneMinusSrc1
-            0x00000010 -> Src1Alpha
-            0x00000011 -> OneMinusSrc1Alpha
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Zero.value -> Zero
+            One.value -> One
+            Src.value -> Src
+            OneMinusSrc.value -> OneMinusSrc
+            SrcAlpha.value -> SrcAlpha
+            OneMinusSrcAlpha.value -> OneMinusSrcAlpha
+            Dst.value -> Dst
+            OneMinusDst.value -> OneMinusDst
+            DstAlpha.value -> DstAlpha
+            OneMinusDstAlpha.value -> OneMinusDstAlpha
+            SrcAlphaSaturated.value -> SrcAlphaSaturated
+            Constant.value -> Constant
+            OneMinusConstant.value -> OneMinusConstant
+            Src1.value -> Src1
+            OneMinusSrc1.value -> OneMinusSrc1
+            Src1Alpha.value -> Src1Alpha
+            OneMinusSrc1Alpha.value -> OneMinusSrc1Alpha
             else -> error("enum not found")
         }
     }

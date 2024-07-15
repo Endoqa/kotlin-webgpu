@@ -311,18 +311,6 @@ internal val `wgpuBufferMapAsync$mh`: MethodHandle = Linker.nativeLinker().downc
     )
 )
 
-internal val `wgpuBufferMapAsync2$mh`: MethodHandle = Linker.nativeLinker().downcallHandle(
-    `$RuntimeHelper`.findSymbol("wgpuBufferMapAsync2"),
-    FunctionDescriptor.of(
-        WGPUFuture.layout,
-        `$RuntimeHelper`.POINTER,
-        ValueLayout.JAVA_INT,
-        ValueLayout.JAVA_LONG,
-        ValueLayout.JAVA_LONG,
-        WGPUBufferMapCallbackInfo2.layout,
-    )
-)
-
 internal val `wgpuBufferMapAsyncF$mh`: MethodHandle = Linker.nativeLinker().downcallHandle(
     `$RuntimeHelper`.findSymbol("wgpuBufferMapAsyncF"),
     FunctionDescriptor.of(

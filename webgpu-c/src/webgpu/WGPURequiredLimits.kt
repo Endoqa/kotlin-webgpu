@@ -10,14 +10,14 @@ public value class WGPURequiredLimits(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = WGPURequiredLimits.nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPURequiredLimits.nextInChainHandle.set(this.`$mem`, 0L, value)
+            nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var limits: WGPULimits
         get() = WGPULimits(
-            WGPURequiredLimits.limitsHandle.invokeExact(this.`$mem`, 0L) as
+            limitsHandle.invokeExact(this.`$mem`, 0L) as
                     MemorySegment
         )
         set(`value`) {
@@ -26,7 +26,7 @@ public value class WGPURequiredLimits(
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPURequiredLimits.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -45,6 +45,6 @@ public value class WGPURequiredLimits(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPURequiredLimits =
-            WGPURequiredLimits(alloc.allocate(WGPURequiredLimits.layout))
+            WGPURequiredLimits(alloc.allocate(layout))
     }
 }

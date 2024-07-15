@@ -20,7 +20,6 @@ public enum class WGPUBufferUsage(
     Storage(0x00000080),
     Indirect(0x00000100),
     QueryResolve(0x00000200),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -40,18 +39,17 @@ public enum class WGPUBufferUsage(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUBufferUsage = when (value) {
-            0x00000000 -> None
-            0x00000001 -> MapRead
-            0x00000002 -> MapWrite
-            0x00000004 -> CopySrc
-            0x00000008 -> CopyDst
-            0x00000010 -> Index
-            0x00000020 -> Vertex
-            0x00000040 -> Uniform
-            0x00000080 -> Storage
-            0x00000100 -> Indirect
-            0x00000200 -> QueryResolve
-            0x7fffffff -> Force32
+            None.value -> None
+            MapRead.value -> MapRead
+            MapWrite.value -> MapWrite
+            CopySrc.value -> CopySrc
+            CopyDst.value -> CopyDst
+            Index.value -> Index
+            Vertex.value -> Vertex
+            Uniform.value -> Uniform
+            Storage.value -> Storage
+            Indirect.value -> Indirect
+            QueryResolve.value -> QueryResolve
             else -> error("enum not found")
         }
     }

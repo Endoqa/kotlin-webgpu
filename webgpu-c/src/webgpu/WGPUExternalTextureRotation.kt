@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUExternalTextureRotation.Rotate0Degrees
+import webgpu.WGPUExternalTextureRotation.Rotate180Degrees
+import webgpu.WGPUExternalTextureRotation.Rotate270Degrees
+import webgpu.WGPUExternalTextureRotation.Rotate90Degrees
 
 public enum class WGPUExternalTextureRotation(
     public val `value`: Int,
@@ -13,7 +18,6 @@ public enum class WGPUExternalTextureRotation(
     Rotate90Degrees(0x00000001),
     Rotate180Degrees(0x00000002),
     Rotate270Degrees(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +37,10 @@ public enum class WGPUExternalTextureRotation(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUExternalTextureRotation = when (value) {
-            0x00000000 -> Rotate0Degrees
-            0x00000001 -> Rotate90Degrees
-            0x00000002 -> Rotate180Degrees
-            0x00000003 -> Rotate270Degrees
-            0x7fffffff -> Force32
+            Rotate0Degrees.value -> Rotate0Degrees
+            Rotate90Degrees.value -> Rotate90Degrees
+            Rotate180Degrees.value -> Rotate180Degrees
+            Rotate270Degrees.value -> Rotate270Degrees
             else -> error("enum not found")
         }
     }

@@ -13,7 +13,6 @@ public enum class WGPUShaderStage(
     Vertex(0x00000001),
     Fragment(0x00000002),
     Compute(0x00000004),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +32,10 @@ public enum class WGPUShaderStage(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUShaderStage = when (value) {
-            0x00000000 -> None
-            0x00000001 -> Vertex
-            0x00000002 -> Fragment
-            0x00000004 -> Compute
-            0x7fffffff -> Force32
+            None.value -> None
+            Vertex.value -> Vertex
+            Fragment.value -> Fragment
+            Compute.value -> Compute
             else -> error("enum not found")
         }
     }

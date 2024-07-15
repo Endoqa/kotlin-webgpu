@@ -9,20 +9,20 @@ public value class WGPUOrigin2D(
     public val `$mem`: MemorySegment,
 ) {
     public var x: uint32_t
-        get() = (WGPUOrigin2D.xHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (xHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUOrigin2D.xHandle.set(this.`$mem`, 0L, value.toInt())
+            xHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public var y: uint32_t
-        get() = (WGPUOrigin2D.yHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (yHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUOrigin2D.yHandle.set(this.`$mem`, 0L, value.toInt())
+            yHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUOrigin2D.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -39,6 +39,6 @@ public value class WGPUOrigin2D(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUOrigin2D =
-            WGPUOrigin2D(alloc.allocate(WGPUOrigin2D.layout))
+            WGPUOrigin2D(alloc.allocate(layout))
     }
 }

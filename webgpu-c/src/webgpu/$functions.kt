@@ -163,26 +163,6 @@ public fun wgpuBufferMapAsync(
             as Unit
 
 context(SegmentAllocator)
-public fun wgpuBufferMapAsync2(
-    buffer: WGPUBuffer,
-    mode: WGPUMapModeFlags,
-    offset: ULong,
-    size: ULong,
-    callbackInfo: WGPUBufferMapCallbackInfo2,
-): WGPUFuture =
-    WGPUFuture(
-        `wgpuBufferMapAsync2$mh`.invokeExact(
-            this@SegmentAllocator,
-            buffer,
-            mode.toInt(),
-            offset.toLong(),
-            size.toLong(),
-            callbackInfo.`$mem`,
-        )
-                as MemorySegment
-    )
-
-context(SegmentAllocator)
 public fun wgpuBufferMapAsyncF(
     buffer: WGPUBuffer,
     mode: WGPUMapModeFlags,

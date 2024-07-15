@@ -12,7 +12,6 @@ public enum class WGPUMapMode(
     None(0x00000000),
     Read(0x00000001),
     Write(0x00000002),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -32,10 +31,9 @@ public enum class WGPUMapMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUMapMode = when (value) {
-            0x00000000 -> None
-            0x00000001 -> Read
-            0x00000002 -> Write
-            0x7fffffff -> Force32
+            None.value -> None
+            Read.value -> Read
+            Write.value -> Write
             else -> error("enum not found")
         }
     }

@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUStorageTextureAccess.ReadOnly
+import webgpu.WGPUStorageTextureAccess.ReadWrite
+import webgpu.WGPUStorageTextureAccess.Undefined
+import webgpu.WGPUStorageTextureAccess.WriteOnly
 
 public enum class WGPUStorageTextureAccess(
     public val `value`: Int,
@@ -13,7 +18,6 @@ public enum class WGPUStorageTextureAccess(
     WriteOnly(0x00000001),
     ReadOnly(0x00000002),
     ReadWrite(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +37,10 @@ public enum class WGPUStorageTextureAccess(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUStorageTextureAccess = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> WriteOnly
-            0x00000002 -> ReadOnly
-            0x00000003 -> ReadWrite
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            WriteOnly.value -> WriteOnly
+            ReadOnly.value -> ReadOnly
+            ReadWrite.value -> ReadWrite
             else -> error("enum not found")
         }
     }

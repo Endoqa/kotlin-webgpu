@@ -13,7 +13,6 @@ public enum class WGPULoggingType(
     Info(0x00000002),
     Warning(0x00000003),
     Error(0x00000004),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +32,10 @@ public enum class WGPULoggingType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPULoggingType = when (value) {
-            0x00000001 -> Verbose
-            0x00000002 -> Info
-            0x00000003 -> Warning
-            0x00000004 -> Error
-            0x7fffffff -> Force32
+            Verbose.value -> Verbose
+            Info.value -> Info
+            Warning.value -> Warning
+            Error.value -> Error
             else -> error("enum not found")
         }
     }

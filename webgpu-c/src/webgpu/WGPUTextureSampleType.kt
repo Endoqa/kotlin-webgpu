@@ -5,6 +5,13 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUTextureSampleType.Depth
+import webgpu.WGPUTextureSampleType.Float
+import webgpu.WGPUTextureSampleType.Sint
+import webgpu.WGPUTextureSampleType.Uint
+import webgpu.WGPUTextureSampleType.Undefined
+import webgpu.WGPUTextureSampleType.UnfilterableFloat
 
 public enum class WGPUTextureSampleType(
     public val `value`: Int,
@@ -15,7 +22,6 @@ public enum class WGPUTextureSampleType(
     Depth(0x00000003),
     Sint(0x00000004),
     Uint(0x00000005),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -35,13 +41,12 @@ public enum class WGPUTextureSampleType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUTextureSampleType = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Float
-            0x00000002 -> UnfilterableFloat
-            0x00000003 -> Depth
-            0x00000004 -> Sint
-            0x00000005 -> Uint
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Float.value -> Float
+            UnfilterableFloat.value -> UnfilterableFloat
+            Depth.value -> Depth
+            Sint.value -> Sint
+            Uint.value -> Uint
             else -> error("enum not found")
         }
     }

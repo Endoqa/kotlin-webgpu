@@ -9,7 +9,7 @@ public value class WGPUBindGroupImpl(
 ) {
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUBindGroupImpl.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -18,6 +18,6 @@ public value class WGPUBindGroupImpl(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUBindGroupImpl =
-            WGPUBindGroupImpl(alloc.allocate(WGPUBindGroupImpl.layout))
+            WGPUBindGroupImpl(alloc.allocate(layout))
     }
 }

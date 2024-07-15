@@ -19,68 +19,68 @@ public enum class WGPUSType(
     PrimitiveDepthClipControl(0x00000007),
     SurfaceDescriptorFromWaylandSurface(0x00000008),
     SurfaceDescriptorFromAndroidNativeWindow(0x00000009),
-    SurfaceDescriptorFromWindowsCoreWindow(0x0000000b),
-    ExternalTextureBindingEntry(0x0000000c),
-    ExternalTextureBindingLayout(0x0000000d),
-    SurfaceDescriptorFromWindowsSwapChainPanel(0x0000000e),
-    RenderPassDescriptorMaxDrawCount(0x0000000f),
+    SurfaceDescriptorFromWindowsCoreWindow(0x0000000B),
+    ExternalTextureBindingEntry(0x0000000C),
+    ExternalTextureBindingLayout(0x0000000D),
+    SurfaceDescriptorFromWindowsSwapChainPanel(0x0000000E),
+    RenderPassDescriptorMaxDrawCount(0x0000000F),
     DepthStencilStateDepthWriteDefinedDawn(0x00000010),
     TextureBindingViewDimensionDescriptor(0x00000011),
-    DawnTextureInternalUsageDescriptor(0x000003e8),
-    DawnEncoderInternalUsageDescriptor(0x000003eb),
-    DawnInstanceDescriptor(0x000003ec),
-    DawnCacheDeviceDescriptor(0x000003ed),
-    DawnAdapterPropertiesPowerPreference(0x000003ee),
-    DawnBufferDescriptorErrorInfoFromWireClient(0x000003ef),
-    DawnTogglesDescriptor(0x000003f0),
-    DawnShaderModuleSPIRVOptionsDescriptor(0x000003f1),
-    RequestAdapterOptionsLUID(0x000003f2),
-    RequestAdapterOptionsGetGLProc(0x000003f3),
-    RequestAdapterOptionsD3D11Device(0x000003f4),
-    DawnRenderPassColorAttachmentRenderToSingleSampled(0x000003f6),
-    RenderPassPixelLocalStorage(0x000003f7),
-    PipelineLayoutPixelLocalStorage(0x000003f8),
-    BufferHostMappedPointer(0x000003f9),
-    DawnExperimentalSubgroupLimits(0x000003fa),
-    AdapterPropertiesMemoryHeaps(0x000003fb),
-    AdapterPropertiesD3D(0x000003fc),
-    AdapterPropertiesVk(0x000003fd),
-    DawnComputePipelineFullSubgroups(0x000003fe),
-    DawnWireWGSLControl(0x000003ff),
+    DawnTextureInternalUsageDescriptor(0x000003E8),
+    DawnEncoderInternalUsageDescriptor(0x000003EB),
+    DawnInstanceDescriptor(0x000003EC),
+    DawnCacheDeviceDescriptor(0x000003ED),
+    DawnAdapterPropertiesPowerPreference(0x000003EE),
+    DawnBufferDescriptorErrorInfoFromWireClient(0x000003EF),
+    DawnTogglesDescriptor(0x000003F0),
+    DawnShaderModuleSPIRVOptionsDescriptor(0x000003F1),
+    RequestAdapterOptionsLUID(0x000003F2),
+    RequestAdapterOptionsGetGLProc(0x000003F3),
+    RequestAdapterOptionsD3D11Device(0x000003F4),
+    DawnMultisampleStateRenderToSingleSampled(0x000003F5),
+    DawnRenderPassColorAttachmentRenderToSingleSampled(0x000003F6),
+    RenderPassPixelLocalStorage(0x000003F7),
+    PipelineLayoutPixelLocalStorage(0x000003F8),
+    BufferHostMappedPointer(0x000003F9),
+    DawnExperimentalSubgroupLimits(0x000003FA),
+    AdapterPropertiesMemoryHeaps(0x000003FB),
+    AdapterPropertiesD3D(0x000003FC),
+    AdapterPropertiesVk(0x000003FD),
+    DawnComputePipelineFullSubgroups(0x000003FE),
+    DawnWireWGSLControl(0x000003FF),
     DawnWGSLBlocklist(0x00000400),
     DrmFormatCapabilities(0x00000401),
     ShaderModuleCompilationOptions(0x00000402),
     ColorTargetStateExpandResolveTextureDawn(0x00000403),
-    SharedTextureMemoryVkDedicatedAllocationDescriptor(0x0000044d),
-    SharedTextureMemoryAHardwareBufferDescriptor(0x0000044e),
-    SharedTextureMemoryDmaBufDescriptor(0x0000044f),
+    SharedTextureMemoryVkDedicatedAllocationDescriptor(0x0000044D),
+    SharedTextureMemoryAHardwareBufferDescriptor(0x0000044E),
+    SharedTextureMemoryDmaBufDescriptor(0x0000044F),
     SharedTextureMemoryOpaqueFDDescriptor(0x00000450),
     SharedTextureMemoryZirconHandleDescriptor(0x00000451),
     SharedTextureMemoryDXGISharedHandleDescriptor(0x00000452),
     SharedTextureMemoryD3D11Texture2DDescriptor(0x00000453),
     SharedTextureMemoryIOSurfaceDescriptor(0x00000454),
     SharedTextureMemoryEGLImageDescriptor(0x00000455),
-    SharedTextureMemoryInitializedBeginState(0x000004b0),
-    SharedTextureMemoryInitializedEndState(0x000004b1),
-    SharedTextureMemoryVkImageLayoutBeginState(0x000004b2),
-    SharedTextureMemoryVkImageLayoutEndState(0x000004b3),
-    SharedTextureMemoryD3DSwapchainBeginState(0x000004b4),
-    SharedFenceVkSemaphoreOpaqueFDDescriptor(0x000004b5),
-    SharedFenceVkSemaphoreOpaqueFDExportInfo(0x000004b6),
-    SharedFenceVkSemaphoreSyncFDDescriptor(0x000004b7),
-    SharedFenceVkSemaphoreSyncFDExportInfo(0x000004b8),
-    SharedFenceVkSemaphoreZirconHandleDescriptor(0x000004b9),
-    SharedFenceVkSemaphoreZirconHandleExportInfo(0x000004ba),
-    SharedFenceDXGISharedHandleDescriptor(0x000004bb),
-    SharedFenceDXGISharedHandleExportInfo(0x000004bc),
-    SharedFenceMTLSharedEventDescriptor(0x000004bd),
-    SharedFenceMTLSharedEventExportInfo(0x000004be),
-    SharedBufferMemoryD3D12ResourceDescriptor(0x000004bf),
-    StaticSamplerBindingLayout(0x000004c0),
-    YCbCrVkDescriptor(0x000004c1),
-    SharedTextureMemoryAHardwareBufferProperties(0x000004c2),
-    AHardwareBufferProperties(0x000004c3),
-    Force32(0x7fffffff),
+    SharedTextureMemoryInitializedBeginState(0x000004B0),
+    SharedTextureMemoryInitializedEndState(0x000004B1),
+    SharedTextureMemoryVkImageLayoutBeginState(0x000004B2),
+    SharedTextureMemoryVkImageLayoutEndState(0x000004B3),
+    SharedTextureMemoryD3DSwapchainBeginState(0x000004B4),
+    SharedFenceVkSemaphoreOpaqueFDDescriptor(0x000004B5),
+    SharedFenceVkSemaphoreOpaqueFDExportInfo(0x000004B6),
+    SharedFenceVkSemaphoreSyncFDDescriptor(0x000004B7),
+    SharedFenceVkSemaphoreSyncFDExportInfo(0x000004B8),
+    SharedFenceVkSemaphoreZirconHandleDescriptor(0x000004B9),
+    SharedFenceVkSemaphoreZirconHandleExportInfo(0x000004BA),
+    SharedFenceDXGISharedHandleDescriptor(0x000004BB),
+    SharedFenceDXGISharedHandleExportInfo(0x000004BC),
+    SharedFenceMTLSharedEventDescriptor(0x000004BD),
+    SharedFenceMTLSharedEventExportInfo(0x000004BE),
+    SharedBufferMemoryD3D12ResourceDescriptor(0x000004BF),
+    StaticSamplerBindingLayout(0x000004C0),
+    YCbCrVkDescriptor(0x000004C1),
+    SharedTextureMemoryAHardwareBufferProperties(0x000004C2),
+    AHardwareBufferProperties(0x000004C3),
     ;
 
     public companion object {
@@ -100,78 +100,96 @@ public enum class WGPUSType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUSType = when (value) {
-            0x00000000 -> Invalid
-            0x00000001 -> SurfaceDescriptorFromMetalLayer
-            0x00000002 -> SurfaceDescriptorFromWindowsHWND
-            0x00000003 -> SurfaceDescriptorFromXlibWindow
-            0x00000004 -> SurfaceDescriptorFromCanvasHTMLSelector
-            0x00000005 -> ShaderModuleSPIRVDescriptor
-            0x00000006 -> ShaderModuleWGSLDescriptor
-            0x00000007 -> PrimitiveDepthClipControl
-            0x00000008 -> SurfaceDescriptorFromWaylandSurface
-            0x00000009 -> SurfaceDescriptorFromAndroidNativeWindow
-            0x0000000b -> SurfaceDescriptorFromWindowsCoreWindow
-            0x0000000c -> ExternalTextureBindingEntry
-            0x0000000d -> ExternalTextureBindingLayout
-            0x0000000e -> SurfaceDescriptorFromWindowsSwapChainPanel
-            0x0000000f -> RenderPassDescriptorMaxDrawCount
-            0x00000010 -> DepthStencilStateDepthWriteDefinedDawn
-            0x00000011 -> TextureBindingViewDimensionDescriptor
-            0x000003e8 -> DawnTextureInternalUsageDescriptor
-            0x000003eb -> DawnEncoderInternalUsageDescriptor
-            0x000003ec -> DawnInstanceDescriptor
-            0x000003ed -> DawnCacheDeviceDescriptor
-            0x000003ee -> DawnAdapterPropertiesPowerPreference
-            0x000003ef -> DawnBufferDescriptorErrorInfoFromWireClient
-            0x000003f0 -> DawnTogglesDescriptor
-            0x000003f1 -> DawnShaderModuleSPIRVOptionsDescriptor
-            0x000003f2 -> RequestAdapterOptionsLUID
-            0x000003f3 -> RequestAdapterOptionsGetGLProc
-            0x000003f4 -> RequestAdapterOptionsD3D11Device
-            0x000003f6 -> DawnRenderPassColorAttachmentRenderToSingleSampled
-            0x000003f7 -> RenderPassPixelLocalStorage
-            0x000003f8 -> PipelineLayoutPixelLocalStorage
-            0x000003f9 -> BufferHostMappedPointer
-            0x000003fa -> DawnExperimentalSubgroupLimits
-            0x000003fb -> AdapterPropertiesMemoryHeaps
-            0x000003fc -> AdapterPropertiesD3D
-            0x000003fd -> AdapterPropertiesVk
-            0x000003fe -> DawnComputePipelineFullSubgroups
-            0x000003ff -> DawnWireWGSLControl
-            0x00000400 -> DawnWGSLBlocklist
-            0x00000401 -> DrmFormatCapabilities
-            0x00000402 -> ShaderModuleCompilationOptions
-            0x00000403 -> ColorTargetStateExpandResolveTextureDawn
-            0x0000044d -> SharedTextureMemoryVkDedicatedAllocationDescriptor
-            0x0000044e -> SharedTextureMemoryAHardwareBufferDescriptor
-            0x0000044f -> SharedTextureMemoryDmaBufDescriptor
-            0x00000450 -> SharedTextureMemoryOpaqueFDDescriptor
-            0x00000451 -> SharedTextureMemoryZirconHandleDescriptor
-            0x00000452 -> SharedTextureMemoryDXGISharedHandleDescriptor
-            0x00000453 -> SharedTextureMemoryD3D11Texture2DDescriptor
-            0x00000454 -> SharedTextureMemoryIOSurfaceDescriptor
-            0x00000455 -> SharedTextureMemoryEGLImageDescriptor
-            0x000004b0 -> SharedTextureMemoryInitializedBeginState
-            0x000004b1 -> SharedTextureMemoryInitializedEndState
-            0x000004b2 -> SharedTextureMemoryVkImageLayoutBeginState
-            0x000004b3 -> SharedTextureMemoryVkImageLayoutEndState
-            0x000004b4 -> SharedTextureMemoryD3DSwapchainBeginState
-            0x000004b5 -> SharedFenceVkSemaphoreOpaqueFDDescriptor
-            0x000004b6 -> SharedFenceVkSemaphoreOpaqueFDExportInfo
-            0x000004b7 -> SharedFenceVkSemaphoreSyncFDDescriptor
-            0x000004b8 -> SharedFenceVkSemaphoreSyncFDExportInfo
-            0x000004b9 -> SharedFenceVkSemaphoreZirconHandleDescriptor
-            0x000004ba -> SharedFenceVkSemaphoreZirconHandleExportInfo
-            0x000004bb -> SharedFenceDXGISharedHandleDescriptor
-            0x000004bc -> SharedFenceDXGISharedHandleExportInfo
-            0x000004bd -> SharedFenceMTLSharedEventDescriptor
-            0x000004be -> SharedFenceMTLSharedEventExportInfo
-            0x000004bf -> SharedBufferMemoryD3D12ResourceDescriptor
-            0x000004c0 -> StaticSamplerBindingLayout
-            0x000004c1 -> YCbCrVkDescriptor
-            0x000004c2 -> SharedTextureMemoryAHardwareBufferProperties
-            0x000004c3 -> AHardwareBufferProperties
-            0x7fffffff -> Force32
+            Invalid.value -> Invalid
+            SurfaceDescriptorFromMetalLayer.value -> SurfaceDescriptorFromMetalLayer
+            SurfaceDescriptorFromWindowsHWND.value -> SurfaceDescriptorFromWindowsHWND
+            SurfaceDescriptorFromXlibWindow.value -> SurfaceDescriptorFromXlibWindow
+            SurfaceDescriptorFromCanvasHTMLSelector.value -> SurfaceDescriptorFromCanvasHTMLSelector
+            ShaderModuleSPIRVDescriptor.value -> ShaderModuleSPIRVDescriptor
+            ShaderModuleWGSLDescriptor.value -> ShaderModuleWGSLDescriptor
+            PrimitiveDepthClipControl.value -> PrimitiveDepthClipControl
+            SurfaceDescriptorFromWaylandSurface.value -> SurfaceDescriptorFromWaylandSurface
+            SurfaceDescriptorFromAndroidNativeWindow.value -> SurfaceDescriptorFromAndroidNativeWindow
+            SurfaceDescriptorFromWindowsCoreWindow.value -> SurfaceDescriptorFromWindowsCoreWindow
+            ExternalTextureBindingEntry.value -> ExternalTextureBindingEntry
+            ExternalTextureBindingLayout.value -> ExternalTextureBindingLayout
+            SurfaceDescriptorFromWindowsSwapChainPanel.value -> SurfaceDescriptorFromWindowsSwapChainPanel
+            RenderPassDescriptorMaxDrawCount.value -> RenderPassDescriptorMaxDrawCount
+            DepthStencilStateDepthWriteDefinedDawn.value -> DepthStencilStateDepthWriteDefinedDawn
+            TextureBindingViewDimensionDescriptor.value -> TextureBindingViewDimensionDescriptor
+            DawnTextureInternalUsageDescriptor.value -> DawnTextureInternalUsageDescriptor
+            DawnEncoderInternalUsageDescriptor.value -> DawnEncoderInternalUsageDescriptor
+            DawnInstanceDescriptor.value -> DawnInstanceDescriptor
+            DawnCacheDeviceDescriptor.value -> DawnCacheDeviceDescriptor
+            DawnAdapterPropertiesPowerPreference.value -> DawnAdapterPropertiesPowerPreference
+            DawnBufferDescriptorErrorInfoFromWireClient.value ->
+                DawnBufferDescriptorErrorInfoFromWireClient
+
+            DawnTogglesDescriptor.value -> DawnTogglesDescriptor
+            DawnShaderModuleSPIRVOptionsDescriptor.value -> DawnShaderModuleSPIRVOptionsDescriptor
+            RequestAdapterOptionsLUID.value -> RequestAdapterOptionsLUID
+            RequestAdapterOptionsGetGLProc.value -> RequestAdapterOptionsGetGLProc
+            RequestAdapterOptionsD3D11Device.value -> RequestAdapterOptionsD3D11Device
+            DawnMultisampleStateRenderToSingleSampled.value -> DawnMultisampleStateRenderToSingleSampled
+            DawnRenderPassColorAttachmentRenderToSingleSampled.value ->
+                DawnRenderPassColorAttachmentRenderToSingleSampled
+
+            RenderPassPixelLocalStorage.value -> RenderPassPixelLocalStorage
+            PipelineLayoutPixelLocalStorage.value -> PipelineLayoutPixelLocalStorage
+            BufferHostMappedPointer.value -> BufferHostMappedPointer
+            DawnExperimentalSubgroupLimits.value -> DawnExperimentalSubgroupLimits
+            AdapterPropertiesMemoryHeaps.value -> AdapterPropertiesMemoryHeaps
+            AdapterPropertiesD3D.value -> AdapterPropertiesD3D
+            AdapterPropertiesVk.value -> AdapterPropertiesVk
+            DawnComputePipelineFullSubgroups.value -> DawnComputePipelineFullSubgroups
+            DawnWireWGSLControl.value -> DawnWireWGSLControl
+            DawnWGSLBlocklist.value -> DawnWGSLBlocklist
+            DrmFormatCapabilities.value -> DrmFormatCapabilities
+            ShaderModuleCompilationOptions.value -> ShaderModuleCompilationOptions
+            ColorTargetStateExpandResolveTextureDawn.value -> ColorTargetStateExpandResolveTextureDawn
+            SharedTextureMemoryVkDedicatedAllocationDescriptor.value ->
+                SharedTextureMemoryVkDedicatedAllocationDescriptor
+
+            SharedTextureMemoryAHardwareBufferDescriptor.value ->
+                SharedTextureMemoryAHardwareBufferDescriptor
+
+            SharedTextureMemoryDmaBufDescriptor.value -> SharedTextureMemoryDmaBufDescriptor
+            SharedTextureMemoryOpaqueFDDescriptor.value -> SharedTextureMemoryOpaqueFDDescriptor
+            SharedTextureMemoryZirconHandleDescriptor.value -> SharedTextureMemoryZirconHandleDescriptor
+            SharedTextureMemoryDXGISharedHandleDescriptor.value ->
+                SharedTextureMemoryDXGISharedHandleDescriptor
+
+            SharedTextureMemoryD3D11Texture2DDescriptor.value ->
+                SharedTextureMemoryD3D11Texture2DDescriptor
+
+            SharedTextureMemoryIOSurfaceDescriptor.value -> SharedTextureMemoryIOSurfaceDescriptor
+            SharedTextureMemoryEGLImageDescriptor.value -> SharedTextureMemoryEGLImageDescriptor
+            SharedTextureMemoryInitializedBeginState.value -> SharedTextureMemoryInitializedBeginState
+            SharedTextureMemoryInitializedEndState.value -> SharedTextureMemoryInitializedEndState
+            SharedTextureMemoryVkImageLayoutBeginState.value -> SharedTextureMemoryVkImageLayoutBeginState
+            SharedTextureMemoryVkImageLayoutEndState.value -> SharedTextureMemoryVkImageLayoutEndState
+            SharedTextureMemoryD3DSwapchainBeginState.value -> SharedTextureMemoryD3DSwapchainBeginState
+            SharedFenceVkSemaphoreOpaqueFDDescriptor.value -> SharedFenceVkSemaphoreOpaqueFDDescriptor
+            SharedFenceVkSemaphoreOpaqueFDExportInfo.value -> SharedFenceVkSemaphoreOpaqueFDExportInfo
+            SharedFenceVkSemaphoreSyncFDDescriptor.value -> SharedFenceVkSemaphoreSyncFDDescriptor
+            SharedFenceVkSemaphoreSyncFDExportInfo.value -> SharedFenceVkSemaphoreSyncFDExportInfo
+            SharedFenceVkSemaphoreZirconHandleDescriptor.value ->
+                SharedFenceVkSemaphoreZirconHandleDescriptor
+
+            SharedFenceVkSemaphoreZirconHandleExportInfo.value ->
+                SharedFenceVkSemaphoreZirconHandleExportInfo
+
+            SharedFenceDXGISharedHandleDescriptor.value -> SharedFenceDXGISharedHandleDescriptor
+            SharedFenceDXGISharedHandleExportInfo.value -> SharedFenceDXGISharedHandleExportInfo
+            SharedFenceMTLSharedEventDescriptor.value -> SharedFenceMTLSharedEventDescriptor
+            SharedFenceMTLSharedEventExportInfo.value -> SharedFenceMTLSharedEventExportInfo
+            SharedBufferMemoryD3D12ResourceDescriptor.value -> SharedBufferMemoryD3D12ResourceDescriptor
+            StaticSamplerBindingLayout.value -> StaticSamplerBindingLayout
+            YCbCrVkDescriptor.value -> YCbCrVkDescriptor
+            SharedTextureMemoryAHardwareBufferProperties.value ->
+                SharedTextureMemoryAHardwareBufferProperties
+
+            AHardwareBufferProperties.value -> AHardwareBufferProperties
             else -> error("enum not found")
         }
     }

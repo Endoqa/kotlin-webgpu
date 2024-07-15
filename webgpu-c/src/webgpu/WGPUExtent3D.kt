@@ -9,26 +9,26 @@ public value class WGPUExtent3D(
     public val `$mem`: MemorySegment,
 ) {
     public var width: uint32_t
-        get() = (WGPUExtent3D.widthHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (widthHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUExtent3D.widthHandle.set(this.`$mem`, 0L, value.toInt())
+            widthHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public var height: uint32_t
-        get() = (WGPUExtent3D.heightHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (heightHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUExtent3D.heightHandle.set(this.`$mem`, 0L, value.toInt())
+            heightHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public var depthOrArrayLayers: uint32_t
-        get() = (WGPUExtent3D.depthOrArrayLayersHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (depthOrArrayLayersHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUExtent3D.depthOrArrayLayersHandle.set(this.`$mem`, 0L, value.toInt())
+            depthOrArrayLayersHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUExtent3D.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -52,6 +52,6 @@ public value class WGPUExtent3D(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUExtent3D =
-            WGPUExtent3D(alloc.allocate(WGPUExtent3D.layout))
+            WGPUExtent3D(alloc.allocate(layout))
     }
 }

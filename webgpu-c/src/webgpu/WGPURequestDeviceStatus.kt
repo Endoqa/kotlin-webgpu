@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPURequestDeviceStatus.Error
+import webgpu.WGPURequestDeviceStatus.InstanceDropped
+import webgpu.WGPURequestDeviceStatus.Success
+import webgpu.WGPURequestDeviceStatus.Unknown
 
 public enum class WGPURequestDeviceStatus(
     public val `value`: Int,
@@ -13,7 +18,6 @@ public enum class WGPURequestDeviceStatus(
     InstanceDropped(0x00000001),
     Error(0x00000002),
     Unknown(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +37,10 @@ public enum class WGPURequestDeviceStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPURequestDeviceStatus = when (value) {
-            0x00000000 -> Success
-            0x00000001 -> InstanceDropped
-            0x00000002 -> Error
-            0x00000003 -> Unknown
-            0x7fffffff -> Force32
+            Success.value -> Success
+            InstanceDropped.value -> InstanceDropped
+            Error.value -> Error
+            Unknown.value -> Unknown
             else -> error("enum not found")
         }
     }

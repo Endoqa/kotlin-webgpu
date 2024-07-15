@@ -5,6 +5,13 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUSurfaceGetCurrentTextureStatus.DeviceLost
+import webgpu.WGPUSurfaceGetCurrentTextureStatus.Lost
+import webgpu.WGPUSurfaceGetCurrentTextureStatus.OutOfMemory
+import webgpu.WGPUSurfaceGetCurrentTextureStatus.Outdated
+import webgpu.WGPUSurfaceGetCurrentTextureStatus.Success
+import webgpu.WGPUSurfaceGetCurrentTextureStatus.Timeout
 
 public enum class WGPUSurfaceGetCurrentTextureStatus(
     public val `value`: Int,
@@ -15,8 +22,6 @@ public enum class WGPUSurfaceGetCurrentTextureStatus(
     Lost(0x00000003),
     OutOfMemory(0x00000004),
     DeviceLost(0x00000005),
-    Error(0x00000006),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -36,14 +41,12 @@ public enum class WGPUSurfaceGetCurrentTextureStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUSurfaceGetCurrentTextureStatus = when (value) {
-            0x00000000 -> Success
-            0x00000001 -> Timeout
-            0x00000002 -> Outdated
-            0x00000003 -> Lost
-            0x00000004 -> OutOfMemory
-            0x00000005 -> DeviceLost
-            0x00000006 -> Error
-            0x7fffffff -> Force32
+            Success.value -> Success
+            Timeout.value -> Timeout
+            Outdated.value -> Outdated
+            Lost.value -> Lost
+            OutOfMemory.value -> OutOfMemory
+            DeviceLost.value -> DeviceLost
             else -> error("enum not found")
         }
     }

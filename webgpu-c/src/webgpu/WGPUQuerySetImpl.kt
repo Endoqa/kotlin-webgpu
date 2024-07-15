@@ -9,7 +9,7 @@ public value class WGPUQuerySetImpl(
 ) {
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUQuerySetImpl.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -18,6 +18,6 @@ public value class WGPUQuerySetImpl(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUQuerySetImpl =
-            WGPUQuerySetImpl(alloc.allocate(WGPUQuerySetImpl.layout))
+            WGPUQuerySetImpl(alloc.allocate(layout))
     }
 }

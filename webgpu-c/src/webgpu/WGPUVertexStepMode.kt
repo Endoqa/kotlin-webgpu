@@ -13,7 +13,6 @@ public enum class WGPUVertexStepMode(
     VertexBufferNotUsed(0x00000001),
     Vertex(0x00000002),
     Instance(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +32,10 @@ public enum class WGPUVertexStepMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUVertexStepMode = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> VertexBufferNotUsed
-            0x00000002 -> Vertex
-            0x00000003 -> Instance
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            VertexBufferNotUsed.value -> VertexBufferNotUsed
+            Vertex.value -> Vertex
+            Instance.value -> Instance
             else -> error("enum not found")
         }
     }

@@ -14,8 +14,7 @@ public enum class WGPUColorWriteMask(
     Green(0x00000002),
     Blue(0x00000004),
     Alpha(0x00000008),
-    All(0x0000000f),
-    Force32(0x7fffffff),
+    All(0x0000000F),
     ;
 
     public companion object {
@@ -35,13 +34,12 @@ public enum class WGPUColorWriteMask(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUColorWriteMask = when (value) {
-            0x00000000 -> None
-            0x00000001 -> Red
-            0x00000002 -> Green
-            0x00000004 -> Blue
-            0x00000008 -> Alpha
-            0x0000000f -> All
-            0x7fffffff -> Force32
+            None.value -> None
+            Red.value -> Red
+            Green.value -> Green
+            Blue.value -> Blue
+            Alpha.value -> Alpha
+            All.value -> All
             else -> error("enum not found")
         }
     }

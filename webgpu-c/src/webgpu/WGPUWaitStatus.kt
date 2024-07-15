@@ -15,7 +15,6 @@ public enum class WGPUWaitStatus(
     UnsupportedCount(0x00000003),
     UnsupportedMixedSources(0x00000004),
     Unknown(0x00000005),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -35,13 +34,12 @@ public enum class WGPUWaitStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUWaitStatus = when (value) {
-            0x00000000 -> Success
-            0x00000001 -> TimedOut
-            0x00000002 -> UnsupportedTimeout
-            0x00000003 -> UnsupportedCount
-            0x00000004 -> UnsupportedMixedSources
-            0x00000005 -> Unknown
-            0x7fffffff -> Force32
+            Success.value -> Success
+            TimedOut.value -> TimedOut
+            UnsupportedTimeout.value -> UnsupportedTimeout
+            UnsupportedCount.value -> UnsupportedCount
+            UnsupportedMixedSources.value -> UnsupportedMixedSources
+            Unknown.value -> Unknown
             else -> error("enum not found")
         }
     }

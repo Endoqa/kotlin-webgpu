@@ -9,27 +9,27 @@ public value class WGPUChainedStruct(
     public val `$mem`: MemorySegment,
 ) {
     public var next: Pointer<WGPUChainedStruct>
-        get() = WGPUChainedStruct.nextHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = nextHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUChainedStruct.nextHandle.set(this.`$mem`, 0L, value)
+            nextHandle.set(this.`$mem`, 0L, value)
         }
 
     public var sType: WGPUSType
-        get() = WGPUSType.fromInt(WGPUChainedStruct.sTypeHandle.get(this.`$mem`, 0L) as Int)
+        get() = WGPUSType.fromInt(sTypeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
-            WGPUChainedStruct.sTypeHandle.set(this.`$mem`, 0L, value.value)
+            sTypeHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUChainedStruct.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
         public val layout: StructLayout = MemoryLayout.structLayout(
             `$RuntimeHelper`.POINTER.withName("next"),
             ValueLayout.JAVA_INT.withName("sType"),
-            java.lang.foreign.MemoryLayout.paddingLayout(4),
+            MemoryLayout.paddingLayout(4),
         ).withName("WGPUChainedStruct")
 
         @JvmField
@@ -42,6 +42,6 @@ public value class WGPUChainedStruct(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUChainedStruct =
-            WGPUChainedStruct(alloc.allocate(WGPUChainedStruct.layout))
+            WGPUChainedStruct(alloc.allocate(layout))
     }
 }

@@ -12,7 +12,6 @@ public enum class WGPUFilterMode(
     Undefined(0x00000000),
     Nearest(0x00000001),
     Linear(0x00000002),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -32,10 +31,9 @@ public enum class WGPUFilterMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUFilterMode = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Nearest
-            0x00000002 -> Linear
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Nearest.value -> Nearest
+            Linear.value -> Linear
             else -> error("enum not found")
         }
     }

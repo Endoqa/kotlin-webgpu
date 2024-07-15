@@ -9,32 +9,32 @@ public value class WGPUColor(
     public val `$mem`: MemorySegment,
 ) {
     public var r: Double
-        get() = WGPUColor.rHandle.get(this.`$mem`, 0L) as Double
+        get() = rHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
-            WGPUColor.rHandle.set(this.`$mem`, 0L, value)
+            rHandle.set(this.`$mem`, 0L, value)
         }
 
     public var g: Double
-        get() = WGPUColor.gHandle.get(this.`$mem`, 0L) as Double
+        get() = gHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
-            WGPUColor.gHandle.set(this.`$mem`, 0L, value)
+            gHandle.set(this.`$mem`, 0L, value)
         }
 
     public var b: Double
-        get() = WGPUColor.bHandle.get(this.`$mem`, 0L) as Double
+        get() = bHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
-            WGPUColor.bHandle.set(this.`$mem`, 0L, value)
+            bHandle.set(this.`$mem`, 0L, value)
         }
 
     public var a: Double
-        get() = WGPUColor.aHandle.get(this.`$mem`, 0L) as Double
+        get() = aHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
-            WGPUColor.aHandle.set(this.`$mem`, 0L, value)
+            aHandle.set(this.`$mem`, 0L, value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUColor.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -59,6 +59,6 @@ public value class WGPUColor(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUColor =
-            WGPUColor(alloc.allocate(WGPUColor.layout))
+            WGPUColor(alloc.allocate(layout))
     }
 }

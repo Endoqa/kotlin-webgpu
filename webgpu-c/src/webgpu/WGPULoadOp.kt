@@ -13,7 +13,6 @@ public enum class WGPULoadOp(
     Clear(0x00000001),
     Load(0x00000002),
     ExpandResolveTexture(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +32,10 @@ public enum class WGPULoadOp(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPULoadOp = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Clear
-            0x00000002 -> Load
-            0x00000003 -> ExpandResolveTexture
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Clear.value -> Clear
+            Load.value -> Load
+            ExpandResolveTexture.value -> ExpandResolveTexture
             else -> error("enum not found")
         }
     }

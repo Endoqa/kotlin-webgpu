@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUDeviceLostReason.Destroyed
+import webgpu.WGPUDeviceLostReason.FailedCreation
+import webgpu.WGPUDeviceLostReason.InstanceDropped
+import webgpu.WGPUDeviceLostReason.Unknown
 
 public enum class WGPUDeviceLostReason(
     public val `value`: Int,
@@ -13,7 +18,6 @@ public enum class WGPUDeviceLostReason(
     Destroyed(0x00000002),
     InstanceDropped(0x00000003),
     FailedCreation(0x00000004),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +37,10 @@ public enum class WGPUDeviceLostReason(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUDeviceLostReason = when (value) {
-            0x00000001 -> Unknown
-            0x00000002 -> Destroyed
-            0x00000003 -> InstanceDropped
-            0x00000004 -> FailedCreation
-            0x7fffffff -> Force32
+            Unknown.value -> Unknown
+            Destroyed.value -> Destroyed
+            InstanceDropped.value -> InstanceDropped
+            FailedCreation.value -> FailedCreation
             else -> error("enum not found")
         }
     }

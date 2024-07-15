@@ -10,7 +10,7 @@ public value class WGPUBlendState(
 ) {
     public var color: WGPUBlendComponent
         get() = WGPUBlendComponent(
-            WGPUBlendState.colorHandle.invokeExact(this.`$mem`, 0L) as
+            colorHandle.invokeExact(this.`$mem`, 0L) as
                     MemorySegment
         )
         set(`value`) {
@@ -22,7 +22,7 @@ public value class WGPUBlendState(
 
     public var alpha: WGPUBlendComponent
         get() = WGPUBlendComponent(
-            WGPUBlendState.alphaHandle.invokeExact(this.`$mem`, 0L) as
+            alphaHandle.invokeExact(this.`$mem`, 0L) as
                     MemorySegment
         )
         set(`value`) {
@@ -34,7 +34,7 @@ public value class WGPUBlendState(
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUBlendState.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -53,6 +53,6 @@ public value class WGPUBlendState(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUBlendState =
-            WGPUBlendState(alloc.allocate(WGPUBlendState.layout))
+            WGPUBlendState(alloc.allocate(layout))
     }
 }

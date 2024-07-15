@@ -9,20 +9,20 @@ public value class WGPUQueueDescriptor(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = WGPUQueueDescriptor.nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUQueueDescriptor.nextInChainHandle.set(this.`$mem`, 0L, value)
+            nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var label: Pointer<Byte>
-        get() = WGPUQueueDescriptor.labelHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = labelHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUQueueDescriptor.labelHandle.set(this.`$mem`, 0L, value)
+            labelHandle.set(this.`$mem`, 0L, value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUQueueDescriptor.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -41,6 +41,6 @@ public value class WGPUQueueDescriptor(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUQueueDescriptor =
-            WGPUQueueDescriptor(alloc.allocate(WGPUQueueDescriptor.layout))
+            WGPUQueueDescriptor(alloc.allocate(layout))
     }
 }

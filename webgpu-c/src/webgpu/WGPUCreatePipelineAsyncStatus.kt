@@ -5,6 +5,14 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUCreatePipelineAsyncStatus.DeviceDestroyed
+import webgpu.WGPUCreatePipelineAsyncStatus.DeviceLost
+import webgpu.WGPUCreatePipelineAsyncStatus.InstanceDropped
+import webgpu.WGPUCreatePipelineAsyncStatus.InternalError
+import webgpu.WGPUCreatePipelineAsyncStatus.Success
+import webgpu.WGPUCreatePipelineAsyncStatus.Unknown
+import webgpu.WGPUCreatePipelineAsyncStatus.ValidationError
 
 public enum class WGPUCreatePipelineAsyncStatus(
     public val `value`: Int,
@@ -16,7 +24,6 @@ public enum class WGPUCreatePipelineAsyncStatus(
     DeviceLost(0x00000004),
     DeviceDestroyed(0x00000005),
     Unknown(0x00000006),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -36,14 +43,13 @@ public enum class WGPUCreatePipelineAsyncStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUCreatePipelineAsyncStatus = when (value) {
-            0x00000000 -> Success
-            0x00000001 -> InstanceDropped
-            0x00000002 -> ValidationError
-            0x00000003 -> InternalError
-            0x00000004 -> DeviceLost
-            0x00000005 -> DeviceDestroyed
-            0x00000006 -> Unknown
-            0x7fffffff -> Force32
+            Success.value -> Success
+            InstanceDropped.value -> InstanceDropped
+            ValidationError.value -> ValidationError
+            InternalError.value -> InternalError
+            DeviceLost.value -> DeviceLost
+            DeviceDestroyed.value -> DeviceDestroyed
+            Unknown.value -> Unknown
             else -> error("enum not found")
         }
     }

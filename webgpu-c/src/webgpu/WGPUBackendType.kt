@@ -18,7 +18,6 @@ public enum class WGPUBackendType(
     Vulkan(0x00000006),
     OpenGL(0x00000007),
     OpenGLES(0x00000008),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -38,16 +37,15 @@ public enum class WGPUBackendType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUBackendType = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Null
-            0x00000002 -> WebGPU
-            0x00000003 -> D3D11
-            0x00000004 -> D3D12
-            0x00000005 -> Metal
-            0x00000006 -> Vulkan
-            0x00000007 -> OpenGL
-            0x00000008 -> OpenGLES
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Null.value -> Null
+            WebGPU.value -> WebGPU
+            D3D11.value -> D3D11
+            D3D12.value -> D3D12
+            Metal.value -> Metal
+            Vulkan.value -> Vulkan
+            OpenGL.value -> OpenGL
+            OpenGLES.value -> OpenGLES
             else -> error("enum not found")
         }
     }

@@ -9,50 +9,50 @@ public value class WGPUFragmentState(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = WGPUFragmentState.nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUFragmentState.nextInChainHandle.set(this.`$mem`, 0L, value)
+            nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var module: WGPUShaderModule
-        get() = WGPUFragmentState.moduleHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = moduleHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUFragmentState.moduleHandle.set(this.`$mem`, 0L, value)
+            moduleHandle.set(this.`$mem`, 0L, value)
         }
 
     public var entryPoint: Pointer<Byte>
-        get() = WGPUFragmentState.entryPointHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = entryPointHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUFragmentState.entryPointHandle.set(this.`$mem`, 0L, value)
+            entryPointHandle.set(this.`$mem`, 0L, value)
         }
 
     public var constantCount: ULong
-        get() = (WGPUFragmentState.constantCountHandle.get(this.`$mem`, 0L) as Long).toULong()
+        get() = (constantCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
-            WGPUFragmentState.constantCountHandle.set(this.`$mem`, 0L, value.toLong())
+            constantCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
     public var constants: Pointer<WGPUConstantEntry>
-        get() = WGPUFragmentState.constantsHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = constantsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUFragmentState.constantsHandle.set(this.`$mem`, 0L, value)
+            constantsHandle.set(this.`$mem`, 0L, value)
         }
 
     public var targetCount: ULong
-        get() = (WGPUFragmentState.targetCountHandle.get(this.`$mem`, 0L) as Long).toULong()
+        get() = (targetCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
-            WGPUFragmentState.targetCountHandle.set(this.`$mem`, 0L, value.toLong())
+            targetCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
     public var targets: Pointer<WGPUColorTargetState>
-        get() = WGPUFragmentState.targetsHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = targetsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUFragmentState.targetsHandle.set(this.`$mem`, 0L, value)
+            targetsHandle.set(this.`$mem`, 0L, value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUFragmentState.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -96,6 +96,6 @@ public value class WGPUFragmentState(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUFragmentState =
-            WGPUFragmentState(alloc.allocate(WGPUFragmentState.layout))
+            WGPUFragmentState(alloc.allocate(layout))
     }
 }

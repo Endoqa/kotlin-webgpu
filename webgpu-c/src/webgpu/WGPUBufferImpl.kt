@@ -9,7 +9,7 @@ public value class WGPUBufferImpl(
 ) {
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUBufferImpl.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -18,6 +18,6 @@ public value class WGPUBufferImpl(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUBufferImpl =
-            WGPUBufferImpl(alloc.allocate(WGPUBufferImpl.layout))
+            WGPUBufferImpl(alloc.allocate(layout))
     }
 }

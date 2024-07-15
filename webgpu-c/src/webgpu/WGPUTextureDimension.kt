@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUTextureDimension.Undefined
+import webgpu.WGPUTextureDimension.`1D`
+import webgpu.WGPUTextureDimension.`2D`
+import webgpu.WGPUTextureDimension.`3D`
 
 public enum class WGPUTextureDimension(
     public val `value`: Int,
@@ -13,7 +18,6 @@ public enum class WGPUTextureDimension(
     `1D`(0x00000001),
     `2D`(0x00000002),
     `3D`(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +37,10 @@ public enum class WGPUTextureDimension(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUTextureDimension = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> `1D`
-            0x00000002 -> `2D`
-            0x00000003 -> `3D`
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            `1D`.value -> `1D`
+            `2D`.value -> `2D`
+            `3D`.value -> `3D`
             else -> error("enum not found")
         }
     }

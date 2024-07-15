@@ -15,7 +15,6 @@ public enum class WGPUBlendOperation(
     ReverseSubtract(0x00000003),
     Min(0x00000004),
     Max(0x00000005),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -35,13 +34,12 @@ public enum class WGPUBlendOperation(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUBlendOperation = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Add
-            0x00000002 -> Subtract
-            0x00000003 -> ReverseSubtract
-            0x00000004 -> Min
-            0x00000005 -> Max
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Add.value -> Add
+            Subtract.value -> Subtract
+            ReverseSubtract.value -> ReverseSubtract
+            Min.value -> Min
+            Max.value -> Max
             else -> error("enum not found")
         }
     }

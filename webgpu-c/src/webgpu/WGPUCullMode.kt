@@ -13,7 +13,6 @@ public enum class WGPUCullMode(
     None(0x00000001),
     Front(0x00000002),
     Back(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +32,10 @@ public enum class WGPUCullMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUCullMode = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> None
-            0x00000002 -> Front
-            0x00000003 -> Back
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            None.value -> None
+            Front.value -> Front
+            Back.value -> Back
             else -> error("enum not found")
         }
     }

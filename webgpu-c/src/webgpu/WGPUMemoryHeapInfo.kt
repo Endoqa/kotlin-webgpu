@@ -9,26 +9,26 @@ public value class WGPUMemoryHeapInfo(
     public val `$mem`: MemorySegment,
 ) {
     public var properties: WGPUHeapPropertyFlags
-        get() = (WGPUMemoryHeapInfo.propertiesHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (propertiesHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUMemoryHeapInfo.propertiesHandle.set(this.`$mem`, 0L, value.toInt())
+            propertiesHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public var size: uint64_t
-        get() = (WGPUMemoryHeapInfo.sizeHandle.get(this.`$mem`, 0L) as Long).toULong()
+        get() = (sizeHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
-            WGPUMemoryHeapInfo.sizeHandle.set(this.`$mem`, 0L, value.toLong())
+            sizeHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUMemoryHeapInfo.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
         public val layout: StructLayout = MemoryLayout.structLayout(
             ValueLayout.JAVA_INT.withName("properties"),
-            java.lang.foreign.MemoryLayout.paddingLayout(4),
+            MemoryLayout.paddingLayout(4),
             ValueLayout.JAVA_LONG.withName("size"),
         ).withName("WGPUMemoryHeapInfo")
 
@@ -42,6 +42,6 @@ public value class WGPUMemoryHeapInfo(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUMemoryHeapInfo =
-            WGPUMemoryHeapInfo(alloc.allocate(WGPUMemoryHeapInfo.layout))
+            WGPUMemoryHeapInfo(alloc.allocate(layout))
     }
 }

@@ -9,14 +9,14 @@ public value class WGPUFuture(
     public val `$mem`: MemorySegment,
 ) {
     public var id: uint64_t
-        get() = (WGPUFuture.idHandle.get(this.`$mem`, 0L) as Long).toULong()
+        get() = (idHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
-            WGPUFuture.idHandle.set(this.`$mem`, 0L, value.toLong())
+            idHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUFuture.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -29,6 +29,6 @@ public value class WGPUFuture(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUFuture =
-            WGPUFuture(alloc.allocate(WGPUFuture.layout))
+            WGPUFuture(alloc.allocate(layout))
     }
 }

@@ -19,28 +19,28 @@ public enum class WGPUFeatureName(
     IndirectFirstInstance(0x00000007),
     ShaderF16(0x00000008),
     RG11B10UfloatRenderable(0x00000009),
-    BGRA8UnormStorage(0x0000000a),
-    Float32Filterable(0x0000000b),
-    DawnInternalUsages(0x000003ea),
-    DawnMultiPlanarFormats(0x000003eb),
-    DawnNative(0x000003ec),
-    ChromiumExperimentalTimestampQueryInsidePasses(0x000003ee),
-    ImplicitDeviceSynchronization(0x000003ef),
-    SurfaceCapabilities(0x000003f0),
-    TransientAttachments(0x000003f1),
-    MSAARenderToSingleSampled(0x000003f2),
-    DualSourceBlending(0x000003f3),
-    D3D11MultithreadProtected(0x000003f4),
-    ANGLETextureSharing(0x000003f5),
-    ChromiumExperimentalSubgroups(0x000003f6),
-    ChromiumExperimentalSubgroupUniformControlFlow(0x000003f7),
-    PixelLocalStorageCoherent(0x000003f9),
-    PixelLocalStorageNonCoherent(0x000003fa),
-    Unorm16TextureFormats(0x000003fb),
-    Snorm16TextureFormats(0x000003fc),
-    MultiPlanarFormatExtendedUsages(0x000003fd),
-    MultiPlanarFormatP010(0x000003fe),
-    HostMappedPointer(0x000003ff),
+    BGRA8UnormStorage(0x0000000A),
+    Float32Filterable(0x0000000B),
+    DawnInternalUsages(0x000003EA),
+    DawnMultiPlanarFormats(0x000003EB),
+    DawnNative(0x000003EC),
+    ChromiumExperimentalTimestampQueryInsidePasses(0x000003EE),
+    ImplicitDeviceSynchronization(0x000003EF),
+    SurfaceCapabilities(0x000003F0),
+    TransientAttachments(0x000003F1),
+    MSAARenderToSingleSampled(0x000003F2),
+    DualSourceBlending(0x000003F3),
+    D3D11MultithreadProtected(0x000003F4),
+    ANGLETextureSharing(0x000003F5),
+    ChromiumExperimentalSubgroups(0x000003F6),
+    ChromiumExperimentalSubgroupUniformControlFlow(0x000003F7),
+    PixelLocalStorageCoherent(0x000003F9),
+    PixelLocalStorageNonCoherent(0x000003FA),
+    Unorm16TextureFormats(0x000003FB),
+    Snorm16TextureFormats(0x000003FC),
+    MultiPlanarFormatExtendedUsages(0x000003FD),
+    MultiPlanarFormatP010(0x000003FE),
+    HostMappedPointer(0x000003FF),
     MultiPlanarRenderTargets(0x00000400),
     MultiPlanarFormatNv12a(0x00000401),
     FramebufferFetch(0x00000402),
@@ -51,31 +51,30 @@ public enum class WGPUFeatureName(
     R8UnormStorage(0x00000407),
     FormatCapabilities(0x00000408),
     DrmFormatCapabilities(0x00000409),
-    Norm16TextureFormats(0x0000040a),
-    MultiPlanarFormatNv16(0x0000040b),
-    MultiPlanarFormatNv24(0x0000040c),
-    MultiPlanarFormatP210(0x0000040d),
-    MultiPlanarFormatP410(0x0000040e),
-    SharedTextureMemoryVkDedicatedAllocation(0x0000044c),
-    SharedTextureMemoryAHardwareBuffer(0x0000044d),
-    SharedTextureMemoryDmaBuf(0x0000044e),
-    SharedTextureMemoryOpaqueFD(0x0000044f),
+    Norm16TextureFormats(0x0000040A),
+    MultiPlanarFormatNv16(0x0000040B),
+    MultiPlanarFormatNv24(0x0000040C),
+    MultiPlanarFormatP210(0x0000040D),
+    MultiPlanarFormatP410(0x0000040E),
+    SharedTextureMemoryVkDedicatedAllocation(0x0000044C),
+    SharedTextureMemoryAHardwareBuffer(0x0000044D),
+    SharedTextureMemoryDmaBuf(0x0000044E),
+    SharedTextureMemoryOpaqueFD(0x0000044F),
     SharedTextureMemoryZirconHandle(0x00000450),
     SharedTextureMemoryDXGISharedHandle(0x00000451),
     SharedTextureMemoryD3D11Texture2D(0x00000452),
     SharedTextureMemoryIOSurface(0x00000453),
     SharedTextureMemoryEGLImage(0x00000454),
-    SharedFenceVkSemaphoreOpaqueFD(0x000004b0),
-    SharedFenceVkSemaphoreSyncFD(0x000004b1),
-    SharedFenceVkSemaphoreZirconHandle(0x000004b2),
-    SharedFenceDXGISharedHandle(0x000004b3),
-    SharedFenceMTLSharedEvent(0x000004b4),
-    SharedBufferMemoryD3D12Resource(0x000004b5),
-    StaticSamplers(0x000004b6),
-    YCbCrVulkanSamplers(0x000004b7),
-    ShaderModuleCompilationOptions(0x000004b8),
-    DawnLoadResolveTexture(0x000004b9),
-    Force32(0x7fffffff),
+    SharedFenceVkSemaphoreOpaqueFD(0x000004B0),
+    SharedFenceVkSemaphoreSyncFD(0x000004B1),
+    SharedFenceVkSemaphoreZirconHandle(0x000004B2),
+    SharedFenceDXGISharedHandle(0x000004B3),
+    SharedFenceMTLSharedEvent(0x000004B4),
+    SharedBufferMemoryD3D12Resource(0x000004B5),
+    StaticSamplers(0x000004B6),
+    YCbCrVulkanSamplers(0x000004B7),
+    ShaderModuleCompilationOptions(0x000004B8),
+    DawnLoadResolveTexture(0x000004B9),
     ;
 
     public companion object {
@@ -95,73 +94,76 @@ public enum class WGPUFeatureName(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUFeatureName = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> DepthClipControl
-            0x00000002 -> Depth32FloatStencil8
-            0x00000003 -> TimestampQuery
-            0x00000004 -> TextureCompressionBC
-            0x00000005 -> TextureCompressionETC2
-            0x00000006 -> TextureCompressionASTC
-            0x00000007 -> IndirectFirstInstance
-            0x00000008 -> ShaderF16
-            0x00000009 -> RG11B10UfloatRenderable
-            0x0000000a -> BGRA8UnormStorage
-            0x0000000b -> Float32Filterable
-            0x000003ea -> DawnInternalUsages
-            0x000003eb -> DawnMultiPlanarFormats
-            0x000003ec -> DawnNative
-            0x000003ee -> ChromiumExperimentalTimestampQueryInsidePasses
-            0x000003ef -> ImplicitDeviceSynchronization
-            0x000003f0 -> SurfaceCapabilities
-            0x000003f1 -> TransientAttachments
-            0x000003f2 -> MSAARenderToSingleSampled
-            0x000003f3 -> DualSourceBlending
-            0x000003f4 -> D3D11MultithreadProtected
-            0x000003f5 -> ANGLETextureSharing
-            0x000003f6 -> ChromiumExperimentalSubgroups
-            0x000003f7 -> ChromiumExperimentalSubgroupUniformControlFlow
-            0x000003f9 -> PixelLocalStorageCoherent
-            0x000003fa -> PixelLocalStorageNonCoherent
-            0x000003fb -> Unorm16TextureFormats
-            0x000003fc -> Snorm16TextureFormats
-            0x000003fd -> MultiPlanarFormatExtendedUsages
-            0x000003fe -> MultiPlanarFormatP010
-            0x000003ff -> HostMappedPointer
-            0x00000400 -> MultiPlanarRenderTargets
-            0x00000401 -> MultiPlanarFormatNv12a
-            0x00000402 -> FramebufferFetch
-            0x00000403 -> BufferMapExtendedUsages
-            0x00000404 -> AdapterPropertiesMemoryHeaps
-            0x00000405 -> AdapterPropertiesD3D
-            0x00000406 -> AdapterPropertiesVk
-            0x00000407 -> R8UnormStorage
-            0x00000408 -> FormatCapabilities
-            0x00000409 -> DrmFormatCapabilities
-            0x0000040a -> Norm16TextureFormats
-            0x0000040b -> MultiPlanarFormatNv16
-            0x0000040c -> MultiPlanarFormatNv24
-            0x0000040d -> MultiPlanarFormatP210
-            0x0000040e -> MultiPlanarFormatP410
-            0x0000044c -> SharedTextureMemoryVkDedicatedAllocation
-            0x0000044d -> SharedTextureMemoryAHardwareBuffer
-            0x0000044e -> SharedTextureMemoryDmaBuf
-            0x0000044f -> SharedTextureMemoryOpaqueFD
-            0x00000450 -> SharedTextureMemoryZirconHandle
-            0x00000451 -> SharedTextureMemoryDXGISharedHandle
-            0x00000452 -> SharedTextureMemoryD3D11Texture2D
-            0x00000453 -> SharedTextureMemoryIOSurface
-            0x00000454 -> SharedTextureMemoryEGLImage
-            0x000004b0 -> SharedFenceVkSemaphoreOpaqueFD
-            0x000004b1 -> SharedFenceVkSemaphoreSyncFD
-            0x000004b2 -> SharedFenceVkSemaphoreZirconHandle
-            0x000004b3 -> SharedFenceDXGISharedHandle
-            0x000004b4 -> SharedFenceMTLSharedEvent
-            0x000004b5 -> SharedBufferMemoryD3D12Resource
-            0x000004b6 -> StaticSamplers
-            0x000004b7 -> YCbCrVulkanSamplers
-            0x000004b8 -> ShaderModuleCompilationOptions
-            0x000004b9 -> DawnLoadResolveTexture
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            DepthClipControl.value -> DepthClipControl
+            Depth32FloatStencil8.value -> Depth32FloatStencil8
+            TimestampQuery.value -> TimestampQuery
+            TextureCompressionBC.value -> TextureCompressionBC
+            TextureCompressionETC2.value -> TextureCompressionETC2
+            TextureCompressionASTC.value -> TextureCompressionASTC
+            IndirectFirstInstance.value -> IndirectFirstInstance
+            ShaderF16.value -> ShaderF16
+            RG11B10UfloatRenderable.value -> RG11B10UfloatRenderable
+            BGRA8UnormStorage.value -> BGRA8UnormStorage
+            Float32Filterable.value -> Float32Filterable
+            DawnInternalUsages.value -> DawnInternalUsages
+            DawnMultiPlanarFormats.value -> DawnMultiPlanarFormats
+            DawnNative.value -> DawnNative
+            ChromiumExperimentalTimestampQueryInsidePasses.value ->
+                ChromiumExperimentalTimestampQueryInsidePasses
+
+            ImplicitDeviceSynchronization.value -> ImplicitDeviceSynchronization
+            SurfaceCapabilities.value -> SurfaceCapabilities
+            TransientAttachments.value -> TransientAttachments
+            MSAARenderToSingleSampled.value -> MSAARenderToSingleSampled
+            DualSourceBlending.value -> DualSourceBlending
+            D3D11MultithreadProtected.value -> D3D11MultithreadProtected
+            ANGLETextureSharing.value -> ANGLETextureSharing
+            ChromiumExperimentalSubgroups.value -> ChromiumExperimentalSubgroups
+            ChromiumExperimentalSubgroupUniformControlFlow.value ->
+                ChromiumExperimentalSubgroupUniformControlFlow
+
+            PixelLocalStorageCoherent.value -> PixelLocalStorageCoherent
+            PixelLocalStorageNonCoherent.value -> PixelLocalStorageNonCoherent
+            Unorm16TextureFormats.value -> Unorm16TextureFormats
+            Snorm16TextureFormats.value -> Snorm16TextureFormats
+            MultiPlanarFormatExtendedUsages.value -> MultiPlanarFormatExtendedUsages
+            MultiPlanarFormatP010.value -> MultiPlanarFormatP010
+            HostMappedPointer.value -> HostMappedPointer
+            MultiPlanarRenderTargets.value -> MultiPlanarRenderTargets
+            MultiPlanarFormatNv12a.value -> MultiPlanarFormatNv12a
+            FramebufferFetch.value -> FramebufferFetch
+            BufferMapExtendedUsages.value -> BufferMapExtendedUsages
+            AdapterPropertiesMemoryHeaps.value -> AdapterPropertiesMemoryHeaps
+            AdapterPropertiesD3D.value -> AdapterPropertiesD3D
+            AdapterPropertiesVk.value -> AdapterPropertiesVk
+            R8UnormStorage.value -> R8UnormStorage
+            FormatCapabilities.value -> FormatCapabilities
+            DrmFormatCapabilities.value -> DrmFormatCapabilities
+            Norm16TextureFormats.value -> Norm16TextureFormats
+            MultiPlanarFormatNv16.value -> MultiPlanarFormatNv16
+            MultiPlanarFormatNv24.value -> MultiPlanarFormatNv24
+            MultiPlanarFormatP210.value -> MultiPlanarFormatP210
+            MultiPlanarFormatP410.value -> MultiPlanarFormatP410
+            SharedTextureMemoryVkDedicatedAllocation.value -> SharedTextureMemoryVkDedicatedAllocation
+            SharedTextureMemoryAHardwareBuffer.value -> SharedTextureMemoryAHardwareBuffer
+            SharedTextureMemoryDmaBuf.value -> SharedTextureMemoryDmaBuf
+            SharedTextureMemoryOpaqueFD.value -> SharedTextureMemoryOpaqueFD
+            SharedTextureMemoryZirconHandle.value -> SharedTextureMemoryZirconHandle
+            SharedTextureMemoryDXGISharedHandle.value -> SharedTextureMemoryDXGISharedHandle
+            SharedTextureMemoryD3D11Texture2D.value -> SharedTextureMemoryD3D11Texture2D
+            SharedTextureMemoryIOSurface.value -> SharedTextureMemoryIOSurface
+            SharedTextureMemoryEGLImage.value -> SharedTextureMemoryEGLImage
+            SharedFenceVkSemaphoreOpaqueFD.value -> SharedFenceVkSemaphoreOpaqueFD
+            SharedFenceVkSemaphoreSyncFD.value -> SharedFenceVkSemaphoreSyncFD
+            SharedFenceVkSemaphoreZirconHandle.value -> SharedFenceVkSemaphoreZirconHandle
+            SharedFenceDXGISharedHandle.value -> SharedFenceDXGISharedHandle
+            SharedFenceMTLSharedEvent.value -> SharedFenceMTLSharedEvent
+            SharedBufferMemoryD3D12Resource.value -> SharedBufferMemoryD3D12Resource
+            StaticSamplers.value -> StaticSamplers
+            YCbCrVulkanSamplers.value -> YCbCrVulkanSamplers
+            ShaderModuleCompilationOptions.value -> ShaderModuleCompilationOptions
+            DawnLoadResolveTexture.value -> DawnLoadResolveTexture
             else -> error("enum not found")
         }
     }

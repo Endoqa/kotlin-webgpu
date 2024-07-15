@@ -9,62 +9,62 @@ public value class WGPUAdapterInfo(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStructOut>
-        get() = WGPUAdapterInfo.nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUAdapterInfo.nextInChainHandle.set(this.`$mem`, 0L, value)
+            nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var vendor: Pointer<Byte>
-        get() = WGPUAdapterInfo.vendorHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = vendorHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUAdapterInfo.vendorHandle.set(this.`$mem`, 0L, value)
+            vendorHandle.set(this.`$mem`, 0L, value)
         }
 
     public var architecture: Pointer<Byte>
-        get() = WGPUAdapterInfo.architectureHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = architectureHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUAdapterInfo.architectureHandle.set(this.`$mem`, 0L, value)
+            architectureHandle.set(this.`$mem`, 0L, value)
         }
 
     public var device: Pointer<Byte>
-        get() = WGPUAdapterInfo.deviceHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = deviceHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUAdapterInfo.deviceHandle.set(this.`$mem`, 0L, value)
+            deviceHandle.set(this.`$mem`, 0L, value)
         }
 
     public var description: Pointer<Byte>
-        get() = WGPUAdapterInfo.descriptionHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = descriptionHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUAdapterInfo.descriptionHandle.set(this.`$mem`, 0L, value)
+            descriptionHandle.set(this.`$mem`, 0L, value)
         }
 
     public var backendType: WGPUBackendType
-        get() = WGPUBackendType.fromInt(WGPUAdapterInfo.backendTypeHandle.get(this.`$mem`, 0L) as Int)
+        get() = WGPUBackendType.fromInt(backendTypeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
-            WGPUAdapterInfo.backendTypeHandle.set(this.`$mem`, 0L, value.value)
+            backendTypeHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public var adapterType: WGPUAdapterType
-        get() = WGPUAdapterType.fromInt(WGPUAdapterInfo.adapterTypeHandle.get(this.`$mem`, 0L) as Int)
+        get() = WGPUAdapterType.fromInt(adapterTypeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
-            WGPUAdapterInfo.adapterTypeHandle.set(this.`$mem`, 0L, value.value)
+            adapterTypeHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public var vendorID: uint32_t
-        get() = (WGPUAdapterInfo.vendorIDHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (vendorIDHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUAdapterInfo.vendorIDHandle.set(this.`$mem`, 0L, value.toInt())
+            vendorIDHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public var deviceID: uint32_t
-        get() = (WGPUAdapterInfo.deviceIDHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (deviceIDHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUAdapterInfo.deviceIDHandle.set(this.`$mem`, 0L, value.toInt())
+            deviceIDHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUAdapterInfo.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -118,6 +118,6 @@ public value class WGPUAdapterInfo(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUAdapterInfo =
-            WGPUAdapterInfo(alloc.allocate(WGPUAdapterInfo.layout))
+            WGPUAdapterInfo(alloc.allocate(layout))
     }
 }

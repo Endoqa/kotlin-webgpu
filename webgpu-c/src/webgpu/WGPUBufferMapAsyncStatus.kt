@@ -5,6 +5,17 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUBufferMapAsyncStatus.DestroyedBeforeCallback
+import webgpu.WGPUBufferMapAsyncStatus.DeviceLost
+import webgpu.WGPUBufferMapAsyncStatus.InstanceDropped
+import webgpu.WGPUBufferMapAsyncStatus.MappingAlreadyPending
+import webgpu.WGPUBufferMapAsyncStatus.OffsetOutOfRange
+import webgpu.WGPUBufferMapAsyncStatus.SizeOutOfRange
+import webgpu.WGPUBufferMapAsyncStatus.Success
+import webgpu.WGPUBufferMapAsyncStatus.Unknown
+import webgpu.WGPUBufferMapAsyncStatus.UnmappedBeforeCallback
+import webgpu.WGPUBufferMapAsyncStatus.ValidationError
 
 public enum class WGPUBufferMapAsyncStatus(
     public val `value`: Int,
@@ -19,7 +30,6 @@ public enum class WGPUBufferMapAsyncStatus(
     MappingAlreadyPending(0x00000007),
     OffsetOutOfRange(0x00000008),
     SizeOutOfRange(0x00000009),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -39,17 +49,16 @@ public enum class WGPUBufferMapAsyncStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUBufferMapAsyncStatus = when (value) {
-            0x00000000 -> Success
-            0x00000001 -> InstanceDropped
-            0x00000002 -> ValidationError
-            0x00000003 -> Unknown
-            0x00000004 -> DeviceLost
-            0x00000005 -> DestroyedBeforeCallback
-            0x00000006 -> UnmappedBeforeCallback
-            0x00000007 -> MappingAlreadyPending
-            0x00000008 -> OffsetOutOfRange
-            0x00000009 -> SizeOutOfRange
-            0x7fffffff -> Force32
+            Success.value -> Success
+            InstanceDropped.value -> InstanceDropped
+            ValidationError.value -> ValidationError
+            Unknown.value -> Unknown
+            DeviceLost.value -> DeviceLost
+            DestroyedBeforeCallback.value -> DestroyedBeforeCallback
+            UnmappedBeforeCallback.value -> UnmappedBeforeCallback
+            MappingAlreadyPending.value -> MappingAlreadyPending
+            OffsetOutOfRange.value -> OffsetOutOfRange
+            SizeOutOfRange.value -> SizeOutOfRange
             else -> error("enum not found")
         }
     }

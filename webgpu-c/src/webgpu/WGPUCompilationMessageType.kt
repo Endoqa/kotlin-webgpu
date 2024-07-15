@@ -5,6 +5,10 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUCompilationMessageType.Error
+import webgpu.WGPUCompilationMessageType.Info
+import webgpu.WGPUCompilationMessageType.Warning
 
 public enum class WGPUCompilationMessageType(
     public val `value`: Int,
@@ -12,7 +16,6 @@ public enum class WGPUCompilationMessageType(
     Error(0x00000001),
     Warning(0x00000002),
     Info(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -32,10 +35,9 @@ public enum class WGPUCompilationMessageType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUCompilationMessageType = when (value) {
-            0x00000001 -> Error
-            0x00000002 -> Warning
-            0x00000003 -> Info
-            0x7fffffff -> Force32
+            Error.value -> Error
+            Warning.value -> Warning
+            Info.value -> Info
             else -> error("enum not found")
         }
     }

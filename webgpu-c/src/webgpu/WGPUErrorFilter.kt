@@ -12,7 +12,6 @@ public enum class WGPUErrorFilter(
     Validation(0x00000001),
     OutOfMemory(0x00000002),
     Internal(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -32,10 +31,9 @@ public enum class WGPUErrorFilter(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUErrorFilter = when (value) {
-            0x00000001 -> Validation
-            0x00000002 -> OutOfMemory
-            0x00000003 -> Internal
-            0x7fffffff -> Force32
+            Validation.value -> Validation
+            OutOfMemory.value -> OutOfMemory
+            Internal.value -> Internal
             else -> error("enum not found")
         }
     }

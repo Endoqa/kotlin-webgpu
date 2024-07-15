@@ -12,7 +12,6 @@ public enum class WGPUBufferMapState(
     Unmapped(0x00000001),
     Pending(0x00000002),
     Mapped(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -32,10 +31,9 @@ public enum class WGPUBufferMapState(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUBufferMapState = when (value) {
-            0x00000001 -> Unmapped
-            0x00000002 -> Pending
-            0x00000003 -> Mapped
-            0x7fffffff -> Force32
+            Unmapped.value -> Unmapped
+            Pending.value -> Pending
+            Mapped.value -> Mapped
             else -> error("enum not found")
         }
     }

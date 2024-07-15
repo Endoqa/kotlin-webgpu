@@ -5,6 +5,10 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUMipmapFilterMode.Linear
+import webgpu.WGPUMipmapFilterMode.Nearest
+import webgpu.WGPUMipmapFilterMode.Undefined
 
 public enum class WGPUMipmapFilterMode(
     public val `value`: Int,
@@ -12,7 +16,6 @@ public enum class WGPUMipmapFilterMode(
     Undefined(0x00000000),
     Nearest(0x00000001),
     Linear(0x00000002),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -32,10 +35,9 @@ public enum class WGPUMipmapFilterMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUMipmapFilterMode = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Nearest
-            0x00000002 -> Linear
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Nearest.value -> Nearest
+            Linear.value -> Linear
             else -> error("enum not found")
         }
     }

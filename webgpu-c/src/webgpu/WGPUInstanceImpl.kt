@@ -9,7 +9,7 @@ public value class WGPUInstanceImpl(
 ) {
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUInstanceImpl.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -18,6 +18,6 @@ public value class WGPUInstanceImpl(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUInstanceImpl =
-            WGPUInstanceImpl(alloc.allocate(WGPUInstanceImpl.layout))
+            WGPUInstanceImpl(alloc.allocate(layout))
     }
 }

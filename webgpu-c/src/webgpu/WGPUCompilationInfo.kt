@@ -9,26 +9,26 @@ public value class WGPUCompilationInfo(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = WGPUCompilationInfo.nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUCompilationInfo.nextInChainHandle.set(this.`$mem`, 0L, value)
+            nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var messageCount: ULong
-        get() = (WGPUCompilationInfo.messageCountHandle.get(this.`$mem`, 0L) as Long).toULong()
+        get() = (messageCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
-            WGPUCompilationInfo.messageCountHandle.set(this.`$mem`, 0L, value.toLong())
+            messageCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
     public var messages: Pointer<WGPUCompilationMessage>
-        get() = WGPUCompilationInfo.messagesHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = messagesHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUCompilationInfo.messagesHandle.set(this.`$mem`, 0L, value)
+            messagesHandle.set(this.`$mem`, 0L, value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUCompilationInfo.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -52,6 +52,6 @@ public value class WGPUCompilationInfo(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUCompilationInfo =
-            WGPUCompilationInfo(alloc.allocate(WGPUCompilationInfo.layout))
+            WGPUCompilationInfo(alloc.allocate(layout))
     }
 }

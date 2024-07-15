@@ -12,7 +12,6 @@ public enum class WGPUPowerPreference(
     Undefined(0x00000000),
     LowPower(0x00000001),
     HighPerformance(0x00000002),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -32,10 +31,9 @@ public enum class WGPUPowerPreference(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUPowerPreference = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> LowPower
-            0x00000002 -> HighPerformance
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            LowPower.value -> LowPower
+            HighPerformance.value -> HighPerformance
             else -> error("enum not found")
         }
     }

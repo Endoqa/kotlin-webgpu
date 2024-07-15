@@ -5,6 +5,13 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUPrimitiveTopology.LineList
+import webgpu.WGPUPrimitiveTopology.LineStrip
+import webgpu.WGPUPrimitiveTopology.PointList
+import webgpu.WGPUPrimitiveTopology.TriangleList
+import webgpu.WGPUPrimitiveTopology.TriangleStrip
+import webgpu.WGPUPrimitiveTopology.Undefined
 
 public enum class WGPUPrimitiveTopology(
     public val `value`: Int,
@@ -15,7 +22,6 @@ public enum class WGPUPrimitiveTopology(
     LineStrip(0x00000003),
     TriangleList(0x00000004),
     TriangleStrip(0x00000005),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -35,13 +41,12 @@ public enum class WGPUPrimitiveTopology(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUPrimitiveTopology = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> PointList
-            0x00000002 -> LineList
-            0x00000003 -> LineStrip
-            0x00000004 -> TriangleList
-            0x00000005 -> TriangleStrip
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            PointList.value -> PointList
+            LineList.value -> LineList
+            LineStrip.value -> LineStrip
+            TriangleList.value -> TriangleList
+            TriangleStrip.value -> TriangleStrip
             else -> error("enum not found")
         }
     }

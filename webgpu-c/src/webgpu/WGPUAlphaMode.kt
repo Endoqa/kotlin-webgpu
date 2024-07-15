@@ -5,11 +5,6 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
-import kotlin.jvm.JvmStatic
-import webgpu.WGPUAlphaMode.Force32
-import webgpu.WGPUAlphaMode.Opaque
-import webgpu.WGPUAlphaMode.Premultiplied
-import webgpu.WGPUAlphaMode.Unpremultiplied
 
 public enum class WGPUAlphaMode(
     public val `value`: Int,
@@ -17,7 +12,6 @@ public enum class WGPUAlphaMode(
     Opaque(0x00000001),
     Premultiplied(0x00000002),
     Unpremultiplied(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -37,10 +31,9 @@ public enum class WGPUAlphaMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUAlphaMode = when (value) {
-            0x00000001 -> Opaque
-            0x00000002 -> Premultiplied
-            0x00000003 -> Unpremultiplied
-            0x7fffffff -> Force32
+            Opaque.value -> Opaque
+            Premultiplied.value -> Premultiplied
+            Unpremultiplied.value -> Unpremultiplied
             else -> error("enum not found")
         }
     }

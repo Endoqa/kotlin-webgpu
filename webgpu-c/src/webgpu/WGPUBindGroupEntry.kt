@@ -9,57 +9,57 @@ public value class WGPUBindGroupEntry(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = WGPUBindGroupEntry.nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUBindGroupEntry.nextInChainHandle.set(this.`$mem`, 0L, value)
+            nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var binding: uint32_t
-        get() = (WGPUBindGroupEntry.bindingHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (bindingHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUBindGroupEntry.bindingHandle.set(this.`$mem`, 0L, value.toInt())
+            bindingHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public var buffer: WGPUBuffer
-        get() = WGPUBindGroupEntry.bufferHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = bufferHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUBindGroupEntry.bufferHandle.set(this.`$mem`, 0L, value)
+            bufferHandle.set(this.`$mem`, 0L, value)
         }
 
     public var offset: uint64_t
-        get() = (WGPUBindGroupEntry.offsetHandle.get(this.`$mem`, 0L) as Long).toULong()
+        get() = (offsetHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
-            WGPUBindGroupEntry.offsetHandle.set(this.`$mem`, 0L, value.toLong())
+            offsetHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
     public var size: uint64_t
-        get() = (WGPUBindGroupEntry.sizeHandle.get(this.`$mem`, 0L) as Long).toULong()
+        get() = (sizeHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
-            WGPUBindGroupEntry.sizeHandle.set(this.`$mem`, 0L, value.toLong())
+            sizeHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
     public var sampler: WGPUSampler
-        get() = WGPUBindGroupEntry.samplerHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = samplerHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUBindGroupEntry.samplerHandle.set(this.`$mem`, 0L, value)
+            samplerHandle.set(this.`$mem`, 0L, value)
         }
 
     public var textureView: WGPUTextureView
-        get() = WGPUBindGroupEntry.textureViewHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = textureViewHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUBindGroupEntry.textureViewHandle.set(this.`$mem`, 0L, value)
+            textureViewHandle.set(this.`$mem`, 0L, value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUBindGroupEntry.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
         public val layout: StructLayout = MemoryLayout.structLayout(
             `$RuntimeHelper`.POINTER.withName("nextInChain"),
             ValueLayout.JAVA_INT.withName("binding"),
-            java.lang.foreign.MemoryLayout.paddingLayout(4),
+            MemoryLayout.paddingLayout(4),
             `$RuntimeHelper`.POINTER.withName("buffer"),
             ValueLayout.JAVA_LONG.withName("offset"),
             ValueLayout.JAVA_LONG.withName("size"),
@@ -97,6 +97,6 @@ public value class WGPUBindGroupEntry(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUBindGroupEntry =
-            WGPUBindGroupEntry(alloc.allocate(WGPUBindGroupEntry.layout))
+            WGPUBindGroupEntry(alloc.allocate(layout))
     }
 }

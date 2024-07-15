@@ -19,12 +19,12 @@ public enum class WGPUVertexFormat(
     Snorm8x2(0x00000007),
     Snorm8x4(0x00000008),
     Uint16x2(0x00000009),
-    Uint16x4(0x0000000a),
-    Sint16x2(0x0000000b),
-    Sint16x4(0x0000000c),
-    Unorm16x2(0x0000000d),
-    Unorm16x4(0x0000000e),
-    Snorm16x2(0x0000000f),
+    Uint16x4(0x0000000A),
+    Sint16x2(0x0000000B),
+    Sint16x4(0x0000000C),
+    Unorm16x2(0x0000000D),
+    Unorm16x4(0x0000000E),
+    Snorm16x2(0x0000000F),
     Snorm16x4(0x00000010),
     Float16x2(0x00000011),
     Float16x4(0x00000012),
@@ -35,13 +35,12 @@ public enum class WGPUVertexFormat(
     Uint32(0x00000017),
     Uint32x2(0x00000018),
     Uint32x3(0x00000019),
-    Uint32x4(0x0000001a),
-    Sint32(0x0000001b),
-    Sint32x2(0x0000001c),
-    Sint32x3(0x0000001d),
-    Sint32x4(0x0000001e),
-    Unorm10_10_10_2(0x0000001f),
-    Force32(0x7fffffff),
+    Uint32x4(0x0000001A),
+    Sint32(0x0000001B),
+    Sint32x2(0x0000001C),
+    Sint32x3(0x0000001D),
+    Sint32x4(0x0000001E),
+    Unorm10_10_10_2(0x0000001F),
     ;
 
     public companion object {
@@ -61,39 +60,38 @@ public enum class WGPUVertexFormat(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUVertexFormat = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Uint8x2
-            0x00000002 -> Uint8x4
-            0x00000003 -> Sint8x2
-            0x00000004 -> Sint8x4
-            0x00000005 -> Unorm8x2
-            0x00000006 -> Unorm8x4
-            0x00000007 -> Snorm8x2
-            0x00000008 -> Snorm8x4
-            0x00000009 -> Uint16x2
-            0x0000000a -> Uint16x4
-            0x0000000b -> Sint16x2
-            0x0000000c -> Sint16x4
-            0x0000000d -> Unorm16x2
-            0x0000000e -> Unorm16x4
-            0x0000000f -> Snorm16x2
-            0x00000010 -> Snorm16x4
-            0x00000011 -> Float16x2
-            0x00000012 -> Float16x4
-            0x00000013 -> Float32
-            0x00000014 -> Float32x2
-            0x00000015 -> Float32x3
-            0x00000016 -> Float32x4
-            0x00000017 -> Uint32
-            0x00000018 -> Uint32x2
-            0x00000019 -> Uint32x3
-            0x0000001a -> Uint32x4
-            0x0000001b -> Sint32
-            0x0000001c -> Sint32x2
-            0x0000001d -> Sint32x3
-            0x0000001e -> Sint32x4
-            0x0000001f -> Unorm10_10_10_2
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Uint8x2.value -> Uint8x2
+            Uint8x4.value -> Uint8x4
+            Sint8x2.value -> Sint8x2
+            Sint8x4.value -> Sint8x4
+            Unorm8x2.value -> Unorm8x2
+            Unorm8x4.value -> Unorm8x4
+            Snorm8x2.value -> Snorm8x2
+            Snorm8x4.value -> Snorm8x4
+            Uint16x2.value -> Uint16x2
+            Uint16x4.value -> Uint16x4
+            Sint16x2.value -> Sint16x2
+            Sint16x4.value -> Sint16x4
+            Unorm16x2.value -> Unorm16x2
+            Unorm16x4.value -> Unorm16x4
+            Snorm16x2.value -> Snorm16x2
+            Snorm16x4.value -> Snorm16x4
+            Float16x2.value -> Float16x2
+            Float16x4.value -> Float16x4
+            Float32.value -> Float32
+            Float32x2.value -> Float32x2
+            Float32x3.value -> Float32x3
+            Float32x4.value -> Float32x4
+            Uint32.value -> Uint32
+            Uint32x2.value -> Uint32x2
+            Uint32x3.value -> Uint32x3
+            Uint32x4.value -> Uint32x4
+            Sint32.value -> Sint32
+            Sint32x2.value -> Sint32x2
+            Sint32x3.value -> Sint32x3
+            Sint32x4.value -> Sint32x4
+            Unorm10_10_10_2.value -> Unorm10_10_10_2
             else -> error("enum not found")
         }
     }

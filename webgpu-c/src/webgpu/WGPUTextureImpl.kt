@@ -9,7 +9,7 @@ public value class WGPUTextureImpl(
 ) {
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUTextureImpl.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -18,6 +18,6 @@ public value class WGPUTextureImpl(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUTextureImpl =
-            WGPUTextureImpl(alloc.allocate(WGPUTextureImpl.layout))
+            WGPUTextureImpl(alloc.allocate(layout))
     }
 }

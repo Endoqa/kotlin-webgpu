@@ -12,7 +12,6 @@ public enum class WGPUCallbackMode(
     WaitAnyOnly(0x00000001),
     AllowProcessEvents(0x00000002),
     AllowSpontaneous(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -32,10 +31,9 @@ public enum class WGPUCallbackMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUCallbackMode = when (value) {
-            0x00000001 -> WaitAnyOnly
-            0x00000002 -> AllowProcessEvents
-            0x00000003 -> AllowSpontaneous
-            0x7fffffff -> Force32
+            WaitAnyOnly.value -> WaitAnyOnly
+            AllowProcessEvents.value -> AllowProcessEvents
+            AllowSpontaneous.value -> AllowSpontaneous
             else -> error("enum not found")
         }
     }

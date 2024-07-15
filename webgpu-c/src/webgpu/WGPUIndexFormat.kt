@@ -12,7 +12,6 @@ public enum class WGPUIndexFormat(
     Undefined(0x00000000),
     Uint16(0x00000001),
     Uint32(0x00000002),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -32,10 +31,9 @@ public enum class WGPUIndexFormat(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUIndexFormat = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Uint16
-            0x00000002 -> Uint32
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Uint16.value -> Uint16
+            Uint32.value -> Uint32
             else -> error("enum not found")
         }
     }

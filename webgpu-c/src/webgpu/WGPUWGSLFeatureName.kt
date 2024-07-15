@@ -5,6 +5,17 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUWGSLFeatureName.ChromiumTestingExperimental
+import webgpu.WGPUWGSLFeatureName.ChromiumTestingShipped
+import webgpu.WGPUWGSLFeatureName.ChromiumTestingShippedWithKillswitch
+import webgpu.WGPUWGSLFeatureName.ChromiumTestingUnimplemented
+import webgpu.WGPUWGSLFeatureName.ChromiumTestingUnsafeExperimental
+import webgpu.WGPUWGSLFeatureName.Packed4x8IntegerDotProduct
+import webgpu.WGPUWGSLFeatureName.PointerCompositeAccess
+import webgpu.WGPUWGSLFeatureName.ReadonlyAndReadwriteStorageTextures
+import webgpu.WGPUWGSLFeatureName.Undefined
+import webgpu.WGPUWGSLFeatureName.UnrestrictedPointerParameters
 
 public enum class WGPUWGSLFeatureName(
     public val `value`: Int,
@@ -14,12 +25,11 @@ public enum class WGPUWGSLFeatureName(
     Packed4x8IntegerDotProduct(0x00000002),
     UnrestrictedPointerParameters(0x00000003),
     PointerCompositeAccess(0x00000004),
-    ChromiumTestingUnimplemented(0x000003e8),
-    ChromiumTestingUnsafeExperimental(0x000003e9),
-    ChromiumTestingExperimental(0x000003ea),
-    ChromiumTestingShippedWithKillswitch(0x000003eb),
-    ChromiumTestingShipped(0x000003ec),
-    Force32(0x7fffffff),
+    ChromiumTestingUnimplemented(0x000003E8),
+    ChromiumTestingUnsafeExperimental(0x000003E9),
+    ChromiumTestingExperimental(0x000003EA),
+    ChromiumTestingShippedWithKillswitch(0x000003EB),
+    ChromiumTestingShipped(0x000003EC),
     ;
 
     public companion object {
@@ -39,17 +49,16 @@ public enum class WGPUWGSLFeatureName(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUWGSLFeatureName = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> ReadonlyAndReadwriteStorageTextures
-            0x00000002 -> Packed4x8IntegerDotProduct
-            0x00000003 -> UnrestrictedPointerParameters
-            0x00000004 -> PointerCompositeAccess
-            0x000003e8 -> ChromiumTestingUnimplemented
-            0x000003e9 -> ChromiumTestingUnsafeExperimental
-            0x000003ea -> ChromiumTestingExperimental
-            0x000003eb -> ChromiumTestingShippedWithKillswitch
-            0x000003ec -> ChromiumTestingShipped
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            ReadonlyAndReadwriteStorageTextures.value -> ReadonlyAndReadwriteStorageTextures
+            Packed4x8IntegerDotProduct.value -> Packed4x8IntegerDotProduct
+            UnrestrictedPointerParameters.value -> UnrestrictedPointerParameters
+            PointerCompositeAccess.value -> PointerCompositeAccess
+            ChromiumTestingUnimplemented.value -> ChromiumTestingUnimplemented
+            ChromiumTestingUnsafeExperimental.value -> ChromiumTestingUnsafeExperimental
+            ChromiumTestingExperimental.value -> ChromiumTestingExperimental
+            ChromiumTestingShippedWithKillswitch.value -> ChromiumTestingShippedWithKillswitch
+            ChromiumTestingShipped.value -> ChromiumTestingShipped
             else -> error("enum not found")
         }
     }

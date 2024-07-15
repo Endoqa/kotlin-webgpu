@@ -13,7 +13,6 @@ public enum class WGPUAdapterType(
     IntegratedGPU(0x00000002),
     CPU(0x00000003),
     Unknown(0x00000004),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +32,10 @@ public enum class WGPUAdapterType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUAdapterType = when (value) {
-            0x00000001 -> DiscreteGPU
-            0x00000002 -> IntegratedGPU
-            0x00000003 -> CPU
-            0x00000004 -> Unknown
-            0x7fffffff -> Force32
+            DiscreteGPU.value -> DiscreteGPU
+            IntegratedGPU.value -> IntegratedGPU
+            CPU.value -> CPU
+            Unknown.value -> Unknown
             else -> error("enum not found")
         }
     }

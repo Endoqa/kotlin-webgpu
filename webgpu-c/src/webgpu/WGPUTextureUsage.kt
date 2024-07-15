@@ -17,7 +17,6 @@ public enum class WGPUTextureUsage(
     RenderAttachment(0x00000010),
     TransientAttachment(0x00000020),
     StorageAttachment(0x00000040),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -37,15 +36,14 @@ public enum class WGPUTextureUsage(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUTextureUsage = when (value) {
-            0x00000000 -> None
-            0x00000001 -> CopySrc
-            0x00000002 -> CopyDst
-            0x00000004 -> TextureBinding
-            0x00000008 -> StorageBinding
-            0x00000010 -> RenderAttachment
-            0x00000020 -> TransientAttachment
-            0x00000040 -> StorageAttachment
-            0x7fffffff -> Force32
+            None.value -> None
+            CopySrc.value -> CopySrc
+            CopyDst.value -> CopyDst
+            TextureBinding.value -> TextureBinding
+            StorageBinding.value -> StorageBinding
+            RenderAttachment.value -> RenderAttachment
+            TransientAttachment.value -> TransientAttachment
+            StorageAttachment.value -> StorageAttachment
             else -> error("enum not found")
         }
     }

@@ -13,7 +13,6 @@ public enum class WGPUAddressMode(
     ClampToEdge(0x00000001),
     Repeat(0x00000002),
     MirrorRepeat(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +32,10 @@ public enum class WGPUAddressMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUAddressMode = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> ClampToEdge
-            0x00000002 -> Repeat
-            0x00000003 -> MirrorRepeat
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            ClampToEdge.value -> ClampToEdge
+            Repeat.value -> Repeat
+            MirrorRepeat.value -> MirrorRepeat
             else -> error("enum not found")
         }
     }

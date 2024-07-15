@@ -5,17 +5,12 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
-import kotlin.jvm.JvmStatic
-import webgpu.WGPUQueryType.Force32
-import webgpu.WGPUQueryType.Occlusion
-import webgpu.WGPUQueryType.Timestamp
 
 public enum class WGPUQueryType(
     public val `value`: Int,
 ) {
     Occlusion(0x00000001),
     Timestamp(0x00000002),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -35,9 +30,8 @@ public enum class WGPUQueryType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUQueryType = when (value) {
-            0x00000001 -> Occlusion
-            0x00000002 -> Timestamp
-            0x7fffffff -> Force32
+            Occlusion.value -> Occlusion
+            Timestamp.value -> Timestamp
             else -> error("enum not found")
         }
     }

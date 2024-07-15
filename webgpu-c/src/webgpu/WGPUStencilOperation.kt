@@ -5,6 +5,16 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUStencilOperation.DecrementClamp
+import webgpu.WGPUStencilOperation.DecrementWrap
+import webgpu.WGPUStencilOperation.IncrementClamp
+import webgpu.WGPUStencilOperation.IncrementWrap
+import webgpu.WGPUStencilOperation.Invert
+import webgpu.WGPUStencilOperation.Keep
+import webgpu.WGPUStencilOperation.Replace
+import webgpu.WGPUStencilOperation.Undefined
+import webgpu.WGPUStencilOperation.Zero
 
 public enum class WGPUStencilOperation(
     public val `value`: Int,
@@ -18,7 +28,6 @@ public enum class WGPUStencilOperation(
     DecrementClamp(0x00000006),
     IncrementWrap(0x00000007),
     DecrementWrap(0x00000008),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -38,16 +47,15 @@ public enum class WGPUStencilOperation(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUStencilOperation = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Keep
-            0x00000002 -> Zero
-            0x00000003 -> Replace
-            0x00000004 -> Invert
-            0x00000005 -> IncrementClamp
-            0x00000006 -> DecrementClamp
-            0x00000007 -> IncrementWrap
-            0x00000008 -> DecrementWrap
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Keep.value -> Keep
+            Zero.value -> Zero
+            Replace.value -> Replace
+            Invert.value -> Invert
+            IncrementClamp.value -> IncrementClamp
+            DecrementClamp.value -> DecrementClamp
+            IncrementWrap.value -> IncrementWrap
+            DecrementWrap.value -> DecrementWrap
             else -> error("enum not found")
         }
     }

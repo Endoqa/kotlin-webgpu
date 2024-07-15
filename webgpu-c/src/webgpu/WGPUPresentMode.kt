@@ -13,7 +13,6 @@ public enum class WGPUPresentMode(
     FifoRelaxed(0x00000001),
     Immediate(0x00000002),
     Mailbox(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +32,10 @@ public enum class WGPUPresentMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUPresentMode = when (value) {
-            0x00000000 -> Fifo
-            0x00000001 -> FifoRelaxed
-            0x00000002 -> Immediate
-            0x00000003 -> Mailbox
-            0x7fffffff -> Force32
+            Fifo.value -> Fifo
+            FifoRelaxed.value -> FifoRelaxed
+            Immediate.value -> Immediate
+            Mailbox.value -> Mailbox
             else -> error("enum not found")
         }
     }

@@ -9,32 +9,32 @@ public value class WGPUSurfaceTexture(
     public val `$mem`: MemorySegment,
 ) {
     public var texture: WGPUTexture
-        get() = WGPUSurfaceTexture.textureHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = textureHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUSurfaceTexture.textureHandle.set(this.`$mem`, 0L, value)
+            textureHandle.set(this.`$mem`, 0L, value)
         }
 
     public var suboptimal: WGPUBool
-        get() = (WGPUSurfaceTexture.suboptimalHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (suboptimalHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUSurfaceTexture.suboptimalHandle.set(this.`$mem`, 0L, value.toInt())
+            suboptimalHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public var status: WGPUSurfaceGetCurrentTextureStatus
         get() =
             WGPUSurfaceGetCurrentTextureStatus.fromInt(
-                WGPUSurfaceTexture.statusHandle.get(
+                statusHandle.get(
                     this.`$mem`,
                     0L
                 ) as Int
             )
         set(`value`) {
-            WGPUSurfaceTexture.statusHandle.set(this.`$mem`, 0L, value.value)
+            statusHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUSurfaceTexture.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -58,6 +58,6 @@ public value class WGPUSurfaceTexture(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUSurfaceTexture =
-            WGPUSurfaceTexture(alloc.allocate(WGPUSurfaceTexture.layout))
+            WGPUSurfaceTexture(alloc.allocate(layout))
     }
 }

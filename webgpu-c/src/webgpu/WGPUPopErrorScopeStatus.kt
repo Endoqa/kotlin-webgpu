@@ -5,13 +5,15 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUPopErrorScopeStatus.InstanceDropped
+import webgpu.WGPUPopErrorScopeStatus.Success
 
 public enum class WGPUPopErrorScopeStatus(
     public val `value`: Int,
 ) {
     Success(0x00000000),
     InstanceDropped(0x00000001),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -31,9 +33,8 @@ public enum class WGPUPopErrorScopeStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUPopErrorScopeStatus = when (value) {
-            0x00000000 -> Success
-            0x00000001 -> InstanceDropped
-            0x7fffffff -> Force32
+            Success.value -> Success
+            InstanceDropped.value -> InstanceDropped
             else -> error("enum not found")
         }
     }

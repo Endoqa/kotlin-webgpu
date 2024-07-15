@@ -11,7 +11,6 @@ public enum class WGPUStatus(
 ) {
     Success(0x00000000),
     Error(0x00000001),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -31,9 +30,8 @@ public enum class WGPUStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUStatus = when (value) {
-            0x00000000 -> Success
-            0x00000001 -> Error
-            0x7fffffff -> Force32
+            Success.value -> Success
+            Error.value -> Error
             else -> error("enum not found")
         }
     }

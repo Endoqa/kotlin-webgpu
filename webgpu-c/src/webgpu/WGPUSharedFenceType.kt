@@ -15,7 +15,6 @@ public enum class WGPUSharedFenceType(
     VkSemaphoreZirconHandle(0x00000003),
     DXGISharedHandle(0x00000004),
     MTLSharedEvent(0x00000005),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -35,13 +34,12 @@ public enum class WGPUSharedFenceType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUSharedFenceType = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> VkSemaphoreOpaqueFD
-            0x00000002 -> VkSemaphoreSyncFD
-            0x00000003 -> VkSemaphoreZirconHandle
-            0x00000004 -> DXGISharedHandle
-            0x00000005 -> MTLSharedEvent
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            VkSemaphoreOpaqueFD.value -> VkSemaphoreOpaqueFD
+            VkSemaphoreSyncFD.value -> VkSemaphoreSyncFD
+            VkSemaphoreZirconHandle.value -> VkSemaphoreZirconHandle
+            DXGISharedHandle.value -> DXGISharedHandle
+            MTLSharedEvent.value -> MTLSharedEvent
             else -> error("enum not found")
         }
     }

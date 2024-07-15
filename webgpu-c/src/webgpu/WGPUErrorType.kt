@@ -5,14 +5,6 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
-import kotlin.jvm.JvmStatic
-import webgpu.WGPUErrorType.DeviceLost
-import webgpu.WGPUErrorType.Force32
-import webgpu.WGPUErrorType.Internal
-import webgpu.WGPUErrorType.NoError
-import webgpu.WGPUErrorType.OutOfMemory
-import webgpu.WGPUErrorType.Unknown
-import webgpu.WGPUErrorType.Validation
 
 public enum class WGPUErrorType(
     public val `value`: Int,
@@ -23,7 +15,6 @@ public enum class WGPUErrorType(
     Internal(0x00000003),
     Unknown(0x00000004),
     DeviceLost(0x00000005),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -43,13 +34,12 @@ public enum class WGPUErrorType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUErrorType = when (value) {
-            0x00000000 -> NoError
-            0x00000001 -> Validation
-            0x00000002 -> OutOfMemory
-            0x00000003 -> Internal
-            0x00000004 -> Unknown
-            0x00000005 -> DeviceLost
-            0x7fffffff -> Force32
+            NoError.value -> NoError
+            Validation.value -> Validation
+            OutOfMemory.value -> OutOfMemory
+            Internal.value -> Internal
+            Unknown.value -> Unknown
+            DeviceLost.value -> DeviceLost
             else -> error("enum not found")
         }
     }

@@ -16,7 +16,6 @@ public enum class WGPUTextureAspect(
     Plane0Only(0x00000004),
     Plane1Only(0x00000005),
     Plane2Only(0x00000006),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -36,14 +35,13 @@ public enum class WGPUTextureAspect(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUTextureAspect = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> All
-            0x00000002 -> StencilOnly
-            0x00000003 -> DepthOnly
-            0x00000004 -> Plane0Only
-            0x00000005 -> Plane1Only
-            0x00000006 -> Plane2Only
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            All.value -> All
+            StencilOnly.value -> StencilOnly
+            DepthOnly.value -> DepthOnly
+            Plane0Only.value -> Plane0Only
+            Plane1Only.value -> Plane1Only
+            Plane2Only.value -> Plane2Only
             else -> error("enum not found")
         }
     }

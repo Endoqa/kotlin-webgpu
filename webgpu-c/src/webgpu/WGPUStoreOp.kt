@@ -12,7 +12,6 @@ public enum class WGPUStoreOp(
     Undefined(0x00000000),
     Store(0x00000001),
     Discard(0x00000002),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -32,10 +31,9 @@ public enum class WGPUStoreOp(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUStoreOp = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Store
-            0x00000002 -> Discard
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Store.value -> Store
+            Discard.value -> Discard
             else -> error("enum not found")
         }
     }

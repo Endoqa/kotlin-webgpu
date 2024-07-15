@@ -9,20 +9,20 @@ public value class WGPUExtent2D(
     public val `$mem`: MemorySegment,
 ) {
     public var width: uint32_t
-        get() = (WGPUExtent2D.widthHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (widthHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUExtent2D.widthHandle.set(this.`$mem`, 0L, value.toInt())
+            widthHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public var height: uint32_t
-        get() = (WGPUExtent2D.heightHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (heightHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUExtent2D.heightHandle.set(this.`$mem`, 0L, value.toInt())
+            heightHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUExtent2D.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -41,6 +41,6 @@ public value class WGPUExtent2D(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUExtent2D =
-            WGPUExtent2D(alloc.allocate(WGPUExtent2D.layout))
+            WGPUExtent2D(alloc.allocate(layout))
     }
 }

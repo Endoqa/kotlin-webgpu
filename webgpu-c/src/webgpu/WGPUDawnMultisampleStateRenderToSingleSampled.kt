@@ -16,7 +16,7 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmStatic
 
 @JvmInline
-public value class WGPUSharedTextureMemoryD3DSwapchainBeginState(
+public value class WGPUDawnMultisampleStateRenderToSingleSampled(
     public val `$mem`: MemorySegment,
 ) {
     public var chain: WGPUChainedStruct
@@ -34,14 +34,11 @@ public value class WGPUSharedTextureMemoryD3DSwapchainBeginState(
             )
         }
 
-    public var isSwapchain: WGPUBool
-        get() = (isSwapchainHandle.get(this.`$mem`, 0L) as
+    public var enabled: WGPUBool
+        get() = (enabledHandle.get(this.`$mem`, 0L) as
                 Int).toUInt()
         set(`value`) {
-            isSwapchainHandle.set(
-                this.`$mem`,
-                0L, value.toInt()
-            )
+            enabledHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
@@ -52,20 +49,20 @@ public value class WGPUSharedTextureMemoryD3DSwapchainBeginState(
     public companion object {
         public val layout: StructLayout = MemoryLayout.structLayout(
             WGPUChainedStruct.layout.withName("chain"),
-            ValueLayout.JAVA_INT.withName("isSwapchain"),
+            ValueLayout.JAVA_INT.withName("enabled"),
             MemoryLayout.paddingLayout(4),
-        ).withName("WGPUSharedTextureMemoryD3DSwapchainBeginState")
+        ).withName("WGPUDawnMultisampleStateRenderToSingleSampled")
 
         @JvmField
         public val chainHandle: MethodHandle =
             layout.sliceHandle(MemoryLayout.PathElement.groupElement("chain"))
 
         @JvmField
-        public val isSwapchainHandle: VarHandle =
-            layout.varHandle(MemoryLayout.PathElement.groupElement("isSwapchain"))
+        public val enabledHandle: VarHandle =
+            layout.varHandle(MemoryLayout.PathElement.groupElement("enabled"))
 
         @JvmStatic
-        public fun allocate(alloc: SegmentAllocator): WGPUSharedTextureMemoryD3DSwapchainBeginState =
-            WGPUSharedTextureMemoryD3DSwapchainBeginState(alloc.allocate(layout))
+        public fun allocate(alloc: SegmentAllocator): WGPUDawnMultisampleStateRenderToSingleSampled =
+            WGPUDawnMultisampleStateRenderToSingleSampled(alloc.allocate(layout))
     }
 }

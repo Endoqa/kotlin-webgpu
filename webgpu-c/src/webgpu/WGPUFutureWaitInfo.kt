@@ -11,7 +11,7 @@ public value class WGPUFutureWaitInfo(
 ) {
     public var future: WGPUFuture
         get() = WGPUFuture(
-            WGPUFutureWaitInfo.futureHandle.invokeExact(this.`$mem`, 0L) as
+            futureHandle.invokeExact(this.`$mem`, 0L) as
                     MemorySegment
         )
         set(`value`) {
@@ -19,21 +19,21 @@ public value class WGPUFutureWaitInfo(
         }
 
     public var completed: WGPUBool
-        get() = (WGPUFutureWaitInfo.completedHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        get() = (completedHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            WGPUFutureWaitInfo.completedHandle.set(this.`$mem`, 0L, value.toInt())
+            completedHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUFutureWaitInfo.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
         public val layout: StructLayout = MemoryLayout.structLayout(
             WGPUFuture.layout.withName("future"),
             ValueLayout.JAVA_INT.withName("completed"),
-            java.lang.foreign.MemoryLayout.paddingLayout(4),
+            MemoryLayout.paddingLayout(4),
         ).withName("WGPUFutureWaitInfo")
 
         @JvmField
@@ -46,6 +46,6 @@ public value class WGPUFutureWaitInfo(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUFutureWaitInfo =
-            WGPUFutureWaitInfo(alloc.allocate(WGPUFutureWaitInfo.layout))
+            WGPUFutureWaitInfo(alloc.allocate(layout))
     }
 }

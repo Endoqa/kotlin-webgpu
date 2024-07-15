@@ -9,7 +9,7 @@ public value class WGPUSurfaceImpl(
 ) {
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUSurfaceImpl.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -18,6 +18,6 @@ public value class WGPUSurfaceImpl(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUSurfaceImpl =
-            WGPUSurfaceImpl(alloc.allocate(WGPUSurfaceImpl.layout))
+            WGPUSurfaceImpl(alloc.allocate(layout))
     }
 }

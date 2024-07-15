@@ -10,28 +10,28 @@ public value class WGPUBlendComponent(
 ) {
     public var operation: WGPUBlendOperation
         get() = WGPUBlendOperation.fromInt(
-            WGPUBlendComponent.operationHandle.get(this.`$mem`, 0L) as
+            operationHandle.get(this.`$mem`, 0L) as
                     Int
         )
         set(`value`) {
-            WGPUBlendComponent.operationHandle.set(this.`$mem`, 0L, value.value)
+            operationHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public var srcFactor: WGPUBlendFactor
-        get() = WGPUBlendFactor.fromInt(WGPUBlendComponent.srcFactorHandle.get(this.`$mem`, 0L) as Int)
+        get() = WGPUBlendFactor.fromInt(srcFactorHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
-            WGPUBlendComponent.srcFactorHandle.set(this.`$mem`, 0L, value.value)
+            srcFactorHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public var dstFactor: WGPUBlendFactor
-        get() = WGPUBlendFactor.fromInt(WGPUBlendComponent.dstFactorHandle.get(this.`$mem`, 0L) as Int)
+        get() = WGPUBlendFactor.fromInt(dstFactorHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
-            WGPUBlendComponent.dstFactorHandle.set(this.`$mem`, 0L, value.value)
+            dstFactorHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUBlendComponent.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -55,6 +55,6 @@ public value class WGPUBlendComponent(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUBlendComponent =
-            WGPUBlendComponent(alloc.allocate(WGPUBlendComponent.layout))
+            WGPUBlendComponent(alloc.allocate(layout))
     }
 }

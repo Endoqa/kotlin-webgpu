@@ -11,7 +11,7 @@ public value class WGPUImageCopyBuffer(
 ) {
     public var layout: WGPUTextureDataLayout
         get() = WGPUTextureDataLayout(
-            WGPUImageCopyBuffer.layoutHandle.invokeExact(this.`$mem`, 0L) as
+            layoutHandle.invokeExact(this.`$mem`, 0L) as
                     MemorySegment
         )
         set(`value`) {
@@ -22,9 +22,9 @@ public value class WGPUImageCopyBuffer(
         }
 
     public var buffer: WGPUBuffer
-        get() = WGPUImageCopyBuffer.bufferHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = bufferHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUImageCopyBuffer.bufferHandle.set(this.`$mem`, 0L, value)
+            bufferHandle.set(this.`$mem`, 0L, value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
@@ -48,6 +48,6 @@ public value class WGPUImageCopyBuffer(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUImageCopyBuffer =
-            WGPUImageCopyBuffer(alloc.allocate(WGPUImageCopyBuffer.layout))
+            WGPUImageCopyBuffer(alloc.allocate(layout))
     }
 }

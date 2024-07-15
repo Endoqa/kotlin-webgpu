@@ -5,6 +5,12 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUCompositeAlphaMode.Auto
+import webgpu.WGPUCompositeAlphaMode.Inherit
+import webgpu.WGPUCompositeAlphaMode.Opaque
+import webgpu.WGPUCompositeAlphaMode.Premultiplied
+import webgpu.WGPUCompositeAlphaMode.Unpremultiplied
 
 public enum class WGPUCompositeAlphaMode(
     public val `value`: Int,
@@ -14,7 +20,6 @@ public enum class WGPUCompositeAlphaMode(
     Premultiplied(0x00000002),
     Unpremultiplied(0x00000003),
     Inherit(0x00000004),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -34,12 +39,11 @@ public enum class WGPUCompositeAlphaMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUCompositeAlphaMode = when (value) {
-            0x00000000 -> Auto
-            0x00000001 -> Opaque
-            0x00000002 -> Premultiplied
-            0x00000003 -> Unpremultiplied
-            0x00000004 -> Inherit
-            0x7fffffff -> Force32
+            Auto.value -> Auto
+            Opaque.value -> Opaque
+            Premultiplied.value -> Premultiplied
+            Unpremultiplied.value -> Unpremultiplied
+            Inherit.value -> Inherit
             else -> error("enum not found")
         }
     }

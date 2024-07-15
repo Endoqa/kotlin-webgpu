@@ -9,26 +9,26 @@ public value class WGPUConstantEntry(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = WGPUConstantEntry.nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUConstantEntry.nextInChainHandle.set(this.`$mem`, 0L, value)
+            nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var key: Pointer<Byte>
-        get() = WGPUConstantEntry.keyHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = keyHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUConstantEntry.keyHandle.set(this.`$mem`, 0L, value)
+            keyHandle.set(this.`$mem`, 0L, value)
         }
 
     public var `value`: Double
-        get() = WGPUConstantEntry.valueHandle.get(this.`$mem`, 0L) as Double
+        get() = valueHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
-            WGPUConstantEntry.valueHandle.set(this.`$mem`, 0L, value)
+            valueHandle.set(this.`$mem`, 0L, value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUConstantEntry.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
@@ -51,6 +51,6 @@ public value class WGPUConstantEntry(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUConstantEntry =
-            WGPUConstantEntry(alloc.allocate(WGPUConstantEntry.layout))
+            WGPUConstantEntry(alloc.allocate(layout))
     }
 }

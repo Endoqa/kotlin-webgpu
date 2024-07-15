@@ -18,7 +18,6 @@ public enum class WGPUCompareFunction(
     NotEqual(0x00000006),
     GreaterEqual(0x00000007),
     Always(0x00000008),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -38,16 +37,15 @@ public enum class WGPUCompareFunction(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUCompareFunction = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Never
-            0x00000002 -> Less
-            0x00000003 -> Equal
-            0x00000004 -> LessEqual
-            0x00000005 -> Greater
-            0x00000006 -> NotEqual
-            0x00000007 -> GreaterEqual
-            0x00000008 -> Always
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Never.value -> Never
+            Less.value -> Less
+            Equal.value -> Equal
+            LessEqual.value -> LessEqual
+            Greater.value -> Greater
+            NotEqual.value -> NotEqual
+            GreaterEqual.value -> GreaterEqual
+            Always.value -> Always
             else -> error("enum not found")
         }
     }

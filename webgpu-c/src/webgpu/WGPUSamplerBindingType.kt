@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.WGPUSamplerBindingType.Comparison
+import webgpu.WGPUSamplerBindingType.Filtering
+import webgpu.WGPUSamplerBindingType.NonFiltering
+import webgpu.WGPUSamplerBindingType.Undefined
 
 public enum class WGPUSamplerBindingType(
     public val `value`: Int,
@@ -13,7 +18,6 @@ public enum class WGPUSamplerBindingType(
     Filtering(0x00000001),
     NonFiltering(0x00000002),
     Comparison(0x00000003),
-    Force32(0x7fffffff),
     ;
 
     public companion object {
@@ -33,11 +37,10 @@ public enum class WGPUSamplerBindingType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUSamplerBindingType = when (value) {
-            0x00000000 -> Undefined
-            0x00000001 -> Filtering
-            0x00000002 -> NonFiltering
-            0x00000003 -> Comparison
-            0x7fffffff -> Force32
+            Undefined.value -> Undefined
+            Filtering.value -> Filtering
+            NonFiltering.value -> NonFiltering
+            Comparison.value -> Comparison
             else -> error("enum not found")
         }
     }
