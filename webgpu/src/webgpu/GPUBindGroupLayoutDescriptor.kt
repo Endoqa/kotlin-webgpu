@@ -1,6 +1,6 @@
 package webgpu
 
-public data class GPUBindGroupLayoutDescriptor(
+data class GPUBindGroupLayoutDescriptor(
     override val label: String = "",
-    public val entries: List<GPUBindGroupLayoutEntry>,
+    val entries: List<GPUBindGroupLayoutEntry>,
 ) : GPUObjectDescriptorBase 

@@ -3,11 +3,14 @@ package webgpu
 
 object GPUShaderStage {
     @JvmStatic
-    val VERTEX: GPUFlagsConstant = 0x1u
+    val None: GPUShaderStageFlags = 0x0000000000000000u
 
     @JvmStatic
-    val FRAGMENT: GPUFlagsConstant = 0x2u
+    val Vertex: GPUShaderStageFlags = 0x0000000000000001u
 
     @JvmStatic
-    val COMPUTE: GPUFlagsConstant = 0x4u
+    val Fragment: GPUShaderStageFlags = 0x0000000000000002u
+
+    @JvmStatic
+    val Compute: GPUShaderStageFlags = 0x0000000000000004u
 }

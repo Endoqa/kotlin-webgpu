@@ -1,91 +1,93 @@
 package webgpu
 
-public typealias GPURequestAdapterStatus = WGPURequestAdapterStatus
+import webgpu.c.*
 
-public typealias GPUAdapterType = WGPUAdapterType
+typealias GPURequestAdapterStatus = WGPURequestAdapterStatus
 
-public typealias GPUAddressMode = WGPUAddressMode
+typealias GPUAdapterType = WGPUAdapterType
 
-public typealias GPUBackendType = WGPUBackendType
+typealias GPUAddressMode = WGPUAddressMode
 
-public typealias GPUBufferBindingType = WGPUBufferBindingType
+typealias GPUBackendType = WGPUBackendType
 
-public typealias GPUSamplerBindingType = WGPUSamplerBindingType
+typealias GPUBufferBindingType = WGPUBufferBindingType
 
-public typealias GPUTextureSampleType = WGPUTextureSampleType
+typealias GPUSamplerBindingType = WGPUSamplerBindingType
 
-public typealias GPUStorageTextureAccess = WGPUStorageTextureAccess
+typealias GPUTextureSampleType = WGPUTextureSampleType
 
-public typealias GPUBlendFactor = WGPUBlendFactor
+typealias GPUStorageTextureAccess = WGPUStorageTextureAccess
 
-public typealias GPUBlendOperation = WGPUBlendOperation
+typealias GPUBlendFactor = WGPUBlendFactor
 
-public typealias GPUBufferMapAsyncStatus = WGPUBufferMapAsyncStatus
+typealias GPUBlendOperation = WGPUBlendOperation
 
-public typealias GPUBufferMapState = WGPUBufferMapState
+typealias GPUBufferMapAsyncStatus = WGPUBufferMapAsyncStatus
 
-public typealias GPUCompareFunction = WGPUCompareFunction
+typealias GPUBufferMapState = WGPUBufferMapState
 
-public typealias GPUCompilationInfoRequestStatus = WGPUCompilationInfoRequestStatus
+typealias GPUCompareFunction = WGPUCompareFunction
 
-public typealias GPUCompilationMessageType = WGPUCompilationMessageType
+typealias GPUCompilationInfoRequestStatus = WGPUCompilationInfoRequestStatus
 
-public typealias GPUCompositeAlphaMode = WGPUCompositeAlphaMode
+typealias GPUCompilationMessageType = WGPUCompilationMessageType
 
-public typealias GPUCreatePipelineAsyncStatus = WGPUCreatePipelineAsyncStatus
+typealias GPUCompositeAlphaMode = WGPUCompositeAlphaMode
 
-public typealias GPUCullMode = WGPUCullMode
+typealias GPUCreatePipelineAsyncStatus = WGPUCreatePipelineAsyncStatus
 
-public typealias GPUDeviceLostReason = WGPUDeviceLostReason
+typealias GPUCullMode = WGPUCullMode
 
-public typealias GPUErrorFilter = WGPUErrorFilter
+typealias GPUDeviceLostReason = WGPUDeviceLostReason
 
-public typealias GPUErrorType = WGPUErrorType
+typealias GPUErrorFilter = WGPUErrorFilter
 
-public typealias GPUFeatureName = WGPUFeatureName
+typealias GPUErrorType = WGPUErrorType
 
-public typealias GPUFilterMode = WGPUFilterMode
+typealias GPUFeatureName = WGPUFeatureName
 
-public typealias GPUFrontFace = WGPUFrontFace
+typealias GPUFilterMode = WGPUFilterMode
 
-public typealias GPUIndexFormat = WGPUIndexFormat
+typealias GPUFrontFace = WGPUFrontFace
 
-public typealias GPUVertexStepMode = WGPUVertexStepMode
+typealias GPUIndexFormat = WGPUIndexFormat
 
-public typealias GPULoadOp = WGPULoadOp
+typealias GPUVertexStepMode = WGPUVertexStepMode
 
-public typealias GPUMipmapFilterMode = WGPUMipmapFilterMode
+typealias GPULoadOp = WGPULoadOp
 
-public typealias GPUStoreOp = WGPUStoreOp
+typealias GPUMipmapFilterMode = WGPUMipmapFilterMode
 
-public typealias GPUPowerPreference = WGPUPowerPreference
+typealias GPUStoreOp = WGPUStoreOp
 
-public typealias GPUPresentMode = WGPUPresentMode
+typealias GPUPowerPreference = WGPUPowerPreference
 
-public typealias GPUPrimitiveTopology = WGPUPrimitiveTopology
+typealias GPUPresentMode = WGPUPresentMode
 
-public typealias GPUQueryType = WGPUQueryType
+typealias GPUPrimitiveTopology = WGPUPrimitiveTopology
 
-public typealias GPUQueueWorkDoneStatus = WGPUQueueWorkDoneStatus
+typealias GPUQueryType = WGPUQueryType
 
-public typealias GPURequestDeviceStatus = WGPURequestDeviceStatus
+typealias GPUQueueWorkDoneStatus = WGPUQueueWorkDoneStatus
 
-public typealias GPUStencilOperation = WGPUStencilOperation
+typealias GPURequestDeviceStatus = WGPURequestDeviceStatus
 
-public typealias GPUSType = WGPUSType
+typealias GPUStencilOperation = WGPUStencilOperation
 
-public typealias GPUSurfaceGetCurrentTextureStatus = WGPUSurfaceGetCurrentTextureStatus
+typealias GPUSType = WGPUSType
 
-public typealias GPUTextureAspect = WGPUTextureAspect
+typealias GPUSurfaceGetCurrentTextureStatus = WGPUSurfaceGetCurrentTextureStatus
 
-public typealias GPUTextureDimension = WGPUTextureDimension
+typealias GPUTextureAspect = WGPUTextureAspect
 
-public typealias GPUTextureFormat = WGPUTextureFormat
+typealias GPUTextureDimension = WGPUTextureDimension
 
-public typealias GPUTextureViewDimension = WGPUTextureViewDimension
+typealias GPUTextureFormat = WGPUTextureFormat
 
-public typealias GPUVertexFormat = WGPUVertexFormat
+typealias GPUTextureViewDimension = WGPUTextureViewDimension
 
-public typealias GPUWGSLFeatureName = WGPUWGSLFeatureName
+typealias GPUVertexFormat = WGPUVertexFormat
+
+typealias GPUWGSLFeatureName = WGPUWGSLFeatureName
 
 typealias GPULimits = WGPULimits

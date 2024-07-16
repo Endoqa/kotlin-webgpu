@@ -1,6 +1,7 @@
 package webgpu
 
 import not
+import webgpu.c.Pointer
 
 internal fun wgpuError(status: Any, message: Pointer<Byte>): IllegalStateException {
     return if (!message) {

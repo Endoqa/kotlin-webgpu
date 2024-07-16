@@ -1,5 +1,8 @@
 package webgpu
 
+import webgpu.c.WGPURenderPipeline
+import webgpu.c.wgpuRenderPipelineGetBindGroupLayout
+
 class GPURenderPipeline(
     internal val pipeline_: WGPURenderPipeline,
     internal val desc: GPURenderPipelineDescriptor,

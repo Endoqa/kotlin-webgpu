@@ -1,13 +1,14 @@
 package webgpu
 
+import webgpu.c.WGPUStorageTextureBindingLayout
 import java.lang.foreign.Arena
 
-public data class GPUStorageTextureBindingLayout(
-    public val access: GPUStorageTextureAccess = GPUStorageTextureAccess.WriteOnly,
-    public val format: GPUTextureFormat,
-    public val viewDimension: GPUTextureViewDimension = GPUTextureViewDimension.`2D`,
+data class GPUStorageTextureBindingLayout(
+    val access: GPUStorageTextureAccess = GPUStorageTextureAccess.WriteOnly,
+    val format: GPUTextureFormat,
+    val viewDimension: GPUTextureViewDimension = GPUTextureViewDimension.`2D`,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(

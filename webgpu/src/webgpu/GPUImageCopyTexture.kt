@@ -1,14 +1,15 @@
 package webgpu
 
+import webgpu.c.WGPUImageCopyTexture
 import java.lang.foreign.Arena
 
-public data class GPUImageCopyTexture(
-    public val texture: GPUTexture,
-    public val mipLevel: GPUIntegerCoordinate = 0u,
-    public val origin: GPUOrigin3D = GPUOrigin3D(),
-    public val aspect: GPUTextureAspect = GPUTextureAspect.All,
+data class GPUImageCopyTexture(
+    val texture: GPUTexture,
+    val mipLevel: GPUIntegerCoordinate = 0u,
+    val origin: GPUOrigin3D = GPUOrigin3D(),
+    val aspect: GPUTextureAspect = GPUTextureAspect.All,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUImageCopyTexture, native: WGPUImageCopyTexture) {

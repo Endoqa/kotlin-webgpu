@@ -1,11 +1,12 @@
 package webgpu
 
+import webgpu.c.WGPUSamplerBindingLayout
 import java.lang.foreign.Arena
 
-public data class GPUSamplerBindingLayout(
-    public val type: GPUSamplerBindingType = GPUSamplerBindingType.Filtering,
+data class GPUSamplerBindingLayout(
+    val type: GPUSamplerBindingType = GPUSamplerBindingType.Filtering,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUSamplerBindingLayout, native: WGPUSamplerBindingLayout) {

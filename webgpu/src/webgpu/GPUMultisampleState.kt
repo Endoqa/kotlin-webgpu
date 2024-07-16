@@ -1,14 +1,15 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPUMultisampleState
 import java.lang.foreign.Arena
 
-public data class GPUMultisampleState(
-    public val count: GPUSize32 = 1u,
-    public val mask: GPUSampleMask = 0xFFFFFFFFu,
-    public val alphaToCoverageEnabled: Boolean = false,
+data class GPUMultisampleState(
+    val count: GPUSize32 = 1u,
+    val mask: GPUSampleMask = 0xFFFFFFFFu,
+    val alphaToCoverageEnabled: Boolean = false,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUMultisampleState, native: WGPUMultisampleState) {

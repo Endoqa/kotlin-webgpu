@@ -1,16 +1,17 @@
 package webgpu
 
+import webgpu.c.WGPUBindGroupLayoutEntry
 import java.lang.foreign.Arena
 
-public data class GPUBindGroupLayoutEntry(
-    public val binding: GPUIndex32,
-    public val visibility: GPUShaderStageFlags,
-    public val buffer: GPUBufferBindingLayout? = null,
-    public val sampler: GPUSamplerBindingLayout? = null,
-    public val texture: GPUTextureBindingLayout? = null,
-    public val storageTexture: GPUStorageTextureBindingLayout? = null,
+data class GPUBindGroupLayoutEntry(
+    val binding: GPUIndex32,
+    val visibility: GPUShaderStageFlags,
+    val buffer: GPUBufferBindingLayout? = null,
+    val sampler: GPUSamplerBindingLayout? = null,
+    val texture: GPUTextureBindingLayout? = null,
+    val storageTexture: GPUStorageTextureBindingLayout? = null,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUBindGroupLayoutEntry, native: WGPUBindGroupLayoutEntry) {

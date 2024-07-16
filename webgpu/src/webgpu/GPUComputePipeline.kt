@@ -1,5 +1,7 @@
 package webgpu
 
+import webgpu.c.WGPUComputePipeline
+import webgpu.c.wgpuComputePipelineGetBindGroupLayout
 import java.lang.foreign.Arena
 
 class GPUComputePipeline(

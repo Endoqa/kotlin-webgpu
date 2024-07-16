@@ -1,12 +1,13 @@
 package webgpu
 
+import webgpu.c.WGPUBindGroupEntry
 import java.lang.foreign.Arena
 
-public data class GPUBindGroupEntry(
-    public val binding: GPUIndex32,
-    public val resource: GPUBindingResource,
+data class GPUBindGroupEntry(
+    val binding: GPUIndex32,
+    val resource: GPUBindingResource,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUBindGroupEntry, native: WGPUBindGroupEntry) {

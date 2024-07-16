@@ -1,5 +1,8 @@
 package webgpu
 
+import webgpu.c.WGPUCompilationInfo
+import webgpu.c.WGPUCompilationMessage
+
 data class GPUCompilationInfo(val messages: List<GPUCompilationMessage>) {
 
     companion object {

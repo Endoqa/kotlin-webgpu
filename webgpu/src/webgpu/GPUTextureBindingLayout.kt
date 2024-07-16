@@ -1,14 +1,15 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPUTextureBindingLayout
 import java.lang.foreign.Arena
 
-public data class GPUTextureBindingLayout(
-    public val sampleType: GPUTextureSampleType = GPUTextureSampleType.Float,
-    public val viewDimension: GPUTextureViewDimension = GPUTextureViewDimension.`2D`,
-    public val multisampled: Boolean = false,
+data class GPUTextureBindingLayout(
+    val sampleType: GPUTextureSampleType = GPUTextureSampleType.Float,
+    val viewDimension: GPUTextureViewDimension = GPUTextureViewDimension.`2D`,
+    val multisampled: Boolean = false,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUTextureBindingLayout, native: WGPUTextureBindingLayout) {

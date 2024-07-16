@@ -1,7 +1,5 @@
 package webgpu
 
-public data class GPUCommandEncoderDescriptor(
+data class GPUCommandEncoderDescriptor(
     override val label: String = "",
-) : GPUObjectDescriptorBase {
-
-}
+) : GPUObjectDescriptorBase

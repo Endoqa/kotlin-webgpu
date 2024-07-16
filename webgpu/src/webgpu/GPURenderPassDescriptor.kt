@@ -1,16 +1,10 @@
 package webgpu
 
-import Converter
-import java.lang.foreign.Arena
-
-public data class GPURenderPassDescriptor(
+data class GPURenderPassDescriptor(
     override val label: String = "",
-    public val colorAttachments: List<GPURenderPassColorAttachment>,
-    public val depthStencilAttachment: GPURenderPassDepthStencilAttachment? = null,
-    public val occlusionQuerySet: GPUQuerySet? = null,
-    public val timestampWrites: GPURenderPassTimestampWrites? = null,
-    public val maxDrawCount: GPUSize64 = 50000000u,
-) : GPUObjectDescriptorBase {
-
-    
-}
+    val colorAttachments: List<GPURenderPassColorAttachment>,
+    val depthStencilAttachment: GPURenderPassDepthStencilAttachment? = null,
+    val occlusionQuerySet: GPUQuerySet? = null,
+    val timestampWrites: GPURenderPassTimestampWrites? = null,
+    val maxDrawCount: GPUSize64 = 50000000u,
+) : GPUObjectDescriptorBase

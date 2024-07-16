@@ -1,5 +1,6 @@
 package webgpu
 
+import webgpu.c.*
 import java.lang.foreign.Arena
 import java.lang.foreign.MemorySegment
 

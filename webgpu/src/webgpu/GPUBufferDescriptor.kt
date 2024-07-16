@@ -1,10 +1,8 @@
 package webgpu
 
-public data class GPUBufferDescriptor(
+data class GPUBufferDescriptor(
     override val label: String = "",
-    public val size: GPUSize64,
-    public val usage: GPUBufferUsageFlags,
-    public val mappedAtCreation: Boolean = false,
-) : GPUObjectDescriptorBase {
-
-}
+    val size: GPUSize64,
+    val usage: GPUBufferUsageFlags,
+    val mappedAtCreation: Boolean = false,
+) : GPUObjectDescriptorBase

@@ -3,17 +3,26 @@ package webgpu
 
 object GPUTextureUsage {
     @JvmStatic
-    val COPY_SRC: GPUFlagsConstant = 0x01u
+    val None: GPUTextureUsageFlags = 0x0000000000000000u
 
     @JvmStatic
-    val COPY_DST: GPUFlagsConstant = 0x02u
+    val CopySrc: GPUTextureUsageFlags = 0x0000000000000001u
 
     @JvmStatic
-    val TEXTURE_BINDING: GPUFlagsConstant = 0x04u
+    val CopyDst: GPUTextureUsageFlags = 0x0000000000000002u
 
     @JvmStatic
-    val STORAGE_BINDING: GPUFlagsConstant = 0x08u
+    val TextureBinding: GPUTextureUsageFlags = 0x0000000000000004u
 
     @JvmStatic
-    val RENDER_ATTACHMENT: GPUFlagsConstant = 0x10u
+    val StorageBinding: GPUTextureUsageFlags = 0x0000000000000008u
+
+    @JvmStatic
+    val RenderAttachment: GPUTextureUsageFlags = 0x0000000000000010u
+
+    @JvmStatic
+    val TransientAttachment: GPUTextureUsageFlags = 0x0000000000000020u
+
+    @JvmStatic
+    val StorageAttachment: GPUTextureUsageFlags = 0x0000000000000040u
 }

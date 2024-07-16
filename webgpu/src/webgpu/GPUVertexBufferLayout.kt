@@ -1,14 +1,16 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPUVertexAttribute
+import webgpu.c.WGPUVertexBufferLayout
 import java.lang.foreign.Arena
 
-public data class GPUVertexBufferLayout(
-    public val arrayStride: GPUSize64,
-    public val stepMode: GPUVertexStepMode = GPUVertexStepMode.Vertex,
-    public val attributes: List<GPUVertexAttribute>,
+data class GPUVertexBufferLayout(
+    val arrayStride: GPUSize64,
+    val stepMode: GPUVertexStepMode = GPUVertexStepMode.Vertex,
+    val attributes: List<GPUVertexAttribute>,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUVertexBufferLayout, native: WGPUVertexBufferLayout) {

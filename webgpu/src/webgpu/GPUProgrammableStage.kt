@@ -1,9 +1,9 @@
 package webgpu
 
-public interface GPUProgrammableStage {
-    public val module: GPUShaderModule
+interface GPUProgrammableStage {
+    val module: GPUShaderModule
 
-    public val entryPoint: String?
+    val entryPoint: String?
 
-    public val constants: MutableMap<String, GPUPipelineConstantValue>?
+    val constants: MutableMap<String, GPUPipelineConstantValue>?
 }

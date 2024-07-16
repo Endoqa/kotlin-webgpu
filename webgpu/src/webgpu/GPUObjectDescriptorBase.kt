@@ -1,5 +1,5 @@
 package webgpu
 
-public interface GPUObjectDescriptorBase {
-    public val label: String
+interface GPUObjectDescriptorBase {
+    val label: String
 }

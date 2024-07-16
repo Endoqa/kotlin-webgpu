@@ -1,6 +1,7 @@
 package webgpu
 
 import Converter
+import webgpu.c.*
 import java.lang.foreign.Arena
 
 class GPUTexture(

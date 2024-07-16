@@ -1,4 +1,4 @@
-import webgpu.WGPUBool
+import webgpu.c.WGPUBool
 import java.lang.foreign.Arena
 import java.lang.foreign.MemoryLayout
 import java.lang.foreign.MemorySegment

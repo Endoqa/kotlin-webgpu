@@ -1,14 +1,15 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPUComputePipelineDescriptor
 import java.lang.foreign.Arena
 
-public data class GPUComputePipelineDescriptor(
+data class GPUComputePipelineDescriptor(
     override val label: String = "",
     override val layout: GPUPipelineLayout,
-    public val compute: GPUProgrammableStageDescriptor,
+    val compute: GPUProgrammableStageDescriptor,
 ) : GPUPipelineDescriptorBase {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(

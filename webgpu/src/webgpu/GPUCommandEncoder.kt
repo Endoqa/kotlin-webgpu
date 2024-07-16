@@ -1,6 +1,7 @@
 package webgpu
 
 import Converter
+import webgpu.c.*
 import java.lang.foreign.Arena
 import java.lang.foreign.MemorySegment
 
@@ -18,7 +19,7 @@ class GPUCommandEncoder(
         val maxDrawCountDesc = WGPURenderPassDescriptorMaxDrawCount.allocate(arena)
         maxDrawCountDesc.chain.sType = WGPUSType.RenderPassDescriptorMaxDrawCount
 
-        
+
         desc.nextInChain = maxDrawCountDesc.`$mem`
 
         with(arena) {

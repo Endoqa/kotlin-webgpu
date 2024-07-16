@@ -1,14 +1,15 @@
 package webgpu
 
+import webgpu.c.WGPUStencilFaceState
 import java.lang.foreign.Arena
 
-public data class GPUStencilFaceState(
-    public val compare: GPUCompareFunction = GPUCompareFunction.Always,
-    public val failOp: GPUStencilOperation = GPUStencilOperation.Keep,
-    public val depthFailOp: GPUStencilOperation = GPUStencilOperation.Keep,
-    public val passOp: GPUStencilOperation = GPUStencilOperation.Keep,
+data class GPUStencilFaceState(
+    val compare: GPUCompareFunction = GPUCompareFunction.Always,
+    val failOp: GPUStencilOperation = GPUStencilOperation.Keep,
+    val depthFailOp: GPUStencilOperation = GPUStencilOperation.Keep,
+    val passOp: GPUStencilOperation = GPUStencilOperation.Keep,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUStencilFaceState, native: WGPUStencilFaceState) {

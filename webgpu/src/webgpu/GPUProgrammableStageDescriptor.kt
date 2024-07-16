@@ -1,14 +1,16 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPUConstantEntry
+import webgpu.c.WGPUProgrammableStageDescriptor
 import java.lang.foreign.Arena
 
-public data class GPUProgrammableStageDescriptor(
+data class GPUProgrammableStageDescriptor(
     override val module: GPUShaderModule,
     override val entryPoint: String? = null,
     override val constants: MutableMap<String, GPUPipelineConstantValue>? = null,
 ) : GPUProgrammableStage {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUProgrammableStageDescriptor, native: WGPUProgrammableStageDescriptor) {

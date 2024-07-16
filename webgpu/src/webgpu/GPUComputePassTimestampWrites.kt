@@ -1,13 +1,14 @@
 package webgpu
 
+import webgpu.c.WGPUComputePassTimestampWrites
 import java.lang.foreign.Arena
 
-public data class GPUComputePassTimestampWrites(
-    public val querySet: GPUQuerySet,
-    public val beginningOfPassWriteIndex: GPUSize32 = 0u,
-    public val endOfPassWriteIndex: GPUSize32 = 0u,
+data class GPUComputePassTimestampWrites(
+    val querySet: GPUQuerySet,
+    val beginningOfPassWriteIndex: GPUSize32 = 0u,
+    val endOfPassWriteIndex: GPUSize32 = 0u,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(

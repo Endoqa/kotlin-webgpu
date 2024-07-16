@@ -1,12 +1,14 @@
 package webgpu
 
+
+import webgpu.c.WGPUBlendState
 import java.lang.foreign.Arena
 
-public data class GPUBlendState(
-    public val color: GPUBlendComponent,
-    public val alpha: GPUBlendComponent,
+data class GPUBlendState(
+    val color: GPUBlendComponent,
+    val alpha: GPUBlendComponent,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUBlendState, native: WGPUBlendState) {

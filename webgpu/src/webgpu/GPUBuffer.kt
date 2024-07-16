@@ -1,5 +1,6 @@
 package webgpu
 
+import webgpu.c.*
 import java.lang.foreign.Arena
 import java.lang.foreign.MemorySegment
 import kotlin.coroutines.resume
@@ -24,21 +25,21 @@ class GPUBuffer(
         Arena.ofConfined().use { temp ->
             suspendCoroutine<Unit> { cont ->
 
-                val callback = webgpu.callback.WGPUBufferMapCallback { status, _ ->
+                val callback = webgpu.c.callback.WGPUBufferMapCallback2 { status, message, _, _ ->
                     when (status) {
-                        WGPUBufferMapAsyncStatus.Success -> cont.resume(Unit)
-                        else -> cont.resumeWithException(wgpuError(status, "Buffer map failed"))
+                        WGPUMapAsyncStatus.Success -> cont.resume(Unit)
+                        else -> cont.resumeWithException(wgpuError(status, message))
                     }
 
                 }
 
 
-                val cb = WGPUBufferMapCallbackInfo.allocate(temp)
+                val cb = WGPUBufferMapCallbackInfo2.allocate(temp)
                 cb.mode = WGPUCallbackMode.AllowSpontaneous
                 cb.callback = callback.allocate(temp)
 
                 with(temp) {
-                    wgpuBufferMapAsyncF(buffer_, mode, offset, size, cb)
+                    wgpuBufferMapAsync2(buffer_, mode, offset, size, cb)
                 }
             }
         }

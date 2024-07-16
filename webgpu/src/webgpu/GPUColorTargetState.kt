@@ -1,13 +1,15 @@
 package webgpu
 
+import webgpu.c.WGPUBlendState
+import webgpu.c.WGPUColorTargetState
 import java.lang.foreign.Arena
 
-public data class GPUColorTargetState(
-    public val format: GPUTextureFormat,
-    public val blend: GPUBlendState? = null,
-    public val writeMask: GPUColorWriteFlags = 0xFu,
+data class GPUColorTargetState(
+    val format: GPUTextureFormat,
+    val blend: GPUBlendState? = null,
+    val writeMask: GPUColorWriteFlags = 0xFu,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUColorTargetState, native: WGPUColorTargetState) {

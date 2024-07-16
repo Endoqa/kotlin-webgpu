@@ -1,14 +1,15 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPUBufferBindingLayout
 import java.lang.foreign.Arena
 
-public data class GPUBufferBindingLayout(
-    public val type: GPUBufferBindingType = GPUBufferBindingType.Uniform,
-    public val hasDynamicOffset: Boolean = false,
-    public val minBindingSize: GPUSize64 = 0u,
+data class GPUBufferBindingLayout(
+    val type: GPUBufferBindingType = GPUBufferBindingType.Uniform,
+    val hasDynamicOffset: Boolean = false,
+    val minBindingSize: GPUSize64 = 0u,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUBufferBindingLayout, native: WGPUBufferBindingLayout) {

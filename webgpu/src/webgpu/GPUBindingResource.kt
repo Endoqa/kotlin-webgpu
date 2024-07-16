@@ -1,4 +1,3 @@
 package webgpu
 
-sealed interface GPUBindingResource {
-}
+sealed interface GPUBindingResource

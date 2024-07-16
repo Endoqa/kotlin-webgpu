@@ -1,20 +1,21 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPURenderPassDepthStencilAttachment
 import java.lang.foreign.Arena
 
-public data class GPURenderPassDepthStencilAttachment(
-    public val view: GPUTextureView,
-    public val depthClearValue: Float = 0f,
-    public val depthLoadOp: GPULoadOp = GPULoadOp.Undefined,
-    public val depthStoreOp: GPUStoreOp = GPUStoreOp.Undefined,
-    public val depthReadOnly: Boolean = false,
-    public val stencilClearValue: GPUStencilValue = 0u,
-    public val stencilLoadOp: GPULoadOp = GPULoadOp.Undefined,
-    public val stencilStoreOp: GPUStoreOp = GPUStoreOp.Undefined,
-    public val stencilReadOnly: Boolean = false,
+data class GPURenderPassDepthStencilAttachment(
+    val view: GPUTextureView,
+    val depthClearValue: Float = 0f,
+    val depthLoadOp: GPULoadOp = GPULoadOp.Undefined,
+    val depthStoreOp: GPUStoreOp = GPUStoreOp.Undefined,
+    val depthReadOnly: Boolean = false,
+    val stencilClearValue: GPUStencilValue = 0u,
+    val stencilLoadOp: GPULoadOp = GPULoadOp.Undefined,
+    val stencilStoreOp: GPUStoreOp = GPUStoreOp.Undefined,
+    val stencilReadOnly: Boolean = false,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(

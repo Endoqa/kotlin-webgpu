@@ -1,12 +1,14 @@
 package webgpu
 
 import Converter
+import webgpu.c.*
 import java.lang.foreign.Arena
 import java.lang.foreign.MemorySegment
 import java.lang.foreign.ValueLayout
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
+
 
 class GPUQueue(
     internal val queue_: WGPUQueue,
@@ -30,7 +32,7 @@ class GPUQueue(
     suspend fun onSubmittedWorkDone() {
         Arena.ofConfined().use { temp ->
             suspendCoroutine<Unit> {
-                val callback = webgpu.callback.WGPUQueueWorkDoneCallback2 { status, _, _ ->
+                val callback = webgpu.c.callback.WGPUQueueWorkDoneCallback2 { status, _, _ ->
                     when (status) {
                         WGPUQueueWorkDoneStatus.Success -> it.resume(Unit)
                         else -> it.resumeWithException(wgpuError(status, "on submitted work done failed"))

@@ -1,13 +1,14 @@
 package webgpu
 
+import webgpu.c.WGPUBlendComponent
 import java.lang.foreign.Arena
 
-public data class GPUBlendComponent(
-    public val operation: GPUBlendOperation = GPUBlendOperation.Add,
-    public val srcFactor: GPUBlendFactor = GPUBlendFactor.One,
-    public val dstFactor: GPUBlendFactor = GPUBlendFactor.Zero,
+data class GPUBlendComponent(
+    val operation: GPUBlendOperation = GPUBlendOperation.Add,
+    val srcFactor: GPUBlendFactor = GPUBlendFactor.One,
+    val dstFactor: GPUBlendFactor = GPUBlendFactor.Zero,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUBlendComponent, native: WGPUBlendComponent) {

@@ -1,15 +1,18 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPUColorTargetState
+import webgpu.c.WGPUConstantEntry
+import webgpu.c.WGPUFragmentState
 import java.lang.foreign.Arena
 
-public data class GPUFragmentState(
+data class GPUFragmentState(
     override val module: GPUShaderModule,
     override val entryPoint: String? = null,
     override val constants: MutableMap<String, GPUPipelineConstantValue>? = null,
-    public val targets: List<GPUColorTargetState> = emptyList(),
+    val targets: List<GPUColorTargetState> = emptyList(),
 ) : GPUProgrammableStage {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUFragmentState, native: WGPUFragmentState) {

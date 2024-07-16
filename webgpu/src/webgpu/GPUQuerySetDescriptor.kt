@@ -1,13 +1,14 @@
 package webgpu
 
+import webgpu.c.WGPUQuerySetDescriptor
 import java.lang.foreign.Arena
 
-public data class GPUQuerySetDescriptor(
+data class GPUQuerySetDescriptor(
     override val label: String = "",
-    public val type: GPUQueryType,
-    public val count: GPUSize32,
+    val type: GPUQueryType,
+    val count: GPUSize32,
 ) : GPUObjectDescriptorBase {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUQuerySetDescriptor, native: WGPUQuerySetDescriptor) {

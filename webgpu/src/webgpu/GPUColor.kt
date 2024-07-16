@@ -1,14 +1,15 @@
 package webgpu
 
+import webgpu.c.WGPUColor
 import java.lang.foreign.Arena
 
-public data class GPUColor(
-    public val r: Double,
-    public val g: Double,
-    public val b: Double,
-    public val a: Double,
+data class GPUColor(
+    val r: Double,
+    val g: Double,
+    val b: Double,
+    val a: Double,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUColor, native: WGPUColor) {

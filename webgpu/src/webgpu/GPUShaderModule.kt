@@ -1,5 +1,7 @@
 package webgpu
 
+import webgpu.c.*
+
 import java.lang.foreign.Arena
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -17,7 +19,7 @@ class GPUShaderModule(
             suspendCoroutine {
 
                 val callback =
-                    webgpu.callback.WGPUCompilationInfoCallback2 { status, info, _, _ ->
+                    webgpu.c.callback.WGPUCompilationInfoCallback2 { status, info, _, _ ->
                         when (status) {
                             WGPUCompilationInfoRequestStatus.Success -> {
                                 it.resume(GPUCompilationInfo.from(WGPUCompilationInfo(info)))

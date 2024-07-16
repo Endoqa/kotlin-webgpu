@@ -1,5 +1,7 @@
 package webgpu
 
+import webgpu.c.uint64_t
+
 data class GPUCompilationMessage(
     val message: String,
     val type: GPUCompilationMessageType,

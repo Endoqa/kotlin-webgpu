@@ -1,6 +1,7 @@
 package webgpu
 
 import Converter
+import webgpu.c.*
 import java.lang.foreign.Arena
 import java.lang.foreign.MemorySegment
 
@@ -9,7 +10,6 @@ class GPURenderBundleEncoder(
     internal val desc_: GPURenderBundleEncoderDescriptor,
     internal val arena: Arena,
 ) : GPUCommandsMixin, GPUDebugCommandsMixin, GPUBindingCommandsMixin, GPURenderCommandsMixin {
-    //     GPURenderBundle finish(optional GPURenderBundleDescriptor descriptor = {});
 
     fun finish(descriptor: GPURenderBundleDescriptor = GPURenderBundleDescriptor()): GPURenderBundle {
         val desc = WGPURenderBundleDescriptor.allocate(arena)

@@ -2,8 +2,8 @@ package webgpu
 
 import Converter
 import not
+import webgpu.c.*
 import java.lang.foreign.Arena
-import java.lang.foreign.MemorySegment
 import java.lang.foreign.ValueLayout
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -180,7 +180,7 @@ class GPUDevice(
         return Arena.ofConfined().use { temp ->
             suspendCoroutine<GPUComputePipeline> { cont ->
                 val callback =
-                    webgpu.callback.WGPUCreateComputePipelineAsyncCallback2 { status, pipeline, message, _, _ ->
+                    webgpu.c.callback.WGPUCreateComputePipelineAsyncCallback2 { status, pipeline, message, _, _ ->
                         when (status) {
                             WGPUCreatePipelineAsyncStatus.Success -> cont.resume(
                                 GPUComputePipeline(
@@ -221,7 +221,7 @@ class GPUDevice(
         return Arena.ofConfined().use { temp ->
             suspendCoroutine<GPURenderPipeline> { cont ->
                 val callback =
-                    webgpu.callback.WGPUCreateRenderPipelineAsyncCallback2 { status, pipeline, message, _, _ ->
+                    webgpu.c.callback.WGPUCreateRenderPipelineAsyncCallback2 { status, pipeline, message, _, _ ->
                         when (status) {
                             WGPUCreatePipelineAsyncStatus.Success -> cont.resume(
                                 GPURenderPipeline(
@@ -304,7 +304,7 @@ class GPUDevice(
     suspend fun popErrorScope(): GPUError? {
         return Arena.ofConfined().use { temp ->
             suspendCoroutine { cont ->
-                val callback = webgpu.callback.WGPUPopErrorScopeCallback2 { _, type, message, _, _ ->
+                val callback = webgpu.c.callback.WGPUPopErrorScopeCallback2 { _, type, message, _, _ ->
                     val m = if (!message) message.getString(0) else "no message"
 
                     when (type) {

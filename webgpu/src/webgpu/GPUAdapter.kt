@@ -1,9 +1,8 @@
 package webgpu
 
 import Converter
-import not
+import webgpu.c.*
 import java.lang.foreign.Arena
-import java.lang.foreign.MemorySegment
 import java.lang.foreign.ValueLayout
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -36,11 +35,11 @@ class GPUAdapter(
 
         return Arena.ofConfined().use { temp ->
             suspendCoroutine<GPUDevice> { cont ->
-                val callback = webgpu.callback.WGPURequestDeviceCallback2 { status, device, message, _, _ ->
+                val callback = webgpu.c.callback.WGPURequestDeviceCallback2 { status, device, message, _, _ ->
                     when (status) {
                         WGPURequestDeviceStatus.Success -> {
                             //TODO: user defined error callback
-//                            val errCallback = webgpu.callback.WGPUErrorCallback { type, errMsg, _ ->
+//                            val errCallback = webgpu.c.callback.WGPUErrorCallback { type, errMsg, _ ->
 //                                val msg = if (!errMsg) {
 //                                    "$type: Unknown error"
 //                                } else {

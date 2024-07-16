@@ -1,9 +1,12 @@
-import webgpu.*
+import webgpu.GPUAdapter
+import webgpu.GPUBackendType
+import webgpu.GPURequestAdapterOptions
+import webgpu.c.*
+import webgpu.wgpuError
 import java.lang.foreign.Arena
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
-
 
 typealias WGSLLanguageFeatures = Set<WGPUWGSLFeatureName>
 
@@ -20,7 +23,7 @@ class GPU(
         options: GPURequestAdapterOptions = GPURequestAdapterOptions()
     ): GPUAdapter =
         suspendCoroutine<GPUAdapter> { cont ->
-            val callback = webgpu.callback.WGPURequestAdapterCallback2 { status, adapter, message, _, _ ->
+            val callback = webgpu.c.callback.WGPURequestAdapterCallback2 { status, adapter, message, _, _ ->
                 when (status) {
                     WGPURequestAdapterStatus.Success -> cont.resume(GPUAdapter(adapter, arena))
                     else -> cont.resumeWithException(wgpuError(status, message))

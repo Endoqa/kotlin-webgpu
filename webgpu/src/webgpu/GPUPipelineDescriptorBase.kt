@@ -1,6 +1,6 @@
 package webgpu
 
-public interface GPUPipelineDescriptorBase : GPUObjectDescriptorBase {
+interface GPUPipelineDescriptorBase : GPUObjectDescriptorBase {
 
-    public val layout: GPUPipelineLayout?
+    val layout: GPUPipelineLayout?
 }

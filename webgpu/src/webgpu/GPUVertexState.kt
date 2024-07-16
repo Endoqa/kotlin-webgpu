@@ -1,15 +1,18 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPUConstantEntry
+import webgpu.c.WGPUVertexBufferLayout
+import webgpu.c.WGPUVertexState
 import java.lang.foreign.Arena
 
-public data class GPUVertexState(
+data class GPUVertexState(
     override val module: GPUShaderModule,
     override val entryPoint: String? = null,
     override val constants: MutableMap<String, GPUPipelineConstantValue>? = null,
-    public val buffers: List<GPUVertexBufferLayout> = emptyList(),
+    val buffers: List<GPUVertexBufferLayout> = emptyList(),
 ) : GPUProgrammableStage {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUVertexState, native: WGPUVertexState) {

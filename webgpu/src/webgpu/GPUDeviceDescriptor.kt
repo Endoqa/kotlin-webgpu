@@ -1,8 +1,10 @@
 package webgpu
 
-public data class GPUDeviceDescriptor(
+import webgpu.c.WGPULimits
+
+data class GPUDeviceDescriptor(
     override val label: String = "",
-    public val requiredFeatures: List<GPUFeatureName> = mutableListOf(),
-    public val requiredLimits: WGPULimits? = null,
-    public val defaultQueue: GPUQueueDescriptor = GPUQueueDescriptor(),
+    val requiredFeatures: List<GPUFeatureName> = mutableListOf(),
+    val requiredLimits: WGPULimits? = null,
+    val defaultQueue: GPUQueueDescriptor = GPUQueueDescriptor(),
 ) : GPUObjectDescriptorBase

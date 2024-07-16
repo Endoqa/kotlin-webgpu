@@ -1,19 +1,22 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPUDepthStencilState
+import webgpu.c.WGPUFragmentState
+import webgpu.c.WGPURenderPipelineDescriptor
 import java.lang.foreign.Arena
 import java.lang.foreign.MemorySegment
 
-public data class GPURenderPipelineDescriptor(
+data class GPURenderPipelineDescriptor(
     override val label: String = "",
     override val layout: GPUPipelineLayout? = null, // null for auto layout
-    public val vertex: GPUVertexState,
-    public val primitive: GPUPrimitiveState = GPUPrimitiveState(),
-    public val depthStencil: GPUDepthStencilState? = null,
-    public val multisample: GPUMultisampleState = GPUMultisampleState(),
-    public val fragment: GPUFragmentState? = null,
+    val vertex: GPUVertexState,
+    val primitive: GPUPrimitiveState = GPUPrimitiveState(),
+    val depthStencil: GPUDepthStencilState? = null,
+    val multisample: GPUMultisampleState = GPUMultisampleState(),
+    val fragment: GPUFragmentState? = null,
 ) : GPUPipelineDescriptorBase {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(

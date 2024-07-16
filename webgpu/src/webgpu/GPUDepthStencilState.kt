@@ -1,21 +1,22 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPUDepthStencilState
 import java.lang.foreign.Arena
 
-public data class GPUDepthStencilState(
-    public val format: GPUTextureFormat,
-    public val depthWriteEnabled: Boolean = false,
-    public val depthCompare: GPUCompareFunction = GPUCompareFunction.Undefined,
-    public val stencilFront: GPUStencilFaceState = GPUStencilFaceState(),
-    public val stencilBack: GPUStencilFaceState = GPUStencilFaceState(),
-    public val stencilReadMask: GPUStencilValue = 0xFFFFFFFFu,
-    public val stencilWriteMask: GPUStencilValue = 0xFFFFFFFFu,
-    public val depthBias: GPUDepthBias = 0,
-    public val depthBiasSlopeScale: Float = 0f,
-    public val depthBiasClamp: Float = 0f,
+data class GPUDepthStencilState(
+    val format: GPUTextureFormat,
+    val depthWriteEnabled: Boolean = false,
+    val depthCompare: GPUCompareFunction = GPUCompareFunction.Undefined,
+    val stencilFront: GPUStencilFaceState = GPUStencilFaceState(),
+    val stencilBack: GPUStencilFaceState = GPUStencilFaceState(),
+    val stencilReadMask: GPUStencilValue = 0xFFFFFFFFu,
+    val stencilWriteMask: GPUStencilValue = 0xFFFFFFFFu,
+    val depthBias: GPUDepthBias = 0,
+    val depthBiasSlopeScale: Float = 0f,
+    val depthBiasClamp: Float = 0f,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUDepthStencilState, native: WGPUDepthStencilState) {

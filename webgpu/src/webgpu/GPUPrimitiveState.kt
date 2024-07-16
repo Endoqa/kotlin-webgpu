@@ -1,16 +1,20 @@
 package webgpu
 
 import Converter
+import webgpu.c.WGPUPrimitiveDepthClipControl
+import webgpu.c.WGPUPrimitiveState
+import webgpu.c.WGPUSType
 import java.lang.foreign.Arena
 
-public data class GPUPrimitiveState(
-    public val topology: GPUPrimitiveTopology = GPUPrimitiveTopology.TriangleList,
-    public val stripIndexFormat: GPUIndexFormat = GPUIndexFormat.Undefined,
-    public val frontFace: GPUFrontFace = GPUFrontFace.CCW,
-    public val cullMode: GPUCullMode = GPUCullMode.None,
-    public val unclippedDepth: Boolean = false,
+
+data class GPUPrimitiveState(
+    val topology: GPUPrimitiveTopology = GPUPrimitiveTopology.TriangleList,
+    val stripIndexFormat: GPUIndexFormat = GPUIndexFormat.Undefined,
+    val frontFace: GPUFrontFace = GPUFrontFace.CCW,
+    val cullMode: GPUCullMode = GPUCullMode.None,
+    val unclippedDepth: Boolean = false,
 ) {
-    public companion object {
+    companion object {
         context(Arena)
         @JvmStatic
         internal fun convert(interop: GPUPrimitiveState, native: WGPUPrimitiveState) {

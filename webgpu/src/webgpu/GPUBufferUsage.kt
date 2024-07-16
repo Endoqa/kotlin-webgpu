@@ -3,33 +3,35 @@ package webgpu
 
 object GPUBufferUsage {
     @JvmStatic
-    val MAP_READ: GPUFlagsConstant = 0x0001u
+    val None: GPUBufferUsageFlags = 0x0000000000000000u
 
     @JvmStatic
-    val MAP_WRITE: GPUFlagsConstant = 0x0002u
+    val MapRead: GPUBufferUsageFlags = 0x0000000000000001u
 
     @JvmStatic
-    val COPY_SRC: GPUFlagsConstant = 0x0004u
+    val MapWrite: GPUBufferUsageFlags = 0x0000000000000002u
 
     @JvmStatic
-    val COPY_DST: GPUFlagsConstant = 0x0008u
+    val CopySrc: GPUBufferUsageFlags = 0x0000000000000004u
 
     @JvmStatic
-    val INDEX: GPUFlagsConstant = 0x0010u
+    val CopyDst: GPUBufferUsageFlags = 0x0000000000000008u
 
     @JvmStatic
-    val VERTEX: GPUFlagsConstant = 0x0020u
+    val Index: GPUBufferUsageFlags = 0x0000000000000010u
 
     @JvmStatic
-    val UNIFORM: GPUFlagsConstant = 0x0040u
+    val Vertex: GPUBufferUsageFlags = 0x0000000000000020u
 
     @JvmStatic
-    val STORAGE: GPUFlagsConstant = 0x0080u
+    val Uniform: GPUBufferUsageFlags = 0x0000000000000040u
 
     @JvmStatic
-    val INDIRECT: GPUFlagsConstant = 0x0100u
+    val Storage: GPUBufferUsageFlags = 0x0000000000000080u
 
     @JvmStatic
-    val QUERY_RESOLVE: GPUFlagsConstant = 0x0200u
+    val Indirect: GPUBufferUsageFlags = 0x0000000000000100u
 
+    @JvmStatic
+    val QueryResolve: GPUBufferUsageFlags = 0x0000000000000200u
 }

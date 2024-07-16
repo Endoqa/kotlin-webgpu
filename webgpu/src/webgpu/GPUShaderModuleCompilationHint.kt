@@ -1,6 +1,6 @@
 package webgpu
 
-public data class GPUShaderModuleCompilationHint(
-    public val entryPoint: String,
-    public val layout: GPUPipelineLayout? = null,
+data class GPUShaderModuleCompilationHint(
+    val entryPoint: String,
+    val layout: GPUPipelineLayout? = null,
 )
