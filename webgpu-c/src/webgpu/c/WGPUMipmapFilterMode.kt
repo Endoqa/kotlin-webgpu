@@ -5,6 +5,10 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUMipmapFilterMode.Linear
+import webgpu.c.WGPUMipmapFilterMode.Nearest
+import webgpu.c.WGPUMipmapFilterMode.Undefined
 
 public enum class WGPUMipmapFilterMode(
     public val `value`: Int,

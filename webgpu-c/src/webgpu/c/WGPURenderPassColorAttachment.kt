@@ -11,6 +11,7 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.UInt
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmStatic
@@ -20,50 +21,50 @@ public value class WGPURenderPassColorAttachment(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = WGPURenderPassColorAttachment.nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            nextInChainHandle.set(this.`$mem`, 0L, value)
+            WGPURenderPassColorAttachment.nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var view: WGPUTextureView
-        get() = viewHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = WGPURenderPassColorAttachment.viewHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            viewHandle.set(this.`$mem`, 0L, value)
+            WGPURenderPassColorAttachment.viewHandle.set(this.`$mem`, 0L, value)
         }
 
-    public var depthSlice: uint32_t
-        get() = (depthSliceHandle.get(this.`$mem`, 0L) as Int).toUInt()
+    public var depthSlice: UInt
+        get() = (WGPURenderPassColorAttachment.depthSliceHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            depthSliceHandle.set(this.`$mem`, 0L, value.toInt())
+            WGPURenderPassColorAttachment.depthSliceHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public var resolveTarget: WGPUTextureView
-        get() = resolveTargetHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = WGPURenderPassColorAttachment.resolveTargetHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            resolveTargetHandle.set(this.`$mem`, 0L, value)
+            WGPURenderPassColorAttachment.resolveTargetHandle.set(this.`$mem`, 0L, value)
         }
 
     public var loadOp: WGPULoadOp
         get() = WGPULoadOp.fromInt(
-            loadOpHandle.get(this.`$mem`, 0L) as
+            WGPURenderPassColorAttachment.loadOpHandle.get(this.`$mem`, 0L) as
                     Int
         )
         set(`value`) {
-            loadOpHandle.set(this.`$mem`, 0L, value.value)
+            WGPURenderPassColorAttachment.loadOpHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public var storeOp: WGPUStoreOp
         get() = WGPUStoreOp.fromInt(
-            storeOpHandle.get(this.`$mem`, 0L) as
+            WGPURenderPassColorAttachment.storeOpHandle.get(this.`$mem`, 0L) as
                     Int
         )
         set(`value`) {
-            storeOpHandle.set(this.`$mem`, 0L, value.value)
+            WGPURenderPassColorAttachment.storeOpHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public var clearValue: WGPUColor
         get() = WGPUColor(
-            clearValueHandle.invokeExact(this.`$mem`, 0L) as
+            WGPURenderPassColorAttachment.clearValueHandle.invokeExact(this.`$mem`, 0L) as
                     MemorySegment
         )
         set(`value`) {
@@ -72,7 +73,7 @@ public value class WGPURenderPassColorAttachment(
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(layout)
+        Arena.ofAuto().allocate(WGPURenderPassColorAttachment.layout)
     })
 
     public companion object {
@@ -80,7 +81,7 @@ public value class WGPURenderPassColorAttachment(
             `$RuntimeHelper`.POINTER.withName("nextInChain"),
             `$RuntimeHelper`.POINTER.withName("view"),
             ValueLayout.JAVA_INT.withName("depthSlice"),
-            MemoryLayout.paddingLayout(4),
+            java.lang.foreign.MemoryLayout.paddingLayout(4),
             `$RuntimeHelper`.POINTER.withName("resolveTarget"),
             ValueLayout.JAVA_INT.withName("loadOp"),
             ValueLayout.JAVA_INT.withName("storeOp"),
@@ -117,6 +118,6 @@ public value class WGPURenderPassColorAttachment(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPURenderPassColorAttachment =
-            WGPURenderPassColorAttachment(alloc.allocate(layout))
+            WGPURenderPassColorAttachment(alloc.allocate(WGPURenderPassColorAttachment.layout))
     }
 }

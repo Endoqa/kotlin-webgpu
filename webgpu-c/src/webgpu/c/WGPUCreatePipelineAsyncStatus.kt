@@ -5,6 +5,12 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUCreatePipelineAsyncStatus.InstanceDropped
+import webgpu.c.WGPUCreatePipelineAsyncStatus.InternalError
+import webgpu.c.WGPUCreatePipelineAsyncStatus.Success
+import webgpu.c.WGPUCreatePipelineAsyncStatus.Unknown
+import webgpu.c.WGPUCreatePipelineAsyncStatus.ValidationError
 
 public enum class WGPUCreatePipelineAsyncStatus(
     public val `value`: Int,
@@ -13,9 +19,7 @@ public enum class WGPUCreatePipelineAsyncStatus(
     InstanceDropped(0x00000002),
     ValidationError(0x00000003),
     InternalError(0x00000004),
-    DeviceLost(0x00000005),
-    DeviceDestroyed(0x00000006),
-    Unknown(0x00000007),
+    Unknown(0x00000005),
     ;
 
     public companion object {
@@ -39,8 +43,6 @@ public enum class WGPUCreatePipelineAsyncStatus(
             InstanceDropped.value -> InstanceDropped
             ValidationError.value -> ValidationError
             InternalError.value -> InternalError
-            DeviceLost.value -> DeviceLost
-            DeviceDestroyed.value -> DeviceDestroyed
             Unknown.value -> Unknown
             else -> error("enum not found")
         }

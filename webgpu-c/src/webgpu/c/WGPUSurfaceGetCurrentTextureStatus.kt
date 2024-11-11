@@ -5,17 +5,27 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUSurfaceGetCurrentTextureStatus.DeviceLost
+import webgpu.c.WGPUSurfaceGetCurrentTextureStatus.Error
+import webgpu.c.WGPUSurfaceGetCurrentTextureStatus.Lost
+import webgpu.c.WGPUSurfaceGetCurrentTextureStatus.OutOfMemory
+import webgpu.c.WGPUSurfaceGetCurrentTextureStatus.Outdated
+import webgpu.c.WGPUSurfaceGetCurrentTextureStatus.SuccessOptimal
+import webgpu.c.WGPUSurfaceGetCurrentTextureStatus.SuccessSuboptimal
+import webgpu.c.WGPUSurfaceGetCurrentTextureStatus.Timeout
 
 public enum class WGPUSurfaceGetCurrentTextureStatus(
     public val `value`: Int,
 ) {
-    Success(0x00000001),
-    Timeout(0x00000002),
-    Outdated(0x00000003),
-    Lost(0x00000004),
-    OutOfMemory(0x00000005),
-    DeviceLost(0x00000006),
-    Error(0x00000007),
+    SuccessOptimal(0x00000001),
+    SuccessSuboptimal(0x00000002),
+    Timeout(0x00000003),
+    Outdated(0x00000004),
+    Lost(0x00000005),
+    OutOfMemory(0x00000006),
+    DeviceLost(0x00000007),
+    Error(0x00000008),
     ;
 
     public companion object {
@@ -35,7 +45,8 @@ public enum class WGPUSurfaceGetCurrentTextureStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUSurfaceGetCurrentTextureStatus = when (value) {
-            Success.value -> Success
+            SuccessOptimal.value -> SuccessOptimal
+            SuccessSuboptimal.value -> SuccessSuboptimal
             Timeout.value -> Timeout
             Outdated.value -> Outdated
             Lost.value -> Lost

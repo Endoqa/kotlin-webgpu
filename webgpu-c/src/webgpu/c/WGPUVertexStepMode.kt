@@ -5,12 +5,17 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUVertexStepMode.Instance
+import webgpu.c.WGPUVertexStepMode.Undefined
+import webgpu.c.WGPUVertexStepMode.Vertex
+import webgpu.c.WGPUVertexStepMode.VertexBufferNotUsed
 
 public enum class WGPUVertexStepMode(
     public val `value`: Int,
 ) {
-    Undefined(0x00000000),
-    VertexBufferNotUsed(0x00000001),
+    VertexBufferNotUsed(0x00000000),
+    Undefined(0x00000001),
     Vertex(0x00000002),
     Instance(0x00000003),
     ;
@@ -32,8 +37,8 @@ public enum class WGPUVertexStepMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUVertexStepMode = when (value) {
-            Undefined.value -> Undefined
             VertexBufferNotUsed.value -> VertexBufferNotUsed
+            Undefined.value -> Undefined
             Vertex.value -> Vertex
             Instance.value -> Instance
             else -> error("enum not found")

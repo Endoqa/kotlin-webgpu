@@ -5,16 +5,25 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUTextureSampleType.BindingNotUsed
+import webgpu.c.WGPUTextureSampleType.Depth
+import webgpu.c.WGPUTextureSampleType.Float
+import webgpu.c.WGPUTextureSampleType.Sint
+import webgpu.c.WGPUTextureSampleType.Uint
+import webgpu.c.WGPUTextureSampleType.Undefined
+import webgpu.c.WGPUTextureSampleType.UnfilterableFloat
 
 public enum class WGPUTextureSampleType(
     public val `value`: Int,
 ) {
-    Undefined(0x00000000),
-    Float(0x00000001),
-    UnfilterableFloat(0x00000002),
-    Depth(0x00000003),
-    Sint(0x00000004),
-    Uint(0x00000005),
+    BindingNotUsed(0x00000000),
+    Undefined(0x00000001),
+    Float(0x00000002),
+    UnfilterableFloat(0x00000003),
+    Depth(0x00000004),
+    Sint(0x00000005),
+    Uint(0x00000006),
     ;
 
     public companion object {
@@ -34,6 +43,7 @@ public enum class WGPUTextureSampleType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUTextureSampleType = when (value) {
+            BindingNotUsed.value -> BindingNotUsed
             Undefined.value -> Undefined
             Float.value -> Float
             UnfilterableFloat.value -> UnfilterableFloat

@@ -5,6 +5,10 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUPowerPreference.HighPerformance
+import webgpu.c.WGPUPowerPreference.LowPower
+import webgpu.c.WGPUPowerPreference.Undefined
 
 public enum class WGPUPowerPreference(
     public val `value`: Int,

@@ -5,14 +5,21 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUStorageTextureAccess.BindingNotUsed
+import webgpu.c.WGPUStorageTextureAccess.ReadOnly
+import webgpu.c.WGPUStorageTextureAccess.ReadWrite
+import webgpu.c.WGPUStorageTextureAccess.Undefined
+import webgpu.c.WGPUStorageTextureAccess.WriteOnly
 
 public enum class WGPUStorageTextureAccess(
     public val `value`: Int,
 ) {
-    Undefined(0x00000000),
-    WriteOnly(0x00000001),
-    ReadOnly(0x00000002),
-    ReadWrite(0x00000003),
+    BindingNotUsed(0x00000000),
+    Undefined(0x00000001),
+    WriteOnly(0x00000002),
+    ReadOnly(0x00000003),
+    ReadWrite(0x00000004),
     ;
 
     public companion object {
@@ -32,6 +39,7 @@ public enum class WGPUStorageTextureAccess(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUStorageTextureAccess = when (value) {
+            BindingNotUsed.value -> BindingNotUsed
             Undefined.value -> Undefined
             WriteOnly.value -> WriteOnly
             ReadOnly.value -> ReadOnly

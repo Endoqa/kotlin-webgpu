@@ -5,6 +5,13 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUPrimitiveTopology.LineList
+import webgpu.c.WGPUPrimitiveTopology.LineStrip
+import webgpu.c.WGPUPrimitiveTopology.PointList
+import webgpu.c.WGPUPrimitiveTopology.TriangleList
+import webgpu.c.WGPUPrimitiveTopology.TriangleStrip
+import webgpu.c.WGPUPrimitiveTopology.Undefined
 
 public enum class WGPUPrimitiveTopology(
     public val `value`: Int,

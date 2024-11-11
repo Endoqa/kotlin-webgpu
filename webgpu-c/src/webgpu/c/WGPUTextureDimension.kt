@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUTextureDimension.Undefined
+import webgpu.c.WGPUTextureDimension.`1D`
+import webgpu.c.WGPUTextureDimension.`2D`
+import webgpu.c.WGPUTextureDimension.`3D`
 
 public enum class WGPUTextureDimension(
     public val `value`: Int,

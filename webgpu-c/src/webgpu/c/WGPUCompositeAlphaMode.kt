@@ -5,15 +5,21 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUCompositeAlphaMode.Auto
+import webgpu.c.WGPUCompositeAlphaMode.Inherit
+import webgpu.c.WGPUCompositeAlphaMode.Opaque
+import webgpu.c.WGPUCompositeAlphaMode.Premultiplied
+import webgpu.c.WGPUCompositeAlphaMode.Unpremultiplied
 
 public enum class WGPUCompositeAlphaMode(
     public val `value`: Int,
 ) {
-    Auto(0x00000001),
-    Opaque(0x00000002),
-    Premultiplied(0x00000003),
-    Unpremultiplied(0x00000004),
-    Inherit(0x00000005),
+    Auto(0x00000000),
+    Opaque(0x00000001),
+    Premultiplied(0x00000002),
+    Unpremultiplied(0x00000003),
+    Inherit(0x00000004),
     ;
 
     public companion object {

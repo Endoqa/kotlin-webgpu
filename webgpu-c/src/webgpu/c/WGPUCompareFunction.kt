@@ -5,6 +5,16 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUCompareFunction.Always
+import webgpu.c.WGPUCompareFunction.Equal
+import webgpu.c.WGPUCompareFunction.Greater
+import webgpu.c.WGPUCompareFunction.GreaterEqual
+import webgpu.c.WGPUCompareFunction.Less
+import webgpu.c.WGPUCompareFunction.LessEqual
+import webgpu.c.WGPUCompareFunction.Never
+import webgpu.c.WGPUCompareFunction.NotEqual
+import webgpu.c.WGPUCompareFunction.Undefined
 
 public enum class WGPUCompareFunction(
     public val `value`: Int,

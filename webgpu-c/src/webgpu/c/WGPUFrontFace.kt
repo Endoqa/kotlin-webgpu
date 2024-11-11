@@ -5,6 +5,10 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUFrontFace.CCW
+import webgpu.c.WGPUFrontFace.CW
+import webgpu.c.WGPUFrontFace.Undefined
 
 public enum class WGPUFrontFace(
     public val `value`: Int,

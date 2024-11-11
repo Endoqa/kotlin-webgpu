@@ -5,14 +5,21 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUSamplerBindingType.BindingNotUsed
+import webgpu.c.WGPUSamplerBindingType.Comparison
+import webgpu.c.WGPUSamplerBindingType.Filtering
+import webgpu.c.WGPUSamplerBindingType.NonFiltering
+import webgpu.c.WGPUSamplerBindingType.Undefined
 
 public enum class WGPUSamplerBindingType(
     public val `value`: Int,
 ) {
-    Undefined(0x00000000),
-    Filtering(0x00000001),
-    NonFiltering(0x00000002),
-    Comparison(0x00000003),
+    BindingNotUsed(0x00000000),
+    Undefined(0x00000001),
+    Filtering(0x00000002),
+    NonFiltering(0x00000003),
+    Comparison(0x00000004),
     ;
 
     public companion object {
@@ -32,6 +39,7 @@ public enum class WGPUSamplerBindingType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUSamplerBindingType = when (value) {
+            BindingNotUsed.value -> BindingNotUsed
             Undefined.value -> Undefined
             Filtering.value -> Filtering
             NonFiltering.value -> NonFiltering

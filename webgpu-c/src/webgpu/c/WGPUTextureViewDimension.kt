@@ -5,6 +5,14 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUTextureViewDimension.Cube
+import webgpu.c.WGPUTextureViewDimension.CubeArray
+import webgpu.c.WGPUTextureViewDimension.Undefined
+import webgpu.c.WGPUTextureViewDimension.`1D`
+import webgpu.c.WGPUTextureViewDimension.`2DArray`
+import webgpu.c.WGPUTextureViewDimension.`2D`
+import webgpu.c.WGPUTextureViewDimension.`3D`
 
 public enum class WGPUTextureViewDimension(
     public val `value`: Int,

@@ -10,6 +10,7 @@ import java.lang.foreign.ValueLayout
 import java.lang.invoke.VarHandle
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.UInt
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmStatic
@@ -19,31 +20,31 @@ public value class WGPUComputePassTimestampWrites(
     public val `$mem`: MemorySegment,
 ) {
     public var querySet: WGPUQuerySet
-        get() = querySetHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = WGPUComputePassTimestampWrites.querySetHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            querySetHandle.set(this.`$mem`, 0L, value)
+            WGPUComputePassTimestampWrites.querySetHandle.set(this.`$mem`, 0L, value)
         }
 
-    public var beginningOfPassWriteIndex: uint32_t
-        get() = (beginningOfPassWriteIndexHandle.get(this.`$mem`, 0L) as
+    public var beginningOfPassWriteIndex: UInt
+        get() = (WGPUComputePassTimestampWrites.beginningOfPassWriteIndexHandle.get(this.`$mem`, 0L) as
                 Int).toUInt()
         set(`value`) {
-            beginningOfPassWriteIndexHandle.set(
+            WGPUComputePassTimestampWrites.beginningOfPassWriteIndexHandle.set(
                 this.`$mem`,
                 0L, value.toInt()
             )
         }
 
-    public var endOfPassWriteIndex: uint32_t
-        get() = (endOfPassWriteIndexHandle.get(this.`$mem`, 0L) as
+    public var endOfPassWriteIndex: UInt
+        get() = (WGPUComputePassTimestampWrites.endOfPassWriteIndexHandle.get(this.`$mem`, 0L) as
                 Int).toUInt()
         set(`value`) {
-            endOfPassWriteIndexHandle.set(this.`$mem`, 0L, value.toInt())
+            WGPUComputePassTimestampWrites.endOfPassWriteIndexHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(layout)
+        Arena.ofAuto().allocate(WGPUComputePassTimestampWrites.layout)
     })
 
     public companion object {
@@ -67,6 +68,6 @@ public value class WGPUComputePassTimestampWrites(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUComputePassTimestampWrites =
-            WGPUComputePassTimestampWrites(alloc.allocate(layout))
+            WGPUComputePassTimestampWrites(alloc.allocate(WGPUComputePassTimestampWrites.layout))
     }
 }

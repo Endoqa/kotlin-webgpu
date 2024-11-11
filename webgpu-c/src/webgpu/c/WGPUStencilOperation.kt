@@ -5,6 +5,16 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUStencilOperation.DecrementClamp
+import webgpu.c.WGPUStencilOperation.DecrementWrap
+import webgpu.c.WGPUStencilOperation.IncrementClamp
+import webgpu.c.WGPUStencilOperation.IncrementWrap
+import webgpu.c.WGPUStencilOperation.Invert
+import webgpu.c.WGPUStencilOperation.Keep
+import webgpu.c.WGPUStencilOperation.Replace
+import webgpu.c.WGPUStencilOperation.Undefined
+import webgpu.c.WGPUStencilOperation.Zero
 
 public enum class WGPUStencilOperation(
     public val `value`: Int,

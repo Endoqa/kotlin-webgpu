@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUDeviceLostReason.Destroyed
+import webgpu.c.WGPUDeviceLostReason.FailedCreation
+import webgpu.c.WGPUDeviceLostReason.InstanceDropped
+import webgpu.c.WGPUDeviceLostReason.Unknown
 
 public enum class WGPUDeviceLostReason(
     public val `value`: Int,

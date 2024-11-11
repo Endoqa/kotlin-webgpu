@@ -5,14 +5,21 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUBufferBindingType.BindingNotUsed
+import webgpu.c.WGPUBufferBindingType.ReadOnlyStorage
+import webgpu.c.WGPUBufferBindingType.Storage
+import webgpu.c.WGPUBufferBindingType.Undefined
+import webgpu.c.WGPUBufferBindingType.Uniform
 
 public enum class WGPUBufferBindingType(
     public val `value`: Int,
 ) {
-    Undefined(0x00000000),
-    Uniform(0x00000001),
-    Storage(0x00000002),
-    ReadOnlyStorage(0x00000003),
+    BindingNotUsed(0x00000000),
+    Undefined(0x00000001),
+    Uniform(0x00000002),
+    Storage(0x00000003),
+    ReadOnlyStorage(0x00000004),
     ;
 
     public companion object {
@@ -32,6 +39,7 @@ public enum class WGPUBufferBindingType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUBufferBindingType = when (value) {
+            BindingNotUsed.value -> BindingNotUsed
             Undefined.value -> Undefined
             Uniform.value -> Uniform
             Storage.value -> Storage

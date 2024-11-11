@@ -5,6 +5,12 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUMapAsyncStatus.Aborted
+import webgpu.c.WGPUMapAsyncStatus.Error
+import webgpu.c.WGPUMapAsyncStatus.InstanceDropped
+import webgpu.c.WGPUMapAsyncStatus.Success
+import webgpu.c.WGPUMapAsyncStatus.Unknown
 
 public enum class WGPUMapAsyncStatus(
     public val `value`: Int,

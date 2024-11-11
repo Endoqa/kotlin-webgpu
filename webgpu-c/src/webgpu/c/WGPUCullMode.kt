@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUCullMode.Back
+import webgpu.c.WGPUCullMode.Front
+import webgpu.c.WGPUCullMode.None
+import webgpu.c.WGPUCullMode.Undefined
 
 public enum class WGPUCullMode(
     public val `value`: Int,
