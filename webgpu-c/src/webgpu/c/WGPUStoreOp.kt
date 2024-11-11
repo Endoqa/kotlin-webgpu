@@ -5,6 +5,10 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUStoreOp.Discard
+import webgpu.c.WGPUStoreOp.Store
+import webgpu.c.WGPUStoreOp.Undefined
 
 public enum class WGPUStoreOp(
     public val `value`: Int,

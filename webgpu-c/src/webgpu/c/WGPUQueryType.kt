@@ -5,6 +5,9 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUQueryType.Occlusion
+import webgpu.c.WGPUQueryType.Timestamp
 
 public enum class WGPUQueryType(
     public val `value`: Int,

@@ -5,6 +5,10 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUCallbackMode.AllowProcessEvents
+import webgpu.c.WGPUCallbackMode.AllowSpontaneous
+import webgpu.c.WGPUCallbackMode.WaitAnyOnly
 
 public enum class WGPUCallbackMode(
     public val `value`: Int,

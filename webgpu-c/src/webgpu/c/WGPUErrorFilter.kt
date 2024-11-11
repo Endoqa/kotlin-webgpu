@@ -5,6 +5,10 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUErrorFilter.Internal
+import webgpu.c.WGPUErrorFilter.OutOfMemory
+import webgpu.c.WGPUErrorFilter.Validation
 
 public enum class WGPUErrorFilter(
     public val `value`: Int,

@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUAdapterType.CPU
+import webgpu.c.WGPUAdapterType.DiscreteGPU
+import webgpu.c.WGPUAdapterType.IntegratedGPU
+import webgpu.c.WGPUAdapterType.Unknown
 
 public enum class WGPUAdapterType(
     public val `value`: Int,

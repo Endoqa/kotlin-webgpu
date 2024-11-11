@@ -5,6 +5,12 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUWaitStatus.Success
+import webgpu.c.WGPUWaitStatus.TimedOut
+import webgpu.c.WGPUWaitStatus.UnsupportedCount
+import webgpu.c.WGPUWaitStatus.UnsupportedMixedSources
+import webgpu.c.WGPUWaitStatus.UnsupportedTimeout
 
 public enum class WGPUWaitStatus(
     public val `value`: Int,
@@ -14,7 +20,6 @@ public enum class WGPUWaitStatus(
     UnsupportedTimeout(0x00000003),
     UnsupportedCount(0x00000004),
     UnsupportedMixedSources(0x00000005),
-    Unknown(0x00000006),
     ;
 
     public companion object {
@@ -39,7 +44,6 @@ public enum class WGPUWaitStatus(
             UnsupportedTimeout.value -> UnsupportedTimeout
             UnsupportedCount.value -> UnsupportedCount
             UnsupportedMixedSources.value -> UnsupportedMixedSources
-            Unknown.value -> Unknown
             else -> error("enum not found")
         }
     }

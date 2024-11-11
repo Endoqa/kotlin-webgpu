@@ -5,6 +5,12 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPURequestAdapterStatus.Error
+import webgpu.c.WGPURequestAdapterStatus.InstanceDropped
+import webgpu.c.WGPURequestAdapterStatus.Success
+import webgpu.c.WGPURequestAdapterStatus.Unavailable
+import webgpu.c.WGPURequestAdapterStatus.Unknown
 
 public enum class WGPURequestAdapterStatus(
     public val `value`: Int,

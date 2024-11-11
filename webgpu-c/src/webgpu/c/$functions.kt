@@ -3,100 +3,42 @@ package webgpu.c
 
 import java.lang.foreign.MemorySegment
 import java.lang.foreign.SegmentAllocator
-
-public fun wgpuAdapterInfoFreeMembers(`value`: WGPUAdapterInfo): Unit =
-    `wgpuAdapterInfoFreeMembers$mh`.invokeExact(`value`.`$mem`) as Unit
-
-public fun wgpuAdapterPropertiesFreeMembers(`value`: WGPUAdapterProperties): Unit =
-    `wgpuAdapterPropertiesFreeMembers$mh`.invokeExact(`value`.`$mem`) as Unit
-
-public fun wgpuAdapterPropertiesMemoryHeapsFreeMembers(`value`: WGPUAdapterPropertiesMemoryHeaps):
-        Unit = `wgpuAdapterPropertiesMemoryHeapsFreeMembers$mh`.invokeExact(`value`.`$mem`) as Unit
+import kotlin.Float
+import kotlin.Int
+import kotlin.Long
+import kotlin.UInt
+import kotlin.ULong
+import kotlin.Unit
 
 public fun wgpuCreateInstance(descriptor: Pointer<WGPUInstanceDescriptor>): WGPUInstance =
     `wgpuCreateInstance$mh`.invokeExact(descriptor) as MemorySegment
 
-public fun wgpuDrmFormatCapabilitiesFreeMembers(`value`: WGPUDrmFormatCapabilities): Unit =
-    `wgpuDrmFormatCapabilitiesFreeMembers$mh`.invokeExact(`value`.`$mem`) as Unit
+public fun wgpuGetInstanceCapabilities(capabilities: Pointer<WGPUInstanceCapabilities>): WGPUStatus =
+    WGPUStatus.fromInt(`wgpuGetInstanceCapabilities$mh`.invokeExact(capabilities) as Int)
 
-public fun wgpuGetInstanceFeatures(features: Pointer<WGPUInstanceFeatures>): WGPUStatus =
-    WGPUStatus.fromInt(`wgpuGetInstanceFeatures$mh`.invokeExact(features) as Int)
+public fun wgpuGetProcAddress(procName: WGPUStringView): WGPUProc =
+    `wgpuGetProcAddress$mh`.invokeExact(procName.`$mem`) as MemorySegment
 
-public fun wgpuGetProcAddress(device: WGPUDevice, procName: Pointer<Byte>): WGPUProc =
-    `wgpuGetProcAddress$mh`.invokeExact(device, procName) as MemorySegment
-
-public
-fun wgpuSharedBufferMemoryEndAccessStateFreeMembers(`value`: WGPUSharedBufferMemoryEndAccessState):
-        Unit = `wgpuSharedBufferMemoryEndAccessStateFreeMembers$mh`.invokeExact(`value`.`$mem`) as Unit
-
-public
-fun wgpuSharedTextureMemoryEndAccessStateFreeMembers(`value`: WGPUSharedTextureMemoryEndAccessState):
-        Unit = `wgpuSharedTextureMemoryEndAccessStateFreeMembers$mh`.invokeExact(`value`.`$mem`) as
-        Unit
-
-public fun wgpuSurfaceCapabilitiesFreeMembers(`value`: WGPUSurfaceCapabilities): Unit =
-    `wgpuSurfaceCapabilitiesFreeMembers$mh`.invokeExact(`value`.`$mem`) as Unit
-
-public fun wgpuAdapterCreateDevice(adapter: WGPUAdapter, descriptor: Pointer<WGPUDeviceDescriptor>):
-        WGPUDevice = `wgpuAdapterCreateDevice$mh`.invokeExact(adapter, descriptor) as MemorySegment
-
-public fun wgpuAdapterEnumerateFeatures(adapter: WGPUAdapter, features: Pointer<WGPUFeatureName>):
-        ULong = (`wgpuAdapterEnumerateFeatures$mh`.invokeExact(adapter, features) as Long).toULong()
-
-public fun wgpuAdapterGetFormatCapabilities(
-    adapter: WGPUAdapter,
-    format: WGPUTextureFormat,
-    capabilities: Pointer<WGPUFormatCapabilities>,
-): WGPUStatus =
-    WGPUStatus.fromInt(
-        `wgpuAdapterGetFormatCapabilities$mh`.invokeExact(adapter, format.value, capabilities)
-                as Int
-    )
+public fun wgpuAdapterGetFeatures(adapter: WGPUAdapter, features: Pointer<WGPUSupportedFeatures>):
+        Unit = `wgpuAdapterGetFeatures$mh`.invokeExact(adapter, features) as Unit
 
 public fun wgpuAdapterGetInfo(adapter: WGPUAdapter, info: Pointer<WGPUAdapterInfo>): WGPUStatus =
     WGPUStatus.fromInt(`wgpuAdapterGetInfo$mh`.invokeExact(adapter, info) as Int)
 
-public fun wgpuAdapterGetInstance(adapter: WGPUAdapter): WGPUInstance =
-    `wgpuAdapterGetInstance$mh`.invokeExact(adapter) as MemorySegment
-
-public fun wgpuAdapterGetLimits(adapter: WGPUAdapter, limits: Pointer<WGPUSupportedLimits>):
-        WGPUStatus = WGPUStatus.fromInt(`wgpuAdapterGetLimits$mh`.invokeExact(adapter, limits) as Int)
-
-public fun wgpuAdapterGetProperties(
-    adapter: WGPUAdapter,
-    properties: Pointer<WGPUAdapterProperties>
-): WGPUStatus =
-    WGPUStatus.fromInt(`wgpuAdapterGetProperties$mh`.invokeExact(adapter, properties) as Int)
+public fun wgpuAdapterGetLimits(adapter: WGPUAdapter, limits: Pointer<WGPULimits>): WGPUStatus =
+    WGPUStatus.fromInt(`wgpuAdapterGetLimits$mh`.invokeExact(adapter, limits) as Int)
 
 public fun wgpuAdapterHasFeature(adapter: WGPUAdapter, feature: WGPUFeatureName): WGPUBool =
     (`wgpuAdapterHasFeature$mh`.invokeExact(adapter, feature.value) as Int).toUInt()
 
+context(SegmentAllocator)
 public fun wgpuAdapterRequestDevice(
     adapter: WGPUAdapter,
     descriptor: Pointer<WGPUDeviceDescriptor>,
-    callback: WGPURequestDeviceCallback,
-    userdata: Pointer<Unit>,
-): Unit = `wgpuAdapterRequestDevice$mh`.invokeExact(adapter, descriptor, callback, userdata) as Unit
-
-context(SegmentAllocator)
-public fun wgpuAdapterRequestDevice2(
-    adapter: WGPUAdapter,
-    options: Pointer<WGPUDeviceDescriptor>,
-    callbackInfo: WGPURequestDeviceCallbackInfo2,
-): WGPUFuture =
-    WGPUFuture(
-        `wgpuAdapterRequestDevice2$mh`.invokeExact(this@SegmentAllocator, adapter, options, callbackInfo.`$mem`)
-                as MemorySegment
-    )
-
-context(SegmentAllocator)
-public fun wgpuAdapterRequestDeviceF(
-    adapter: WGPUAdapter,
-    options: Pointer<WGPUDeviceDescriptor>,
     callbackInfo: WGPURequestDeviceCallbackInfo,
 ): WGPUFuture =
     WGPUFuture(
-        `wgpuAdapterRequestDeviceF$mh`.invokeExact(this@SegmentAllocator, adapter, options, callbackInfo.`$mem`)
+        `wgpuAdapterRequestDevice$mh`.invokeExact(this@SegmentAllocator, adapter, descriptor, callbackInfo.`$mem`)
                 as MemorySegment
     )
 
@@ -106,8 +48,11 @@ public fun wgpuAdapterAddRef(adapter: WGPUAdapter): Unit =
 public fun wgpuAdapterRelease(adapter: WGPUAdapter): Unit =
     `wgpuAdapterRelease$mh`.invokeExact(adapter) as Unit
 
-public fun wgpuBindGroupSetLabel(bindGroup: WGPUBindGroup, label: Pointer<Byte>): Unit =
-    `wgpuBindGroupSetLabel$mh`.invokeExact(bindGroup, label) as Unit
+public fun wgpuAdapterInfoFreeMembers(adapterInfo: WGPUAdapterInfo): Unit =
+    `wgpuAdapterInfoFreeMembers$mh`.invokeExact(adapterInfo.`$mem`) as Unit
+
+public fun wgpuBindGroupSetLabel(bindGroup: WGPUBindGroup, label: WGPUStringView): Unit =
+    `wgpuBindGroupSetLabel$mh`.invokeExact(bindGroup, label.`$mem`) as Unit
 
 public fun wgpuBindGroupAddRef(bindGroup: WGPUBindGroup): Unit =
     `wgpuBindGroupAddRef$mh`.invokeExact(bindGroup) as Unit
@@ -115,8 +60,8 @@ public fun wgpuBindGroupAddRef(bindGroup: WGPUBindGroup): Unit =
 public fun wgpuBindGroupRelease(bindGroup: WGPUBindGroup): Unit =
     `wgpuBindGroupRelease$mh`.invokeExact(bindGroup) as Unit
 
-public fun wgpuBindGroupLayoutSetLabel(bindGroupLayout: WGPUBindGroupLayout, label: Pointer<Byte>):
-        Unit = `wgpuBindGroupLayoutSetLabel$mh`.invokeExact(bindGroupLayout, label) as Unit
+public fun wgpuBindGroupLayoutSetLabel(bindGroupLayout: WGPUBindGroupLayout, label: WGPUStringView):
+        Unit = `wgpuBindGroupLayoutSetLabel$mh`.invokeExact(bindGroupLayout, label.`$mem`) as Unit
 
 public fun wgpuBindGroupLayoutAddRef(bindGroupLayout: WGPUBindGroupLayout): Unit =
     `wgpuBindGroupLayoutAddRef$mh`.invokeExact(bindGroupLayout) as Unit
@@ -145,45 +90,14 @@ public fun wgpuBufferGetMappedRange(
 ): Pointer<Unit> = `wgpuBufferGetMappedRange$mh`.invokeExact(buffer, offset.toLong(), size.toLong())
         as MemorySegment
 
-public fun wgpuBufferGetSize(buffer: WGPUBuffer): uint64_t =
+public fun wgpuBufferGetSize(buffer: WGPUBuffer): ULong =
     (`wgpuBufferGetSize$mh`.invokeExact(buffer) as Long).toULong()
 
 public fun wgpuBufferGetUsage(buffer: WGPUBuffer): WGPUBufferUsage =
     (`wgpuBufferGetUsage$mh`.invokeExact(buffer) as Long).toULong()
 
+context(SegmentAllocator)
 public fun wgpuBufferMapAsync(
-    buffer: WGPUBuffer,
-    mode: WGPUMapMode,
-    offset: ULong,
-    size: ULong,
-    callback: WGPUBufferMapCallback,
-    userdata: Pointer<Unit>,
-): Unit =
-    `wgpuBufferMapAsync$mh`.invokeExact(buffer, mode.toLong(), offset.toLong(), size.toLong(), callback, userdata)
-            as Unit
-
-context(SegmentAllocator)
-public fun wgpuBufferMapAsync2(
-    buffer: WGPUBuffer,
-    mode: WGPUMapMode,
-    offset: ULong,
-    size: ULong,
-    callbackInfo: WGPUBufferMapCallbackInfo2,
-): WGPUFuture =
-    WGPUFuture(
-        `wgpuBufferMapAsync2$mh`.invokeExact(
-            this@SegmentAllocator,
-            buffer,
-            mode.toLong(),
-            offset.toLong(),
-            size.toLong(),
-            callbackInfo.`$mem`,
-        )
-                as MemorySegment
-    )
-
-context(SegmentAllocator)
-public fun wgpuBufferMapAsyncF(
     buffer: WGPUBuffer,
     mode: WGPUMapMode,
     offset: ULong,
@@ -191,7 +105,7 @@ public fun wgpuBufferMapAsyncF(
     callbackInfo: WGPUBufferMapCallbackInfo,
 ): WGPUFuture =
     WGPUFuture(
-        `wgpuBufferMapAsyncF$mh`.invokeExact(
+        `wgpuBufferMapAsync$mh`.invokeExact(
             this@SegmentAllocator,
             buffer,
             mode.toLong(),
@@ -202,8 +116,8 @@ public fun wgpuBufferMapAsyncF(
                 as MemorySegment
     )
 
-public fun wgpuBufferSetLabel(buffer: WGPUBuffer, label: Pointer<Byte>): Unit =
-    `wgpuBufferSetLabel$mh`.invokeExact(buffer, label) as Unit
+public fun wgpuBufferSetLabel(buffer: WGPUBuffer, label: WGPUStringView): Unit =
+    `wgpuBufferSetLabel$mh`.invokeExact(buffer, label.`$mem`) as Unit
 
 public fun wgpuBufferUnmap(buffer: WGPUBuffer): Unit = `wgpuBufferUnmap$mh`.invokeExact(buffer) as
         Unit
@@ -214,8 +128,8 @@ public fun wgpuBufferAddRef(buffer: WGPUBuffer): Unit = `wgpuBufferAddRef$mh`.in
 public fun wgpuBufferRelease(buffer: WGPUBuffer): Unit = `wgpuBufferRelease$mh`.invokeExact(buffer)
         as Unit
 
-public fun wgpuCommandBufferSetLabel(commandBuffer: WGPUCommandBuffer, label: Pointer<Byte>): Unit =
-    `wgpuCommandBufferSetLabel$mh`.invokeExact(commandBuffer, label) as Unit
+public fun wgpuCommandBufferSetLabel(commandBuffer: WGPUCommandBuffer, label: WGPUStringView): Unit =
+    `wgpuCommandBufferSetLabel$mh`.invokeExact(commandBuffer, label.`$mem`) as Unit
 
 public fun wgpuCommandBufferAddRef(commandBuffer: WGPUCommandBuffer): Unit =
     `wgpuCommandBufferAddRef$mh`.invokeExact(commandBuffer) as Unit
@@ -238,8 +152,8 @@ public fun wgpuCommandEncoderBeginRenderPass(
 public fun wgpuCommandEncoderClearBuffer(
     commandEncoder: WGPUCommandEncoder,
     buffer: WGPUBuffer,
-    offset: uint64_t,
-    size: uint64_t,
+    offset: ULong,
+    size: ULong,
 ): Unit =
     `wgpuCommandEncoderClearBuffer$mh`.invokeExact(commandEncoder, buffer, offset.toLong(), size.toLong())
             as Unit
@@ -247,10 +161,10 @@ public fun wgpuCommandEncoderClearBuffer(
 public fun wgpuCommandEncoderCopyBufferToBuffer(
     commandEncoder: WGPUCommandEncoder,
     source: WGPUBuffer,
-    sourceOffset: uint64_t,
+    sourceOffset: ULong,
     destination: WGPUBuffer,
-    destinationOffset: uint64_t,
-    size: uint64_t,
+    destinationOffset: ULong,
+    size: ULong,
 ): Unit =
     `wgpuCommandEncoderCopyBufferToBuffer$mh`.invokeExact(
         commandEncoder,
@@ -264,8 +178,8 @@ public fun wgpuCommandEncoderCopyBufferToBuffer(
 
 public fun wgpuCommandEncoderCopyBufferToTexture(
     commandEncoder: WGPUCommandEncoder,
-    source: Pointer<WGPUImageCopyBuffer>,
-    destination: Pointer<WGPUImageCopyTexture>,
+    source: Pointer<WGPUTexelCopyBufferInfo>,
+    destination: Pointer<WGPUTexelCopyTextureInfo>,
     copySize: Pointer<WGPUExtent3D>,
 ): Unit =
     `wgpuCommandEncoderCopyBufferToTexture$mh`.invokeExact(commandEncoder, source, destination, copySize)
@@ -273,8 +187,8 @@ public fun wgpuCommandEncoderCopyBufferToTexture(
 
 public fun wgpuCommandEncoderCopyTextureToBuffer(
     commandEncoder: WGPUCommandEncoder,
-    source: Pointer<WGPUImageCopyTexture>,
-    destination: Pointer<WGPUImageCopyBuffer>,
+    source: Pointer<WGPUTexelCopyTextureInfo>,
+    destination: Pointer<WGPUTexelCopyBufferInfo>,
     copySize: Pointer<WGPUExtent3D>,
 ): Unit =
     `wgpuCommandEncoderCopyTextureToBuffer$mh`.invokeExact(commandEncoder, source, destination, copySize)
@@ -282,8 +196,8 @@ public fun wgpuCommandEncoderCopyTextureToBuffer(
 
 public fun wgpuCommandEncoderCopyTextureToTexture(
     commandEncoder: WGPUCommandEncoder,
-    source: Pointer<WGPUImageCopyTexture>,
-    destination: Pointer<WGPUImageCopyTexture>,
+    source: Pointer<WGPUTexelCopyTextureInfo>,
+    destination: Pointer<WGPUTexelCopyTextureInfo>,
     copySize: Pointer<WGPUExtent3D>,
 ): Unit =
     `wgpuCommandEncoderCopyTextureToTexture$mh`.invokeExact(commandEncoder, source, destination, copySize)
@@ -295,34 +209,28 @@ public fun wgpuCommandEncoderFinish(
 ): WGPUCommandBuffer =
     `wgpuCommandEncoderFinish$mh`.invokeExact(commandEncoder, descriptor) as MemorySegment
 
-public fun wgpuCommandEncoderInjectValidationError(
-    commandEncoder: WGPUCommandEncoder,
-    message: Pointer<Byte>
-): Unit =
-    `wgpuCommandEncoderInjectValidationError$mh`.invokeExact(commandEncoder, message) as Unit
-
 public fun wgpuCommandEncoderInsertDebugMarker(
     commandEncoder: WGPUCommandEncoder,
-    markerLabel: Pointer<Byte>
+    markerLabel: WGPUStringView
 ): Unit =
-    `wgpuCommandEncoderInsertDebugMarker$mh`.invokeExact(commandEncoder, markerLabel) as Unit
+    `wgpuCommandEncoderInsertDebugMarker$mh`.invokeExact(commandEncoder, markerLabel.`$mem`) as Unit
 
 public fun wgpuCommandEncoderPopDebugGroup(commandEncoder: WGPUCommandEncoder): Unit =
     `wgpuCommandEncoderPopDebugGroup$mh`.invokeExact(commandEncoder) as Unit
 
 public fun wgpuCommandEncoderPushDebugGroup(
     commandEncoder: WGPUCommandEncoder,
-    groupLabel: Pointer<Byte>
+    groupLabel: WGPUStringView
 ): Unit =
-    `wgpuCommandEncoderPushDebugGroup$mh`.invokeExact(commandEncoder, groupLabel) as Unit
+    `wgpuCommandEncoderPushDebugGroup$mh`.invokeExact(commandEncoder, groupLabel.`$mem`) as Unit
 
 public fun wgpuCommandEncoderResolveQuerySet(
     commandEncoder: WGPUCommandEncoder,
     querySet: WGPUQuerySet,
-    firstQuery: uint32_t,
-    queryCount: uint32_t,
+    firstQuery: UInt,
+    queryCount: UInt,
     destination: WGPUBuffer,
-    destinationOffset: uint64_t,
+    destinationOffset: ULong,
 ): Unit =
     `wgpuCommandEncoderResolveQuerySet$mh`.invokeExact(
         commandEncoder,
@@ -334,29 +242,13 @@ public fun wgpuCommandEncoderResolveQuerySet(
     )
             as Unit
 
-public fun wgpuCommandEncoderSetLabel(commandEncoder: WGPUCommandEncoder, label: Pointer<Byte>):
-        Unit = `wgpuCommandEncoderSetLabel$mh`.invokeExact(commandEncoder, label) as Unit
-
-public fun wgpuCommandEncoderWriteBuffer(
-    commandEncoder: WGPUCommandEncoder,
-    buffer: WGPUBuffer,
-    bufferOffset: uint64_t,
-    `data`: Pointer<uint8_t>,
-    size: uint64_t,
-): Unit =
-    `wgpuCommandEncoderWriteBuffer$mh`.invokeExact(
-        commandEncoder,
-        buffer,
-        bufferOffset.toLong(),
-        `data`,
-        size.toLong(),
-    )
-            as Unit
+public fun wgpuCommandEncoderSetLabel(commandEncoder: WGPUCommandEncoder, label: WGPUStringView):
+        Unit = `wgpuCommandEncoderSetLabel$mh`.invokeExact(commandEncoder, label.`$mem`) as Unit
 
 public fun wgpuCommandEncoderWriteTimestamp(
     commandEncoder: WGPUCommandEncoder,
     querySet: WGPUQuerySet,
-    queryIndex: uint32_t,
+    queryIndex: UInt,
 ): Unit =
     `wgpuCommandEncoderWriteTimestamp$mh`.invokeExact(commandEncoder, querySet, queryIndex.toInt())
             as Unit
@@ -369,9 +261,9 @@ public fun wgpuCommandEncoderRelease(commandEncoder: WGPUCommandEncoder): Unit =
 
 public fun wgpuComputePassEncoderDispatchWorkgroups(
     computePassEncoder: WGPUComputePassEncoder,
-    workgroupCountX: uint32_t,
-    workgroupCountY: uint32_t,
-    workgroupCountZ: uint32_t,
+    workgroupCountX: UInt,
+    workgroupCountY: UInt,
+    workgroupCountZ: UInt,
 ): Unit =
     `wgpuComputePassEncoderDispatchWorkgroups$mh`.invokeExact(
         computePassEncoder,
@@ -384,7 +276,7 @@ public fun wgpuComputePassEncoderDispatchWorkgroups(
 public fun wgpuComputePassEncoderDispatchWorkgroupsIndirect(
     computePassEncoder: WGPUComputePassEncoder,
     indirectBuffer: WGPUBuffer,
-    indirectOffset: uint64_t,
+    indirectOffset: ULong,
 ): Unit =
     `wgpuComputePassEncoderDispatchWorkgroupsIndirect$mh`.invokeExact(
         computePassEncoder,
@@ -398,26 +290,27 @@ public fun wgpuComputePassEncoderEnd(computePassEncoder: WGPUComputePassEncoder)
 
 public fun wgpuComputePassEncoderInsertDebugMarker(
     computePassEncoder: WGPUComputePassEncoder,
-    markerLabel: Pointer<Byte>
+    markerLabel: WGPUStringView
 ): Unit =
-    `wgpuComputePassEncoderInsertDebugMarker$mh`.invokeExact(computePassEncoder, markerLabel) as
-            Unit
+    `wgpuComputePassEncoderInsertDebugMarker$mh`.invokeExact(computePassEncoder, markerLabel.`$mem`)
+            as Unit
 
 public fun wgpuComputePassEncoderPopDebugGroup(computePassEncoder: WGPUComputePassEncoder): Unit =
     `wgpuComputePassEncoderPopDebugGroup$mh`.invokeExact(computePassEncoder) as Unit
 
 public fun wgpuComputePassEncoderPushDebugGroup(
     computePassEncoder: WGPUComputePassEncoder,
-    groupLabel: Pointer<Byte>
+    groupLabel: WGPUStringView
 ): Unit =
-    `wgpuComputePassEncoderPushDebugGroup$mh`.invokeExact(computePassEncoder, groupLabel) as Unit
+    `wgpuComputePassEncoderPushDebugGroup$mh`.invokeExact(computePassEncoder, groupLabel.`$mem`) as
+            Unit
 
 public fun wgpuComputePassEncoderSetBindGroup(
     computePassEncoder: WGPUComputePassEncoder,
-    groupIndex: uint32_t,
+    groupIndex: UInt,
     group: WGPUBindGroup,
     dynamicOffsetCount: ULong,
-    dynamicOffsets: Pointer<uint32_t>,
+    dynamicOffsets: Pointer<UInt>,
 ): Unit =
     `wgpuComputePassEncoderSetBindGroup$mh`.invokeExact(
         computePassEncoder,
@@ -430,23 +323,15 @@ public fun wgpuComputePassEncoderSetBindGroup(
 
 public fun wgpuComputePassEncoderSetLabel(
     computePassEncoder: WGPUComputePassEncoder,
-    label: Pointer<Byte>
+    label: WGPUStringView
 ): Unit =
-    `wgpuComputePassEncoderSetLabel$mh`.invokeExact(computePassEncoder, label) as Unit
+    `wgpuComputePassEncoderSetLabel$mh`.invokeExact(computePassEncoder, label.`$mem`) as Unit
 
 public fun wgpuComputePassEncoderSetPipeline(
     computePassEncoder: WGPUComputePassEncoder,
     pipeline: WGPUComputePipeline
 ): Unit =
     `wgpuComputePassEncoderSetPipeline$mh`.invokeExact(computePassEncoder, pipeline) as Unit
-
-public fun wgpuComputePassEncoderWriteTimestamp(
-    computePassEncoder: WGPUComputePassEncoder,
-    querySet: WGPUQuerySet,
-    queryIndex: uint32_t,
-): Unit =
-    `wgpuComputePassEncoderWriteTimestamp$mh`.invokeExact(computePassEncoder, querySet, queryIndex.toInt())
-            as Unit
 
 public fun wgpuComputePassEncoderAddRef(computePassEncoder: WGPUComputePassEncoder): Unit =
     `wgpuComputePassEncoderAddRef$mh`.invokeExact(computePassEncoder) as Unit
@@ -456,13 +341,13 @@ public fun wgpuComputePassEncoderRelease(computePassEncoder: WGPUComputePassEnco
 
 public fun wgpuComputePipelineGetBindGroupLayout(
     computePipeline: WGPUComputePipeline,
-    groupIndex: uint32_t
+    groupIndex: UInt
 ): WGPUBindGroupLayout =
     `wgpuComputePipelineGetBindGroupLayout$mh`.invokeExact(computePipeline, groupIndex.toInt()) as
             MemorySegment
 
-public fun wgpuComputePipelineSetLabel(computePipeline: WGPUComputePipeline, label: Pointer<Byte>):
-        Unit = `wgpuComputePipelineSetLabel$mh`.invokeExact(computePipeline, label) as Unit
+public fun wgpuComputePipelineSetLabel(computePipeline: WGPUComputePipeline, label: WGPUStringView):
+        Unit = `wgpuComputePipelineSetLabel$mh`.invokeExact(computePipeline, label.`$mem`) as Unit
 
 public fun wgpuComputePipelineAddRef(computePipeline: WGPUComputePipeline): Unit =
     `wgpuComputePipelineAddRef$mh`.invokeExact(computePipeline) as Unit
@@ -497,39 +382,14 @@ public fun wgpuDeviceCreateComputePipeline(
 ): WGPUComputePipeline =
     `wgpuDeviceCreateComputePipeline$mh`.invokeExact(device, descriptor) as MemorySegment
 
+context(SegmentAllocator)
 public fun wgpuDeviceCreateComputePipelineAsync(
-    device: WGPUDevice,
-    descriptor: Pointer<WGPUComputePipelineDescriptor>,
-    callback: WGPUCreateComputePipelineAsyncCallback,
-    userdata: Pointer<Unit>,
-): Unit =
-    `wgpuDeviceCreateComputePipelineAsync$mh`.invokeExact(device, descriptor, callback, userdata) as
-            Unit
-
-context(SegmentAllocator)
-public fun wgpuDeviceCreateComputePipelineAsync2(
-    device: WGPUDevice,
-    descriptor: Pointer<WGPUComputePipelineDescriptor>,
-    callbackInfo: WGPUCreateComputePipelineAsyncCallbackInfo2,
-): WGPUFuture =
-    WGPUFuture(
-        `wgpuDeviceCreateComputePipelineAsync2$mh`.invokeExact(
-            this@SegmentAllocator,
-            device,
-            descriptor,
-            callbackInfo.`$mem`,
-        )
-                as MemorySegment
-    )
-
-context(SegmentAllocator)
-public fun wgpuDeviceCreateComputePipelineAsyncF(
     device: WGPUDevice,
     descriptor: Pointer<WGPUComputePipelineDescriptor>,
     callbackInfo: WGPUCreateComputePipelineAsyncCallbackInfo,
 ): WGPUFuture =
     WGPUFuture(
-        `wgpuDeviceCreateComputePipelineAsyncF$mh`.invokeExact(
+        `wgpuDeviceCreateComputePipelineAsync$mh`.invokeExact(
             this@SegmentAllocator,
             device,
             descriptor,
@@ -537,36 +397,6 @@ public fun wgpuDeviceCreateComputePipelineAsyncF(
         )
                 as MemorySegment
     )
-
-public fun wgpuDeviceCreateErrorBuffer(
-    device: WGPUDevice,
-    descriptor: Pointer<WGPUBufferDescriptor>
-): WGPUBuffer =
-    `wgpuDeviceCreateErrorBuffer$mh`.invokeExact(device, descriptor) as MemorySegment
-
-public fun wgpuDeviceCreateErrorExternalTexture(device: WGPUDevice): WGPUExternalTexture =
-    `wgpuDeviceCreateErrorExternalTexture$mh`.invokeExact(device) as MemorySegment
-
-public fun wgpuDeviceCreateErrorShaderModule(
-    device: WGPUDevice,
-    descriptor: Pointer<WGPUShaderModuleDescriptor>,
-    errorMessage: Pointer<Byte>,
-): WGPUShaderModule =
-    `wgpuDeviceCreateErrorShaderModule$mh`.invokeExact(device, descriptor, errorMessage) as
-            MemorySegment
-
-public fun wgpuDeviceCreateErrorTexture(
-    device: WGPUDevice,
-    descriptor: Pointer<WGPUTextureDescriptor>
-): WGPUTexture =
-    `wgpuDeviceCreateErrorTexture$mh`.invokeExact(device, descriptor) as MemorySegment
-
-public fun wgpuDeviceCreateExternalTexture(
-    device: WGPUDevice,
-    externalTextureDescriptor: Pointer<WGPUExternalTextureDescriptor>
-): WGPUExternalTexture =
-    `wgpuDeviceCreateExternalTexture$mh`.invokeExact(device, externalTextureDescriptor) as
-            MemorySegment
 
 public fun wgpuDeviceCreatePipelineLayout(
     device: WGPUDevice,
@@ -592,38 +422,14 @@ public fun wgpuDeviceCreateRenderPipeline(
 ): WGPURenderPipeline =
     `wgpuDeviceCreateRenderPipeline$mh`.invokeExact(device, descriptor) as MemorySegment
 
+context(SegmentAllocator)
 public fun wgpuDeviceCreateRenderPipelineAsync(
-    device: WGPUDevice,
-    descriptor: Pointer<WGPURenderPipelineDescriptor>,
-    callback: WGPUCreateRenderPipelineAsyncCallback,
-    userdata: Pointer<Unit>,
-): Unit = `wgpuDeviceCreateRenderPipelineAsync$mh`.invokeExact(device, descriptor, callback, userdata)
-        as Unit
-
-context(SegmentAllocator)
-public fun wgpuDeviceCreateRenderPipelineAsync2(
-    device: WGPUDevice,
-    descriptor: Pointer<WGPURenderPipelineDescriptor>,
-    callbackInfo: WGPUCreateRenderPipelineAsyncCallbackInfo2,
-): WGPUFuture =
-    WGPUFuture(
-        `wgpuDeviceCreateRenderPipelineAsync2$mh`.invokeExact(
-            this@SegmentAllocator,
-            device,
-            descriptor,
-            callbackInfo.`$mem`,
-        )
-                as MemorySegment
-    )
-
-context(SegmentAllocator)
-public fun wgpuDeviceCreateRenderPipelineAsyncF(
     device: WGPUDevice,
     descriptor: Pointer<WGPURenderPipelineDescriptor>,
     callbackInfo: WGPUCreateRenderPipelineAsyncCallbackInfo,
 ): WGPUFuture =
     WGPUFuture(
-        `wgpuDeviceCreateRenderPipelineAsyncF$mh`.invokeExact(
+        `wgpuDeviceCreateRenderPipelineAsync$mh`.invokeExact(
             this@SegmentAllocator,
             device,
             descriptor,
@@ -641,136 +447,51 @@ public fun wgpuDeviceCreateShaderModule(
 ): WGPUShaderModule =
     `wgpuDeviceCreateShaderModule$mh`.invokeExact(device, descriptor) as MemorySegment
 
-public fun wgpuDeviceCreateSwapChain(
-    device: WGPUDevice,
-    surface: WGPUSurface,
-    descriptor: Pointer<WGPUSwapChainDescriptor>,
-): WGPUSwapChain = `wgpuDeviceCreateSwapChain$mh`.invokeExact(device, surface, descriptor) as
-        MemorySegment
-
 public fun wgpuDeviceCreateTexture(device: WGPUDevice, descriptor: Pointer<WGPUTextureDescriptor>):
         WGPUTexture = `wgpuDeviceCreateTexture$mh`.invokeExact(device, descriptor) as MemorySegment
 
 public fun wgpuDeviceDestroy(device: WGPUDevice): Unit = `wgpuDeviceDestroy$mh`.invokeExact(device)
         as Unit
 
-public fun wgpuDeviceEnumerateFeatures(device: WGPUDevice, features: Pointer<WGPUFeatureName>):
-        ULong = (`wgpuDeviceEnumerateFeatures$mh`.invokeExact(device, features) as Long).toULong()
-
-public fun wgpuDeviceForceLoss(
-    device: WGPUDevice,
-    type: WGPUDeviceLostReason,
-    message: Pointer<Byte>,
-): Unit = `wgpuDeviceForceLoss$mh`.invokeExact(device, type.value, message) as Unit
-
-public fun wgpuDeviceGetAHardwareBufferProperties(
-    device: WGPUDevice,
-    handle: Pointer<Unit>,
-    properties: Pointer<WGPUAHardwareBufferProperties>,
-): WGPUStatus =
-    WGPUStatus.fromInt(
-        `wgpuDeviceGetAHardwareBufferProperties$mh`.invokeExact(device, handle, properties)
-                as Int
+context(SegmentAllocator)
+public fun wgpuDeviceGetAdapterInfo(device: WGPUDevice): WGPUAdapterInfo =
+    WGPUAdapterInfo(
+        `wgpuDeviceGetAdapterInfo$mh`.invokeExact(this@SegmentAllocator, device) as
+                MemorySegment
     )
 
-public fun wgpuDeviceGetAdapter(device: WGPUDevice): WGPUAdapter =
-    `wgpuDeviceGetAdapter$mh`.invokeExact(device) as MemorySegment
+public fun wgpuDeviceGetFeatures(device: WGPUDevice, features: Pointer<WGPUSupportedFeatures>): Unit =
+    `wgpuDeviceGetFeatures$mh`.invokeExact(device, features) as Unit
 
-public fun wgpuDeviceGetLimits(device: WGPUDevice, limits: Pointer<WGPUSupportedLimits>): WGPUStatus =
+public fun wgpuDeviceGetLimits(device: WGPUDevice, limits: Pointer<WGPULimits>): WGPUStatus =
     WGPUStatus.fromInt(`wgpuDeviceGetLimits$mh`.invokeExact(device, limits) as Int)
+
+context(SegmentAllocator)
+public fun wgpuDeviceGetLostFuture(device: WGPUDevice): WGPUFuture =
+    WGPUFuture(
+        `wgpuDeviceGetLostFuture$mh`.invokeExact(this@SegmentAllocator, device) as
+                MemorySegment
+    )
 
 public fun wgpuDeviceGetQueue(device: WGPUDevice): WGPUQueue =
     `wgpuDeviceGetQueue$mh`.invokeExact(device) as MemorySegment
 
-public fun wgpuDeviceGetSupportedSurfaceUsage(device: WGPUDevice, surface: WGPUSurface):
-        WGPUTextureUsage = (`wgpuDeviceGetSupportedSurfaceUsage$mh`.invokeExact(device, surface) as
-        Long).toULong()
-
 public fun wgpuDeviceHasFeature(device: WGPUDevice, feature: WGPUFeatureName): WGPUBool =
     (`wgpuDeviceHasFeature$mh`.invokeExact(device, feature.value) as Int).toUInt()
 
-public fun wgpuDeviceImportSharedBufferMemory(
-    device: WGPUDevice,
-    descriptor: Pointer<WGPUSharedBufferMemoryDescriptor>
-): WGPUSharedBufferMemory =
-    `wgpuDeviceImportSharedBufferMemory$mh`.invokeExact(device, descriptor) as MemorySegment
-
-public fun wgpuDeviceImportSharedFence(
-    device: WGPUDevice,
-    descriptor: Pointer<WGPUSharedFenceDescriptor>
-): WGPUSharedFence =
-    `wgpuDeviceImportSharedFence$mh`.invokeExact(device, descriptor) as MemorySegment
-
-public fun wgpuDeviceImportSharedTextureMemory(
-    device: WGPUDevice,
-    descriptor: Pointer<WGPUSharedTextureMemoryDescriptor>
-): WGPUSharedTextureMemory =
-    `wgpuDeviceImportSharedTextureMemory$mh`.invokeExact(device, descriptor) as MemorySegment
-
-public fun wgpuDeviceInjectError(
-    device: WGPUDevice,
-    type: WGPUErrorType,
-    message: Pointer<Byte>,
-): Unit = `wgpuDeviceInjectError$mh`.invokeExact(device, type.value, message) as Unit
-
-public fun wgpuDevicePopErrorScope(
-    device: WGPUDevice,
-    oldCallback: WGPUErrorCallback,
-    userdata: Pointer<Unit>,
-): Unit = `wgpuDevicePopErrorScope$mh`.invokeExact(device, oldCallback, userdata) as Unit
-
 context(SegmentAllocator)
-public fun wgpuDevicePopErrorScope2(
-    device: WGPUDevice,
-    callbackInfo: WGPUPopErrorScopeCallbackInfo2
-): WGPUFuture =
+public fun wgpuDevicePopErrorScope(device: WGPUDevice, callbackInfo: WGPUPopErrorScopeCallbackInfo):
+        WGPUFuture =
     WGPUFuture(
-        `wgpuDevicePopErrorScope2$mh`.invokeExact(this@SegmentAllocator, device, callbackInfo.`$mem`)
-                as MemorySegment
-    )
-
-context(SegmentAllocator)
-public fun wgpuDevicePopErrorScopeF(
-    device: WGPUDevice,
-    callbackInfo: WGPUPopErrorScopeCallbackInfo
-): WGPUFuture =
-    WGPUFuture(
-        `wgpuDevicePopErrorScopeF$mh`.invokeExact(this@SegmentAllocator, device, callbackInfo.`$mem`)
+        `wgpuDevicePopErrorScope$mh`.invokeExact(this@SegmentAllocator, device, callbackInfo.`$mem`)
                 as MemorySegment
     )
 
 public fun wgpuDevicePushErrorScope(device: WGPUDevice, filter: WGPUErrorFilter): Unit =
     `wgpuDevicePushErrorScope$mh`.invokeExact(device, filter.value) as Unit
 
-public fun wgpuDeviceSetDeviceLostCallback(
-    device: WGPUDevice,
-    callback: WGPUDeviceLostCallback,
-    userdata: Pointer<Unit>,
-): Unit = `wgpuDeviceSetDeviceLostCallback$mh`.invokeExact(device, callback, userdata) as Unit
-
-public fun wgpuDeviceSetLabel(device: WGPUDevice, label: Pointer<Byte>): Unit =
-    `wgpuDeviceSetLabel$mh`.invokeExact(device, label) as Unit
-
-public fun wgpuDeviceSetLoggingCallback(
-    device: WGPUDevice,
-    callback: WGPULoggingCallback,
-    userdata: Pointer<Unit>,
-): Unit = `wgpuDeviceSetLoggingCallback$mh`.invokeExact(device, callback, userdata) as Unit
-
-public fun wgpuDeviceSetUncapturedErrorCallback(
-    device: WGPUDevice,
-    callback: WGPUErrorCallback,
-    userdata: Pointer<Unit>,
-): Unit = `wgpuDeviceSetUncapturedErrorCallback$mh`.invokeExact(device, callback, userdata) as Unit
-
-public fun wgpuDeviceTick(device: WGPUDevice): Unit = `wgpuDeviceTick$mh`.invokeExact(device) as
-        Unit
-
-public fun wgpuDeviceValidateTextureDescriptor(
-    device: WGPUDevice,
-    descriptor: Pointer<WGPUTextureDescriptor>
-): Unit =
-    `wgpuDeviceValidateTextureDescriptor$mh`.invokeExact(device, descriptor) as Unit
+public fun wgpuDeviceSetLabel(device: WGPUDevice, label: WGPUStringView): Unit =
+    `wgpuDeviceSetLabel$mh`.invokeExact(device, label.`$mem`) as Unit
 
 public fun wgpuDeviceAddRef(device: WGPUDevice): Unit = `wgpuDeviceAddRef$mh`.invokeExact(device)
         as Unit
@@ -778,70 +499,38 @@ public fun wgpuDeviceAddRef(device: WGPUDevice): Unit = `wgpuDeviceAddRef$mh`.in
 public fun wgpuDeviceRelease(device: WGPUDevice): Unit = `wgpuDeviceRelease$mh`.invokeExact(device)
         as Unit
 
-public fun wgpuExternalTextureDestroy(externalTexture: WGPUExternalTexture): Unit =
-    `wgpuExternalTextureDestroy$mh`.invokeExact(externalTexture) as Unit
-
-public fun wgpuExternalTextureExpire(externalTexture: WGPUExternalTexture): Unit =
-    `wgpuExternalTextureExpire$mh`.invokeExact(externalTexture) as Unit
-
-public fun wgpuExternalTextureRefresh(externalTexture: WGPUExternalTexture): Unit =
-    `wgpuExternalTextureRefresh$mh`.invokeExact(externalTexture) as Unit
-
-public fun wgpuExternalTextureSetLabel(externalTexture: WGPUExternalTexture, label: Pointer<Byte>):
-        Unit = `wgpuExternalTextureSetLabel$mh`.invokeExact(externalTexture, label) as Unit
-
-public fun wgpuExternalTextureAddRef(externalTexture: WGPUExternalTexture): Unit =
-    `wgpuExternalTextureAddRef$mh`.invokeExact(externalTexture) as Unit
-
-public fun wgpuExternalTextureRelease(externalTexture: WGPUExternalTexture): Unit =
-    `wgpuExternalTextureRelease$mh`.invokeExact(externalTexture) as Unit
-
 public fun wgpuInstanceCreateSurface(
     instance: WGPUInstance,
     descriptor: Pointer<WGPUSurfaceDescriptor>
 ): WGPUSurface =
     `wgpuInstanceCreateSurface$mh`.invokeExact(instance, descriptor) as MemorySegment
 
-public fun wgpuInstanceEnumerateWGSLLanguageFeatures(
+public fun wgpuInstanceGetWGSLLanguageFeatures(
     instance: WGPUInstance,
-    features: Pointer<WGPUWGSLFeatureName>
-): ULong =
-    (`wgpuInstanceEnumerateWGSLLanguageFeatures$mh`.invokeExact(instance, features) as
-            Long).toULong()
+    features: Pointer<WGPUSupportedWGSLLanguageFeatures>
+): WGPUStatus =
+    WGPUStatus.fromInt(
+        `wgpuInstanceGetWGSLLanguageFeatures$mh`.invokeExact(instance, features) as
+                Int
+    )
 
-public fun wgpuInstanceHasWGSLLanguageFeature(instance: WGPUInstance, feature: WGPUWGSLFeatureName):
-        WGPUBool = (`wgpuInstanceHasWGSLLanguageFeature$mh`.invokeExact(instance, feature.value) as
-        Int).toUInt()
+public fun wgpuInstanceHasWGSLLanguageFeature(
+    instance: WGPUInstance,
+    feature: WGPUWGSLLanguageFeatureName
+): WGPUBool =
+    (`wgpuInstanceHasWGSLLanguageFeature$mh`.invokeExact(instance, feature.value) as Int).toUInt()
 
 public fun wgpuInstanceProcessEvents(instance: WGPUInstance): Unit =
     `wgpuInstanceProcessEvents$mh`.invokeExact(instance) as Unit
 
+context(SegmentAllocator)
 public fun wgpuInstanceRequestAdapter(
-    instance: WGPUInstance,
-    options: Pointer<WGPURequestAdapterOptions>,
-    callback: WGPURequestAdapterCallback,
-    userdata: Pointer<Unit>,
-): Unit = `wgpuInstanceRequestAdapter$mh`.invokeExact(instance, options, callback, userdata) as Unit
-
-context(SegmentAllocator)
-public fun wgpuInstanceRequestAdapter2(
-    instance: WGPUInstance,
-    options: Pointer<WGPURequestAdapterOptions>,
-    callbackInfo: WGPURequestAdapterCallbackInfo2,
-): WGPUFuture =
-    WGPUFuture(
-        `wgpuInstanceRequestAdapter2$mh`.invokeExact(this@SegmentAllocator, instance, options, callbackInfo.`$mem`)
-                as MemorySegment
-    )
-
-context(SegmentAllocator)
-public fun wgpuInstanceRequestAdapterF(
     instance: WGPUInstance,
     options: Pointer<WGPURequestAdapterOptions>,
     callbackInfo: WGPURequestAdapterCallbackInfo,
 ): WGPUFuture =
     WGPUFuture(
-        `wgpuInstanceRequestAdapterF$mh`.invokeExact(this@SegmentAllocator, instance, options, callbackInfo.`$mem`)
+        `wgpuInstanceRequestAdapter$mh`.invokeExact(this@SegmentAllocator, instance, options, callbackInfo.`$mem`)
                 as MemorySegment
     )
 
@@ -849,7 +538,7 @@ public fun wgpuInstanceWaitAny(
     instance: WGPUInstance,
     futureCount: ULong,
     futures: Pointer<WGPUFutureWaitInfo>,
-    timeoutNS: uint64_t,
+    timeoutNS: ULong,
 ): WGPUWaitStatus =
     WGPUWaitStatus.fromInt(
         `wgpuInstanceWaitAny$mh`.invokeExact(instance, futureCount.toLong(), futures, timeoutNS.toLong())
@@ -862,8 +551,8 @@ public fun wgpuInstanceAddRef(instance: WGPUInstance): Unit =
 public fun wgpuInstanceRelease(instance: WGPUInstance): Unit =
     `wgpuInstanceRelease$mh`.invokeExact(instance) as Unit
 
-public fun wgpuPipelineLayoutSetLabel(pipelineLayout: WGPUPipelineLayout, label: Pointer<Byte>):
-        Unit = `wgpuPipelineLayoutSetLabel$mh`.invokeExact(pipelineLayout, label) as Unit
+public fun wgpuPipelineLayoutSetLabel(pipelineLayout: WGPUPipelineLayout, label: WGPUStringView):
+        Unit = `wgpuPipelineLayoutSetLabel$mh`.invokeExact(pipelineLayout, label.`$mem`) as Unit
 
 public fun wgpuPipelineLayoutAddRef(pipelineLayout: WGPUPipelineLayout): Unit =
     `wgpuPipelineLayoutAddRef$mh`.invokeExact(pipelineLayout) as Unit
@@ -874,14 +563,14 @@ public fun wgpuPipelineLayoutRelease(pipelineLayout: WGPUPipelineLayout): Unit =
 public fun wgpuQuerySetDestroy(querySet: WGPUQuerySet): Unit =
     `wgpuQuerySetDestroy$mh`.invokeExact(querySet) as Unit
 
-public fun wgpuQuerySetGetCount(querySet: WGPUQuerySet): uint32_t =
+public fun wgpuQuerySetGetCount(querySet: WGPUQuerySet): UInt =
     (`wgpuQuerySetGetCount$mh`.invokeExact(querySet) as Int).toUInt()
 
 public fun wgpuQuerySetGetType(querySet: WGPUQuerySet): WGPUQueryType =
     WGPUQueryType.fromInt(`wgpuQuerySetGetType$mh`.invokeExact(querySet) as Int)
 
-public fun wgpuQuerySetSetLabel(querySet: WGPUQuerySet, label: Pointer<Byte>): Unit =
-    `wgpuQuerySetSetLabel$mh`.invokeExact(querySet, label) as Unit
+public fun wgpuQuerySetSetLabel(querySet: WGPUQuerySet, label: WGPUStringView): Unit =
+    `wgpuQuerySetSetLabel$mh`.invokeExact(querySet, label.`$mem`) as Unit
 
 public fun wgpuQuerySetAddRef(querySet: WGPUQuerySet): Unit =
     `wgpuQuerySetAddRef$mh`.invokeExact(querySet) as Unit
@@ -889,54 +578,18 @@ public fun wgpuQuerySetAddRef(querySet: WGPUQuerySet): Unit =
 public fun wgpuQuerySetRelease(querySet: WGPUQuerySet): Unit =
     `wgpuQuerySetRelease$mh`.invokeExact(querySet) as Unit
 
-public fun wgpuQueueCopyExternalTextureForBrowser(
-    queue: WGPUQueue,
-    source: Pointer<WGPUImageCopyExternalTexture>,
-    destination: Pointer<WGPUImageCopyTexture>,
-    copySize: Pointer<WGPUExtent3D>,
-    options: Pointer<WGPUCopyTextureForBrowserOptions>,
-): Unit =
-    `wgpuQueueCopyExternalTextureForBrowser$mh`.invokeExact(queue, source, destination, copySize, options)
-            as Unit
-
-public fun wgpuQueueCopyTextureForBrowser(
-    queue: WGPUQueue,
-    source: Pointer<WGPUImageCopyTexture>,
-    destination: Pointer<WGPUImageCopyTexture>,
-    copySize: Pointer<WGPUExtent3D>,
-    options: Pointer<WGPUCopyTextureForBrowserOptions>,
-): Unit =
-    `wgpuQueueCopyTextureForBrowser$mh`.invokeExact(queue, source, destination, copySize, options) as
-            Unit
-
+context(SegmentAllocator)
 public fun wgpuQueueOnSubmittedWorkDone(
-    queue: WGPUQueue,
-    callback: WGPUQueueWorkDoneCallback,
-    userdata: Pointer<Unit>,
-): Unit = `wgpuQueueOnSubmittedWorkDone$mh`.invokeExact(queue, callback, userdata) as Unit
-
-context(SegmentAllocator)
-public fun wgpuQueueOnSubmittedWorkDone2(
-    queue: WGPUQueue,
-    callbackInfo: WGPUQueueWorkDoneCallbackInfo2
-): WGPUFuture =
-    WGPUFuture(
-        `wgpuQueueOnSubmittedWorkDone2$mh`.invokeExact(this@SegmentAllocator, queue, callbackInfo.`$mem`)
-                as MemorySegment
-    )
-
-context(SegmentAllocator)
-public fun wgpuQueueOnSubmittedWorkDoneF(
     queue: WGPUQueue,
     callbackInfo: WGPUQueueWorkDoneCallbackInfo
 ): WGPUFuture =
     WGPUFuture(
-        `wgpuQueueOnSubmittedWorkDoneF$mh`.invokeExact(this@SegmentAllocator, queue, callbackInfo.`$mem`)
+        `wgpuQueueOnSubmittedWorkDone$mh`.invokeExact(this@SegmentAllocator, queue, callbackInfo.`$mem`)
                 as MemorySegment
     )
 
-public fun wgpuQueueSetLabel(queue: WGPUQueue, label: Pointer<Byte>): Unit =
-    `wgpuQueueSetLabel$mh`.invokeExact(queue, label) as Unit
+public fun wgpuQueueSetLabel(queue: WGPUQueue, label: WGPUStringView): Unit =
+    `wgpuQueueSetLabel$mh`.invokeExact(queue, label.`$mem`) as Unit
 
 public fun wgpuQueueSubmit(
     queue: WGPUQueue,
@@ -947,7 +600,7 @@ public fun wgpuQueueSubmit(
 public fun wgpuQueueWriteBuffer(
     queue: WGPUQueue,
     buffer: WGPUBuffer,
-    bufferOffset: uint64_t,
+    bufferOffset: ULong,
     `data`: Pointer<Unit>,
     size: ULong,
 ): Unit =
@@ -956,10 +609,10 @@ public fun wgpuQueueWriteBuffer(
 
 public fun wgpuQueueWriteTexture(
     queue: WGPUQueue,
-    destination: Pointer<WGPUImageCopyTexture>,
+    destination: Pointer<WGPUTexelCopyTextureInfo>,
     `data`: Pointer<Unit>,
     dataSize: ULong,
-    dataLayout: Pointer<WGPUTextureDataLayout>,
+    dataLayout: Pointer<WGPUTexelCopyBufferLayout>,
     writeSize: Pointer<WGPUExtent3D>,
 ): Unit =
     `wgpuQueueWriteTexture$mh`.invokeExact(queue, destination, `data`, dataSize.toLong(), dataLayout, writeSize)
@@ -971,8 +624,8 @@ public fun wgpuQueueAddRef(queue: WGPUQueue): Unit = `wgpuQueueAddRef$mh`.invoke
 public fun wgpuQueueRelease(queue: WGPUQueue): Unit = `wgpuQueueRelease$mh`.invokeExact(queue) as
         Unit
 
-public fun wgpuRenderBundleSetLabel(renderBundle: WGPURenderBundle, label: Pointer<Byte>): Unit =
-    `wgpuRenderBundleSetLabel$mh`.invokeExact(renderBundle, label) as Unit
+public fun wgpuRenderBundleSetLabel(renderBundle: WGPURenderBundle, label: WGPUStringView): Unit =
+    `wgpuRenderBundleSetLabel$mh`.invokeExact(renderBundle, label.`$mem`) as Unit
 
 public fun wgpuRenderBundleAddRef(renderBundle: WGPURenderBundle): Unit =
     `wgpuRenderBundleAddRef$mh`.invokeExact(renderBundle) as Unit
@@ -982,10 +635,10 @@ public fun wgpuRenderBundleRelease(renderBundle: WGPURenderBundle): Unit =
 
 public fun wgpuRenderBundleEncoderDraw(
     renderBundleEncoder: WGPURenderBundleEncoder,
-    vertexCount: uint32_t,
-    instanceCount: uint32_t,
-    firstVertex: uint32_t,
-    firstInstance: uint32_t,
+    vertexCount: UInt,
+    instanceCount: UInt,
+    firstVertex: UInt,
+    firstInstance: UInt,
 ): Unit =
     `wgpuRenderBundleEncoderDraw$mh`.invokeExact(
         renderBundleEncoder,
@@ -998,11 +651,11 @@ public fun wgpuRenderBundleEncoderDraw(
 
 public fun wgpuRenderBundleEncoderDrawIndexed(
     renderBundleEncoder: WGPURenderBundleEncoder,
-    indexCount: uint32_t,
-    instanceCount: uint32_t,
-    firstIndex: uint32_t,
-    baseVertex: int32_t,
-    firstInstance: uint32_t,
+    indexCount: UInt,
+    instanceCount: UInt,
+    firstIndex: UInt,
+    baseVertex: Int,
+    firstInstance: UInt,
 ): Unit =
     `wgpuRenderBundleEncoderDrawIndexed$mh`.invokeExact(
         renderBundleEncoder,
@@ -1017,7 +670,7 @@ public fun wgpuRenderBundleEncoderDrawIndexed(
 public fun wgpuRenderBundleEncoderDrawIndexedIndirect(
     renderBundleEncoder: WGPURenderBundleEncoder,
     indirectBuffer: WGPUBuffer,
-    indirectOffset: uint64_t,
+    indirectOffset: ULong,
 ): Unit =
     `wgpuRenderBundleEncoderDrawIndexedIndirect$mh`.invokeExact(
         renderBundleEncoder,
@@ -1029,7 +682,7 @@ public fun wgpuRenderBundleEncoderDrawIndexedIndirect(
 public fun wgpuRenderBundleEncoderDrawIndirect(
     renderBundleEncoder: WGPURenderBundleEncoder,
     indirectBuffer: WGPUBuffer,
-    indirectOffset: uint64_t,
+    indirectOffset: ULong,
 ): Unit =
     `wgpuRenderBundleEncoderDrawIndirect$mh`.invokeExact(renderBundleEncoder, indirectBuffer, indirectOffset.toLong())
             as Unit
@@ -1042,26 +695,27 @@ public fun wgpuRenderBundleEncoderFinish(
 
 public fun wgpuRenderBundleEncoderInsertDebugMarker(
     renderBundleEncoder: WGPURenderBundleEncoder,
-    markerLabel: Pointer<Byte>
+    markerLabel: WGPUStringView
 ): Unit =
-    `wgpuRenderBundleEncoderInsertDebugMarker$mh`.invokeExact(renderBundleEncoder, markerLabel) as
-            Unit
+    `wgpuRenderBundleEncoderInsertDebugMarker$mh`.invokeExact(renderBundleEncoder, markerLabel.`$mem`)
+            as Unit
 
 public fun wgpuRenderBundleEncoderPopDebugGroup(renderBundleEncoder: WGPURenderBundleEncoder): Unit =
     `wgpuRenderBundleEncoderPopDebugGroup$mh`.invokeExact(renderBundleEncoder) as Unit
 
 public fun wgpuRenderBundleEncoderPushDebugGroup(
     renderBundleEncoder: WGPURenderBundleEncoder,
-    groupLabel: Pointer<Byte>
+    groupLabel: WGPUStringView
 ): Unit =
-    `wgpuRenderBundleEncoderPushDebugGroup$mh`.invokeExact(renderBundleEncoder, groupLabel) as Unit
+    `wgpuRenderBundleEncoderPushDebugGroup$mh`.invokeExact(renderBundleEncoder, groupLabel.`$mem`)
+            as Unit
 
 public fun wgpuRenderBundleEncoderSetBindGroup(
     renderBundleEncoder: WGPURenderBundleEncoder,
-    groupIndex: uint32_t,
+    groupIndex: UInt,
     group: WGPUBindGroup,
     dynamicOffsetCount: ULong,
-    dynamicOffsets: Pointer<uint32_t>,
+    dynamicOffsets: Pointer<UInt>,
 ): Unit =
     `wgpuRenderBundleEncoderSetBindGroup$mh`.invokeExact(
         renderBundleEncoder,
@@ -1076,8 +730,8 @@ public fun wgpuRenderBundleEncoderSetIndexBuffer(
     renderBundleEncoder: WGPURenderBundleEncoder,
     buffer: WGPUBuffer,
     format: WGPUIndexFormat,
-    offset: uint64_t,
-    size: uint64_t,
+    offset: ULong,
+    size: ULong,
 ): Unit =
     `wgpuRenderBundleEncoderSetIndexBuffer$mh`.invokeExact(
         renderBundleEncoder,
@@ -1090,9 +744,9 @@ public fun wgpuRenderBundleEncoderSetIndexBuffer(
 
 public fun wgpuRenderBundleEncoderSetLabel(
     renderBundleEncoder: WGPURenderBundleEncoder,
-    label: Pointer<Byte>
+    label: WGPUStringView
 ): Unit =
-    `wgpuRenderBundleEncoderSetLabel$mh`.invokeExact(renderBundleEncoder, label) as Unit
+    `wgpuRenderBundleEncoderSetLabel$mh`.invokeExact(renderBundleEncoder, label.`$mem`) as Unit
 
 public fun wgpuRenderBundleEncoderSetPipeline(
     renderBundleEncoder: WGPURenderBundleEncoder,
@@ -1102,10 +756,10 @@ public fun wgpuRenderBundleEncoderSetPipeline(
 
 public fun wgpuRenderBundleEncoderSetVertexBuffer(
     renderBundleEncoder: WGPURenderBundleEncoder,
-    slot: uint32_t,
+    slot: UInt,
     buffer: WGPUBuffer,
-    offset: uint64_t,
-    size: uint64_t,
+    offset: ULong,
+    size: ULong,
 ): Unit =
     `wgpuRenderBundleEncoderSetVertexBuffer$mh`.invokeExact(
         renderBundleEncoder,
@@ -1124,17 +778,17 @@ public fun wgpuRenderBundleEncoderRelease(renderBundleEncoder: WGPURenderBundleE
 
 public fun wgpuRenderPassEncoderBeginOcclusionQuery(
     renderPassEncoder: WGPURenderPassEncoder,
-    queryIndex: uint32_t
+    queryIndex: UInt
 ): Unit =
     `wgpuRenderPassEncoderBeginOcclusionQuery$mh`.invokeExact(renderPassEncoder, queryIndex.toInt())
             as Unit
 
 public fun wgpuRenderPassEncoderDraw(
     renderPassEncoder: WGPURenderPassEncoder,
-    vertexCount: uint32_t,
-    instanceCount: uint32_t,
-    firstVertex: uint32_t,
-    firstInstance: uint32_t,
+    vertexCount: UInt,
+    instanceCount: UInt,
+    firstVertex: UInt,
+    firstInstance: UInt,
 ): Unit =
     `wgpuRenderPassEncoderDraw$mh`.invokeExact(
         renderPassEncoder,
@@ -1147,11 +801,11 @@ public fun wgpuRenderPassEncoderDraw(
 
 public fun wgpuRenderPassEncoderDrawIndexed(
     renderPassEncoder: WGPURenderPassEncoder,
-    indexCount: uint32_t,
-    instanceCount: uint32_t,
-    firstIndex: uint32_t,
-    baseVertex: int32_t,
-    firstInstance: uint32_t,
+    indexCount: UInt,
+    instanceCount: UInt,
+    firstIndex: UInt,
+    baseVertex: Int,
+    firstInstance: UInt,
 ): Unit =
     `wgpuRenderPassEncoderDrawIndexed$mh`.invokeExact(
         renderPassEncoder,
@@ -1166,7 +820,7 @@ public fun wgpuRenderPassEncoderDrawIndexed(
 public fun wgpuRenderPassEncoderDrawIndexedIndirect(
     renderPassEncoder: WGPURenderPassEncoder,
     indirectBuffer: WGPUBuffer,
-    indirectOffset: uint64_t,
+    indirectOffset: ULong,
 ): Unit =
     `wgpuRenderPassEncoderDrawIndexedIndirect$mh`.invokeExact(
         renderPassEncoder,
@@ -1178,7 +832,7 @@ public fun wgpuRenderPassEncoderDrawIndexedIndirect(
 public fun wgpuRenderPassEncoderDrawIndirect(
     renderPassEncoder: WGPURenderPassEncoder,
     indirectBuffer: WGPUBuffer,
-    indirectOffset: uint64_t,
+    indirectOffset: ULong,
 ): Unit =
     `wgpuRenderPassEncoderDrawIndirect$mh`.invokeExact(renderPassEncoder, indirectBuffer, indirectOffset.toLong())
             as Unit
@@ -1199,29 +853,27 @@ public fun wgpuRenderPassEncoderExecuteBundles(
 
 public fun wgpuRenderPassEncoderInsertDebugMarker(
     renderPassEncoder: WGPURenderPassEncoder,
-    markerLabel: Pointer<Byte>
+    markerLabel: WGPUStringView
 ): Unit =
-    `wgpuRenderPassEncoderInsertDebugMarker$mh`.invokeExact(renderPassEncoder, markerLabel) as Unit
-
-public fun wgpuRenderPassEncoderPixelLocalStorageBarrier(renderPassEncoder: WGPURenderPassEncoder):
-        Unit = `wgpuRenderPassEncoderPixelLocalStorageBarrier$mh`.invokeExact(renderPassEncoder) as
-        Unit
+    `wgpuRenderPassEncoderInsertDebugMarker$mh`.invokeExact(renderPassEncoder, markerLabel.`$mem`)
+            as Unit
 
 public fun wgpuRenderPassEncoderPopDebugGroup(renderPassEncoder: WGPURenderPassEncoder): Unit =
     `wgpuRenderPassEncoderPopDebugGroup$mh`.invokeExact(renderPassEncoder) as Unit
 
 public fun wgpuRenderPassEncoderPushDebugGroup(
     renderPassEncoder: WGPURenderPassEncoder,
-    groupLabel: Pointer<Byte>
+    groupLabel: WGPUStringView
 ): Unit =
-    `wgpuRenderPassEncoderPushDebugGroup$mh`.invokeExact(renderPassEncoder, groupLabel) as Unit
+    `wgpuRenderPassEncoderPushDebugGroup$mh`.invokeExact(renderPassEncoder, groupLabel.`$mem`) as
+            Unit
 
 public fun wgpuRenderPassEncoderSetBindGroup(
     renderPassEncoder: WGPURenderPassEncoder,
-    groupIndex: uint32_t,
+    groupIndex: UInt,
     group: WGPUBindGroup,
     dynamicOffsetCount: ULong,
-    dynamicOffsets: Pointer<uint32_t>,
+    dynamicOffsets: Pointer<UInt>,
 ): Unit =
     `wgpuRenderPassEncoderSetBindGroup$mh`.invokeExact(
         renderPassEncoder,
@@ -1242,8 +894,8 @@ public fun wgpuRenderPassEncoderSetIndexBuffer(
     renderPassEncoder: WGPURenderPassEncoder,
     buffer: WGPUBuffer,
     format: WGPUIndexFormat,
-    offset: uint64_t,
-    size: uint64_t,
+    offset: ULong,
+    size: ULong,
 ): Unit =
     `wgpuRenderPassEncoderSetIndexBuffer$mh`.invokeExact(
         renderPassEncoder,
@@ -1256,9 +908,9 @@ public fun wgpuRenderPassEncoderSetIndexBuffer(
 
 public fun wgpuRenderPassEncoderSetLabel(
     renderPassEncoder: WGPURenderPassEncoder,
-    label: Pointer<Byte>
+    label: WGPUStringView
 ): Unit =
-    `wgpuRenderPassEncoderSetLabel$mh`.invokeExact(renderPassEncoder, label) as Unit
+    `wgpuRenderPassEncoderSetLabel$mh`.invokeExact(renderPassEncoder, label.`$mem`) as Unit
 
 public fun wgpuRenderPassEncoderSetPipeline(
     renderPassEncoder: WGPURenderPassEncoder,
@@ -1268,10 +920,10 @@ public fun wgpuRenderPassEncoderSetPipeline(
 
 public fun wgpuRenderPassEncoderSetScissorRect(
     renderPassEncoder: WGPURenderPassEncoder,
-    x: uint32_t,
-    y: uint32_t,
-    width: uint32_t,
-    height: uint32_t,
+    x: UInt,
+    y: UInt,
+    width: UInt,
+    height: UInt,
 ): Unit =
     `wgpuRenderPassEncoderSetScissorRect$mh`.invokeExact(
         renderPassEncoder,
@@ -1284,17 +936,17 @@ public fun wgpuRenderPassEncoderSetScissorRect(
 
 public fun wgpuRenderPassEncoderSetStencilReference(
     renderPassEncoder: WGPURenderPassEncoder,
-    reference: uint32_t
+    reference: UInt
 ): Unit =
     `wgpuRenderPassEncoderSetStencilReference$mh`.invokeExact(renderPassEncoder, reference.toInt())
             as Unit
 
 public fun wgpuRenderPassEncoderSetVertexBuffer(
     renderPassEncoder: WGPURenderPassEncoder,
-    slot: uint32_t,
+    slot: UInt,
     buffer: WGPUBuffer,
-    offset: uint64_t,
-    size: uint64_t,
+    offset: ULong,
+    size: ULong,
 ): Unit =
     `wgpuRenderPassEncoderSetVertexBuffer$mh`.invokeExact(
         renderPassEncoder,
@@ -1317,14 +969,6 @@ public fun wgpuRenderPassEncoderSetViewport(
     `wgpuRenderPassEncoderSetViewport$mh`.invokeExact(renderPassEncoder, x, y, width, height, minDepth, maxDepth)
             as Unit
 
-public fun wgpuRenderPassEncoderWriteTimestamp(
-    renderPassEncoder: WGPURenderPassEncoder,
-    querySet: WGPUQuerySet,
-    queryIndex: uint32_t,
-): Unit =
-    `wgpuRenderPassEncoderWriteTimestamp$mh`.invokeExact(renderPassEncoder, querySet, queryIndex.toInt())
-            as Unit
-
 public fun wgpuRenderPassEncoderAddRef(renderPassEncoder: WGPURenderPassEncoder): Unit =
     `wgpuRenderPassEncoderAddRef$mh`.invokeExact(renderPassEncoder) as Unit
 
@@ -1333,13 +977,13 @@ public fun wgpuRenderPassEncoderRelease(renderPassEncoder: WGPURenderPassEncoder
 
 public fun wgpuRenderPipelineGetBindGroupLayout(
     renderPipeline: WGPURenderPipeline,
-    groupIndex: uint32_t
+    groupIndex: UInt
 ): WGPUBindGroupLayout =
     `wgpuRenderPipelineGetBindGroupLayout$mh`.invokeExact(renderPipeline, groupIndex.toInt()) as
             MemorySegment
 
-public fun wgpuRenderPipelineSetLabel(renderPipeline: WGPURenderPipeline, label: Pointer<Byte>):
-        Unit = `wgpuRenderPipelineSetLabel$mh`.invokeExact(renderPipeline, label) as Unit
+public fun wgpuRenderPipelineSetLabel(renderPipeline: WGPURenderPipeline, label: WGPUStringView):
+        Unit = `wgpuRenderPipelineSetLabel$mh`.invokeExact(renderPipeline, label.`$mem`) as Unit
 
 public fun wgpuRenderPipelineAddRef(renderPipeline: WGPURenderPipeline): Unit =
     `wgpuRenderPipelineAddRef$mh`.invokeExact(renderPipeline) as Unit
@@ -1347,8 +991,8 @@ public fun wgpuRenderPipelineAddRef(renderPipeline: WGPURenderPipeline): Unit =
 public fun wgpuRenderPipelineRelease(renderPipeline: WGPURenderPipeline): Unit =
     `wgpuRenderPipelineRelease$mh`.invokeExact(renderPipeline) as Unit
 
-public fun wgpuSamplerSetLabel(sampler: WGPUSampler, label: Pointer<Byte>): Unit =
-    `wgpuSamplerSetLabel$mh`.invokeExact(sampler, label) as Unit
+public fun wgpuSamplerSetLabel(sampler: WGPUSampler, label: WGPUStringView): Unit =
+    `wgpuSamplerSetLabel$mh`.invokeExact(sampler, label.`$mem`) as Unit
 
 public fun wgpuSamplerAddRef(sampler: WGPUSampler): Unit =
     `wgpuSamplerAddRef$mh`.invokeExact(sampler) as Unit
@@ -1356,35 +1000,18 @@ public fun wgpuSamplerAddRef(sampler: WGPUSampler): Unit =
 public fun wgpuSamplerRelease(sampler: WGPUSampler): Unit =
     `wgpuSamplerRelease$mh`.invokeExact(sampler) as Unit
 
+context(SegmentAllocator)
 public fun wgpuShaderModuleGetCompilationInfo(
-    shaderModule: WGPUShaderModule,
-    callback: WGPUCompilationInfoCallback,
-    userdata: Pointer<Unit>,
-): Unit = `wgpuShaderModuleGetCompilationInfo$mh`.invokeExact(shaderModule, callback, userdata) as
-        Unit
-
-context(SegmentAllocator)
-public fun wgpuShaderModuleGetCompilationInfo2(
-    shaderModule: WGPUShaderModule,
-    callbackInfo: WGPUCompilationInfoCallbackInfo2
-): WGPUFuture =
-    WGPUFuture(
-        `wgpuShaderModuleGetCompilationInfo2$mh`.invokeExact(this@SegmentAllocator, shaderModule, callbackInfo.`$mem`)
-                as MemorySegment
-    )
-
-context(SegmentAllocator)
-public fun wgpuShaderModuleGetCompilationInfoF(
     shaderModule: WGPUShaderModule,
     callbackInfo: WGPUCompilationInfoCallbackInfo
 ): WGPUFuture =
     WGPUFuture(
-        `wgpuShaderModuleGetCompilationInfoF$mh`.invokeExact(this@SegmentAllocator, shaderModule, callbackInfo.`$mem`)
+        `wgpuShaderModuleGetCompilationInfo$mh`.invokeExact(this@SegmentAllocator, shaderModule, callbackInfo.`$mem`)
                 as MemorySegment
     )
 
-public fun wgpuShaderModuleSetLabel(shaderModule: WGPUShaderModule, label: Pointer<Byte>): Unit =
-    `wgpuShaderModuleSetLabel$mh`.invokeExact(shaderModule, label) as Unit
+public fun wgpuShaderModuleSetLabel(shaderModule: WGPUShaderModule, label: WGPUStringView): Unit =
+    `wgpuShaderModuleSetLabel$mh`.invokeExact(shaderModule, label.`$mem`) as Unit
 
 public fun wgpuShaderModuleAddRef(shaderModule: WGPUShaderModule): Unit =
     `wgpuShaderModuleAddRef$mh`.invokeExact(shaderModule) as Unit
@@ -1392,120 +1019,14 @@ public fun wgpuShaderModuleAddRef(shaderModule: WGPUShaderModule): Unit =
 public fun wgpuShaderModuleRelease(shaderModule: WGPUShaderModule): Unit =
     `wgpuShaderModuleRelease$mh`.invokeExact(shaderModule) as Unit
 
-public fun wgpuSharedBufferMemoryBeginAccess(
-    sharedBufferMemory: WGPUSharedBufferMemory,
-    buffer: WGPUBuffer,
-    descriptor: Pointer<WGPUSharedBufferMemoryBeginAccessDescriptor>,
-): WGPUStatus =
-    WGPUStatus.fromInt(
-        `wgpuSharedBufferMemoryBeginAccess$mh`.invokeExact(sharedBufferMemory, buffer, descriptor)
-                as Int
-    )
+public fun wgpuSupportedFeaturesFreeMembers(supportedFeatures: WGPUSupportedFeatures): Unit =
+    `wgpuSupportedFeaturesFreeMembers$mh`.invokeExact(supportedFeatures.`$mem`) as Unit
 
-public fun wgpuSharedBufferMemoryCreateBuffer(
-    sharedBufferMemory: WGPUSharedBufferMemory,
-    descriptor: Pointer<WGPUBufferDescriptor>
-): WGPUBuffer =
-    `wgpuSharedBufferMemoryCreateBuffer$mh`.invokeExact(sharedBufferMemory, descriptor) as
-            MemorySegment
-
-public fun wgpuSharedBufferMemoryEndAccess(
-    sharedBufferMemory: WGPUSharedBufferMemory,
-    buffer: WGPUBuffer,
-    descriptor: Pointer<WGPUSharedBufferMemoryEndAccessState>,
-): WGPUStatus =
-    WGPUStatus.fromInt(
-        `wgpuSharedBufferMemoryEndAccess$mh`.invokeExact(sharedBufferMemory, buffer, descriptor)
-                as Int
-    )
-
-public fun wgpuSharedBufferMemoryGetProperties(
-    sharedBufferMemory: WGPUSharedBufferMemory,
-    properties: Pointer<WGPUSharedBufferMemoryProperties>
-): WGPUStatus =
-    WGPUStatus.fromInt(
-        `wgpuSharedBufferMemoryGetProperties$mh`.invokeExact(sharedBufferMemory, properties)
-                as Int
-    )
-
-public fun wgpuSharedBufferMemoryIsDeviceLost(sharedBufferMemory: WGPUSharedBufferMemory): WGPUBool =
-    (`wgpuSharedBufferMemoryIsDeviceLost$mh`.invokeExact(sharedBufferMemory) as Int).toUInt()
-
-public fun wgpuSharedBufferMemorySetLabel(
-    sharedBufferMemory: WGPUSharedBufferMemory,
-    label: Pointer<Byte>
-): Unit =
-    `wgpuSharedBufferMemorySetLabel$mh`.invokeExact(sharedBufferMemory, label) as Unit
-
-public fun wgpuSharedBufferMemoryAddRef(sharedBufferMemory: WGPUSharedBufferMemory): Unit =
-    `wgpuSharedBufferMemoryAddRef$mh`.invokeExact(sharedBufferMemory) as Unit
-
-public fun wgpuSharedBufferMemoryRelease(sharedBufferMemory: WGPUSharedBufferMemory): Unit =
-    `wgpuSharedBufferMemoryRelease$mh`.invokeExact(sharedBufferMemory) as Unit
-
-public fun wgpuSharedFenceExportInfo(
-    sharedFence: WGPUSharedFence,
-    info: Pointer<WGPUSharedFenceExportInfo>
-): Unit =
-    `wgpuSharedFenceExportInfo$mh`.invokeExact(sharedFence, info) as Unit
-
-public fun wgpuSharedFenceAddRef(sharedFence: WGPUSharedFence): Unit =
-    `wgpuSharedFenceAddRef$mh`.invokeExact(sharedFence) as Unit
-
-public fun wgpuSharedFenceRelease(sharedFence: WGPUSharedFence): Unit =
-    `wgpuSharedFenceRelease$mh`.invokeExact(sharedFence) as Unit
-
-public fun wgpuSharedTextureMemoryBeginAccess(
-    sharedTextureMemory: WGPUSharedTextureMemory,
-    texture: WGPUTexture,
-    descriptor: Pointer<WGPUSharedTextureMemoryBeginAccessDescriptor>,
-): WGPUStatus =
-    WGPUStatus.fromInt(
-        `wgpuSharedTextureMemoryBeginAccess$mh`.invokeExact(sharedTextureMemory, texture, descriptor)
-                as Int
-    )
-
-public fun wgpuSharedTextureMemoryCreateTexture(
-    sharedTextureMemory: WGPUSharedTextureMemory,
-    descriptor: Pointer<WGPUTextureDescriptor>
-): WGPUTexture =
-    `wgpuSharedTextureMemoryCreateTexture$mh`.invokeExact(sharedTextureMemory, descriptor) as
-            MemorySegment
-
-public fun wgpuSharedTextureMemoryEndAccess(
-    sharedTextureMemory: WGPUSharedTextureMemory,
-    texture: WGPUTexture,
-    descriptor: Pointer<WGPUSharedTextureMemoryEndAccessState>,
-): WGPUStatus =
-    WGPUStatus.fromInt(
-        `wgpuSharedTextureMemoryEndAccess$mh`.invokeExact(sharedTextureMemory, texture, descriptor)
-                as Int
-    )
-
-public fun wgpuSharedTextureMemoryGetProperties(
-    sharedTextureMemory: WGPUSharedTextureMemory,
-    properties: Pointer<WGPUSharedTextureMemoryProperties>
-): WGPUStatus =
-    WGPUStatus.fromInt(
-        `wgpuSharedTextureMemoryGetProperties$mh`.invokeExact(sharedTextureMemory, properties)
-                as Int
-    )
-
-public fun wgpuSharedTextureMemoryIsDeviceLost(sharedTextureMemory: WGPUSharedTextureMemory):
-        WGPUBool = (`wgpuSharedTextureMemoryIsDeviceLost$mh`.invokeExact(sharedTextureMemory) as
-        Int).toUInt()
-
-public fun wgpuSharedTextureMemorySetLabel(
-    sharedTextureMemory: WGPUSharedTextureMemory,
-    label: Pointer<Byte>
-): Unit =
-    `wgpuSharedTextureMemorySetLabel$mh`.invokeExact(sharedTextureMemory, label) as Unit
-
-public fun wgpuSharedTextureMemoryAddRef(sharedTextureMemory: WGPUSharedTextureMemory): Unit =
-    `wgpuSharedTextureMemoryAddRef$mh`.invokeExact(sharedTextureMemory) as Unit
-
-public fun wgpuSharedTextureMemoryRelease(sharedTextureMemory: WGPUSharedTextureMemory): Unit =
-    `wgpuSharedTextureMemoryRelease$mh`.invokeExact(sharedTextureMemory) as Unit
+public
+fun wgpuSupportedWGSLLanguageFeaturesFreeMembers(supportedWGSLLanguageFeatures: WGPUSupportedWGSLLanguageFeatures):
+        Unit =
+    `wgpuSupportedWGSLLanguageFeaturesFreeMembers$mh`.invokeExact(supportedWGSLLanguageFeatures.`$mem`)
+            as Unit
 
 public fun wgpuSurfaceConfigure(surface: WGPUSurface, config: Pointer<WGPUSurfaceConfiguration>):
         Unit = `wgpuSurfaceConfigure$mh`.invokeExact(surface, config) as Unit
@@ -1526,15 +1047,11 @@ public fun wgpuSurfaceGetCurrentTexture(
 ): Unit =
     `wgpuSurfaceGetCurrentTexture$mh`.invokeExact(surface, surfaceTexture) as Unit
 
-public fun wgpuSurfaceGetPreferredFormat(surface: WGPUSurface, adapter: WGPUAdapter):
-        WGPUTextureFormat =
-    WGPUTextureFormat.fromInt(
-        `wgpuSurfaceGetPreferredFormat$mh`.invokeExact(surface, adapter) as
-                Int
-    )
+public fun wgpuSurfacePresent(surface: WGPUSurface): WGPUStatus =
+    WGPUStatus.fromInt(`wgpuSurfacePresent$mh`.invokeExact(surface) as Int)
 
-public fun wgpuSurfacePresent(surface: WGPUSurface): Unit =
-    `wgpuSurfacePresent$mh`.invokeExact(surface) as Unit
+public fun wgpuSurfaceSetLabel(surface: WGPUSurface, label: WGPUStringView): Unit =
+    `wgpuSurfaceSetLabel$mh`.invokeExact(surface, label.`$mem`) as Unit
 
 public fun wgpuSurfaceUnconfigure(surface: WGPUSurface): Unit =
     `wgpuSurfaceUnconfigure$mh`.invokeExact(surface) as Unit
@@ -1545,26 +1062,8 @@ public fun wgpuSurfaceAddRef(surface: WGPUSurface): Unit =
 public fun wgpuSurfaceRelease(surface: WGPUSurface): Unit =
     `wgpuSurfaceRelease$mh`.invokeExact(surface) as Unit
 
-public fun wgpuSwapChainGetCurrentTexture(swapChain: WGPUSwapChain): WGPUTexture =
-    `wgpuSwapChainGetCurrentTexture$mh`.invokeExact(swapChain) as MemorySegment
-
-public fun wgpuSwapChainGetCurrentTextureView(swapChain: WGPUSwapChain): WGPUTextureView =
-    `wgpuSwapChainGetCurrentTextureView$mh`.invokeExact(swapChain) as MemorySegment
-
-public fun wgpuSwapChainPresent(swapChain: WGPUSwapChain): Unit =
-    `wgpuSwapChainPresent$mh`.invokeExact(swapChain) as Unit
-
-public fun wgpuSwapChainAddRef(swapChain: WGPUSwapChain): Unit =
-    `wgpuSwapChainAddRef$mh`.invokeExact(swapChain) as Unit
-
-public fun wgpuSwapChainRelease(swapChain: WGPUSwapChain): Unit =
-    `wgpuSwapChainRelease$mh`.invokeExact(swapChain) as Unit
-
-public fun wgpuTextureCreateErrorView(
-    texture: WGPUTexture,
-    descriptor: Pointer<WGPUTextureViewDescriptor>
-): WGPUTextureView =
-    `wgpuTextureCreateErrorView$mh`.invokeExact(texture, descriptor) as MemorySegment
+public fun wgpuSurfaceCapabilitiesFreeMembers(surfaceCapabilities: WGPUSurfaceCapabilities): Unit =
+    `wgpuSurfaceCapabilitiesFreeMembers$mh`.invokeExact(surfaceCapabilities.`$mem`) as Unit
 
 public fun wgpuTextureCreateView(
     texture: WGPUTexture,
@@ -1575,7 +1074,7 @@ public fun wgpuTextureCreateView(
 public fun wgpuTextureDestroy(texture: WGPUTexture): Unit =
     `wgpuTextureDestroy$mh`.invokeExact(texture) as Unit
 
-public fun wgpuTextureGetDepthOrArrayLayers(texture: WGPUTexture): uint32_t =
+public fun wgpuTextureGetDepthOrArrayLayers(texture: WGPUTexture): UInt =
     (`wgpuTextureGetDepthOrArrayLayers$mh`.invokeExact(texture) as Int).toUInt()
 
 public fun wgpuTextureGetDimension(texture: WGPUTexture): WGPUTextureDimension =
@@ -1584,23 +1083,23 @@ public fun wgpuTextureGetDimension(texture: WGPUTexture): WGPUTextureDimension =
 public fun wgpuTextureGetFormat(texture: WGPUTexture): WGPUTextureFormat =
     WGPUTextureFormat.fromInt(`wgpuTextureGetFormat$mh`.invokeExact(texture) as Int)
 
-public fun wgpuTextureGetHeight(texture: WGPUTexture): uint32_t =
+public fun wgpuTextureGetHeight(texture: WGPUTexture): UInt =
     (`wgpuTextureGetHeight$mh`.invokeExact(texture) as Int).toUInt()
 
-public fun wgpuTextureGetMipLevelCount(texture: WGPUTexture): uint32_t =
+public fun wgpuTextureGetMipLevelCount(texture: WGPUTexture): UInt =
     (`wgpuTextureGetMipLevelCount$mh`.invokeExact(texture) as Int).toUInt()
 
-public fun wgpuTextureGetSampleCount(texture: WGPUTexture): uint32_t =
+public fun wgpuTextureGetSampleCount(texture: WGPUTexture): UInt =
     (`wgpuTextureGetSampleCount$mh`.invokeExact(texture) as Int).toUInt()
 
 public fun wgpuTextureGetUsage(texture: WGPUTexture): WGPUTextureUsage =
     (`wgpuTextureGetUsage$mh`.invokeExact(texture) as Long).toULong()
 
-public fun wgpuTextureGetWidth(texture: WGPUTexture): uint32_t =
+public fun wgpuTextureGetWidth(texture: WGPUTexture): UInt =
     (`wgpuTextureGetWidth$mh`.invokeExact(texture) as Int).toUInt()
 
-public fun wgpuTextureSetLabel(texture: WGPUTexture, label: Pointer<Byte>): Unit =
-    `wgpuTextureSetLabel$mh`.invokeExact(texture, label) as Unit
+public fun wgpuTextureSetLabel(texture: WGPUTexture, label: WGPUStringView): Unit =
+    `wgpuTextureSetLabel$mh`.invokeExact(texture, label.`$mem`) as Unit
 
 public fun wgpuTextureAddRef(texture: WGPUTexture): Unit =
     `wgpuTextureAddRef$mh`.invokeExact(texture) as Unit
@@ -1608,8 +1107,8 @@ public fun wgpuTextureAddRef(texture: WGPUTexture): Unit =
 public fun wgpuTextureRelease(texture: WGPUTexture): Unit =
     `wgpuTextureRelease$mh`.invokeExact(texture) as Unit
 
-public fun wgpuTextureViewSetLabel(textureView: WGPUTextureView, label: Pointer<Byte>): Unit =
-    `wgpuTextureViewSetLabel$mh`.invokeExact(textureView, label) as Unit
+public fun wgpuTextureViewSetLabel(textureView: WGPUTextureView, label: WGPUStringView): Unit =
+    `wgpuTextureViewSetLabel$mh`.invokeExact(textureView, label.`$mem`) as Unit
 
 public fun wgpuTextureViewAddRef(textureView: WGPUTextureView): Unit =
     `wgpuTextureViewAddRef$mh`.invokeExact(textureView) as Unit

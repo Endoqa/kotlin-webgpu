@@ -5,6 +5,25 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUBlendFactor.Constant
+import webgpu.c.WGPUBlendFactor.Dst
+import webgpu.c.WGPUBlendFactor.DstAlpha
+import webgpu.c.WGPUBlendFactor.One
+import webgpu.c.WGPUBlendFactor.OneMinusConstant
+import webgpu.c.WGPUBlendFactor.OneMinusDst
+import webgpu.c.WGPUBlendFactor.OneMinusDstAlpha
+import webgpu.c.WGPUBlendFactor.OneMinusSrc
+import webgpu.c.WGPUBlendFactor.OneMinusSrc1
+import webgpu.c.WGPUBlendFactor.OneMinusSrc1Alpha
+import webgpu.c.WGPUBlendFactor.OneMinusSrcAlpha
+import webgpu.c.WGPUBlendFactor.Src
+import webgpu.c.WGPUBlendFactor.Src1
+import webgpu.c.WGPUBlendFactor.Src1Alpha
+import webgpu.c.WGPUBlendFactor.SrcAlpha
+import webgpu.c.WGPUBlendFactor.SrcAlphaSaturated
+import webgpu.c.WGPUBlendFactor.Undefined
+import webgpu.c.WGPUBlendFactor.Zero
 
 public enum class WGPUBlendFactor(
     public val `value`: Int,

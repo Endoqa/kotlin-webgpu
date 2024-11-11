@@ -5,14 +5,17 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPULoadOp.Clear
+import webgpu.c.WGPULoadOp.Load
+import webgpu.c.WGPULoadOp.Undefined
 
 public enum class WGPULoadOp(
     public val `value`: Int,
 ) {
     Undefined(0x00000000),
-    Clear(0x00000001),
-    Load(0x00000002),
-    ExpandResolveTexture(0x00050003),
+    Load(0x00000001),
+    Clear(0x00000002),
     ;
 
     public companion object {
@@ -33,9 +36,8 @@ public enum class WGPULoadOp(
         @JvmStatic
         public fun fromInt(`value`: Int): WGPULoadOp = when (value) {
             Undefined.value -> Undefined
-            Clear.value -> Clear
             Load.value -> Load
-            ExpandResolveTexture.value -> ExpandResolveTexture
+            Clear.value -> Clear
             else -> error("enum not found")
         }
     }

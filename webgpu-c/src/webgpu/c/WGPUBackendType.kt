@@ -5,6 +5,16 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUBackendType.D3D11
+import webgpu.c.WGPUBackendType.D3D12
+import webgpu.c.WGPUBackendType.Metal
+import webgpu.c.WGPUBackendType.Null
+import webgpu.c.WGPUBackendType.OpenGL
+import webgpu.c.WGPUBackendType.OpenGLES
+import webgpu.c.WGPUBackendType.Undefined
+import webgpu.c.WGPUBackendType.Vulkan
+import webgpu.c.WGPUBackendType.WebGPU
 
 public enum class WGPUBackendType(
     public val `value`: Int,

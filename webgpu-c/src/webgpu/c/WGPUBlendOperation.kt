@@ -5,6 +5,13 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUBlendOperation.Add
+import webgpu.c.WGPUBlendOperation.Max
+import webgpu.c.WGPUBlendOperation.Min
+import webgpu.c.WGPUBlendOperation.ReverseSubtract
+import webgpu.c.WGPUBlendOperation.Subtract
+import webgpu.c.WGPUBlendOperation.Undefined
 
 public enum class WGPUBlendOperation(
     public val `value`: Int,

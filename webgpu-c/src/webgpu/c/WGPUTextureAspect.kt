@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUTextureAspect.All
+import webgpu.c.WGPUTextureAspect.DepthOnly
+import webgpu.c.WGPUTextureAspect.StencilOnly
+import webgpu.c.WGPUTextureAspect.Undefined
 
 public enum class WGPUTextureAspect(
     public val `value`: Int,
@@ -13,9 +18,6 @@ public enum class WGPUTextureAspect(
     All(0x00000001),
     StencilOnly(0x00000002),
     DepthOnly(0x00000003),
-    Plane0Only(0x00050000),
-    Plane1Only(0x00050001),
-    Plane2Only(0x00050002),
     ;
 
     public companion object {
@@ -39,9 +41,6 @@ public enum class WGPUTextureAspect(
             All.value -> All
             StencilOnly.value -> StencilOnly
             DepthOnly.value -> DepthOnly
-            Plane0Only.value -> Plane0Only
-            Plane1Only.value -> Plane1Only
-            Plane2Only.value -> Plane2Only
             else -> error("enum not found")
         }
     }

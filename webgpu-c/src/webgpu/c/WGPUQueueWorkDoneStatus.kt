@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUQueueWorkDoneStatus.Error
+import webgpu.c.WGPUQueueWorkDoneStatus.InstanceDropped
+import webgpu.c.WGPUQueueWorkDoneStatus.Success
+import webgpu.c.WGPUQueueWorkDoneStatus.Unknown
 
 public enum class WGPUQueueWorkDoneStatus(
     public val `value`: Int,
@@ -13,7 +18,6 @@ public enum class WGPUQueueWorkDoneStatus(
     InstanceDropped(0x00000002),
     Error(0x00000003),
     Unknown(0x00000004),
-    DeviceLost(0x00000005),
     ;
 
     public companion object {
@@ -37,7 +41,6 @@ public enum class WGPUQueueWorkDoneStatus(
             InstanceDropped.value -> InstanceDropped
             Error.value -> Error
             Unknown.value -> Unknown
-            DeviceLost.value -> DeviceLost
             else -> error("enum not found")
         }
     }

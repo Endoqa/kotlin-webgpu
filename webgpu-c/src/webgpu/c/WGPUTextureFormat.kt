@@ -5,6 +5,103 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUTextureFormat.ASTC10x10Unorm
+import webgpu.c.WGPUTextureFormat.ASTC10x10UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC10x5Unorm
+import webgpu.c.WGPUTextureFormat.ASTC10x5UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC10x6Unorm
+import webgpu.c.WGPUTextureFormat.ASTC10x6UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC10x8Unorm
+import webgpu.c.WGPUTextureFormat.ASTC10x8UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC12x10Unorm
+import webgpu.c.WGPUTextureFormat.ASTC12x10UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC12x12Unorm
+import webgpu.c.WGPUTextureFormat.ASTC12x12UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC4x4Unorm
+import webgpu.c.WGPUTextureFormat.ASTC4x4UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC5x4Unorm
+import webgpu.c.WGPUTextureFormat.ASTC5x4UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC5x5Unorm
+import webgpu.c.WGPUTextureFormat.ASTC5x5UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC6x5Unorm
+import webgpu.c.WGPUTextureFormat.ASTC6x5UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC6x6Unorm
+import webgpu.c.WGPUTextureFormat.ASTC6x6UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC8x5Unorm
+import webgpu.c.WGPUTextureFormat.ASTC8x5UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC8x6Unorm
+import webgpu.c.WGPUTextureFormat.ASTC8x6UnormSrgb
+import webgpu.c.WGPUTextureFormat.ASTC8x8Unorm
+import webgpu.c.WGPUTextureFormat.ASTC8x8UnormSrgb
+import webgpu.c.WGPUTextureFormat.BC1RGBAUnorm
+import webgpu.c.WGPUTextureFormat.BC1RGBAUnormSrgb
+import webgpu.c.WGPUTextureFormat.BC2RGBAUnorm
+import webgpu.c.WGPUTextureFormat.BC2RGBAUnormSrgb
+import webgpu.c.WGPUTextureFormat.BC3RGBAUnorm
+import webgpu.c.WGPUTextureFormat.BC3RGBAUnormSrgb
+import webgpu.c.WGPUTextureFormat.BC4RSnorm
+import webgpu.c.WGPUTextureFormat.BC4RUnorm
+import webgpu.c.WGPUTextureFormat.BC5RGSnorm
+import webgpu.c.WGPUTextureFormat.BC5RGUnorm
+import webgpu.c.WGPUTextureFormat.BC6HRGBFloat
+import webgpu.c.WGPUTextureFormat.BC6HRGBUfloat
+import webgpu.c.WGPUTextureFormat.BC7RGBAUnorm
+import webgpu.c.WGPUTextureFormat.BC7RGBAUnormSrgb
+import webgpu.c.WGPUTextureFormat.BGRA8Unorm
+import webgpu.c.WGPUTextureFormat.BGRA8UnormSrgb
+import webgpu.c.WGPUTextureFormat.Depth16Unorm
+import webgpu.c.WGPUTextureFormat.Depth24Plus
+import webgpu.c.WGPUTextureFormat.Depth24PlusStencil8
+import webgpu.c.WGPUTextureFormat.Depth32Float
+import webgpu.c.WGPUTextureFormat.Depth32FloatStencil8
+import webgpu.c.WGPUTextureFormat.EACR11Snorm
+import webgpu.c.WGPUTextureFormat.EACR11Unorm
+import webgpu.c.WGPUTextureFormat.EACRG11Snorm
+import webgpu.c.WGPUTextureFormat.EACRG11Unorm
+import webgpu.c.WGPUTextureFormat.ETC2RGB8A1Unorm
+import webgpu.c.WGPUTextureFormat.ETC2RGB8A1UnormSrgb
+import webgpu.c.WGPUTextureFormat.ETC2RGB8Unorm
+import webgpu.c.WGPUTextureFormat.ETC2RGB8UnormSrgb
+import webgpu.c.WGPUTextureFormat.ETC2RGBA8Unorm
+import webgpu.c.WGPUTextureFormat.ETC2RGBA8UnormSrgb
+import webgpu.c.WGPUTextureFormat.R16Float
+import webgpu.c.WGPUTextureFormat.R16Sint
+import webgpu.c.WGPUTextureFormat.R16Uint
+import webgpu.c.WGPUTextureFormat.R32Float
+import webgpu.c.WGPUTextureFormat.R32Sint
+import webgpu.c.WGPUTextureFormat.R32Uint
+import webgpu.c.WGPUTextureFormat.R8Sint
+import webgpu.c.WGPUTextureFormat.R8Snorm
+import webgpu.c.WGPUTextureFormat.R8Uint
+import webgpu.c.WGPUTextureFormat.R8Unorm
+import webgpu.c.WGPUTextureFormat.RG11B10Ufloat
+import webgpu.c.WGPUTextureFormat.RG16Float
+import webgpu.c.WGPUTextureFormat.RG16Sint
+import webgpu.c.WGPUTextureFormat.RG16Uint
+import webgpu.c.WGPUTextureFormat.RG32Float
+import webgpu.c.WGPUTextureFormat.RG32Sint
+import webgpu.c.WGPUTextureFormat.RG32Uint
+import webgpu.c.WGPUTextureFormat.RG8Sint
+import webgpu.c.WGPUTextureFormat.RG8Snorm
+import webgpu.c.WGPUTextureFormat.RG8Uint
+import webgpu.c.WGPUTextureFormat.RG8Unorm
+import webgpu.c.WGPUTextureFormat.RGB10A2Uint
+import webgpu.c.WGPUTextureFormat.RGB10A2Unorm
+import webgpu.c.WGPUTextureFormat.RGB9E5Ufloat
+import webgpu.c.WGPUTextureFormat.RGBA16Float
+import webgpu.c.WGPUTextureFormat.RGBA16Sint
+import webgpu.c.WGPUTextureFormat.RGBA16Uint
+import webgpu.c.WGPUTextureFormat.RGBA32Float
+import webgpu.c.WGPUTextureFormat.RGBA32Sint
+import webgpu.c.WGPUTextureFormat.RGBA32Uint
+import webgpu.c.WGPUTextureFormat.RGBA8Sint
+import webgpu.c.WGPUTextureFormat.RGBA8Snorm
+import webgpu.c.WGPUTextureFormat.RGBA8Uint
+import webgpu.c.WGPUTextureFormat.RGBA8Unorm
+import webgpu.c.WGPUTextureFormat.RGBA8UnormSrgb
+import webgpu.c.WGPUTextureFormat.Stencil8
+import webgpu.c.WGPUTextureFormat.Undefined
 
 public enum class WGPUTextureFormat(
     public val `value`: Int,
@@ -105,20 +202,6 @@ public enum class WGPUTextureFormat(
     ASTC12x10UnormSrgb(0x0000005D),
     ASTC12x12Unorm(0x0000005E),
     ASTC12x12UnormSrgb(0x0000005F),
-    R16Unorm(0x00050000),
-    RG16Unorm(0x00050001),
-    RGBA16Unorm(0x00050002),
-    R16Snorm(0x00050003),
-    RG16Snorm(0x00050004),
-    RGBA16Snorm(0x00050005),
-    R8BG8Biplanar420Unorm(0x00050006),
-    R10X6BG10X6Biplanar420Unorm(0x00050007),
-    R8BG8A8Triplanar420Unorm(0x00050008),
-    R8BG8Biplanar422Unorm(0x00050009),
-    R8BG8Biplanar444Unorm(0x0005000A),
-    R10X6BG10X6Biplanar422Unorm(0x0005000B),
-    R10X6BG10X6Biplanar444Unorm(0x0005000C),
-    External(0x0005000D),
     ;
 
     public companion object {
@@ -234,20 +317,6 @@ public enum class WGPUTextureFormat(
             ASTC12x10UnormSrgb.value -> ASTC12x10UnormSrgb
             ASTC12x12Unorm.value -> ASTC12x12Unorm
             ASTC12x12UnormSrgb.value -> ASTC12x12UnormSrgb
-            R16Unorm.value -> R16Unorm
-            RG16Unorm.value -> RG16Unorm
-            RGBA16Unorm.value -> RGBA16Unorm
-            R16Snorm.value -> R16Snorm
-            RG16Snorm.value -> RG16Snorm
-            RGBA16Snorm.value -> RGBA16Snorm
-            R8BG8Biplanar420Unorm.value -> R8BG8Biplanar420Unorm
-            R10X6BG10X6Biplanar420Unorm.value -> R10X6BG10X6Biplanar420Unorm
-            R8BG8A8Triplanar420Unorm.value -> R8BG8A8Triplanar420Unorm
-            R8BG8Biplanar422Unorm.value -> R8BG8Biplanar422Unorm
-            R8BG8Biplanar444Unorm.value -> R8BG8Biplanar444Unorm
-            R10X6BG10X6Biplanar422Unorm.value -> R10X6BG10X6Biplanar422Unorm
-            R10X6BG10X6Biplanar444Unorm.value -> R10X6BG10X6Biplanar444Unorm
-            External.value -> External
             else -> error("enum not found")
         }
     }

@@ -5,10 +5,17 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUPresentMode.Fifo
+import webgpu.c.WGPUPresentMode.FifoRelaxed
+import webgpu.c.WGPUPresentMode.Immediate
+import webgpu.c.WGPUPresentMode.Mailbox
+import webgpu.c.WGPUPresentMode.Undefined
 
 public enum class WGPUPresentMode(
     public val `value`: Int,
 ) {
+    Undefined(0x00000000),
     Fifo(0x00000001),
     FifoRelaxed(0x00000002),
     Immediate(0x00000003),
@@ -32,6 +39,7 @@ public enum class WGPUPresentMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUPresentMode = when (value) {
+            Undefined.value -> Undefined
             Fifo.value -> Fifo
             FifoRelaxed.value -> FifoRelaxed
             Immediate.value -> Immediate

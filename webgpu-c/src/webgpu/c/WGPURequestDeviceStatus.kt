@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPURequestDeviceStatus.Error
+import webgpu.c.WGPURequestDeviceStatus.InstanceDropped
+import webgpu.c.WGPURequestDeviceStatus.Success
+import webgpu.c.WGPURequestDeviceStatus.Unknown
 
 public enum class WGPURequestDeviceStatus(
     public val `value`: Int,

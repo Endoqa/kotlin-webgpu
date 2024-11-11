@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUAddressMode.ClampToEdge
+import webgpu.c.WGPUAddressMode.MirrorRepeat
+import webgpu.c.WGPUAddressMode.Repeat
+import webgpu.c.WGPUAddressMode.Undefined
 
 public enum class WGPUAddressMode(
     public val `value`: Int,

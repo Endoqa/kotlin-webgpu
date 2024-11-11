@@ -5,6 +5,10 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUCompilationMessageType.Error
+import webgpu.c.WGPUCompilationMessageType.Info
+import webgpu.c.WGPUCompilationMessageType.Warning
 
 public enum class WGPUCompilationMessageType(
     public val `value`: Int,

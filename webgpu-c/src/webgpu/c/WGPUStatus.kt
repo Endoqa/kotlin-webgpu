@@ -5,6 +5,9 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUStatus.Error
+import webgpu.c.WGPUStatus.Success
 
 public enum class WGPUStatus(
     public val `value`: Int,

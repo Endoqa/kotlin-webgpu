@@ -10,6 +10,7 @@ import java.lang.foreign.ValueLayout
 import java.lang.invoke.VarHandle
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.UInt
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmStatic
@@ -19,31 +20,31 @@ public value class WGPURenderPassTimestampWrites(
     public val `$mem`: MemorySegment,
 ) {
     public var querySet: WGPUQuerySet
-        get() = querySetHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = WGPURenderPassTimestampWrites.querySetHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            querySetHandle.set(this.`$mem`, 0L, value)
+            WGPURenderPassTimestampWrites.querySetHandle.set(this.`$mem`, 0L, value)
         }
 
-    public var beginningOfPassWriteIndex: uint32_t
-        get() = (beginningOfPassWriteIndexHandle.get(this.`$mem`, 0L) as
+    public var beginningOfPassWriteIndex: UInt
+        get() = (WGPURenderPassTimestampWrites.beginningOfPassWriteIndexHandle.get(this.`$mem`, 0L) as
                 Int).toUInt()
         set(`value`) {
-            beginningOfPassWriteIndexHandle.set(
+            WGPURenderPassTimestampWrites.beginningOfPassWriteIndexHandle.set(
                 this.`$mem`,
                 0L, value.toInt()
             )
         }
 
-    public var endOfPassWriteIndex: uint32_t
-        get() = (endOfPassWriteIndexHandle.get(this.`$mem`, 0L) as
+    public var endOfPassWriteIndex: UInt
+        get() = (WGPURenderPassTimestampWrites.endOfPassWriteIndexHandle.get(this.`$mem`, 0L) as
                 Int).toUInt()
         set(`value`) {
-            endOfPassWriteIndexHandle.set(this.`$mem`, 0L, value.toInt())
+            WGPURenderPassTimestampWrites.endOfPassWriteIndexHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(layout)
+        Arena.ofAuto().allocate(WGPURenderPassTimestampWrites.layout)
     })
 
     public companion object {
@@ -67,6 +68,6 @@ public value class WGPURenderPassTimestampWrites(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPURenderPassTimestampWrites =
-            WGPURenderPassTimestampWrites(alloc.allocate(layout))
+            WGPURenderPassTimestampWrites(alloc.allocate(WGPURenderPassTimestampWrites.layout))
     }
 }

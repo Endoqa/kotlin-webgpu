@@ -5,6 +5,11 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUCompilationInfoRequestStatus.Error
+import webgpu.c.WGPUCompilationInfoRequestStatus.InstanceDropped
+import webgpu.c.WGPUCompilationInfoRequestStatus.Success
+import webgpu.c.WGPUCompilationInfoRequestStatus.Unknown
 
 public enum class WGPUCompilationInfoRequestStatus(
     public val `value`: Int,
@@ -12,8 +17,7 @@ public enum class WGPUCompilationInfoRequestStatus(
     Success(0x00000001),
     InstanceDropped(0x00000002),
     Error(0x00000003),
-    DeviceLost(0x00000004),
-    Unknown(0x00000005),
+    Unknown(0x00000004),
     ;
 
     public companion object {
@@ -36,7 +40,6 @@ public enum class WGPUCompilationInfoRequestStatus(
             Success.value -> Success
             InstanceDropped.value -> InstanceDropped
             Error.value -> Error
-            DeviceLost.value -> DeviceLost
             Unknown.value -> Unknown
             else -> error("enum not found")
         }

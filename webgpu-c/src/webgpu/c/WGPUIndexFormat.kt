@@ -5,6 +5,10 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
+import kotlin.jvm.JvmStatic
+import webgpu.c.WGPUIndexFormat.Uint16
+import webgpu.c.WGPUIndexFormat.Uint32
+import webgpu.c.WGPUIndexFormat.Undefined
 
 public enum class WGPUIndexFormat(
     public val `value`: Int,
