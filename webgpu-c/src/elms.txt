@@ -41,6 +41,7 @@ WGPUCullMode
 WGPUDeviceLostReason
 WGPUErrorFilter
 WGPUErrorType
+WGPUFeatureLevel
 WGPUFeatureName
 WGPUFilterMode
 WGPUFrontFace
@@ -110,7 +111,6 @@ WGPUColor
 WGPUCommandBufferDescriptor
 WGPUCommandEncoderDescriptor
 WGPUCompilationMessage
-WGPUComputePassTimestampWrites
 WGPUConstantEntry
 WGPUExtent3D
 WGPUFuture
@@ -118,6 +118,7 @@ WGPUInstanceCapabilities
 WGPULimits
 WGPUMultisampleState
 WGPUOrigin3D
+WGPUPassTimestampWrites
 WGPUPipelineLayoutDescriptor
 WGPUPrimitiveState
 WGPUQuerySetDescriptor
@@ -126,7 +127,6 @@ WGPURenderBundleDescriptor
 WGPURenderBundleEncoderDescriptor
 WGPURenderPassDepthStencilAttachment
 WGPURenderPassMaxDrawCount
-WGPURenderPassTimestampWrites
 WGPURequestAdapterOptions
 WGPUSamplerBindingLayout
 WGPUSamplerDescriptor
@@ -156,11 +156,11 @@ WGPUBindGroupLayoutEntry
 WGPUBlendState
 WGPUCompilationInfo
 WGPUComputePassDescriptor
+WGPUComputeState
 WGPUDepthStencilState
 WGPUDeviceDescriptor
 WGPUFutureWaitInfo
 WGPUInstanceDescriptor
-WGPUProgrammableStageDescriptor
 WGPURenderPassColorAttachment
 WGPUTexelCopyBufferInfo
 WGPUTexelCopyTextureInfo
@@ -588,7 +588,6 @@ WGPUColor
 WGPUCommandBufferDescriptor
 WGPUCommandEncoderDescriptor
 WGPUCompilationMessage
-WGPUComputePassTimestampWrites
 WGPUConstantEntry
 WGPUExtent3D
 WGPUFuture
@@ -596,6 +595,7 @@ WGPUInstanceCapabilities
 WGPULimits
 WGPUMultisampleState
 WGPUOrigin3D
+WGPUPassTimestampWrites
 WGPUPipelineLayoutDescriptor
 WGPUPrimitiveState
 WGPUQuerySetDescriptor
@@ -604,7 +604,6 @@ WGPURenderBundleDescriptor
 WGPURenderBundleEncoderDescriptor
 WGPURenderPassDepthStencilAttachment
 WGPURenderPassMaxDrawCount
-WGPURenderPassTimestampWrites
 WGPURequestAdapterOptions
 WGPUSamplerBindingLayout
 WGPUSamplerDescriptor
@@ -634,11 +633,11 @@ WGPUBindGroupLayoutEntry
 WGPUBlendState
 WGPUCompilationInfo
 WGPUComputePassDescriptor
+WGPUComputeState
 WGPUDepthStencilState
 WGPUDeviceDescriptor
 WGPUFutureWaitInfo
 WGPUInstanceDescriptor
-WGPUProgrammableStageDescriptor
 WGPURenderPassColorAttachment
 WGPUTexelCopyBufferInfo
 WGPUTexelCopyTextureInfo
@@ -683,6 +682,7 @@ WGPUCullMode
 WGPUDeviceLostReason
 WGPUErrorFilter
 WGPUErrorType
+WGPUFeatureLevel
 WGPUFeatureName
 WGPUFilterMode
 WGPUFrontFace
