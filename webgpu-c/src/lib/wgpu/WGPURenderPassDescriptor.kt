@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPURenderPassDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,41 +18,54 @@ public value class WGPURenderPassDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * Array count for colorAttachments.
+     */
     public var colorAttachmentCount: ULong
-        get() = (colorAttachmentCountHandle.get(this.`$mem`, 0L) as
-                Long).toULong()
+        get() = (colorAttachmentCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             colorAttachmentCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var colorAttachments: Pointer<WGPURenderPassColorAttachment>
         get() = colorAttachmentsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             colorAttachmentsHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var depthStencilAttachment: Pointer<WGPURenderPassDepthStencilAttachment>
-        get() = depthStencilAttachmentHandle.get(this.`$mem`, 0L) as
-                MemorySegment
+        get() = depthStencilAttachmentHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             depthStencilAttachmentHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var occlusionQuerySet: WGPUQuerySet
         get() = occlusionQuerySetHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             occlusionQuerySetHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var timestampWrites: Pointer<WGPUPassTimestampWrites>
         get() = timestampWritesHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

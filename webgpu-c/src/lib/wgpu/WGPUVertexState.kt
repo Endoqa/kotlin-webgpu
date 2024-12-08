@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUVertexState(
     public val `$mem`: MemorySegment,
@@ -15,42 +18,54 @@ public value class WGPUVertexState(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var module: WGPUShaderModule
         get() = moduleHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             moduleHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var entryPoint: WGPUStringView
-        get() = WGPUStringView(
-            entryPointHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(entryPointHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.entryPoint.`$mem`, 0L,
-                WGPUStringView.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.entryPoint.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * Array count for constants.
+     */
     public var constantCount: ULong
         get() = (constantCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             constantCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var constants: Pointer<WGPUConstantEntry>
         get() = constantsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             constantsHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Array count for buffers.
+     */
     public var bufferCount: ULong
         get() = (bufferCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             bufferCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var buffers: Pointer<WGPUVertexBufferLayout>
         get() = buffersHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

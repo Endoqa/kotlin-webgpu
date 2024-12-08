@@ -6,12 +6,32 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUDeviceLostReason(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * TODO
+     */
     Unknown(0x00000001),
+
+    /**
+     * TODO
+     */
     Destroyed(0x00000002),
+
+    /**
+     * TODO
+     */
     InstanceDropped(0x00000003),
+
+    /**
+     * TODO
+     */
     FailedCreation(0x00000004),
     ;
 
@@ -32,6 +52,7 @@ public enum class WGPUDeviceLostReason(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUDeviceLostReason = when (value) {
+            Null.value -> Null
             Unknown.value -> Unknown
             Destroyed.value -> Destroyed
             InstanceDropped.value -> InstanceDropped

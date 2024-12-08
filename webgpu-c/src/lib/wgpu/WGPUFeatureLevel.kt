@@ -6,11 +6,25 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * See @ref WGPURequestAdapterOptions::featureLevel.
+ */
 public enum class WGPUFeatureLevel(
     public val `value`: Int,
 ) {
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
     Undefined(0x00000000),
+
+    /**
+     * "Compatibility" profile which can be supported on OpenGL ES 3.1 and D3D11.
+     */
     Compatibility(0x00000001),
+
+    /**
+     * "Core" profile which can be supported on Vulkan/Metal/D3D12 (at least).
+     */
     Core(0x00000002),
     ;
 

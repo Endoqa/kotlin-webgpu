@@ -6,7 +6,15 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 
+/**
+ * TODO
+ */
 public fun interface WGPUUncapturedErrorCallback {
+    /**
+     * @param device TODO
+     * @param type TODO
+     * @param message TODO
+     */
     public fun invoke(
         device: Pointer<WGPUDevice>,
         type: WGPUErrorType,

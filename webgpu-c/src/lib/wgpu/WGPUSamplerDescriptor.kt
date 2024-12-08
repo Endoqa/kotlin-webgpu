@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUSamplerDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,92 +18,105 @@ public value class WGPUSamplerDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * If set to @ref WGPUAddressMode_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUAddressMode_ClampToEdge.
+     */
     public var addressModeU: WGPUAddressMode
-        get() = WGPUAddressMode.fromInt(
-            addressModeUHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUAddressMode.fromInt(addressModeUHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             addressModeUHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUAddressMode_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUAddressMode_ClampToEdge.
+     */
     public var addressModeV: WGPUAddressMode
-        get() = WGPUAddressMode.fromInt(
-            addressModeVHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUAddressMode.fromInt(addressModeVHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             addressModeVHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUAddressMode_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUAddressMode_ClampToEdge.
+     */
     public var addressModeW: WGPUAddressMode
-        get() = WGPUAddressMode.fromInt(
-            addressModeWHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUAddressMode.fromInt(addressModeWHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             addressModeWHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUFilterMode_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUFilterMode_Nearest.
+     */
     public var magFilter: WGPUFilterMode
-        get() = WGPUFilterMode.fromInt(
-            magFilterHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUFilterMode.fromInt(magFilterHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             magFilterHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUFilterMode_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUFilterMode_Nearest.
+     */
     public var minFilter: WGPUFilterMode
-        get() = WGPUFilterMode.fromInt(
-            minFilterHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUFilterMode.fromInt(minFilterHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             minFilterHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUFilterMode_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUMipmapFilterMode_Nearest.
+     */
     public var mipmapFilter: WGPUMipmapFilterMode
-        get() = WGPUMipmapFilterMode.fromInt(
-            mipmapFilterHandle.get(
-                this.`$mem`,
-                0L
-            ) as Int
-        )
+        get() = WGPUMipmapFilterMode.fromInt(mipmapFilterHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             mipmapFilterHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var lodMinClamp: Float
         get() = lodMinClampHandle.get(this.`$mem`, 0L) as Float
         set(`value`) {
             lodMinClampHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var lodMaxClamp: Float
         get() = lodMaxClampHandle.get(this.`$mem`, 0L) as Float
         set(`value`) {
             lodMaxClampHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var compare: WGPUCompareFunction
-        get() = WGPUCompareFunction.fromInt(
-            compareHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUCompareFunction.fromInt(compareHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             compareHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var maxAnisotropy: UShort
         get() = (maxAnisotropyHandle.get(this.`$mem`, 0L) as Short).toUShort()
         set(`value`) {

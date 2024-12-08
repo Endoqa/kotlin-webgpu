@@ -4,25 +4,37 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUBlendComponent(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * If set to @ref WGPUBlendOperation_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUBlendOperation_Add.
+     */
     public var operation: WGPUBlendOperation
-        get() = WGPUBlendOperation.fromInt(
-            operationHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUBlendOperation.fromInt(operationHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             operationHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUBlendFactor_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUBlendFactor_One.
+     */
     public var srcFactor: WGPUBlendFactor
         get() = WGPUBlendFactor.fromInt(srcFactorHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             srcFactorHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUBlendFactor_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUBlendFactor_Zero.
+     */
     public var dstFactor: WGPUBlendFactor
         get() = WGPUBlendFactor.fromInt(dstFactorHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {

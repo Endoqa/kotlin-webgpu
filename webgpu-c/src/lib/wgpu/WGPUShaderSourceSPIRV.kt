@@ -5,28 +5,31 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUShaderSourceSPIRV(
     public val `$mem`: MemorySegment,
 ) {
     public var chain: WGPUChainedStruct
-        get() = WGPUChainedStruct(
-            chainHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUChainedStruct(chainHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.chain.`$mem`, 0L,
-                WGPUChainedStruct.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.chain.`$mem`, 0L, WGPUChainedStruct.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var codeSize: UInt
         get() = (codeSizeHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             codeSizeHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var code: Pointer<UInt>
         get() = codeHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

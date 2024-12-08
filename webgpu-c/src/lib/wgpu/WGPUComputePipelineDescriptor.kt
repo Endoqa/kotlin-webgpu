@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUComputePipelineDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,21 +18,27 @@ public value class WGPUComputePipelineDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var layout: WGPUPipelineLayout
         get() = layoutHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             layoutHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var compute: WGPUComputeState
         get() = WGPUComputeState(
             computeHandle.invokeExact(
@@ -38,10 +47,7 @@ public value class WGPUComputePipelineDescriptor(
             ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.compute.`$mem`, 0L,
-                WGPUComputeState.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.compute.`$mem`, 0L, WGPUComputeState.layout.byteSize())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {

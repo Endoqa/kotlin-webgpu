@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUMultisampleState(
     public val `$mem`: MemorySegment,
@@ -14,18 +17,27 @@ public value class WGPUMultisampleState(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var count: UInt
         get() = (countHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             countHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var mask: UInt
         get() = (maskHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maskHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var alphaToCoverageEnabled: WGPUBool
         get() = (alphaToCoverageEnabledHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {

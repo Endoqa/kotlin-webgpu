@@ -6,17 +6,57 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUSType(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * TODO
+     */
     ShaderSourceSPIRV(0x00000001),
+
+    /**
+     * TODO
+     */
     ShaderSourceWGSL(0x00000002),
+
+    /**
+     * TODO
+     */
     RenderPassMaxDrawCount(0x00000003),
+
+    /**
+     * TODO
+     */
     SurfaceSourceMetalLayer(0x00000004),
+
+    /**
+     * TODO
+     */
     SurfaceSourceWindowsHWND(0x00000005),
+
+    /**
+     * TODO
+     */
     SurfaceSourceXlibWindow(0x00000006),
+
+    /**
+     * TODO
+     */
     SurfaceSourceWaylandSurface(0x00000007),
+
+    /**
+     * TODO
+     */
     SurfaceSourceAndroidNativeWindow(0x00000008),
+
+    /**
+     * TODO
+     */
     SurfaceSourceXCBWindow(0x00000009),
     ;
 
@@ -37,6 +77,7 @@ public enum class WGPUSType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUSType = when (value) {
+            Null.value -> Null
             ShaderSourceSPIRV.value -> ShaderSourceSPIRV
             ShaderSourceWGSL.value -> ShaderSourceWGSL
             RenderPassMaxDrawCount.value -> RenderPassMaxDrawCount

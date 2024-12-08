@@ -6,15 +6,47 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * The status enum for @ref wgpuSurfaceGetCurrentTexture.
+ */
 public enum class WGPUSurfaceGetCurrentTextureStatus(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * Yay! Everything is good and we can render this frame.
+     */
     SuccessOptimal(0x00000001),
+
+    /**
+     * Still OK - the surface can present the frame, but in a suboptimal way. The surface may need reconfiguration.
+     */
     SuccessSuboptimal(0x00000002),
+
+    /**
+     * Some operation timed out while trying to acquire the frame.
+     */
     Timeout(0x00000003),
+
+    /**
+     * The surface is too different to be used, compared to when it was originally created.
+     */
     Outdated(0x00000004),
+
+    /**
+     * The connection to whatever owns the surface was lost.
+     */
     Lost(0x00000005),
+
+    /**
+     * The system ran out of memory.
+     */
     OutOfMemory(0x00000006),
+
+    /**
+     * The surface is not configured, or there was an @ref OutStructChainError.
+     */
     Error(0x00000007),
     ;
 
@@ -35,6 +67,7 @@ public enum class WGPUSurfaceGetCurrentTextureStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUSurfaceGetCurrentTextureStatus = when (value) {
+            Null.value -> Null
             SuccessOptimal.value -> SuccessOptimal
             SuccessSuboptimal.value -> SuccessSuboptimal
             Timeout.value -> Timeout

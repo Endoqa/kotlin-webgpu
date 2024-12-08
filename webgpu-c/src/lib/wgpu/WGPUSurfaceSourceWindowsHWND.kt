@@ -5,28 +5,37 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a Windows [`HWND`](https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd).
+ */
 @JvmInline
 public value class WGPUSurfaceSourceWindowsHWND(
     public val `$mem`: MemorySegment,
 ) {
     public var chain: WGPUChainedStruct
         get() = WGPUChainedStruct(
-            chainHandle.invokeExact(this.`$mem`, 0L)
-                    as MemorySegment
+            chainHandle.invokeExact(
+                this.`$mem`,
+                0L
+            ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.chain.`$mem`, 0L,
-                WGPUChainedStruct.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.chain.`$mem`, 0L, WGPUChainedStruct.layout.byteSize())
         }
 
+    /**
+     * The [`HINSTANCE`](https://learn.microsoft.com/en-us/windows/win32/learnwin32/winmain--the-application-entry-point) for this application.
+     * Most commonly `GetModuleHandle(nullptr)`.
+     */
     public var hinstance: Pointer<Unit>
         get() = hinstanceHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             hinstanceHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * The [`HWND`](https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd) that will be wrapped by the @ref WGPUSurface.
+     */
     public var hwnd: Pointer<Unit>
         get() = hwndHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

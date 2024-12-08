@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUCompilationInfo(
     public val `$mem`: MemorySegment,
@@ -14,12 +17,18 @@ public value class WGPUCompilationInfo(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Array count for messages.
+     */
     public var messageCount: ULong
         get() = (messageCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             messageCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var messages: Pointer<WGPUCompilationMessage>
         get() = messagesHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

@@ -5,28 +5,31 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an [Xlib](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html) `Window`.
+ */
 @JvmInline
 public value class WGPUSurfaceSourceXlibWindow(
     public val `$mem`: MemorySegment,
 ) {
     public var chain: WGPUChainedStruct
-        get() = WGPUChainedStruct(
-            chainHandle.invokeExact(this.`$mem`, 0L)
-                    as MemorySegment
-        )
+        get() = WGPUChainedStruct(chainHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.chain.`$mem`, 0L,
-                WGPUChainedStruct.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.chain.`$mem`, 0L, WGPUChainedStruct.layout.byteSize())
         }
 
+    /**
+     * A pointer to the [`Display`](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html#Opening_the_Display) connected to the X server.
+     */
     public var display: Pointer<Unit>
         get() = displayHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             displayHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * The [`Window`](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html#Creating_Windows) that will be wrapped by the @ref WGPUSurface.
+     */
     public var window: ULong
         get() = (windowHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {

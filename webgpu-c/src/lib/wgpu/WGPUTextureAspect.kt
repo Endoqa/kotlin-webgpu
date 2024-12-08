@@ -6,12 +6,30 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUTextureAspect(
     public val `value`: Int,
 ) {
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
     Undefined(0x00000000),
+
+    /**
+     * TODO
+     */
     All(0x00000001),
+
+    /**
+     * TODO
+     */
     StencilOnly(0x00000002),
+
+    /**
+     * TODO
+     */
     DepthOnly(0x00000003),
     ;
 

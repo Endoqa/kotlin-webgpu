@@ -26,12 +26,24 @@ internal val `wgpuGetInstanceCapabilities$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuGetProcAddress$mh`: MethodHandle by lazy {
+internal val `wgpuAdapterGetLimits$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuGetProcAddress"),
+        `$RuntimeHelper`.findSymbol("wgpuAdapterGetLimits"),
         FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
             `$RuntimeHelper`.POINTER,
-            WGPUStringView.layout,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuAdapterHasFeature$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuAdapterHasFeature"),
+        FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_INT,
         )
     )
 }
@@ -53,28 +65,6 @@ internal val `wgpuAdapterGetInfo$mh`: MethodHandle by lazy {
             ValueLayout.JAVA_INT,
             `$RuntimeHelper`.POINTER,
             `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuAdapterGetLimits$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuAdapterGetLimits"),
-        FunctionDescriptor.of(
-            ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuAdapterHasFeature$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuAdapterHasFeature"),
-        FunctionDescriptor.of(
-            ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
-            ValueLayout.JAVA_INT,
         )
     )
 }
@@ -105,15 +95,6 @@ internal val `wgpuAdapterRelease$mh`: MethodHandle by lazy {
         `$RuntimeHelper`.findSymbol("wgpuAdapterRelease"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuAdapterInfoFreeMembers$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuAdapterInfoFreeMembers"),
-        FunctionDescriptor.ofVoid(
-            WGPUAdapterInfo.layout,
         )
     )
 }
@@ -174,33 +155,16 @@ internal val `wgpuBindGroupLayoutRelease$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuBufferDestroy$mh`: MethodHandle by lazy {
+internal val `wgpuBufferMapAsync$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuBufferDestroy"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuBufferGetConstMappedRange$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuBufferGetConstMappedRange"),
+        `$RuntimeHelper`.findSymbol("wgpuBufferMapAsync"),
         FunctionDescriptor.of(
-            `$RuntimeHelper`.POINTER,
+            WGPUFuture.layout,
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_LONG,
             ValueLayout.JAVA_LONG,
-        )
-    )
-}
-
-internal val `wgpuBufferGetMapState$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuBufferGetMapState"),
-        FunctionDescriptor.of(
-            ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
+            WGPUBufferMapCallbackInfo.layout,
         )
     )
 }
@@ -217,36 +181,14 @@ internal val `wgpuBufferGetMappedRange$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuBufferGetSize$mh`: MethodHandle by lazy {
+internal val `wgpuBufferGetConstMappedRange$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuBufferGetSize"),
+        `$RuntimeHelper`.findSymbol("wgpuBufferGetConstMappedRange"),
         FunctionDescriptor.of(
-            ValueLayout.JAVA_LONG,
             `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuBufferGetUsage$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuBufferGetUsage"),
-        FunctionDescriptor.of(
-            ValueLayout.JAVA_LONG,
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuBufferMapAsync$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuBufferMapAsync"),
-        FunctionDescriptor.of(
-            WGPUFuture.layout,
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_LONG,
             ValueLayout.JAVA_LONG,
-            ValueLayout.JAVA_LONG,
-            WGPUBufferMapCallbackInfo.layout,
         )
     )
 }
@@ -261,9 +203,48 @@ internal val `wgpuBufferSetLabel$mh`: MethodHandle by lazy {
     )
 }
 
+internal val `wgpuBufferGetUsage$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuBufferGetUsage"),
+        FunctionDescriptor.of(
+            ValueLayout.JAVA_LONG,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuBufferGetSize$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuBufferGetSize"),
+        FunctionDescriptor.of(
+            ValueLayout.JAVA_LONG,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuBufferGetMapState$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuBufferGetMapState"),
+        FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
 internal val `wgpuBufferUnmap$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuBufferUnmap"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuBufferDestroy$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuBufferDestroy"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
         )
@@ -316,6 +297,17 @@ internal val `wgpuCommandBufferRelease$mh`: MethodHandle by lazy {
     )
 }
 
+internal val `wgpuCommandEncoderFinish$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuCommandEncoderFinish"),
+        FunctionDescriptor.of(
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
 internal val `wgpuCommandEncoderBeginComputePass$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuCommandEncoderBeginComputePass"),
@@ -334,18 +326,6 @@ internal val `wgpuCommandEncoderBeginRenderPass$mh`: MethodHandle by lazy {
             `$RuntimeHelper`.POINTER,
             `$RuntimeHelper`.POINTER,
             `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuCommandEncoderClearBuffer$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuCommandEncoderClearBuffer"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
-            ValueLayout.JAVA_LONG,
-            ValueLayout.JAVA_LONG,
         )
     )
 }
@@ -400,13 +380,14 @@ internal val `wgpuCommandEncoderCopyTextureToTexture$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuCommandEncoderFinish$mh`: MethodHandle by lazy {
+internal val `wgpuCommandEncoderClearBuffer$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuCommandEncoderFinish"),
-        FunctionDescriptor.of(
+        `$RuntimeHelper`.findSymbol("wgpuCommandEncoderClearBuffer"),
+        FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
             `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
+            ValueLayout.JAVA_LONG,
         )
     )
 }
@@ -454,16 +435,6 @@ internal val `wgpuCommandEncoderResolveQuerySet$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuCommandEncoderSetLabel$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuCommandEncoderSetLabel"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            WGPUStringView.layout,
-        )
-    )
-}
-
 internal val `wgpuCommandEncoderWriteTimestamp$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuCommandEncoderWriteTimestamp"),
@@ -471,6 +442,16 @@ internal val `wgpuCommandEncoderWriteTimestamp$mh`: MethodHandle by lazy {
             `$RuntimeHelper`.POINTER,
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_INT,
+        )
+    )
+}
+
+internal val `wgpuCommandEncoderSetLabel$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuCommandEncoderSetLabel"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            WGPUStringView.layout,
         )
     )
 }
@@ -488,6 +469,57 @@ internal val `wgpuCommandEncoderRelease$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuCommandEncoderRelease"),
         FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuComputePassEncoderInsertDebugMarker$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuComputePassEncoderInsertDebugMarker"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            WGPUStringView.layout,
+        )
+    )
+}
+
+internal val `wgpuComputePassEncoderPopDebugGroup$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuComputePassEncoderPopDebugGroup"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuComputePassEncoderPushDebugGroup$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuComputePassEncoderPushDebugGroup"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            WGPUStringView.layout,
+        )
+    )
+}
+
+internal val `wgpuComputePassEncoderSetPipeline$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuComputePassEncoderSetPipeline"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuComputePassEncoderSetBindGroup$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuComputePassEncoderSetBindGroup"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_INT,
+            `$RuntimeHelper`.POINTER,
             `$RuntimeHelper`.POINTER,
         )
     )
@@ -525,64 +557,12 @@ internal val `wgpuComputePassEncoderEnd$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuComputePassEncoderInsertDebugMarker$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuComputePassEncoderInsertDebugMarker"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            WGPUStringView.layout,
-        )
-    )
-}
-
-internal val `wgpuComputePassEncoderPopDebugGroup$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuComputePassEncoderPopDebugGroup"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuComputePassEncoderPushDebugGroup$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuComputePassEncoderPushDebugGroup"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            WGPUStringView.layout,
-        )
-    )
-}
-
-internal val `wgpuComputePassEncoderSetBindGroup$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuComputePassEncoderSetBindGroup"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
-            ValueLayout.JAVA_LONG,
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
 internal val `wgpuComputePassEncoderSetLabel$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuComputePassEncoderSetLabel"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
             WGPUStringView.layout,
-        )
-    )
-}
-
-internal val `wgpuComputePassEncoderSetPipeline$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuComputePassEncoderSetPipeline"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
         )
     )
 }
@@ -733,6 +713,18 @@ internal val `wgpuDeviceCreateQuerySet$mh`: MethodHandle by lazy {
     )
 }
 
+internal val `wgpuDeviceCreateRenderPipelineAsync$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuDeviceCreateRenderPipelineAsync"),
+        FunctionDescriptor.of(
+            WGPUFuture.layout,
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
+            WGPUCreateRenderPipelineAsyncCallbackInfo.layout,
+        )
+    )
+}
+
 internal val `wgpuDeviceCreateRenderBundleEncoder$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuDeviceCreateRenderBundleEncoder"),
@@ -751,18 +743,6 @@ internal val `wgpuDeviceCreateRenderPipeline$mh`: MethodHandle by lazy {
             `$RuntimeHelper`.POINTER,
             `$RuntimeHelper`.POINTER,
             `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuDeviceCreateRenderPipelineAsync$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuDeviceCreateRenderPipelineAsync"),
-        FunctionDescriptor.of(
-            WGPUFuture.layout,
-            `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
-            WGPUCreateRenderPipelineAsyncCallbackInfo.layout,
         )
     )
 }
@@ -809,38 +789,6 @@ internal val `wgpuDeviceDestroy$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuDeviceGetAdapterInfo$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuDeviceGetAdapterInfo"),
-        FunctionDescriptor.of(
-            ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuDeviceGetFeatures$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuDeviceGetFeatures"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuDeviceGetLimits$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuDeviceGetLimits"),
-        FunctionDescriptor.of(
-            ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
 internal val `wgpuDeviceGetLostFuture$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuDeviceGetLostFuture"),
@@ -851,10 +799,11 @@ internal val `wgpuDeviceGetLostFuture$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuDeviceGetQueue$mh`: MethodHandle by lazy {
+internal val `wgpuDeviceGetLimits$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuDeviceGetQueue"),
+        `$RuntimeHelper`.findSymbol("wgpuDeviceGetLimits"),
         FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
             `$RuntimeHelper`.POINTER,
             `$RuntimeHelper`.POINTER,
         )
@@ -872,13 +821,33 @@ internal val `wgpuDeviceHasFeature$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuDevicePopErrorScope$mh`: MethodHandle by lazy {
+internal val `wgpuDeviceGetFeatures$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuDevicePopErrorScope"),
-        FunctionDescriptor.of(
-            WGPUFuture.layout,
+        `$RuntimeHelper`.findSymbol("wgpuDeviceGetFeatures"),
+        FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
-            WGPUPopErrorScopeCallbackInfo.layout,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuDeviceGetAdapterInfo$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuDeviceGetAdapterInfo"),
+        FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuDeviceGetQueue$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuDeviceGetQueue"),
+        FunctionDescriptor.of(
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
         )
     )
 }
@@ -889,6 +858,17 @@ internal val `wgpuDevicePushErrorScope$mh`: MethodHandle by lazy {
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_INT,
+        )
+    )
+}
+
+internal val `wgpuDevicePopErrorScope$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuDevicePopErrorScope"),
+        FunctionDescriptor.of(
+            WGPUFuture.layout,
+            `$RuntimeHelper`.POINTER,
+            WGPUPopErrorScopeCallbackInfo.layout,
         )
     )
 }
@@ -1034,10 +1014,21 @@ internal val `wgpuPipelineLayoutRelease$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuQuerySetDestroy$mh`: MethodHandle by lazy {
+internal val `wgpuQuerySetSetLabel$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuQuerySetDestroy"),
+        `$RuntimeHelper`.findSymbol("wgpuQuerySetSetLabel"),
         FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            WGPUStringView.layout,
+        )
+    )
+}
+
+internal val `wgpuQuerySetGetType$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuQuerySetGetType"),
+        FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
             `$RuntimeHelper`.POINTER,
         )
     )
@@ -1053,22 +1044,11 @@ internal val `wgpuQuerySetGetCount$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuQuerySetGetType$mh`: MethodHandle by lazy {
+internal val `wgpuQuerySetDestroy$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuQuerySetGetType"),
-        FunctionDescriptor.of(
-            ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuQuerySetSetLabel$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuQuerySetSetLabel"),
+        `$RuntimeHelper`.findSymbol("wgpuQuerySetDestroy"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
-            WGPUStringView.layout,
         )
     )
 }
@@ -1091,27 +1071,6 @@ internal val `wgpuQuerySetRelease$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuQueueOnSubmittedWorkDone$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuQueueOnSubmittedWorkDone"),
-        FunctionDescriptor.of(
-            WGPUFuture.layout,
-            `$RuntimeHelper`.POINTER,
-            WGPUQueueWorkDoneCallbackInfo.layout,
-        )
-    )
-}
-
-internal val `wgpuQueueSetLabel$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuQueueSetLabel"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            WGPUStringView.layout,
-        )
-    )
-}
-
 internal val `wgpuQueueSubmit$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuQueueSubmit"),
@@ -1119,6 +1078,17 @@ internal val `wgpuQueueSubmit$mh`: MethodHandle by lazy {
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_LONG,
             `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuQueueOnSubmittedWorkDone$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuQueueOnSubmittedWorkDone"),
+        FunctionDescriptor.of(
+            WGPUFuture.layout,
+            `$RuntimeHelper`.POINTER,
+            WGPUQueueWorkDoneCallbackInfo.layout,
         )
     )
 }
@@ -1146,6 +1116,16 @@ internal val `wgpuQueueWriteTexture$mh`: MethodHandle by lazy {
             ValueLayout.JAVA_LONG,
             `$RuntimeHelper`.POINTER,
             `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuQueueSetLabel$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuQueueSetLabel"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            WGPUStringView.layout,
         )
     )
 }
@@ -1196,6 +1176,28 @@ internal val `wgpuRenderBundleRelease$mh`: MethodHandle by lazy {
     )
 }
 
+internal val `wgpuRenderBundleEncoderSetPipeline$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderSetPipeline"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuRenderBundleEncoderSetBindGroup$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderSetBindGroup"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_INT,
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
 internal val `wgpuRenderBundleEncoderDraw$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderDraw"),
@@ -1223,17 +1225,6 @@ internal val `wgpuRenderBundleEncoderDrawIndexed$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuRenderBundleEncoderDrawIndexedIndirect$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderDrawIndexedIndirect"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
-            ValueLayout.JAVA_LONG,
-        )
-    )
-}
-
 internal val `wgpuRenderBundleEncoderDrawIndirect$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderDrawIndirect"),
@@ -1245,13 +1236,13 @@ internal val `wgpuRenderBundleEncoderDrawIndirect$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuRenderBundleEncoderFinish$mh`: MethodHandle by lazy {
+internal val `wgpuRenderBundleEncoderDrawIndexedIndirect$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderFinish"),
-        FunctionDescriptor.of(
+        `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderDrawIndexedIndirect"),
+        FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
             `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
         )
     )
 }
@@ -1285,15 +1276,15 @@ internal val `wgpuRenderBundleEncoderPushDebugGroup$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuRenderBundleEncoderSetBindGroup$mh`: MethodHandle by lazy {
+internal val `wgpuRenderBundleEncoderSetVertexBuffer$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderSetBindGroup"),
+        `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderSetVertexBuffer"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_INT,
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_LONG,
-            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
         )
     )
 }
@@ -1311,35 +1302,23 @@ internal val `wgpuRenderBundleEncoderSetIndexBuffer$mh`: MethodHandle by lazy {
     )
 }
 
+internal val `wgpuRenderBundleEncoderFinish$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderFinish"),
+        FunctionDescriptor.of(
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
 internal val `wgpuRenderBundleEncoderSetLabel$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderSetLabel"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
             WGPUStringView.layout,
-        )
-    )
-}
-
-internal val `wgpuRenderBundleEncoderSetPipeline$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderSetPipeline"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuRenderBundleEncoderSetVertexBuffer$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderBundleEncoderSetVertexBuffer"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
-            ValueLayout.JAVA_LONG,
-            ValueLayout.JAVA_LONG,
         )
     )
 }
@@ -1362,12 +1341,24 @@ internal val `wgpuRenderBundleEncoderRelease$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuRenderPassEncoderBeginOcclusionQuery$mh`: MethodHandle by lazy {
+internal val `wgpuRenderPassEncoderSetPipeline$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderBeginOcclusionQuery"),
+        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetPipeline"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuRenderPassEncoderSetBindGroup$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetBindGroup"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_INT,
+            `$RuntimeHelper`.POINTER,
+            `$RuntimeHelper`.POINTER,
         )
     )
 }
@@ -1399,17 +1390,6 @@ internal val `wgpuRenderPassEncoderDrawIndexed$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuRenderPassEncoderDrawIndexedIndirect$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderDrawIndexedIndirect"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
-            ValueLayout.JAVA_LONG,
-        )
-    )
-}
-
 internal val `wgpuRenderPassEncoderDrawIndirect$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderDrawIndirect"),
@@ -1421,20 +1401,13 @@ internal val `wgpuRenderPassEncoderDrawIndirect$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuRenderPassEncoderEnd$mh`: MethodHandle by lazy {
+internal val `wgpuRenderPassEncoderDrawIndexedIndirect$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderEnd"),
+        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderDrawIndexedIndirect"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuRenderPassEncoderEndOcclusionQuery$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderEndOcclusionQuery"),
-        FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
         )
     )
 }
@@ -1479,15 +1452,12 @@ internal val `wgpuRenderPassEncoderPushDebugGroup$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuRenderPassEncoderSetBindGroup$mh`: MethodHandle by lazy {
+internal val `wgpuRenderPassEncoderSetStencilReference$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetBindGroup"),
+        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetStencilReference"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
-            ValueLayout.JAVA_LONG,
-            `$RuntimeHelper`.POINTER,
         )
     )
 }
@@ -1502,35 +1472,17 @@ internal val `wgpuRenderPassEncoderSetBlendConstant$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuRenderPassEncoderSetIndexBuffer$mh`: MethodHandle by lazy {
+internal val `wgpuRenderPassEncoderSetViewport$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetIndexBuffer"),
+        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetViewport"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
-            ValueLayout.JAVA_INT,
-            ValueLayout.JAVA_LONG,
-            ValueLayout.JAVA_LONG,
-        )
-    )
-}
-
-internal val `wgpuRenderPassEncoderSetLabel$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetLabel"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            WGPUStringView.layout,
-        )
-    )
-}
-
-internal val `wgpuRenderPassEncoderSetPipeline$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetPipeline"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
-            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_FLOAT,
+            ValueLayout.JAVA_FLOAT,
+            ValueLayout.JAVA_FLOAT,
+            ValueLayout.JAVA_FLOAT,
+            ValueLayout.JAVA_FLOAT,
+            ValueLayout.JAVA_FLOAT,
         )
     )
 }
@@ -1543,16 +1495,6 @@ internal val `wgpuRenderPassEncoderSetScissorRect$mh`: MethodHandle by lazy {
             ValueLayout.JAVA_INT,
             ValueLayout.JAVA_INT,
             ValueLayout.JAVA_INT,
-            ValueLayout.JAVA_INT,
-        )
-    )
-}
-
-internal val `wgpuRenderPassEncoderSetStencilReference$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetStencilReference"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_INT,
         )
     )
@@ -1571,17 +1513,53 @@ internal val `wgpuRenderPassEncoderSetVertexBuffer$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuRenderPassEncoderSetViewport$mh`: MethodHandle by lazy {
+internal val `wgpuRenderPassEncoderSetIndexBuffer$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetViewport"),
+        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetIndexBuffer"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
-            ValueLayout.JAVA_FLOAT,
-            ValueLayout.JAVA_FLOAT,
-            ValueLayout.JAVA_FLOAT,
-            ValueLayout.JAVA_FLOAT,
-            ValueLayout.JAVA_FLOAT,
-            ValueLayout.JAVA_FLOAT,
+            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_INT,
+            ValueLayout.JAVA_LONG,
+            ValueLayout.JAVA_LONG,
+        )
+    )
+}
+
+internal val `wgpuRenderPassEncoderBeginOcclusionQuery$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderBeginOcclusionQuery"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_INT,
+        )
+    )
+}
+
+internal val `wgpuRenderPassEncoderEndOcclusionQuery$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderEndOcclusionQuery"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuRenderPassEncoderEnd$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderEnd"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuRenderPassEncoderSetLabel$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuRenderPassEncoderSetLabel"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+            WGPUStringView.layout,
         )
     )
 }
@@ -1710,24 +1688,6 @@ internal val `wgpuShaderModuleRelease$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuSupportedFeaturesFreeMembers$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuSupportedFeaturesFreeMembers"),
-        FunctionDescriptor.ofVoid(
-            WGPUSupportedFeatures.layout,
-        )
-    )
-}
-
-internal val `wgpuSupportedWGSLLanguageFeaturesFreeMembers$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuSupportedWGSLLanguageFeaturesFreeMembers"),
-        FunctionDescriptor.ofVoid(
-            WGPUSupportedWGSLLanguageFeatures.layout,
-        )
-    )
-}
-
 internal val `wgpuSurfaceConfigure$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuSurfaceConfigure"),
@@ -1770,21 +1730,21 @@ internal val `wgpuSurfacePresent$mh`: MethodHandle by lazy {
     )
 }
 
+internal val `wgpuSurfaceUnconfigure$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuSurfaceUnconfigure"),
+        FunctionDescriptor.ofVoid(
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
 internal val `wgpuSurfaceSetLabel$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuSurfaceSetLabel"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
             WGPUStringView.layout,
-        )
-    )
-}
-
-internal val `wgpuSurfaceUnconfigure$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuSurfaceUnconfigure"),
-        FunctionDescriptor.ofVoid(
-            `$RuntimeHelper`.POINTER,
         )
     )
 }
@@ -1807,15 +1767,6 @@ internal val `wgpuSurfaceRelease$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuSurfaceCapabilitiesFreeMembers$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuSurfaceCapabilitiesFreeMembers"),
-        FunctionDescriptor.ofVoid(
-            WGPUSurfaceCapabilities.layout,
-        )
-    )
-}
-
 internal val `wgpuTextureCreateView$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuTextureCreateView"),
@@ -1827,38 +1778,19 @@ internal val `wgpuTextureCreateView$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuTextureDestroy$mh`: MethodHandle by lazy {
+internal val `wgpuTextureSetLabel$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuTextureDestroy"),
+        `$RuntimeHelper`.findSymbol("wgpuTextureSetLabel"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
+            WGPUStringView.layout,
         )
     )
 }
 
-internal val `wgpuTextureGetDepthOrArrayLayers$mh`: MethodHandle by lazy {
+internal val `wgpuTextureGetWidth$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuTextureGetDepthOrArrayLayers"),
-        FunctionDescriptor.of(
-            ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuTextureGetDimension$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuTextureGetDimension"),
-        FunctionDescriptor.of(
-            ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuTextureGetFormat$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuTextureGetFormat"),
+        `$RuntimeHelper`.findSymbol("wgpuTextureGetWidth"),
         FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             `$RuntimeHelper`.POINTER,
@@ -1869,6 +1801,16 @@ internal val `wgpuTextureGetFormat$mh`: MethodHandle by lazy {
 internal val `wgpuTextureGetHeight$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuTextureGetHeight"),
+        FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuTextureGetDepthOrArrayLayers$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuTextureGetDepthOrArrayLayers"),
         FunctionDescriptor.of(
             ValueLayout.JAVA_INT,
             `$RuntimeHelper`.POINTER,
@@ -1896,6 +1838,26 @@ internal val `wgpuTextureGetSampleCount$mh`: MethodHandle by lazy {
     )
 }
 
+internal val `wgpuTextureGetDimension$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuTextureGetDimension"),
+        FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
+internal val `wgpuTextureGetFormat$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuTextureGetFormat"),
+        FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            `$RuntimeHelper`.POINTER,
+        )
+    )
+}
+
 internal val `wgpuTextureGetUsage$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuTextureGetUsage"),
@@ -1906,22 +1868,11 @@ internal val `wgpuTextureGetUsage$mh`: MethodHandle by lazy {
     )
 }
 
-internal val `wgpuTextureGetWidth$mh`: MethodHandle by lazy {
+internal val `wgpuTextureDestroy$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuTextureGetWidth"),
-        FunctionDescriptor.of(
-            ValueLayout.JAVA_INT,
-            `$RuntimeHelper`.POINTER,
-        )
-    )
-}
-
-internal val `wgpuTextureSetLabel$mh`: MethodHandle by lazy {
-    Linker.nativeLinker().downcallHandle(
-        `$RuntimeHelper`.findSymbol("wgpuTextureSetLabel"),
+        `$RuntimeHelper`.findSymbol("wgpuTextureDestroy"),
         FunctionDescriptor.ofVoid(
             `$RuntimeHelper`.POINTER,
-            WGPUStringView.layout,
         )
     )
 }

@@ -9,7 +9,14 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 
+/**
+ * TODO
+ */
 public fun interface WGPUCompilationInfoCallback {
+    /**
+     * @param status TODO
+     * @param compilationInfo TODO
+     */
     public fun invoke(
         status: WGPUCompilationInfoRequestStatus,
         compilationInfo: Pointer<WGPUCompilationInfo>,

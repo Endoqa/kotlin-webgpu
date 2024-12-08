@@ -4,28 +4,43 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUColor(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * TODO
+     */
     public var r: Double
         get() = rHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
             rHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var g: Double
         get() = gHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
             gHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var b: Double
         get() = bHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
             bHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var a: Double
         get() = aHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
@@ -58,7 +73,6 @@ public value class WGPUColor(
         public val aHandle: VarHandle = layout.varHandle(MemoryLayout.PathElement.groupElement("a"))
 
         @JvmStatic
-        public fun allocate(alloc: SegmentAllocator): WGPUColor =
-            WGPUColor(alloc.allocate(layout))
+        public fun allocate(alloc: SegmentAllocator): WGPUColor = WGPUColor(alloc.allocate(layout))
     }
 }

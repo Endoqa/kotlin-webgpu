@@ -4,22 +4,34 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUOrigin3D(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * TODO
+     */
     public var x: UInt
         get() = (xHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             xHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var y: UInt
         get() = (yHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             yHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var z: UInt
         get() = (zHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
@@ -48,7 +60,6 @@ public value class WGPUOrigin3D(
         public val zHandle: VarHandle = layout.varHandle(MemoryLayout.PathElement.groupElement("z"))
 
         @JvmStatic
-        public fun allocate(alloc: SegmentAllocator): WGPUOrigin3D =
-            WGPUOrigin3D(alloc.allocate(layout))
+        public fun allocate(alloc: SegmentAllocator): WGPUOrigin3D = WGPUOrigin3D(alloc.allocate(layout))
     }
 }

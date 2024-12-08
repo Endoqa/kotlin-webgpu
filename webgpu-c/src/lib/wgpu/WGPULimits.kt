@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPULimits(
     public val `$mem`: MemorySegment,
@@ -14,189 +17,279 @@ public value class WGPULimits(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var maxTextureDimension1D: UInt
         get() = (maxTextureDimension1DHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxTextureDimension1DHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxTextureDimension2D: UInt
         get() = (maxTextureDimension2DHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxTextureDimension2DHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxTextureDimension3D: UInt
         get() = (maxTextureDimension3DHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxTextureDimension3DHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxTextureArrayLayers: UInt
         get() = (maxTextureArrayLayersHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxTextureArrayLayersHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxBindGroups: UInt
         get() = (maxBindGroupsHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxBindGroupsHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxBindGroupsPlusVertexBuffers: UInt
         get() = (maxBindGroupsPlusVertexBuffersHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxBindGroupsPlusVertexBuffersHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxBindingsPerBindGroup: UInt
         get() = (maxBindingsPerBindGroupHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxBindingsPerBindGroupHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxDynamicUniformBuffersPerPipelineLayout: UInt
-        get() = (maxDynamicUniformBuffersPerPipelineLayoutHandle.get(this.`$mem`, 0L) as
-                Int).toUInt()
+        get() = (maxDynamicUniformBuffersPerPipelineLayoutHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxDynamicUniformBuffersPerPipelineLayoutHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxDynamicStorageBuffersPerPipelineLayout: UInt
-        get() = (maxDynamicStorageBuffersPerPipelineLayoutHandle.get(this.`$mem`, 0L) as
-                Int).toUInt()
+        get() = (maxDynamicStorageBuffersPerPipelineLayoutHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxDynamicStorageBuffersPerPipelineLayoutHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxSampledTexturesPerShaderStage: UInt
         get() = (maxSampledTexturesPerShaderStageHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxSampledTexturesPerShaderStageHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxSamplersPerShaderStage: UInt
         get() = (maxSamplersPerShaderStageHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxSamplersPerShaderStageHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxStorageBuffersPerShaderStage: UInt
         get() = (maxStorageBuffersPerShaderStageHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxStorageBuffersPerShaderStageHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxStorageTexturesPerShaderStage: UInt
         get() = (maxStorageTexturesPerShaderStageHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxStorageTexturesPerShaderStageHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxUniformBuffersPerShaderStage: UInt
         get() = (maxUniformBuffersPerShaderStageHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxUniformBuffersPerShaderStageHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxUniformBufferBindingSize: ULong
         get() = (maxUniformBufferBindingSizeHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             maxUniformBufferBindingSizeHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var maxStorageBufferBindingSize: ULong
         get() = (maxStorageBufferBindingSizeHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             maxStorageBufferBindingSizeHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var minUniformBufferOffsetAlignment: UInt
         get() = (minUniformBufferOffsetAlignmentHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             minUniformBufferOffsetAlignmentHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var minStorageBufferOffsetAlignment: UInt
         get() = (minStorageBufferOffsetAlignmentHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             minStorageBufferOffsetAlignmentHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxVertexBuffers: UInt
         get() = (maxVertexBuffersHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxVertexBuffersHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxBufferSize: ULong
         get() = (maxBufferSizeHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             maxBufferSizeHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var maxVertexAttributes: UInt
         get() = (maxVertexAttributesHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxVertexAttributesHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxVertexBufferArrayStride: UInt
         get() = (maxVertexBufferArrayStrideHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxVertexBufferArrayStrideHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxInterStageShaderVariables: UInt
         get() = (maxInterStageShaderVariablesHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxInterStageShaderVariablesHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxColorAttachments: UInt
         get() = (maxColorAttachmentsHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxColorAttachmentsHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxColorAttachmentBytesPerSample: UInt
         get() = (maxColorAttachmentBytesPerSampleHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxColorAttachmentBytesPerSampleHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxComputeWorkgroupStorageSize: UInt
         get() = (maxComputeWorkgroupStorageSizeHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxComputeWorkgroupStorageSizeHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxComputeInvocationsPerWorkgroup: UInt
-        get() = (maxComputeInvocationsPerWorkgroupHandle.get(this.`$mem`, 0L) as
-                Int).toUInt()
+        get() = (maxComputeInvocationsPerWorkgroupHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxComputeInvocationsPerWorkgroupHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxComputeWorkgroupSizeX: UInt
         get() = (maxComputeWorkgroupSizeXHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxComputeWorkgroupSizeXHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxComputeWorkgroupSizeY: UInt
         get() = (maxComputeWorkgroupSizeYHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxComputeWorkgroupSizeYHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxComputeWorkgroupSizeZ: UInt
         get() = (maxComputeWorkgroupSizeZHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             maxComputeWorkgroupSizeZHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var maxComputeWorkgroupsPerDimension: UInt
         get() = (maxComputeWorkgroupsPerDimensionHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
@@ -375,7 +468,6 @@ public value class WGPULimits(
             layout.varHandle(MemoryLayout.PathElement.groupElement("maxComputeWorkgroupsPerDimension"))
 
         @JvmStatic
-        public fun allocate(alloc: SegmentAllocator): WGPULimits =
-            WGPULimits(alloc.allocate(layout))
+        public fun allocate(alloc: SegmentAllocator): WGPULimits = WGPULimits(alloc.allocate(layout))
     }
 }

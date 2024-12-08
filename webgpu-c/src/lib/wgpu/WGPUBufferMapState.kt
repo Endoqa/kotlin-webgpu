@@ -6,11 +6,27 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUBufferMapState(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * TODO
+     */
     Unmapped(0x00000001),
+
+    /**
+     * TODO
+     */
     Pending(0x00000002),
+
+    /**
+     * TODO
+     */
     Mapped(0x00000003),
     ;
 
@@ -31,6 +47,7 @@ public enum class WGPUBufferMapState(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUBufferMapState = when (value) {
+            Null.value -> Null
             Unmapped.value -> Unmapped
             Pending.value -> Pending
             Mapped.value -> Mapped

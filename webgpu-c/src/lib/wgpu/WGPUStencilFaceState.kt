@@ -4,42 +4,49 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUStencilFaceState(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * If set to @ref WGPUCompareFunction_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUCompareFunction_Always.
+     */
     public var compare: WGPUCompareFunction
-        get() = WGPUCompareFunction.fromInt(
-            compareHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUCompareFunction.fromInt(compareHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             compareHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUStencilOperation_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUStencilOperation_Keep.
+     */
     public var failOp: WGPUStencilOperation
-        get() = WGPUStencilOperation.fromInt(
-            failOpHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUStencilOperation.fromInt(failOpHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             failOpHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUStencilOperation_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUStencilOperation_Keep.
+     */
     public var depthFailOp: WGPUStencilOperation
-        get() = WGPUStencilOperation.fromInt(
-            depthFailOpHandle.get(this.`$mem`, 0L)
-                    as Int
-        )
+        get() = WGPUStencilOperation.fromInt(depthFailOpHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             depthFailOpHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUStencilOperation_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUStencilOperation_Keep.
+     */
     public var passOp: WGPUStencilOperation
-        get() = WGPUStencilOperation.fromInt(
-            passOpHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUStencilOperation.fromInt(passOpHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             passOpHandle.set(this.`$mem`, 0L, value.value)
         }

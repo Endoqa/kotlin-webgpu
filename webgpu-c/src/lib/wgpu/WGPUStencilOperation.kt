@@ -6,17 +6,55 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUStencilOperation(
     public val `value`: Int,
 ) {
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
     Undefined(0x00000000),
+
+    /**
+     * TODO
+     */
     Keep(0x00000001),
+
+    /**
+     * TODO
+     */
     Zero(0x00000002),
+
+    /**
+     * TODO
+     */
     Replace(0x00000003),
+
+    /**
+     * TODO
+     */
     Invert(0x00000004),
+
+    /**
+     * TODO
+     */
     IncrementClamp(0x00000005),
+
+    /**
+     * TODO
+     */
     DecrementClamp(0x00000006),
+
+    /**
+     * TODO
+     */
     IncrementWrap(0x00000007),
+
+    /**
+     * TODO
+     */
     DecrementWrap(0x00000008),
     ;
 

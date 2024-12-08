@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUComputePassDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,15 +18,18 @@ public value class WGPUComputePassDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var timestampWrites: Pointer<WGPUPassTimestampWrites>
         get() = timestampWritesHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

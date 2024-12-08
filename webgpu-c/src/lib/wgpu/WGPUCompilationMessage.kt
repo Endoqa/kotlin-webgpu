@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUCompilationMessage(
     public val `$mem`: MemorySegment,
@@ -15,47 +18,54 @@ public value class WGPUCompilationMessage(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * A @ref LocalizableHumanReadableMessageString.
+     */
     public var message: WGPUStringView
-        get() = WGPUStringView(
-            messageHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(messageHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.message.`$mem`, 0L,
-                WGPUStringView.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.message.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * Severity level of the message.
+     */
     public var type: WGPUCompilationMessageType
-        get() = WGPUCompilationMessageType.fromInt(
-            typeHandle.get(
-                this.`$mem`,
-                0L
-            ) as Int
-        )
+        get() = WGPUCompilationMessageType.fromInt(typeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             typeHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * Line number where the message is attached, starting at 1.
+     */
     public var lineNum: ULong
         get() = (lineNumHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             lineNumHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * Offset in UTF-8 code units (bytes) from the beginning of the line, starting at 1.
+     */
     public var linePos: ULong
         get() = (linePosHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             linePosHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * Offset in UTF-8 code units (bytes) from the beginning of the shader code, starting at 0.
+     */
     public var offset: ULong
         get() = (offsetHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             offsetHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * Length in UTF-8 code units (bytes) of the span the message corresponds to.
+     */
     public var length: ULong
         get() = (lengthHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {

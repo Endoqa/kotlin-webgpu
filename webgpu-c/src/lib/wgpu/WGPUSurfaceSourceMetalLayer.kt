@@ -5,22 +5,22 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc).
+ */
 @JvmInline
 public value class WGPUSurfaceSourceMetalLayer(
     public val `$mem`: MemorySegment,
 ) {
     public var chain: WGPUChainedStruct
-        get() = WGPUChainedStruct(
-            chainHandle.invokeExact(this.`$mem`, 0L)
-                    as MemorySegment
-        )
+        get() = WGPUChainedStruct(chainHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.chain.`$mem`, 0L,
-                WGPUChainedStruct.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.chain.`$mem`, 0L, WGPUChainedStruct.layout.byteSize())
         }
 
+    /**
+     * The pointer to the [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc) that will be wrapped by the @ref WGPUSurface.
+     */
     public var layer: Pointer<Unit>
         get() = layerHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

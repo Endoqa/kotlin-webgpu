@@ -6,9 +6,15 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * Status code returned (synchronously) from many operations. Generally
+ * indicates an invalid input like an unknown enum value or @ref OutStructChainError.
+ * Read the function's documentation for specific error conditions.
+ */
 public enum class WGPUStatus(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
     Success(0x00000001),
     Error(0x00000002),
     ;
@@ -30,6 +36,7 @@ public enum class WGPUStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUStatus = when (value) {
+            Null.value -> Null
             Success.value -> Success
             Error.value -> Error
             else -> error("enum not found")

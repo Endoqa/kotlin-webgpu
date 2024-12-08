@@ -6,11 +6,27 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUPopErrorScopeStatus(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * The error scope stack was successfully popped and a result was reported.
+     */
     Success(0x00000001),
+
+    /**
+     * TODO
+     */
     InstanceDropped(0x00000002),
+
+    /**
+     * The error scope stack could not be popped, because it was empty.
+     */
     Error(0x00000003),
     ;
 
@@ -31,6 +47,7 @@ public enum class WGPUPopErrorScopeStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUPopErrorScopeStatus = when (value) {
+            Null.value -> Null
             Success.value -> Success
             InstanceDropped.value -> InstanceDropped
             Error.value -> Error

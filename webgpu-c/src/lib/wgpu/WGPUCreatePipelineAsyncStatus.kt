@@ -6,12 +6,32 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUCreatePipelineAsyncStatus(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * TODO
+     */
     Success(0x00000001),
+
+    /**
+     * TODO
+     */
     InstanceDropped(0x00000002),
+
+    /**
+     * TODO
+     */
     ValidationError(0x00000003),
+
+    /**
+     * TODO
+     */
     InternalError(0x00000004),
     ;
 
@@ -32,6 +52,7 @@ public enum class WGPUCreatePipelineAsyncStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUCreatePipelineAsyncStatus = when (value) {
+            Null.value -> Null
             Success.value -> Success
             InstanceDropped.value -> InstanceDropped
             ValidationError.value -> ValidationError

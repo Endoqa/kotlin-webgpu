@@ -8,7 +8,13 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 
+/**
+ * TODO
+ */
 public fun interface WGPUQueueWorkDoneCallback {
+    /**
+     * @param status TODO
+     */
     public fun invoke(
         status: WGPUQueueWorkDoneStatus,
         userdata1: Pointer<Unit>,

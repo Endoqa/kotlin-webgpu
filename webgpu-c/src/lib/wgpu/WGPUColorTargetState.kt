@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUColorTargetState(
     public val `$mem`: MemorySegment,
@@ -14,19 +17,30 @@ public value class WGPUColorTargetState(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * The texture format of the target. If @ref WGPUTextureFormat_Undefined,
+     * indicates a "hole" in the parent @ref WGPUFragmentState `targets` array:
+     * the pipeline does not output a value at this `location`.
+     */
     public var format: WGPUTextureFormat
         get() = WGPUTextureFormat.fromInt(formatHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             formatHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var blend: Pointer<WGPUBlendState>
         get() = blendHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             blendHandle.set(this.`$mem`, 0L, value)
         }
 
-    public var writeMask: WGPUColorWriteMask
+    /**
+     * TODO
+     */
+    public var writeMask: ULong
         get() = (writeMaskHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             writeMaskHandle.set(this.`$mem`, 0L, value.toLong())

@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPURequestAdapterOptions(
     public val `$mem`: MemorySegment,
@@ -14,45 +17,53 @@ public value class WGPURequestAdapterOptions(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * "Feature level" for the adapter request. If an adapter is returned, it must support the features and limits in the requested feature level.
+     *
+     * If set to @ref WGPUFeatureLevel_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUFeatureLevel_Core.
+     * Additionally, implementations may ignore @ref WGPUFeatureLevel_Compatibility
+     * and provide @ref WGPUFeatureLevel_Core instead.
+     */
     public var featureLevel: WGPUFeatureLevel
-        get() = WGPUFeatureLevel.fromInt(
-            featureLevelHandle.get(
-                this.`$mem`,
-                0L
-            ) as Int
-        )
+        get() = WGPUFeatureLevel.fromInt(featureLevelHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             featureLevelHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var powerPreference: WGPUPowerPreference
-        get() =
-            WGPUPowerPreference.fromInt(
-                powerPreferenceHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
+        get() = WGPUPowerPreference.fromInt(powerPreferenceHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             powerPreferenceHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If true, requires the adapter to be a "fallback" adapter as defined by the JS spec.
+     * If this is not possible, the request returns null.
+     */
     public var forceFallbackAdapter: WGPUBool
-        get() = (forceFallbackAdapterHandle.get(this.`$mem`, 0L) as
-                Int).toUInt()
+        get() = (forceFallbackAdapterHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             forceFallbackAdapterHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * If set, requires the adapter to have a particular backend type.
+     * If this is not possible, the request returns null.
+     */
     public var backendType: WGPUBackendType
-        get() = WGPUBackendType.fromInt(
-            backendTypeHandle.get(this.`$mem`, 0L)
-                    as Int
-        )
+        get() = WGPUBackendType.fromInt(backendTypeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             backendTypeHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set, requires the adapter to be able to output to a particular surface.
+     * If this is not possible, the request returns null.
+     */
     public var compatibleSurface: WGPUSurface
         get() = compatibleSurfaceHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

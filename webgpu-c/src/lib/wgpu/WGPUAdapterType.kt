@@ -6,12 +6,32 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUAdapterType(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * TODO
+     */
     DiscreteGPU(0x00000001),
+
+    /**
+     * TODO
+     */
     IntegratedGPU(0x00000002),
+
+    /**
+     * TODO
+     */
     CPU(0x00000003),
+
+    /**
+     * TODO
+     */
     Unknown(0x00000004),
     ;
 
@@ -32,6 +52,7 @@ public enum class WGPUAdapterType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUAdapterType = when (value) {
+            Null.value -> Null
             DiscreteGPU.value -> DiscreteGPU
             IntegratedGPU.value -> IntegratedGPU
             CPU.value -> CPU

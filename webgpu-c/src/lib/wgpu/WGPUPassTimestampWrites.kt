@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUPassTimestampWrites(
     public val `$mem`: MemorySegment,
@@ -14,19 +17,27 @@ public value class WGPUPassTimestampWrites(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Query set to write timestamps to.
+     */
     public var querySet: WGPUQuerySet
         get() = querySetHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             querySetHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var beginningOfPassWriteIndex: UInt
-        get() = (beginningOfPassWriteIndexHandle.get(this.`$mem`, 0L) as
-                Int).toUInt()
+        get() = (beginningOfPassWriteIndexHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             beginningOfPassWriteIndexHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var endOfPassWriteIndex: UInt
         get() = (endOfPassWriteIndexHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {

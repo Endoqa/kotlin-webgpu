@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * Features enabled on the WGPUInstance
+ */
 @JvmInline
 public value class WGPUInstanceCapabilities(
     public val `$mem`: MemorySegment,
@@ -14,15 +17,20 @@ public value class WGPUInstanceCapabilities(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Enable use of ::wgpuInstanceWaitAny with `timeoutNS > 0`.
+     */
     public var timedWaitAnyEnable: WGPUBool
         get() = (timedWaitAnyEnableHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             timedWaitAnyEnableHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * The maximum number @ref WGPUFutureWaitInfo supported in a call to ::wgpuInstanceWaitAny with `timeoutNS > 0`.
+     */
     public var timedWaitAnyMaxCount: ULong
-        get() = (timedWaitAnyMaxCountHandle.get(this.`$mem`, 0L) as
-                Long).toULong()
+        get() = (timedWaitAnyMaxCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             timedWaitAnyMaxCountHandle.set(this.`$mem`, 0L, value.toLong())
         }

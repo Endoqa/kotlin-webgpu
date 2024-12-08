@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUTextureViewDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,70 +18,83 @@ public value class WGPUTextureViewDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var format: WGPUTextureFormat
-        get() = WGPUTextureFormat.fromInt(
-            formatHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUTextureFormat.fromInt(formatHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             formatHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var dimension: WGPUTextureViewDimension
-        get() =
-            WGPUTextureViewDimension.fromInt(
-                dimensionHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
+        get() = WGPUTextureViewDimension.fromInt(dimensionHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             dimensionHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var baseMipLevel: UInt
         get() = (baseMipLevelHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             baseMipLevelHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var mipLevelCount: UInt
         get() = (mipLevelCountHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             mipLevelCountHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var baseArrayLayer: UInt
         get() = (baseArrayLayerHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             baseArrayLayerHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var arrayLayerCount: UInt
         get() = (arrayLayerCountHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             arrayLayerCountHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * If set to @ref WGPUTextureAspect_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUTextureAspect_All.
+     */
     public var aspect: WGPUTextureAspect
-        get() = WGPUTextureAspect.fromInt(
-            aspectHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUTextureAspect.fromInt(aspectHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             aspectHandle.set(this.`$mem`, 0L, value.value)
         }
 
-    public var usage: WGPUTextureUsage
+    /**
+     * TODO
+     */
+    public var usage: ULong
         get() = (usageHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             usageHandle.set(this.`$mem`, 0L, value.toLong())

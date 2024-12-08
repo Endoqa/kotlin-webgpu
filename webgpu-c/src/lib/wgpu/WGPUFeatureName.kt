@@ -6,25 +6,95 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUFeatureName(
     public val `value`: Int,
 ) {
+    /**
+     * TODO
+     */
     Undefined(0x00000000),
+
+    /**
+     * TODO
+     */
     DepthClipControl(0x00000001),
+
+    /**
+     * TODO
+     */
     Depth32FloatStencil8(0x00000002),
+
+    /**
+     * TODO
+     */
     TimestampQuery(0x00000003),
+
+    /**
+     * TODO
+     */
     TextureCompressionBC(0x00000004),
+
+    /**
+     * TODO
+     */
     TextureCompressionBCSliced3D(0x00000005),
+
+    /**
+     * TODO
+     */
     TextureCompressionETC2(0x00000006),
+
+    /**
+     * TODO
+     */
     TextureCompressionASTC(0x00000007),
+
+    /**
+     * TODO
+     */
     TextureCompressionASTCSliced3D(0x00000008),
+
+    /**
+     * TODO
+     */
     IndirectFirstInstance(0x00000009),
-    ShaderF16(0x0000000A),
-    RG11B10UfloatRenderable(0x0000000B),
-    BGRA8UnormStorage(0x0000000C),
-    Float32Filterable(0x0000000D),
-    Float32Blendable(0x0000000E),
-    ClipDistances(0x0000000F),
+
+    /**
+     * TODO
+     */
+    ShaderF16(0x0000000a),
+
+    /**
+     * TODO
+     */
+    RG11B10UfloatRenderable(0x0000000b),
+
+    /**
+     * TODO
+     */
+    BGRA8UnormStorage(0x0000000c),
+
+    /**
+     * TODO
+     */
+    Float32Filterable(0x0000000d),
+
+    /**
+     * TODO
+     */
+    Float32Blendable(0x0000000e),
+
+    /**
+     * TODO
+     */
+    ClipDistances(0x0000000f),
+
+    /**
+     * TODO
+     */
     DualSourceBlending(0x00000010),
     ;
 

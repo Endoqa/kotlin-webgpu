@@ -6,13 +6,37 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * Status returned from a call to ::wgpuInstanceWaitAny.
+ */
 public enum class WGPUWaitStatus(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * At least one WGPUFuture completed successfully.
+     */
     Success(0x00000001),
+
+    /**
+     * No WGPUFutures completed within the timeout.
+     */
     TimedOut(0x00000002),
+
+    /**
+     * A @ref Timed-Wait was performed when WGPUInstanceFeatures::timedWaitAnyEnable is false.
+     */
     UnsupportedTimeout(0x00000003),
+
+    /**
+     * The number of futures waited on in a @ref Timed-Wait is greater than the supported WGPUInstanceFeatures::timedWaitAnyMaxCount.
+     */
     UnsupportedCount(0x00000004),
+
+    /**
+     * An invalid wait was performed with @ref Mixed-Sources.
+     */
     UnsupportedMixedSources(0x00000005),
     ;
 
@@ -33,6 +57,7 @@ public enum class WGPUWaitStatus(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUWaitStatus = when (value) {
+            Null.value -> Null
             Success.value -> Success
             TimedOut.value -> TimedOut
             UnsupportedTimeout.value -> UnsupportedTimeout

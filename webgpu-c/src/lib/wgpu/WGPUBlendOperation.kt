@@ -6,14 +6,40 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUBlendOperation(
     public val `value`: Int,
 ) {
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
     Undefined(0x00000000),
+
+    /**
+     * TODO
+     */
     Add(0x00000001),
+
+    /**
+     * TODO
+     */
     Subtract(0x00000002),
+
+    /**
+     * TODO
+     */
     ReverseSubtract(0x00000003),
+
+    /**
+     * TODO
+     */
     Min(0x00000004),
+
+    /**
+     * TODO
+     */
     Max(0x00000005),
     ;
 

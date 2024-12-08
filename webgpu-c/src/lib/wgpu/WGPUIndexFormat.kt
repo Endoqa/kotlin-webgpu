@@ -6,11 +6,25 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUIndexFormat(
     public val `value`: Int,
 ) {
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
     Undefined(0x00000000),
+
+    /**
+     * TODO
+     */
     Uint16(0x00000001),
+
+    /**
+     * TODO
+     */
     Uint32(0x00000002),
     ;
 

@@ -6,26 +6,100 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUBlendFactor(
     public val `value`: Int,
 ) {
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
     Undefined(0x00000000),
+
+    /**
+     * TODO
+     */
     Zero(0x00000001),
+
+    /**
+     * TODO
+     */
     One(0x00000002),
+
+    /**
+     * TODO
+     */
     Src(0x00000003),
+
+    /**
+     * TODO
+     */
     OneMinusSrc(0x00000004),
+
+    /**
+     * TODO
+     */
     SrcAlpha(0x00000005),
+
+    /**
+     * TODO
+     */
     OneMinusSrcAlpha(0x00000006),
+
+    /**
+     * TODO
+     */
     Dst(0x00000007),
+
+    /**
+     * TODO
+     */
     OneMinusDst(0x00000008),
+
+    /**
+     * TODO
+     */
     DstAlpha(0x00000009),
-    OneMinusDstAlpha(0x0000000A),
-    SrcAlphaSaturated(0x0000000B),
-    Constant(0x0000000C),
-    OneMinusConstant(0x0000000D),
-    Src1(0x0000000E),
-    OneMinusSrc1(0x0000000F),
+
+    /**
+     * TODO
+     */
+    OneMinusDstAlpha(0x0000000a),
+
+    /**
+     * TODO
+     */
+    SrcAlphaSaturated(0x0000000b),
+
+    /**
+     * TODO
+     */
+    Constant(0x0000000c),
+
+    /**
+     * TODO
+     */
+    OneMinusConstant(0x0000000d),
+
+    /**
+     * TODO
+     */
+    Src1(0x0000000e),
+
+    /**
+     * TODO
+     */
+    OneMinusSrc1(0x0000000f),
+
+    /**
+     * TODO
+     */
     Src1Alpha(0x00000010),
+
+    /**
+     * TODO
+     */
     OneMinusSrc1Alpha(0x00000011),
     ;
 

@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUBufferBindingLayout(
     public val `$mem`: MemorySegment,
@@ -14,21 +17,28 @@ public value class WGPUBufferBindingLayout(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * If set to @ref WGPUBufferBindingType_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUBufferBindingType_Uniform.
+     */
     public var type: WGPUBufferBindingType
-        get() = WGPUBufferBindingType.fromInt(
-            typeHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUBufferBindingType.fromInt(typeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             typeHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var hasDynamicOffset: WGPUBool
         get() = (hasDynamicOffsetHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             hasDynamicOffsetHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var minBindingSize: ULong
         get() = (minBindingSizeHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {

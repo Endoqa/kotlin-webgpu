@@ -9,41 +9,36 @@ public value class WGPUCreateRenderPipelineAsyncCallbackInfo(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = nextInChainHandle.get(this.`$mem`, 0L) as
-                MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var mode: WGPUCallbackMode
-        get() =
-            WGPUCallbackMode.fromInt(
-                modeHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
+        get() = WGPUCallbackMode.fromInt(
+            modeHandle.get(
+                this.`$mem`,
+                0L
+            ) as Int
+        )
         set(`value`) {
             modeHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public var callback: WGPUCreateRenderPipelineAsyncCallback
-        get() = callbackHandle.get(this.`$mem`, 0L) as
-                MemorySegment
+        get() = callbackHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             callbackHandle.set(this.`$mem`, 0L, value)
         }
 
     public var userdata1: Pointer<Unit>
-        get() = userdata1Handle.get(this.`$mem`, 0L) as
-                MemorySegment
+        get() = userdata1Handle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             userdata1Handle.set(this.`$mem`, 0L, value)
         }
 
     public var userdata2: Pointer<Unit>
-        get() = userdata2Handle.get(this.`$mem`, 0L) as
-                MemorySegment
+        get() = userdata2Handle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             userdata2Handle.set(this.`$mem`, 0L, value)
         }

@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUDeviceDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,71 +18,93 @@ public value class WGPUDeviceDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * Array count for requiredFeatures.
+     */
     public var requiredFeatureCount: ULong
         get() = (requiredFeatureCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             requiredFeatureCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var requiredFeatures: Pointer<WGPUFeatureName>
         get() = requiredFeaturesHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             requiredFeaturesHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var requiredLimits: Pointer<WGPULimits>
         get() = requiredLimitsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             requiredLimitsHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var defaultQueue: WGPUQueueDescriptor
         get() = WGPUQueueDescriptor(
-            defaultQueueHandle.invokeExact(this.`$mem`, 0L)
-                    as MemorySegment
+            defaultQueueHandle.invokeExact(
+                this.`$mem`,
+                0L
+            ) as MemorySegment
+        )
+        set(`value`) {
+            MemorySegment.copy(value.`$mem`, 0L, this.defaultQueue.`$mem`, 0L, WGPUQueueDescriptor.layout.byteSize())
+        }
+
+    /**
+     * TODO
+     */
+    public var deviceLostCallbackInfo: WGPUDeviceLostCallbackInfo
+        get() = WGPUDeviceLostCallbackInfo(
+            deviceLostCallbackInfoHandle.invokeExact(
+                this.`$mem`,
+                0L
+            ) as MemorySegment
         )
         set(`value`) {
             MemorySegment.copy(
-                value.`$mem`, 0L, this.defaultQueue.`$mem`, 0L,
-                WGPUQueueDescriptor.layout.byteSize()
-            )
-        }
-
-    public var deviceLostCallbackInfo: WGPUDeviceLostCallbackInfo
-        get() =
-            WGPUDeviceLostCallbackInfo(
-                deviceLostCallbackInfoHandle.invokeExact(
-                    this.`$mem`,
-                    0L
-                ) as MemorySegment
-            )
-        set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.deviceLostCallbackInfo.`$mem`, 0L,
+                value.`$mem`,
+                0L,
+                this.deviceLostCallbackInfo.`$mem`,
+                0L,
                 WGPUDeviceLostCallbackInfo.layout.byteSize()
             )
         }
 
+    /**
+     * Called when there is an uncaptured error on this device, from any thread.
+     * See @ref ErrorScopes.
+     */
     public var uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
-        get() =
-            WGPUUncapturedErrorCallbackInfo(
-                uncapturedErrorCallbackInfoHandle.invokeExact(
-                    this.`$mem`,
-                    0L
-                ) as MemorySegment
-            )
+        get() = WGPUUncapturedErrorCallbackInfo(
+            uncapturedErrorCallbackInfoHandle.invokeExact(
+                this.`$mem`,
+                0L
+            ) as MemorySegment
+        )
         set(`value`) {
             MemorySegment.copy(
-                value.`$mem`, 0L, this.uncapturedErrorCallbackInfo.`$mem`, 0L,
+                value.`$mem`,
+                0L,
+                this.uncapturedErrorCallbackInfo.`$mem`,
+                0L,
                 WGPUUncapturedErrorCallbackInfo.layout.byteSize()
             )
         }

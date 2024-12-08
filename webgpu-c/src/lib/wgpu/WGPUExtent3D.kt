@@ -4,22 +4,34 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUExtent3D(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * TODO
+     */
     public var width: UInt
         get() = (widthHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             widthHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var height: UInt
         get() = (heightHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             heightHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var depthOrArrayLayers: UInt
         get() = (depthOrArrayLayersHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
@@ -51,7 +63,6 @@ public value class WGPUExtent3D(
             layout.varHandle(MemoryLayout.PathElement.groupElement("depthOrArrayLayers"))
 
         @JvmStatic
-        public fun allocate(alloc: SegmentAllocator): WGPUExtent3D =
-            WGPUExtent3D(alloc.allocate(layout))
+        public fun allocate(alloc: SegmentAllocator): WGPUExtent3D = WGPUExtent3D(alloc.allocate(layout))
     }
 }

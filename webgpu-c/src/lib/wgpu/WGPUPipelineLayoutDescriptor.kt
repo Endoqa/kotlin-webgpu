@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUPipelineLayoutDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,25 +18,29 @@ public value class WGPUPipelineLayoutDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * Array count for bindGroupLayouts.
+     */
     public var bindGroupLayoutCount: ULong
-        get() = (bindGroupLayoutCountHandle.get(this.`$mem`, 0L) as
-                Long).toULong()
+        get() = (bindGroupLayoutCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             bindGroupLayoutCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var bindGroupLayouts: Pointer<WGPUBindGroupLayout>
-        get() = bindGroupLayoutsHandle.get(this.`$mem`, 0L) as
-                MemorySegment
+        get() = bindGroupLayoutsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             bindGroupLayoutsHandle.set(this.`$mem`, 0L, value)
         }

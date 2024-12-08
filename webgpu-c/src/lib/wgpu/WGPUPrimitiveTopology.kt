@@ -6,14 +6,40 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUPrimitiveTopology(
     public val `value`: Int,
 ) {
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
     Undefined(0x00000000),
+
+    /**
+     * TODO
+     */
     PointList(0x00000001),
+
+    /**
+     * TODO
+     */
     LineList(0x00000002),
+
+    /**
+     * TODO
+     */
     LineStrip(0x00000003),
+
+    /**
+     * TODO
+     */
     TriangleList(0x00000004),
+
+    /**
+     * TODO
+     */
     TriangleStrip(0x00000005),
     ;
 

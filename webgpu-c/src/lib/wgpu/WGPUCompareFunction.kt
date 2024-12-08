@@ -6,17 +6,55 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUCompareFunction(
     public val `value`: Int,
 ) {
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
     Undefined(0x00000000),
+
+    /**
+     * TODO
+     */
     Never(0x00000001),
+
+    /**
+     * TODO
+     */
     Less(0x00000002),
+
+    /**
+     * TODO
+     */
     Equal(0x00000003),
+
+    /**
+     * TODO
+     */
     LessEqual(0x00000004),
+
+    /**
+     * TODO
+     */
     Greater(0x00000005),
+
+    /**
+     * TODO
+     */
     NotEqual(0x00000006),
+
+    /**
+     * TODO
+     */
     GreaterEqual(0x00000007),
+
+    /**
+     * TODO
+     */
     Always(0x00000008),
     ;
 

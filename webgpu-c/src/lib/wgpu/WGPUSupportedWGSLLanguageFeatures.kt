@@ -4,17 +4,25 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUSupportedWGSLLanguageFeatures(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * Array count for features.
+     */
     public var featureCount: ULong
-        get() = (featureCountHandle.get(this.`$mem`, 0L) as
-                Long).toULong()
+        get() = (featureCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             featureCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var features: Pointer<WGPUWGSLLanguageFeatureName>
         get() = featuresHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

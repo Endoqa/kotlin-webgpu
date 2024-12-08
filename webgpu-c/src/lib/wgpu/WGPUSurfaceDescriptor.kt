@@ -5,6 +5,11 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * The root descriptor for the creation of an @ref WGPUSurface with @ref wgpuInstanceCreateSurface.
+ * It isn't sufficient by itself and must have one of the `WGPUSurfaceSource*` in its chain.
+ * See @ref Surface-Creation for more details.
+ */
 @JvmInline
 public value class WGPUSurfaceDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,11 +20,11 @@ public value class WGPUSurfaceDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Label used to refer to the object.
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }

@@ -6,49 +6,217 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUVertexFormat(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * TODO
+     */
     Uint8(0x00000001),
+
+    /**
+     * TODO
+     */
     Uint8x2(0x00000002),
+
+    /**
+     * TODO
+     */
     Uint8x4(0x00000003),
+
+    /**
+     * TODO
+     */
     Sint8(0x00000004),
+
+    /**
+     * TODO
+     */
     Sint8x2(0x00000005),
+
+    /**
+     * TODO
+     */
     Sint8x4(0x00000006),
+
+    /**
+     * TODO
+     */
     Unorm8(0x00000007),
+
+    /**
+     * TODO
+     */
     Unorm8x2(0x00000008),
+
+    /**
+     * TODO
+     */
     Unorm8x4(0x00000009),
-    Snorm8(0x0000000A),
-    Snorm8x2(0x0000000B),
-    Snorm8x4(0x0000000C),
-    Uint16(0x0000000D),
-    Uint16x2(0x0000000E),
-    Uint16x4(0x0000000F),
+
+    /**
+     * TODO
+     */
+    Snorm8(0x0000000a),
+
+    /**
+     * TODO
+     */
+    Snorm8x2(0x0000000b),
+
+    /**
+     * TODO
+     */
+    Snorm8x4(0x0000000c),
+
+    /**
+     * TODO
+     */
+    Uint16(0x0000000d),
+
+    /**
+     * TODO
+     */
+    Uint16x2(0x0000000e),
+
+    /**
+     * TODO
+     */
+    Uint16x4(0x0000000f),
+
+    /**
+     * TODO
+     */
     Sint16(0x00000010),
+
+    /**
+     * TODO
+     */
     Sint16x2(0x00000011),
+
+    /**
+     * TODO
+     */
     Sint16x4(0x00000012),
+
+    /**
+     * TODO
+     */
     Unorm16(0x00000013),
+
+    /**
+     * TODO
+     */
     Unorm16x2(0x00000014),
+
+    /**
+     * TODO
+     */
     Unorm16x4(0x00000015),
+
+    /**
+     * TODO
+     */
     Snorm16(0x00000016),
+
+    /**
+     * TODO
+     */
     Snorm16x2(0x00000017),
+
+    /**
+     * TODO
+     */
     Snorm16x4(0x00000018),
+
+    /**
+     * TODO
+     */
     Float16(0x00000019),
-    Float16x2(0x0000001A),
-    Float16x4(0x0000001B),
-    Float32(0x0000001C),
-    Float32x2(0x0000001D),
-    Float32x3(0x0000001E),
-    Float32x4(0x0000001F),
+
+    /**
+     * TODO
+     */
+    Float16x2(0x0000001a),
+
+    /**
+     * TODO
+     */
+    Float16x4(0x0000001b),
+
+    /**
+     * TODO
+     */
+    Float32(0x0000001c),
+
+    /**
+     * TODO
+     */
+    Float32x2(0x0000001d),
+
+    /**
+     * TODO
+     */
+    Float32x3(0x0000001e),
+
+    /**
+     * TODO
+     */
+    Float32x4(0x0000001f),
+
+    /**
+     * TODO
+     */
     Uint32(0x00000020),
+
+    /**
+     * TODO
+     */
     Uint32x2(0x00000021),
+
+    /**
+     * TODO
+     */
     Uint32x3(0x00000022),
+
+    /**
+     * TODO
+     */
     Uint32x4(0x00000023),
+
+    /**
+     * TODO
+     */
     Sint32(0x00000024),
+
+    /**
+     * TODO
+     */
     Sint32x2(0x00000025),
+
+    /**
+     * TODO
+     */
     Sint32x3(0x00000026),
+
+    /**
+     * TODO
+     */
     Sint32x4(0x00000027),
-    Unorm10_10_10_2(0x00000028),
+
+    /**
+     * TODO
+     */
+    Unorm1010102(0x00000028),
+
+    /**
+     * TODO
+     */
     Unorm8x4BGRA(0x00000029),
     ;
 
@@ -69,6 +237,7 @@ public enum class WGPUVertexFormat(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUVertexFormat = when (value) {
+            Null.value -> Null
             Uint8.value -> Uint8
             Uint8x2.value -> Uint8x2
             Uint8x4.value -> Uint8x4
@@ -108,7 +277,7 @@ public enum class WGPUVertexFormat(
             Sint32x2.value -> Sint32x2
             Sint32x3.value -> Sint32x3
             Sint32x4.value -> Sint32x4
-            Unorm10_10_10_2.value -> Unorm10_10_10_2
+            Unorm1010102.value -> Unorm1010102
             Unorm8x4BGRA.value -> Unorm8x4BGRA
             else -> error("enum not found")
         }

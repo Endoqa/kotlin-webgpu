@@ -4,6 +4,20 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * If `attributes` is empty *and* `stepMode` is @ref WGPUVertexStepMode_Undefined,
+ * indicates a "hole" in the parent @ref WGPUVertexState `buffers` array,
+ * with behavior equivalent to `null` in the JS API.
+ *
+ * If `attributes` is empty but `stepMode` is *not* @ref WGPUVertexStepMode_Undefined,
+ * indicates a vertex buffer with no attributes, with behavior equivalent to
+ * `{ attributes: [] }` in the JS API. (TODO: If the JS API changes not to
+ * distinguish these cases, then this distinction doesn't matter and we can
+ * remove this documentation.)
+ *
+ * If `stepMode` is @ref WGPUVertexStepMode_Undefined but `attributes` is *not* empty,
+ * `stepMode` [defaults](@ref SentinelValues) to @ref WGPUVertexStepMode_Vertex.
+ */
 @JvmInline
 public value class WGPUVertexBufferLayout(
     public val `$mem`: MemorySegment,
@@ -14,27 +28,36 @@ public value class WGPUVertexBufferLayout(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var stepMode: WGPUVertexStepMode
-        get() = WGPUVertexStepMode.fromInt(
-            stepModeHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUVertexStepMode.fromInt(stepModeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             stepModeHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var arrayStride: ULong
         get() = (arrayStrideHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             arrayStrideHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * Array count for attributes.
+     */
     public var attributeCount: ULong
         get() = (attributeCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             attributeCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var attributes: Pointer<WGPUVertexAttribute>
         get() = attributesHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUVertexAttribute(
     public val `$mem`: MemorySegment,
@@ -14,18 +17,27 @@ public value class WGPUVertexAttribute(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var format: WGPUVertexFormat
         get() = WGPUVertexFormat.fromInt(formatHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             formatHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var offset: ULong
         get() = (offsetHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             offsetHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var shaderLocation: UInt
         get() = (shaderLocationHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {

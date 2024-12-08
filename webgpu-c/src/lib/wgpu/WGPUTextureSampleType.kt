@@ -6,15 +6,47 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUTextureSampleType(
     public val `value`: Int,
 ) {
+    /**
+     * Indicates that this @ref WGPUTextureBindingLayout member of
+     * its parent @ref WGPUBindGroupLayoutEntry is not used.
+     * (See also @ref SentinelValues.)
+     */
     BindingNotUsed(0x00000000),
+
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
     Undefined(0x00000001),
+
+    /**
+     * TODO
+     */
     Float(0x00000002),
+
+    /**
+     * TODO
+     */
     UnfilterableFloat(0x00000003),
+
+    /**
+     * TODO
+     */
     Depth(0x00000004),
+
+    /**
+     * TODO
+     */
     Sint(0x00000005),
+
+    /**
+     * TODO
+     */
     Uint(0x00000006),
     ;
 

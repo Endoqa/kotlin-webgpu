@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUBufferDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,27 +18,36 @@ public value class WGPUBufferDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
-    public var usage: WGPUBufferUsage
+    /**
+     * TODO
+     */
+    public var usage: ULong
         get() = (usageHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             usageHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var size: ULong
         get() = (sizeHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             sizeHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var mappedAtCreation: WGPUBool
         get() = (mappedAtCreationHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {

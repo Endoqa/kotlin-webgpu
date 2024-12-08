@@ -5,17 +5,22 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPURenderBundleEncoderDescriptor(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = nextInChainHandle.get(this.`$mem`, 0L) as
-                MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
         get() = WGPUStringView(
             labelHandle.invokeExact(
@@ -27,49 +32,61 @@ public value class WGPURenderBundleEncoderDescriptor(
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * Array count for colorFormats.
+     */
     public var colorFormatCount: ULong
-        get() = (colorFormatCountHandle.get(this.`$mem`, 0L) as
-                Long).toULong()
+        get() = (colorFormatCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             colorFormatCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var colorFormats: Pointer<WGPUTextureFormat>
-        get() = colorFormatsHandle.get(this.`$mem`, 0L) as
-                MemorySegment
+        get() = colorFormatsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             colorFormatsHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var depthStencilFormat: WGPUTextureFormat
-        get() =
-            WGPUTextureFormat.fromInt(
-                depthStencilFormatHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
+        get() = WGPUTextureFormat.fromInt(
+            depthStencilFormatHandle.get(
+                this.`$mem`,
+                0L
+            ) as Int
+        )
         set(`value`) {
             depthStencilFormatHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var sampleCount: UInt
-        get() = (sampleCountHandle.get(this.`$mem`, 0L) as
-                Int).toUInt()
+        get() = (sampleCountHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             sampleCountHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var depthReadOnly: WGPUBool
-        get() = (depthReadOnlyHandle.get(this.`$mem`, 0L) as
-                Int).toUInt()
+        get() = (depthReadOnlyHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             depthReadOnlyHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var stencilReadOnly: WGPUBool
-        get() = (stencilReadOnlyHandle.get(this.`$mem`, 0L) as
-                Int).toUInt()
+        get() = (stencilReadOnlyHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             stencilReadOnlyHandle.set(this.`$mem`, 0L, value.toInt())
         }

@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUStorageTextureBindingLayout(
     public val `$mem`: MemorySegment,
@@ -14,37 +17,41 @@ public value class WGPUStorageTextureBindingLayout(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * If set to @ref WGPUStorageTextureAccess_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUStorageTextureAccess_WriteOnly.
+     */
     public var access: WGPUStorageTextureAccess
-        get() =
-            WGPUStorageTextureAccess.fromInt(
-                accessHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
-        set(`value`) {
-            accessHandle.set(this.`$mem`, 0L, value.value)
-        }
-
-    public var format: WGPUTextureFormat
-        get() = WGPUTextureFormat.fromInt(
-            formatHandle.get(
+        get() = WGPUStorageTextureAccess.fromInt(
+            accessHandle.get(
                 this.`$mem`,
                 0L
             ) as Int
         )
         set(`value`) {
+            accessHandle.set(this.`$mem`, 0L, value.value)
+        }
+
+    /**
+     * TODO
+     */
+    public var format: WGPUTextureFormat
+        get() = WGPUTextureFormat.fromInt(formatHandle.get(this.`$mem`, 0L) as Int)
+        set(`value`) {
             formatHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUTextureViewDimension_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUTextureViewDimension_2D.
+     */
     public var viewDimension: WGPUTextureViewDimension
-        get() =
-            WGPUTextureViewDimension.fromInt(
-                viewDimensionHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
+        get() = WGPUTextureViewDimension.fromInt(
+            viewDimensionHandle.get(
+                this.`$mem`,
+                0L
+            ) as Int
+        )
         set(`value`) {
             viewDimensionHandle.set(this.`$mem`, 0L, value.value)
         }
