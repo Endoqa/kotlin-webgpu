@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a [Wayland](https://wayland.freedesktop.org/) [`wl_surface`](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface).
+ */
 @JvmInline
 public value class WGPUSurfaceSourceWaylandSurface(
     public val `$mem`: MemorySegment,
@@ -17,18 +20,21 @@ public value class WGPUSurfaceSourceWaylandSurface(
             ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.chain.`$mem`, 0L,
-                WGPUChainedStruct.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.chain.`$mem`, 0L, WGPUChainedStruct.layout.byteSize())
         }
 
+    /**
+     * A [`wl_display`](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_display) for this Wayland instance.
+     */
     public var display: Pointer<Unit>
         get() = displayHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             displayHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * A [`wl_surface`](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface) that will be wrapped by the @ref WGPUSurface
+     */
     public var surface: Pointer<Unit>
         get() = surfaceHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

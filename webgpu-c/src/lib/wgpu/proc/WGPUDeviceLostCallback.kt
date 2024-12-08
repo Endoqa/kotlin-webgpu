@@ -6,7 +6,15 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 
+/**
+ * TODO
+ */
 public fun interface WGPUDeviceLostCallback {
+    /**
+     * @param device Reference to the device which was lost. If, and only if, the `reason` is @ref WGPUDeviceLostReason_FailedCreation, this is a non-null pointer to a null @ref WGPUDevice.
+     * @param reason TODO
+     * @param message TODO
+     */
     public fun invoke(
         device: Pointer<WGPUDevice>,
         reason: WGPUDeviceLostReason,

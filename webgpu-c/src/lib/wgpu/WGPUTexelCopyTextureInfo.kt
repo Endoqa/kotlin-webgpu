@@ -5,36 +5,46 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUTexelCopyTextureInfo(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * TODO
+     */
     public var texture: WGPUTexture
         get() = textureHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             textureHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var mipLevel: UInt
         get() = (mipLevelHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             mipLevelHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var origin: WGPUOrigin3D
-        get() = WGPUOrigin3D(
-            originHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUOrigin3D(originHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.origin.`$mem`, 0L, WGPUOrigin3D.layout.byteSize())
         }
 
+    /**
+     * If set to @ref WGPUTextureAspect_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUTextureAspect_All.
+     */
     public var aspect: WGPUTextureAspect
-        get() = WGPUTextureAspect.fromInt(
-            aspectHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUTextureAspect.fromInt(aspectHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             aspectHandle.set(this.`$mem`, 0L, value.value)
         }

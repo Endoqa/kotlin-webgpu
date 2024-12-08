@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUBindGroupLayoutDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,21 +18,27 @@ public value class WGPUBindGroupLayoutDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * Array count for entries.
+     */
     public var entryCount: ULong
         get() = (entryCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             entryCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var entries: Pointer<WGPUBindGroupLayoutEntry>
         get() = entriesHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

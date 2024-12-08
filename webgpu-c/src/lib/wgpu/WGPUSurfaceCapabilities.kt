@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * Filled by @ref wgpuSurfaceGetCapabilities with what's supported for @ref wgpuSurfaceConfigure for a pair of @ref WGPUSurface and @ref WGPUAdapter.
+ */
 @JvmInline
 public value class WGPUSurfaceCapabilities(
     public val `$mem`: MemorySegment,
@@ -14,42 +17,66 @@ public value class WGPUSurfaceCapabilities(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
-    public var usages: WGPUTextureUsage
+    /**
+     * The bit set of supported @ref WGPUTextureUsage bits.
+     * Guaranteed to contain @ref WGPUTextureUsage_RenderAttachment.
+     */
+    public var usages: ULong
         get() = (usagesHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             usagesHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * Array count for formats.
+     */
     public var formatCount: ULong
         get() = (formatCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             formatCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * A list of supported @ref WGPUTextureFormat values, in order of preference.
+     */
     public var formats: Pointer<WGPUTextureFormat>
         get() = formatsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             formatsHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Array count for presentModes.
+     */
     public var presentModeCount: ULong
         get() = (presentModeCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             presentModeCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * A list of supported @ref WGPUPresentMode values.
+     * Guaranteed to contain @ref WGPUPresentMode_Fifo.
+     */
     public var presentModes: Pointer<WGPUPresentMode>
         get() = presentModesHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             presentModesHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Array count for alphaModes.
+     */
     public var alphaModeCount: ULong
         get() = (alphaModeCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             alphaModeCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * A list of supported @ref WGPUCompositeAlphaMode values.
+     * @ref WGPUCompositeAlphaMode_Auto will be an alias for the first element and will never be present in this array.
+     */
     public var alphaModes: Pointer<WGPUCompositeAlphaMode>
         get() = alphaModesHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

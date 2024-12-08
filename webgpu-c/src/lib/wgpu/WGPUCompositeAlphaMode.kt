@@ -6,13 +6,35 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * Describes how frames are composited with other contents on the screen when @ref wgpuSurfacePresent is called.
+ */
 public enum class WGPUCompositeAlphaMode(
     public val `value`: Int,
 ) {
+    /**
+     * Lets the WebGPU implementation choose the best mode (supported, and with the best performance) between @ref WGPUCompositeAlphaMode_Opaque or @ref WGPUCompositeAlphaMode_Inherit.
+     */
     Auto(0x00000000),
+
+    /**
+     * The alpha component of the image is ignored and teated as if it is always 1.0.
+     */
     Opaque(0x00000001),
+
+    /**
+     * The alpha component is respected and non-alpha components are assumed to be already multiplied with the alpha component. For example, (0.5, 0, 0, 0.5) is semi-transparent bright red.
+     */
     Premultiplied(0x00000002),
+
+    /**
+     * The alpha component is respected and non-alpha components are assumed to NOT be already multiplied with the alpha component. For example, (1.0, 0, 0, 0.5) is semi-transparent bright red.
+     */
     Unpremultiplied(0x00000003),
+
+    /**
+     * The handling of the alpha component is unknown to WebGPU and should be handled by the application using system-specific APIs. This mode may be unavailable (for example on Wasm).
+     */
     Inherit(0x00000004),
     ;
 

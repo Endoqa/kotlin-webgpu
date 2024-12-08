@@ -5,10 +5,16 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUTexelCopyBufferInfo(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * TODO
+     */
     public var layout: WGPUTexelCopyBufferLayout
         get() = WGPUTexelCopyBufferLayout(
             layoutHandle.invokeExact(
@@ -17,12 +23,12 @@ public value class WGPUTexelCopyBufferInfo(
             ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.layout.`$mem`, 0L,
-                WGPUTexelCopyBufferLayout.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.layout.`$mem`, 0L, WGPUTexelCopyBufferLayout.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var buffer: WGPUBuffer
         get() = bufferHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

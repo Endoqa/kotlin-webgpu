@@ -6,13 +6,41 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * Describes when and in which order frames are presented on the screen when @ref wgpuSurfacePresent is called.
+ */
 public enum class WGPUPresentMode(
     public val `value`: Int,
 ) {
+    /**
+     * Present mode is not specified. Use the default.
+     */
     Undefined(0x00000000),
+
+    /**
+     * The presentation of the image to the user waits for the next vertical blanking period to update in a first-in, first-out manner.
+     * Tearing cannot be observed and frame-loop will be limited to the display's refresh rate.
+     * This is the only mode that's always available.
+     */
     Fifo(0x00000001),
+
+    /**
+     * The presentation of the image to the user tries to wait for the next vertical blanking period but may decide to not wait if a frame is presented late.
+     * Tearing can sometimes be observed but late-frame don't produce a full-frame stutter in the presentation.
+     * This is still a first-in, first-out mechanism so a frame-loop will be limited to the display's refresh rate.
+     */
     FifoRelaxed(0x00000002),
+
+    /**
+     * The presentation of the image to the user is updated immediately without waiting for a vertical blank.
+     * Tearing can be observed but latency is minimized.
+     */
     Immediate(0x00000003),
+
+    /**
+     * The presentation of the image to the user waits for the next vertical blanking period to update to the latest provided image.
+     * Tearing cannot be observed and a frame-loop is not limited to the display's refresh rate.
+     */
     Mailbox(0x00000004),
     ;
 

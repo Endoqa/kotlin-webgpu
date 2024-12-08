@@ -4,6 +4,10 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * Queried each frame from a @ref WGPUSurface to get a @ref WGPUTexture to render to along with some metadata.
+ * See @ref Surface-Presenting for more details.
+ */
 @JvmInline
 public value class WGPUSurfaceTexture(
     public val `$mem`: MemorySegment,
@@ -14,20 +18,21 @@ public value class WGPUSurfaceTexture(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * The @ref WGPUTexture representing the frame that will be shown on the surface.
+     * It is @ref ReturnedWithOwnership from @ref wgpuSurfaceGetCurrentTexture.
+     */
     public var texture: WGPUTexture
         get() = textureHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             textureHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Whether the call to @ref wgpuSurfaceGetCurrentTexture succeeded and a hint as to why it might not have.
+     */
     public var status: WGPUSurfaceGetCurrentTextureStatus
-        get() =
-            WGPUSurfaceGetCurrentTextureStatus.fromInt(
-                statusHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
+        get() = WGPUSurfaceGetCurrentTextureStatus.fromInt(statusHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             statusHandle.set(this.`$mem`, 0L, value.value)
         }

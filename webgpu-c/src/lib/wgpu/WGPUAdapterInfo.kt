@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUAdapterInfo(
     public val `$mem`: MemorySegment,
@@ -15,66 +18,72 @@ public value class WGPUAdapterInfo(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var vendor: WGPUStringView
-        get() = WGPUStringView(
-            vendorHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(vendorHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.vendor.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var architecture: WGPUStringView
-        get() = WGPUStringView(
-            architectureHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(architectureHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.architecture.`$mem`, 0L,
-                WGPUStringView.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.architecture.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var device: WGPUStringView
-        get() = WGPUStringView(
-            deviceHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(deviceHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.device.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var description: WGPUStringView
-        get() = WGPUStringView(
-            descriptionHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(descriptionHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.description.`$mem`, 0L,
-                WGPUStringView.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.description.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var backendType: WGPUBackendType
         get() = WGPUBackendType.fromInt(backendTypeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             backendTypeHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var adapterType: WGPUAdapterType
         get() = WGPUAdapterType.fromInt(adapterTypeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             adapterTypeHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var vendorID: UInt
         get() = (vendorIDHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             vendorIDHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var deviceID: UInt
         get() = (deviceIDHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {

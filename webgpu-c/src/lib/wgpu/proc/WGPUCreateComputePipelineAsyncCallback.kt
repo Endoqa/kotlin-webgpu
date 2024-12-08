@@ -6,7 +6,15 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 
+/**
+ * TODO
+ */
 public fun interface WGPUCreateComputePipelineAsyncCallback {
+    /**
+     * @param status TODO
+     * @param pipeline TODO
+     * @param message TODO
+     */
     public fun invoke(
         status: WGPUCreatePipelineAsyncStatus,
         pipeline: WGPUComputePipeline,

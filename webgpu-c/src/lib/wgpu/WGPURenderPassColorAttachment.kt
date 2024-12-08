@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPURenderPassColorAttachment(
     public val `$mem`: MemorySegment,
@@ -15,47 +18,57 @@ public value class WGPURenderPassColorAttachment(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * If `NULL`, indicates a hole in the parent
+     * @ref WGPURenderPassDescriptor::colorAttachments array.
+     */
     public var view: WGPUTextureView
         get() = viewHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             viewHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var depthSlice: UInt
         get() = (depthSliceHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             depthSliceHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var resolveTarget: WGPUTextureView
         get() = resolveTargetHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             resolveTargetHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var loadOp: WGPULoadOp
-        get() = WGPULoadOp.fromInt(
-            loadOpHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPULoadOp.fromInt(loadOpHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             loadOpHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var storeOp: WGPUStoreOp
-        get() = WGPUStoreOp.fromInt(
-            storeOpHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUStoreOp.fromInt(storeOpHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             storeOpHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var clearValue: WGPUColor
-        get() = WGPUColor(
-            clearValueHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUColor(clearValueHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.clearValue.`$mem`, 0L, WGPUColor.layout.byteSize())
         }

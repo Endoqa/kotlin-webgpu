@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUQuerySetDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,21 +18,27 @@ public value class WGPUQuerySetDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var type: WGPUQueryType
         get() = WGPUQueryType.fromInt(typeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             typeHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var count: UInt
         get() = (countHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {

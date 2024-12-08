@@ -6,105 +6,491 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUTextureFormat(
     public val `value`: Int,
 ) {
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
     Undefined(0x00000000),
+
+    /**
+     * TODO
+     */
     R8Unorm(0x00000001),
+
+    /**
+     * TODO
+     */
     R8Snorm(0x00000002),
+
+    /**
+     * TODO
+     */
     R8Uint(0x00000003),
+
+    /**
+     * TODO
+     */
     R8Sint(0x00000004),
+
+    /**
+     * TODO
+     */
     R16Uint(0x00000005),
+
+    /**
+     * TODO
+     */
     R16Sint(0x00000006),
+
+    /**
+     * TODO
+     */
     R16Float(0x00000007),
+
+    /**
+     * TODO
+     */
     RG8Unorm(0x00000008),
+
+    /**
+     * TODO
+     */
     RG8Snorm(0x00000009),
-    RG8Uint(0x0000000A),
-    RG8Sint(0x0000000B),
-    R32Float(0x0000000C),
-    R32Uint(0x0000000D),
-    R32Sint(0x0000000E),
-    RG16Uint(0x0000000F),
+
+    /**
+     * TODO
+     */
+    RG8Uint(0x0000000a),
+
+    /**
+     * TODO
+     */
+    RG8Sint(0x0000000b),
+
+    /**
+     * TODO
+     */
+    R32Float(0x0000000c),
+
+    /**
+     * TODO
+     */
+    R32Uint(0x0000000d),
+
+    /**
+     * TODO
+     */
+    R32Sint(0x0000000e),
+
+    /**
+     * TODO
+     */
+    RG16Uint(0x0000000f),
+
+    /**
+     * TODO
+     */
     RG16Sint(0x00000010),
+
+    /**
+     * TODO
+     */
     RG16Float(0x00000011),
+
+    /**
+     * TODO
+     */
     RGBA8Unorm(0x00000012),
+
+    /**
+     * TODO
+     */
     RGBA8UnormSrgb(0x00000013),
+
+    /**
+     * TODO
+     */
     RGBA8Snorm(0x00000014),
+
+    /**
+     * TODO
+     */
     RGBA8Uint(0x00000015),
+
+    /**
+     * TODO
+     */
     RGBA8Sint(0x00000016),
+
+    /**
+     * TODO
+     */
     BGRA8Unorm(0x00000017),
+
+    /**
+     * TODO
+     */
     BGRA8UnormSrgb(0x00000018),
+
+    /**
+     * TODO
+     */
     RGB10A2Uint(0x00000019),
-    RGB10A2Unorm(0x0000001A),
-    RG11B10Ufloat(0x0000001B),
-    RGB9E5Ufloat(0x0000001C),
-    RG32Float(0x0000001D),
-    RG32Uint(0x0000001E),
-    RG32Sint(0x0000001F),
+
+    /**
+     * TODO
+     */
+    RGB10A2Unorm(0x0000001a),
+
+    /**
+     * TODO
+     */
+    RG11B10Ufloat(0x0000001b),
+
+    /**
+     * TODO
+     */
+    RGB9E5Ufloat(0x0000001c),
+
+    /**
+     * TODO
+     */
+    RG32Float(0x0000001d),
+
+    /**
+     * TODO
+     */
+    RG32Uint(0x0000001e),
+
+    /**
+     * TODO
+     */
+    RG32Sint(0x0000001f),
+
+    /**
+     * TODO
+     */
     RGBA16Uint(0x00000020),
+
+    /**
+     * TODO
+     */
     RGBA16Sint(0x00000021),
+
+    /**
+     * TODO
+     */
     RGBA16Float(0x00000022),
+
+    /**
+     * TODO
+     */
     RGBA32Float(0x00000023),
+
+    /**
+     * TODO
+     */
     RGBA32Uint(0x00000024),
+
+    /**
+     * TODO
+     */
     RGBA32Sint(0x00000025),
+
+    /**
+     * TODO
+     */
     Stencil8(0x00000026),
+
+    /**
+     * TODO
+     */
     Depth16Unorm(0x00000027),
+
+    /**
+     * TODO
+     */
     Depth24Plus(0x00000028),
+
+    /**
+     * TODO
+     */
     Depth24PlusStencil8(0x00000029),
-    Depth32Float(0x0000002A),
-    Depth32FloatStencil8(0x0000002B),
-    BC1RGBAUnorm(0x0000002C),
-    BC1RGBAUnormSrgb(0x0000002D),
-    BC2RGBAUnorm(0x0000002E),
-    BC2RGBAUnormSrgb(0x0000002F),
+
+    /**
+     * TODO
+     */
+    Depth32Float(0x0000002a),
+
+    /**
+     * TODO
+     */
+    Depth32FloatStencil8(0x0000002b),
+
+    /**
+     * TODO
+     */
+    BC1RGBAUnorm(0x0000002c),
+
+    /**
+     * TODO
+     */
+    BC1RGBAUnormSrgb(0x0000002d),
+
+    /**
+     * TODO
+     */
+    BC2RGBAUnorm(0x0000002e),
+
+    /**
+     * TODO
+     */
+    BC2RGBAUnormSrgb(0x0000002f),
+
+    /**
+     * TODO
+     */
     BC3RGBAUnorm(0x00000030),
+
+    /**
+     * TODO
+     */
     BC3RGBAUnormSrgb(0x00000031),
+
+    /**
+     * TODO
+     */
     BC4RUnorm(0x00000032),
+
+    /**
+     * TODO
+     */
     BC4RSnorm(0x00000033),
+
+    /**
+     * TODO
+     */
     BC5RGUnorm(0x00000034),
+
+    /**
+     * TODO
+     */
     BC5RGSnorm(0x00000035),
+
+    /**
+     * TODO
+     */
     BC6HRGBUfloat(0x00000036),
+
+    /**
+     * TODO
+     */
     BC6HRGBFloat(0x00000037),
+
+    /**
+     * TODO
+     */
     BC7RGBAUnorm(0x00000038),
+
+    /**
+     * TODO
+     */
     BC7RGBAUnormSrgb(0x00000039),
-    ETC2RGB8Unorm(0x0000003A),
-    ETC2RGB8UnormSrgb(0x0000003B),
-    ETC2RGB8A1Unorm(0x0000003C),
-    ETC2RGB8A1UnormSrgb(0x0000003D),
-    ETC2RGBA8Unorm(0x0000003E),
-    ETC2RGBA8UnormSrgb(0x0000003F),
+
+    /**
+     * TODO
+     */
+    ETC2RGB8Unorm(0x0000003a),
+
+    /**
+     * TODO
+     */
+    ETC2RGB8UnormSrgb(0x0000003b),
+
+    /**
+     * TODO
+     */
+    ETC2RGB8A1Unorm(0x0000003c),
+
+    /**
+     * TODO
+     */
+    ETC2RGB8A1UnormSrgb(0x0000003d),
+
+    /**
+     * TODO
+     */
+    ETC2RGBA8Unorm(0x0000003e),
+
+    /**
+     * TODO
+     */
+    ETC2RGBA8UnormSrgb(0x0000003f),
+
+    /**
+     * TODO
+     */
     EACR11Unorm(0x00000040),
+
+    /**
+     * TODO
+     */
     EACR11Snorm(0x00000041),
+
+    /**
+     * TODO
+     */
     EACRG11Unorm(0x00000042),
+
+    /**
+     * TODO
+     */
     EACRG11Snorm(0x00000043),
+
+    /**
+     * TODO
+     */
     ASTC4x4Unorm(0x00000044),
+
+    /**
+     * TODO
+     */
     ASTC4x4UnormSrgb(0x00000045),
+
+    /**
+     * TODO
+     */
     ASTC5x4Unorm(0x00000046),
+
+    /**
+     * TODO
+     */
     ASTC5x4UnormSrgb(0x00000047),
+
+    /**
+     * TODO
+     */
     ASTC5x5Unorm(0x00000048),
+
+    /**
+     * TODO
+     */
     ASTC5x5UnormSrgb(0x00000049),
-    ASTC6x5Unorm(0x0000004A),
-    ASTC6x5UnormSrgb(0x0000004B),
-    ASTC6x6Unorm(0x0000004C),
-    ASTC6x6UnormSrgb(0x0000004D),
-    ASTC8x5Unorm(0x0000004E),
-    ASTC8x5UnormSrgb(0x0000004F),
+
+    /**
+     * TODO
+     */
+    ASTC6x5Unorm(0x0000004a),
+
+    /**
+     * TODO
+     */
+    ASTC6x5UnormSrgb(0x0000004b),
+
+    /**
+     * TODO
+     */
+    ASTC6x6Unorm(0x0000004c),
+
+    /**
+     * TODO
+     */
+    ASTC6x6UnormSrgb(0x0000004d),
+
+    /**
+     * TODO
+     */
+    ASTC8x5Unorm(0x0000004e),
+
+    /**
+     * TODO
+     */
+    ASTC8x5UnormSrgb(0x0000004f),
+
+    /**
+     * TODO
+     */
     ASTC8x6Unorm(0x00000050),
+
+    /**
+     * TODO
+     */
     ASTC8x6UnormSrgb(0x00000051),
+
+    /**
+     * TODO
+     */
     ASTC8x8Unorm(0x00000052),
+
+    /**
+     * TODO
+     */
     ASTC8x8UnormSrgb(0x00000053),
+
+    /**
+     * TODO
+     */
     ASTC10x5Unorm(0x00000054),
+
+    /**
+     * TODO
+     */
     ASTC10x5UnormSrgb(0x00000055),
+
+    /**
+     * TODO
+     */
     ASTC10x6Unorm(0x00000056),
+
+    /**
+     * TODO
+     */
     ASTC10x6UnormSrgb(0x00000057),
+
+    /**
+     * TODO
+     */
     ASTC10x8Unorm(0x00000058),
+
+    /**
+     * TODO
+     */
     ASTC10x8UnormSrgb(0x00000059),
-    ASTC10x10Unorm(0x0000005A),
-    ASTC10x10UnormSrgb(0x0000005B),
-    ASTC12x10Unorm(0x0000005C),
-    ASTC12x10UnormSrgb(0x0000005D),
-    ASTC12x12Unorm(0x0000005E),
-    ASTC12x12UnormSrgb(0x0000005F),
+
+    /**
+     * TODO
+     */
+    ASTC10x10Unorm(0x0000005a),
+
+    /**
+     * TODO
+     */
+    ASTC10x10UnormSrgb(0x0000005b),
+
+    /**
+     * TODO
+     */
+    ASTC12x10Unorm(0x0000005c),
+
+    /**
+     * TODO
+     */
+    ASTC12x10UnormSrgb(0x0000005d),
+
+    /**
+     * TODO
+     */
+    ASTC12x12Unorm(0x0000005e),
+
+    /**
+     * TODO
+     */
+    ASTC12x12UnormSrgb(0x0000005f),
     ;
 
     public companion object {

@@ -6,11 +6,27 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUErrorFilter(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * TODO
+     */
     Validation(0x00000001),
+
+    /**
+     * TODO
+     */
     OutOfMemory(0x00000002),
+
+    /**
+     * TODO
+     */
     Internal(0x00000003),
     ;
 
@@ -31,6 +47,7 @@ public enum class WGPUErrorFilter(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUErrorFilter = when (value) {
+            Null.value -> Null
             Validation.value -> Validation
             OutOfMemory.value -> OutOfMemory
             Internal.value -> Internal

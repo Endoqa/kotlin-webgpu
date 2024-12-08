@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUTextureDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,66 +18,82 @@ public value class WGPUTextureDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
-    public var usage: WGPUTextureUsage
+    /**
+     * TODO
+     */
+    public var usage: ULong
         get() = (usageHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             usageHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * If set to @ref WGPUTextureDimension_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUTextureDimension_2D.
+     */
     public var dimension: WGPUTextureDimension
-        get() = WGPUTextureDimension.fromInt(
-            dimensionHandle.get(this.`$mem`, 0L)
-                    as Int
-        )
+        get() = WGPUTextureDimension.fromInt(dimensionHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             dimensionHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var size: WGPUExtent3D
-        get() = WGPUExtent3D(
-            sizeHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUExtent3D(sizeHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.size.`$mem`, 0L, WGPUExtent3D.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var format: WGPUTextureFormat
-        get() = WGPUTextureFormat.fromInt(
-            formatHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUTextureFormat.fromInt(formatHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             formatHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var mipLevelCount: UInt
         get() = (mipLevelCountHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             mipLevelCountHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var sampleCount: UInt
         get() = (sampleCountHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             sampleCountHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * Array count for viewFormats.
+     */
     public var viewFormatCount: ULong
         get() = (viewFormatCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             viewFormatCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var viewFormats: Pointer<WGPUTextureFormat>
         get() = viewFormatsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

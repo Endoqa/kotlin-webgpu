@@ -6,12 +6,32 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUWGSLLanguageFeatureName(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * TODO
+     */
     ReadonlyAndReadwriteStorageTextures(0x00000001),
+
+    /**
+     * TODO
+     */
     Packed4x8IntegerDotProduct(0x00000002),
+
+    /**
+     * TODO
+     */
     UnrestrictedPointerParameters(0x00000003),
+
+    /**
+     * TODO
+     */
     PointerCompositeAccess(0x00000004),
     ;
 
@@ -32,6 +52,7 @@ public enum class WGPUWGSLLanguageFeatureName(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUWGSLLanguageFeatureName = when (value) {
+            Null.value -> Null
             ReadonlyAndReadwriteStorageTextures.value -> ReadonlyAndReadwriteStorageTextures
             Packed4x8IntegerDotProduct.value -> Packed4x8IntegerDotProduct
             UnrestrictedPointerParameters.value -> UnrestrictedPointerParameters

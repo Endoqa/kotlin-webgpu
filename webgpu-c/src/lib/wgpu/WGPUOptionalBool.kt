@@ -6,11 +6,25 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUOptionalBool(
     public val `value`: Int,
 ) {
+    /**
+     * TODO
+     */
     False(0x00000000),
+
+    /**
+     * TODO
+     */
     True(0x00000001),
+
+    /**
+     * TODO
+     */
     Undefined(0x00000002),
     ;
 

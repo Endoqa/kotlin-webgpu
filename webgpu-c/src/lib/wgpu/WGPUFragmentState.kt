@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUFragmentState(
     public val `$mem`: MemorySegment,
@@ -15,42 +18,54 @@ public value class WGPUFragmentState(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var module: WGPUShaderModule
         get() = moduleHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             moduleHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var entryPoint: WGPUStringView
-        get() = WGPUStringView(
-            entryPointHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(entryPointHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.entryPoint.`$mem`, 0L,
-                WGPUStringView.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.entryPoint.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * Array count for constants.
+     */
     public var constantCount: ULong
         get() = (constantCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             constantCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var constants: Pointer<WGPUConstantEntry>
         get() = constantsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             constantsHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Array count for targets.
+     */
     public var targetCount: ULong
         get() = (targetCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             targetCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var targets: Pointer<WGPUColorTargetState>
         get() = targetsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

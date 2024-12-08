@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUBindGroupEntry(
     public val `$mem`: MemorySegment,
@@ -14,36 +17,60 @@ public value class WGPUBindGroupEntry(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Binding index in the bind group.
+     */
     public var binding: UInt
         get() = (bindingHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             bindingHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * Set this if the binding is a buffer object.
+     * Otherwise must be null.
+     */
     public var buffer: WGPUBuffer
         get() = bufferHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             bufferHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * If the binding is a buffer, this is the byte offset of the binding range.
+     * Otherwise ignored.
+     */
     public var offset: ULong
         get() = (offsetHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             offsetHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * If the binding is a buffer, this is the byte size of the binding range
+     * (@ref WGPU_WHOLE_SIZE means the binding ends at the end of the buffer).
+     * Otherwise ignored.
+     */
     public var size: ULong
         get() = (sizeHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             sizeHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * Set this if the binding is a sampler object.
+     * Otherwise must be null.
+     */
     public var sampler: WGPUSampler
         get() = samplerHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             samplerHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Set this if the binding is a texture view object.
+     * Otherwise must be null.
+     */
     public var textureView: WGPUTextureView
         get() = textureViewHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

@@ -5,19 +5,25 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * Struct holding a future to wait on, and a `completed` boolean flag.
+ */
 @JvmInline
 public value class WGPUFutureWaitInfo(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * The future to wait on.
+     */
     public var future: WGPUFuture
-        get() = WGPUFuture(
-            futureHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUFuture(futureHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.future.`$mem`, 0L, WGPUFuture.layout.byteSize())
         }
 
+    /**
+     * Whether or not the future completed.
+     */
     public var completed: WGPUBool
         get() = (completedHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {

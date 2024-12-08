@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPURenderPipelineDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,33 +18,36 @@ public value class WGPURenderPipelineDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var label: WGPUStringView
-        get() = WGPUStringView(
-            labelHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(labelHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.label.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var layout: WGPUPipelineLayout
         get() = layoutHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             layoutHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var vertex: WGPUVertexState
-        get() = WGPUVertexState(
-            vertexHandle.invokeExact(this.`$mem`, 0L)
-                    as MemorySegment
-        )
+        get() = WGPUVertexState(vertexHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.vertex.`$mem`, 0L,
-                WGPUVertexState.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.vertex.`$mem`, 0L, WGPUVertexState.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var primitive: WGPUPrimitiveState
         get() = WGPUPrimitiveState(
             primitiveHandle.invokeExact(
@@ -50,33 +56,35 @@ public value class WGPURenderPipelineDescriptor(
             ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.primitive.`$mem`, 0L,
-                WGPUPrimitiveState.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.primitive.`$mem`, 0L, WGPUPrimitiveState.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var depthStencil: Pointer<WGPUDepthStencilState>
         get() = depthStencilHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             depthStencilHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var multisample: WGPUMultisampleState
-        get() =
-            WGPUMultisampleState(
-                multisampleHandle.invokeExact(
-                    this.`$mem`,
-                    0L
-                ) as MemorySegment
-            )
+        get() = WGPUMultisampleState(
+            multisampleHandle.invokeExact(
+                this.`$mem`,
+                0L
+            ) as MemorySegment
+        )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.multisample.`$mem`, 0L,
-                WGPUMultisampleState.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.multisample.`$mem`, 0L, WGPUMultisampleState.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var fragment: Pointer<WGPUFragmentState>
         get() = fragmentHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

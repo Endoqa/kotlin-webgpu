@@ -6,10 +6,22 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUQueryType(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * TODO
+     */
     Occlusion(0x00000001),
+
+    /**
+     * TODO
+     */
     Timestamp(0x00000002),
     ;
 
@@ -30,6 +42,7 @@ public enum class WGPUQueryType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUQueryType = when (value) {
+            Null.value -> Null
             Occlusion.value -> Occlusion
             Timestamp.value -> Timestamp
             else -> error("enum not found")

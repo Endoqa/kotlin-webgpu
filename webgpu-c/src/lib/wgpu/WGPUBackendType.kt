@@ -6,17 +6,55 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUBackendType(
     public val `value`: Int,
 ) {
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
     Undefined(0x00000000),
+
+    /**
+     * TODO
+     */
     Null(0x00000001),
+
+    /**
+     * TODO
+     */
     WebGPU(0x00000002),
+
+    /**
+     * TODO
+     */
     D3D11(0x00000003),
+
+    /**
+     * TODO
+     */
     D3D12(0x00000004),
+
+    /**
+     * TODO
+     */
     Metal(0x00000005),
+
+    /**
+     * TODO
+     */
     Vulkan(0x00000006),
+
+    /**
+     * TODO
+     */
     OpenGL(0x00000007),
+
+    /**
+     * TODO
+     */
     OpenGLES(0x00000008),
     ;
 

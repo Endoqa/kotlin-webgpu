@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUSamplerBindingLayout(
     public val `$mem`: MemorySegment,
@@ -14,11 +17,12 @@ public value class WGPUSamplerBindingLayout(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * If set to @ref WGPUSamplerBindingType_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUSamplerBindingType_Filtering.
+     */
     public var type: WGPUSamplerBindingType
-        get() = WGPUSamplerBindingType.fromInt(
-            typeHandle.get(this.`$mem`, 0L)
-                    as Int
-        )
+        get() = WGPUSamplerBindingType.fromInt(typeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             typeHandle.set(this.`$mem`, 0L, value.value)
         }

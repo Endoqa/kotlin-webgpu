@@ -6,7 +6,15 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 
+/**
+ * TODO
+ */
 public fun interface WGPURequestAdapterCallback {
+    /**
+     * @param status TODO
+     * @param adapter TODO
+     * @param message TODO
+     */
     public fun invoke(
         status: WGPURequestAdapterStatus,
         adapter: WGPUAdapter,

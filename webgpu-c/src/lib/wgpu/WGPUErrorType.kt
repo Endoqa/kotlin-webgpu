@@ -6,13 +6,37 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUErrorType(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * TODO
+     */
     NoError(0x00000001),
+
+    /**
+     * TODO
+     */
     Validation(0x00000002),
+
+    /**
+     * TODO
+     */
     OutOfMemory(0x00000003),
+
+    /**
+     * TODO
+     */
     Internal(0x00000004),
+
+    /**
+     * TODO
+     */
     Unknown(0x00000005),
     ;
 
@@ -33,6 +57,7 @@ public enum class WGPUErrorType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUErrorType = when (value) {
+            Null.value -> Null
             NoError.value -> NoError
             Validation.value -> Validation
             OutOfMemory.value -> OutOfMemory

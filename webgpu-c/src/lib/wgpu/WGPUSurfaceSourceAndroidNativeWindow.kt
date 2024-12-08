@@ -5,25 +5,27 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an Android [`ANativeWindow`](https://developer.android.com/ndk/reference/group/a-native-window).
+ */
 @JvmInline
 public value class WGPUSurfaceSourceAndroidNativeWindow(
     public val `$mem`: MemorySegment,
 ) {
     public var chain: WGPUChainedStruct
-        get() =
-            WGPUChainedStruct(
-                chainHandle.invokeExact(
-                    this.`$mem`,
-                    0L
-                ) as MemorySegment
-            )
+        get() = WGPUChainedStruct(
+            chainHandle.invokeExact(
+                this.`$mem`,
+                0L
+            ) as MemorySegment
+        )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.chain.`$mem`, 0L,
-                WGPUChainedStruct.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.chain.`$mem`, 0L, WGPUChainedStruct.layout.byteSize())
         }
 
+    /**
+     * The pointer to the [`ANativeWindow`](https://developer.android.com/ndk/reference/group/a-native-window) that will be wrapped by the @ref WGPUSurface.
+     */
     public var window: Pointer<Unit>
         get() = windowHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {

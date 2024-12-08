@@ -6,13 +6,26 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUVertexStepMode(
     public val `value`: Int,
 ) {
-    VertexBufferNotUsed(0x00000000),
-    Undefined(0x00000001),
-    Vertex(0x00000002),
-    Instance(0x00000003),
+    /**
+     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     */
+    Undefined(0x00000000),
+
+    /**
+     * TODO
+     */
+    Vertex(0x00000001),
+
+    /**
+     * TODO
+     */
+    Instance(0x00000002),
     ;
 
     public companion object {
@@ -32,7 +45,6 @@ public enum class WGPUVertexStepMode(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUVertexStepMode = when (value) {
-            VertexBufferNotUsed.value -> VertexBufferNotUsed
             Undefined.value -> Undefined
             Vertex.value -> Vertex
             Instance.value -> Instance

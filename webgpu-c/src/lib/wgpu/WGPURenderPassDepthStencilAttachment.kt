@@ -4,97 +4,101 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPURenderPassDepthStencilAttachment(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = nextInChainHandle.get(this.`$mem`, 0L) as
-                MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var view: WGPUTextureView
         get() = viewHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             viewHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var depthLoadOp: WGPULoadOp
-        get() =
-            WGPULoadOp.fromInt(
-                depthLoadOpHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
+        get() = WGPULoadOp.fromInt(depthLoadOpHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             depthLoadOpHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var depthStoreOp: WGPUStoreOp
-        get() =
-            WGPUStoreOp.fromInt(
-                depthStoreOpHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
+        get() = WGPUStoreOp.fromInt(depthStoreOpHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             depthStoreOpHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var depthClearValue: Float
         get() = depthClearValueHandle.get(this.`$mem`, 0L) as Float
         set(`value`) {
             depthClearValueHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var depthReadOnly: WGPUBool
-        get() = (depthReadOnlyHandle.get(this.`$mem`, 0L) as
-                Int).toUInt()
+        get() = (depthReadOnlyHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             depthReadOnlyHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var stencilLoadOp: WGPULoadOp
-        get() =
-            WGPULoadOp.fromInt(
-                stencilLoadOpHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
+        get() = WGPULoadOp.fromInt(stencilLoadOpHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             stencilLoadOpHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var stencilStoreOp: WGPUStoreOp
-        get() =
-            WGPUStoreOp.fromInt(
-                stencilStoreOpHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
+        get() = WGPUStoreOp.fromInt(
+            stencilStoreOpHandle.get(
+                this.`$mem`,
+                0L
+            ) as Int
+        )
         set(`value`) {
             stencilStoreOpHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var stencilClearValue: UInt
-        get() = (stencilClearValueHandle.get(this.`$mem`, 0L) as
-                Int).toUInt()
+        get() = (stencilClearValueHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
-            stencilClearValueHandle.set(
-                this.`$mem`,
-                0L, value.toInt()
-            )
+            stencilClearValueHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var stencilReadOnly: WGPUBool
-        get() = (stencilReadOnlyHandle.get(this.`$mem`, 0L) as
-                Int).toUInt()
+        get() = (stencilReadOnlyHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             stencilReadOnlyHandle.set(this.`$mem`, 0L, value.toInt())
         }

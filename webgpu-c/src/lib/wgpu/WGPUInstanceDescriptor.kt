@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUInstanceDescriptor(
     public val `$mem`: MemorySegment,
@@ -15,6 +18,9 @@ public value class WGPUInstanceDescriptor(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * Instance features to enable
+     */
     public var features: WGPUInstanceCapabilities
         get() = WGPUInstanceCapabilities(
             featuresHandle.invokeExact(
@@ -23,10 +29,7 @@ public value class WGPUInstanceDescriptor(
             ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.features.`$mem`, 0L,
-                WGPUInstanceCapabilities.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.features.`$mem`, 0L, WGPUInstanceCapabilities.layout.byteSize())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {

@@ -6,7 +6,19 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 
+/**
+ * TODO
+ */
 public fun interface WGPUPopErrorScopeCallback {
+    /**
+     * @param status See @ref WGPUPopErrorScopeStatus.
+     * @param type The type of the error caught by the scope, or @ref WGPUErrorType_NoError if there was none.
+     * If the `status` is not @ref WGPUPopErrorScopeStatus_Success, this is @ref WGPUErrorType_NoError.
+     * @param message If the `status` is not @ref WGPUPopErrorScopeStatus_Success **or**
+     * the `type` is not @ref WGPUErrorType_NoError, this is a non-empty
+     * @ref LocalizableHumanReadableMessageString;
+     * otherwise, this is an empty string.
+     */
     public fun invoke(
         status: WGPUPopErrorScopeStatus,
         type: WGPUErrorType,

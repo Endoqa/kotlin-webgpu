@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUPrimitiveState(
     public val `$mem`: MemorySegment,
@@ -14,36 +17,48 @@ public value class WGPUPrimitiveState(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * If set to @ref WGPUPrimitiveTopology_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUPrimitiveTopology_TriangleList.
+     */
     public var topology: WGPUPrimitiveTopology
-        get() = WGPUPrimitiveTopology.fromInt(
-            topologyHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUPrimitiveTopology.fromInt(topologyHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             topologyHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var stripIndexFormat: WGPUIndexFormat
-        get() = WGPUIndexFormat.fromInt(
-            stripIndexFormatHandle.get(this.`$mem`, 0L)
-                    as Int
-        )
+        get() = WGPUIndexFormat.fromInt(stripIndexFormatHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             stripIndexFormatHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUFrontFace_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUFrontFace_CCW.
+     */
     public var frontFace: WGPUFrontFace
         get() = WGPUFrontFace.fromInt(frontFaceHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             frontFaceHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * If set to @ref WGPUCullMode_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUCullMode_None.
+     */
     public var cullMode: WGPUCullMode
         get() = WGPUCullMode.fromInt(cullModeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             cullModeHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var unclippedDepth: WGPUBool
         get() = (unclippedDepthHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {

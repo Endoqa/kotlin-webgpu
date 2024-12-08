@@ -4,32 +4,29 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUBlendState(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * TODO
+     */
     public var color: WGPUBlendComponent
-        get() = WGPUBlendComponent(
-            colorHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUBlendComponent(colorHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.color.`$mem`, 0L,
-                WGPUBlendComponent.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.color.`$mem`, 0L, WGPUBlendComponent.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var alpha: WGPUBlendComponent
-        get() = WGPUBlendComponent(
-            alphaHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUBlendComponent(alphaHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.alpha.`$mem`, 0L,
-                WGPUBlendComponent.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.alpha.`$mem`, 0L, WGPUBlendComponent.layout.byteSize())
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {

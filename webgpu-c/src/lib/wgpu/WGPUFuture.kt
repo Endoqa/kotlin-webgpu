@@ -4,10 +4,16 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * Opaque handle to an asynchronous operation. See @ref Asynchronous-Operations for more information.
+ */
 @JvmInline
 public value class WGPUFuture(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * Opaque id of the @ref WGPUFuture
+     */
     public var id: ULong
         get() = (idHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
@@ -28,7 +34,6 @@ public value class WGPUFuture(
         public val idHandle: VarHandle = layout.varHandle(MemoryLayout.PathElement.groupElement("id"))
 
         @JvmStatic
-        public fun allocate(alloc: SegmentAllocator): WGPUFuture =
-            WGPUFuture(alloc.allocate(layout))
+        public fun allocate(alloc: SegmentAllocator): WGPUFuture = WGPUFuture(alloc.allocate(layout))
     }
 }

@@ -5,28 +5,31 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an [XCB](https://xcb.freedesktop.org/) `xcb_window_t`.
+ */
 @JvmInline
 public value class WGPUSurfaceSourceXCBWindow(
     public val `$mem`: MemorySegment,
 ) {
     public var chain: WGPUChainedStruct
-        get() = WGPUChainedStruct(
-            chainHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUChainedStruct(chainHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.chain.`$mem`, 0L,
-                WGPUChainedStruct.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.chain.`$mem`, 0L, WGPUChainedStruct.layout.byteSize())
         }
 
+    /**
+     * The `xcb_connection_t` for the connection to the X server.
+     */
     public var connection: Pointer<Unit>
         get() = connectionHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             connectionHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * The `xcb_window_t` for the window that will be wrapped by the @ref WGPUSurface.
+     */
     public var window: UInt
         get() = (windowHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {

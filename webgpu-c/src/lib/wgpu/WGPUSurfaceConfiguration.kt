@@ -4,6 +4,10 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * Options to @ref wgpuSurfaceConfigure for defining how a @ref WGPUSurface will be rendered to and presented to the user.
+ * See @ref Surface-Configuration for more details.
+ */
 @JvmInline
 public value class WGPUSurfaceConfiguration(
     public val `$mem`: MemorySegment,
@@ -14,67 +18,90 @@ public value class WGPUSurfaceConfiguration(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * The @ref WGPUDevice to use to render to surface's textures.
+     */
     public var device: WGPUDevice
         get() = deviceHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             deviceHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * The @ref WGPUTextureFormat of the surface's textures.
+     */
     public var format: WGPUTextureFormat
-        get() = WGPUTextureFormat.fromInt(
-            formatHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUTextureFormat.fromInt(formatHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             formatHandle.set(this.`$mem`, 0L, value.value)
         }
 
-    public var usage: WGPUTextureUsage
+    /**
+     * The @ref WGPUTextureUsage of the surface's textures.
+     */
+    public var usage: ULong
         get() = (usageHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             usageHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * The width of the surface's textures.
+     */
     public var width: UInt
         get() = (widthHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             widthHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * The height of the surface's textures.
+     */
     public var height: UInt
         get() = (heightHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             heightHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * Array count for viewFormats.
+     */
     public var viewFormatCount: ULong
         get() = (viewFormatCountHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             viewFormatCountHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * The additional @ref WGPUTextureFormat for @ref WGPUTextureView format reinterpretation of the surface's textures.
+     */
     public var viewFormats: Pointer<WGPUTextureFormat>
         get() = viewFormatsHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             viewFormatsHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * How the surface's frames will be composited on the screen.
+     *
+     * If set to @ref WGPUCompositeAlphaMode_Auto,
+     * [defaults] to @ref WGPUCompositeAlphaMode_Inherit in native (allowing the mode
+     * to be configured externally), and to @ref WGPUCompositeAlphaMode_Opaque in Wasm.
+     */
     public var alphaMode: WGPUCompositeAlphaMode
-        get() = WGPUCompositeAlphaMode.fromInt(
-            alphaModeHandle.get(
-                this.`$mem`,
-                0L
-            ) as Int
-        )
+        get() = WGPUCompositeAlphaMode.fromInt(alphaModeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             alphaModeHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * When and in which order the surface's frames will be shown on the screen.
+     *
+     * If set to @ref WGPUPresentMode_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUPresentMode_Fifo.
+     */
     public var presentMode: WGPUPresentMode
-        get() = WGPUPresentMode.fromInt(
-            presentModeHandle.get(this.`$mem`, 0L)
-                    as Int
-        )
+        get() = WGPUPresentMode.fromInt(presentModeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             presentModeHandle.set(this.`$mem`, 0L, value.value)
         }

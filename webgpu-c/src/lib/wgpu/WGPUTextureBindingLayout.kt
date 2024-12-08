@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUTextureBindingLayout(
     public val `$mem`: MemorySegment,
@@ -14,29 +17,34 @@ public value class WGPUTextureBindingLayout(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * If set to @ref WGPUTextureSampleType_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUTextureSampleType_Float.
+     */
     public var sampleType: WGPUTextureSampleType
-        get() = WGPUTextureSampleType.fromInt(
-            sampleTypeHandle.get(
+        get() = WGPUTextureSampleType.fromInt(sampleTypeHandle.get(this.`$mem`, 0L) as Int)
+        set(`value`) {
+            sampleTypeHandle.set(this.`$mem`, 0L, value.value)
+        }
+
+    /**
+     * If set to @ref WGPUTextureViewDimension_Undefined,
+     * [defaults](@ref SentinelValues) to @ref WGPUTextureViewDimension_2D.
+     */
+    public var viewDimension: WGPUTextureViewDimension
+        get() = WGPUTextureViewDimension.fromInt(
+            viewDimensionHandle.get(
                 this.`$mem`,
                 0L
             ) as Int
         )
         set(`value`) {
-            sampleTypeHandle.set(this.`$mem`, 0L, value.value)
-        }
-
-    public var viewDimension: WGPUTextureViewDimension
-        get() =
-            WGPUTextureViewDimension.fromInt(
-                viewDimensionHandle.get(
-                    this.`$mem`,
-                    0L
-                ) as Int
-            )
-        set(`value`) {
             viewDimensionHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var multisampled: WGPUBool
         get() = (multisampledHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {

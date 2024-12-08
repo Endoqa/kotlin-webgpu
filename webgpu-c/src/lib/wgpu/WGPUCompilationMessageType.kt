@@ -6,11 +6,27 @@ import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
 import kotlin.Int
 
+/**
+ * TODO
+ */
 public enum class WGPUCompilationMessageType(
     public val `value`: Int,
 ) {
+    Null(0x00000000),
+
+    /**
+     * TODO
+     */
     Error(0x00000001),
+
+    /**
+     * TODO
+     */
     Warning(0x00000002),
+
+    /**
+     * TODO
+     */
     Info(0x00000003),
     ;
 
@@ -31,6 +47,7 @@ public enum class WGPUCompilationMessageType(
 
         @JvmStatic
         public fun fromInt(`value`: Int): WGPUCompilationMessageType = when (value) {
+            Null.value -> Null
             Error.value -> Error
             Warning.value -> Warning
             Info.value -> Info

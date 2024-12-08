@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUBindGroupLayoutEntry(
     public val `$mem`: MemorySegment,
@@ -15,18 +18,27 @@ public value class WGPUBindGroupLayoutEntry(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var binding: UInt
         get() = (bindingHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             bindingHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
-    public var visibility: WGPUShaderStage
+    /**
+     * TODO
+     */
+    public var visibility: ULong
         get() = (visibilityHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             visibilityHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var buffer: WGPUBufferBindingLayout
         get() = WGPUBufferBindingLayout(
             bufferHandle.invokeExact(
@@ -35,12 +47,12 @@ public value class WGPUBindGroupLayoutEntry(
             ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.buffer.`$mem`, 0L,
-                WGPUBufferBindingLayout.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.buffer.`$mem`, 0L, WGPUBufferBindingLayout.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var sampler: WGPUSamplerBindingLayout
         get() = WGPUSamplerBindingLayout(
             samplerHandle.invokeExact(
@@ -49,12 +61,12 @@ public value class WGPUBindGroupLayoutEntry(
             ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.sampler.`$mem`, 0L,
-                WGPUSamplerBindingLayout.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.sampler.`$mem`, 0L, WGPUSamplerBindingLayout.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var texture: WGPUTextureBindingLayout
         get() = WGPUTextureBindingLayout(
             textureHandle.invokeExact(
@@ -63,23 +75,25 @@ public value class WGPUBindGroupLayoutEntry(
             ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.texture.`$mem`, 0L,
-                WGPUTextureBindingLayout.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.texture.`$mem`, 0L, WGPUTextureBindingLayout.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var storageTexture: WGPUStorageTextureBindingLayout
-        get() =
-            WGPUStorageTextureBindingLayout(
-                storageTextureHandle.invokeExact(
-                    this.`$mem`,
-                    0L
-                ) as MemorySegment
-            )
+        get() = WGPUStorageTextureBindingLayout(
+            storageTextureHandle.invokeExact(
+                this.`$mem`,
+                0L
+            ) as MemorySegment
+        )
         set(`value`) {
             MemorySegment.copy(
-                value.`$mem`, 0L, this.storageTexture.`$mem`, 0L,
+                value.`$mem`,
+                0L,
+                this.storageTexture.`$mem`,
+                0L,
                 WGPUStorageTextureBindingLayout.layout.byteSize()
             )
         }

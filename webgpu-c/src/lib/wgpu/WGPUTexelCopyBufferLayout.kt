@@ -4,22 +4,34 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUTexelCopyBufferLayout(
     public val `$mem`: MemorySegment,
 ) {
+    /**
+     * TODO
+     */
     public var offset: ULong
         get() = (offsetHandle.get(this.`$mem`, 0L) as Long).toULong()
         set(`value`) {
             offsetHandle.set(this.`$mem`, 0L, value.toLong())
         }
 
+    /**
+     * TODO
+     */
     public var bytesPerRow: UInt
         get() = (bytesPerRowHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             bytesPerRowHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var rowsPerImage: UInt
         get() = (rowsPerImageHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {

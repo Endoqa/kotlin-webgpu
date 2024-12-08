@@ -4,27 +4,24 @@ package lib.wgpu
 import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUShaderSourceWGSL(
     public val `$mem`: MemorySegment,
 ) {
     public var chain: WGPUChainedStruct
-        get() = WGPUChainedStruct(
-            chainHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUChainedStruct(chainHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.chain.`$mem`, 0L,
-                WGPUChainedStruct.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.chain.`$mem`, 0L, WGPUChainedStruct.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var code: WGPUStringView
-        get() = WGPUStringView(
-            codeHandle.invokeExact(this.`$mem`, 0L) as
-                    MemorySegment
-        )
+        get() = WGPUStringView(codeHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)
         set(`value`) {
             MemorySegment.copy(value.`$mem`, 0L, this.code.`$mem`, 0L, WGPUStringView.layout.byteSize())
         }

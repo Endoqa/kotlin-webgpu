@@ -15,10 +15,7 @@ public value class WGPUCompilationInfoCallbackInfo(
         }
 
     public var mode: WGPUCallbackMode
-        get() = WGPUCallbackMode.fromInt(
-            modeHandle.get(this.`$mem`, 0L)
-                    as Int
-        )
+        get() = WGPUCallbackMode.fromInt(modeHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             modeHandle.set(this.`$mem`, 0L, value.value)
         }

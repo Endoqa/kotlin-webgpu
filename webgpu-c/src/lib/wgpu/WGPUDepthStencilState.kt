@@ -5,6 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
+/**
+ * TODO
+ */
 @JvmInline
 public value class WGPUDepthStencilState(
     public val `$mem`: MemorySegment,
@@ -15,37 +18,36 @@ public value class WGPUDepthStencilState(
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var format: WGPUTextureFormat
-        get() = WGPUTextureFormat.fromInt(
-            formatHandle.get(this.`$mem`, 0L) as
-                    Int
-        )
+        get() = WGPUTextureFormat.fromInt(formatHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             formatHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var depthWriteEnabled: WGPUOptionalBool
-        get() = WGPUOptionalBool.fromInt(
-            depthWriteEnabledHandle.get(
-                this.`$mem`,
-                0L
-            ) as Int
-        )
+        get() = WGPUOptionalBool.fromInt(depthWriteEnabledHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             depthWriteEnabledHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var depthCompare: WGPUCompareFunction
-        get() = WGPUCompareFunction.fromInt(
-            depthCompareHandle.get(
-                this.`$mem`,
-                0L
-            ) as Int
-        )
+        get() = WGPUCompareFunction.fromInt(depthCompareHandle.get(this.`$mem`, 0L) as Int)
         set(`value`) {
             depthCompareHandle.set(this.`$mem`, 0L, value.value)
         }
 
+    /**
+     * TODO
+     */
     public var stencilFront: WGPUStencilFaceState
         get() = WGPUStencilFaceState(
             stencilFrontHandle.invokeExact(
@@ -54,12 +56,12 @@ public value class WGPUDepthStencilState(
             ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.stencilFront.`$mem`, 0L,
-                WGPUStencilFaceState.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.stencilFront.`$mem`, 0L, WGPUStencilFaceState.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var stencilBack: WGPUStencilFaceState
         get() = WGPUStencilFaceState(
             stencilBackHandle.invokeExact(
@@ -68,36 +70,48 @@ public value class WGPUDepthStencilState(
             ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(
-                value.`$mem`, 0L, this.stencilBack.`$mem`, 0L,
-                WGPUStencilFaceState.layout.byteSize()
-            )
+            MemorySegment.copy(value.`$mem`, 0L, this.stencilBack.`$mem`, 0L, WGPUStencilFaceState.layout.byteSize())
         }
 
+    /**
+     * TODO
+     */
     public var stencilReadMask: UInt
         get() = (stencilReadMaskHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             stencilReadMaskHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var stencilWriteMask: UInt
         get() = (stencilWriteMaskHandle.get(this.`$mem`, 0L) as Int).toUInt()
         set(`value`) {
             stencilWriteMaskHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
     public var depthBias: Int
         get() = depthBiasHandle.get(this.`$mem`, 0L) as Int
         set(`value`) {
             depthBiasHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var depthBiasSlopeScale: Float
         get() = depthBiasSlopeScaleHandle.get(this.`$mem`, 0L) as Float
         set(`value`) {
             depthBiasSlopeScaleHandle.set(this.`$mem`, 0L, value)
         }
 
+    /**
+     * TODO
+     */
     public var depthBiasClamp: Float
         get() = depthBiasClampHandle.get(this.`$mem`, 0L) as Float
         set(`value`) {
