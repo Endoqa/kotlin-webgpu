@@ -37,21 +37,3 @@ internal fun wgpuChainedStructStruct(): CStruct {
 
     return struct
 }
-
-internal fun wgpuChainedStructOutStruct(): CStruct {
-    val struct = CStruct(
-        Identifier("WGPUChainedStructOut"),
-        listOf(
-            CField(
-                Identifier("next"),
-                CPointer(ScopedIdentifier(IdentifierKind.struct, Identifier("WGPUChainedStructOut")))
-            ),
-            CField(
-                Identifier("sType"),
-                ScopedIdentifier(IdentifierKind.enum, Identifier("WGPUSType"))
-            ),
-        )
-    )
-
-    return struct
-}

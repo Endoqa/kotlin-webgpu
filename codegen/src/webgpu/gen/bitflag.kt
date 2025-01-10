@@ -21,12 +21,12 @@ fun generateBitflag(
 
     val type = TypeSpec.objectBuilder(ClassName(packageName, fileName))
 
-    type.addKdoc(bitflag.doc)
+    type.addKdoc(transformDoc(bitflag.doc))
 
     bitflag.entries.forEachIndexed { index, entry ->
 
         val spec = PropertySpec.builder(entry.name.pascalCase, ClassName(packageName, "WGPUFlags"), KModifier.CONST)
-        spec.addKdoc(entry.doc)
+        spec.addKdoc(transformDoc(entry.doc))
 
 
         when {

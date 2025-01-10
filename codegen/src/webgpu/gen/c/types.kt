@@ -40,8 +40,12 @@ fun Type.toCType(): CType = when (this) {
         PrimitiveType.USize -> CPrimitiveType(null, listOf(TypeModifier.Unsigned, TypeModifier.Long))
         PrimitiveType.Int16 -> CPrimitiveType(null, listOf(TypeModifier.Short))
         PrimitiveType.Int32 -> CPrimitiveType(CBasicType.Int)
-        PrimitiveType.Float32 -> CPrimitiveType(CBasicType.Float)
-        PrimitiveType.Float64 -> CPrimitiveType(CBasicType.Double)
+
+        PrimitiveType.Float32,
+        PrimitiveType.NullableFloat32 -> CPrimitiveType(CBasicType.Float)
+
+        PrimitiveType.Float64,
+        PrimitiveType.Float64SuperType -> CPrimitiveType(CBasicType.Double)
 
         PrimitiveType.ArrayBool -> CArrayType(PrimitiveType.Bool.toCType())
         PrimitiveType.ArrayString -> CArrayType(WGPUStringView)

@@ -52,8 +52,14 @@ enum class PrimitiveType(val string: String) : Type {
     @SerialName("float32")
     Float32("float32"),
 
+    @SerialName("nullable_float32")
+    NullableFloat32("nullable_float32"),
+
     @SerialName("float64")
     Float64("float64"),
+
+    @SerialName("float64_supertype")
+    Float64SuperType("float64_supertype"),
 
     @SerialName("array<bool>")
     ArrayBool("array<bool>"),

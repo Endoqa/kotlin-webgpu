@@ -6,6 +6,7 @@ import c.lang.ASTNumberValue
 import c.lang.CEnum
 import c.lang.CEnumarator
 import c.lang.Identifier
+import webgpu.gen.transformDoc
 import webgpu.schema.Enum
 import webgpu.schema.Schema
 
@@ -25,14 +26,14 @@ fun generateEnum(schema: Schema, enum: Enum): CEnum {
             CEnumarator(
                 Identifier(name),
                 enumerator,
-                entry?.doc
+                entry?.doc?.let(::transformDoc)
             )
         }
 
     val cenum = CEnum(
         Identifier("WGPU${enum.name.pascalCase}"),
         enumerators,
-        enum.doc
+        transformDoc(enum.doc)
     )
 
     return cenum

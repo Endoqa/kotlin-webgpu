@@ -9,6 +9,7 @@ import c.lang.CType
 import c.lang.Identifier
 import c.lang.IdentifierKind
 import c.lang.ScopedIdentifier
+import webgpu.gen.transformDoc
 import webgpu.schema.Function
 
 
@@ -35,7 +36,7 @@ fun Function.toCFunction(): CFunction {
     val args = (this.args ?: emptyList())
         .map { Member(it.name, it.type, it.pointer != null, it.doc) }
         .let(::generateCMembers)
-        .map { CFunctionParam(it.identifier, it.type, it.doc) }
+        .map { CFunctionParam(it.identifier, it.type, transformDoc(it.doc)) }
         .toMutableList()
 
 
@@ -43,7 +44,7 @@ fun Function.toCFunction(): CFunction {
         args += CFunctionParam(Identifier("callbackInfo"), callback.toCType())
     }
 
-    return CFunction(args, this.returnType(), doc = this.doc)
+    return CFunction(args, this.returnType(), doc = transformDoc(this.doc))
 }
 
 fun generateFunction(function: Function): Pair<Identifier, CFunction> {

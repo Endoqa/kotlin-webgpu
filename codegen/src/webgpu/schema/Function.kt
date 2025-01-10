@@ -18,5 +18,6 @@ data class FunctionReturn(
     val type: Type,
     @SerialName("passed_with_ownership")
     val passedWithOwnership: Boolean?,
-    val pointer: Pointer?
+    val pointer: Pointer?,
+    val optional: Boolean?
 )
