@@ -1,6 +1,7 @@
 package webgpu.gen.c
 
 import c.lang.*
+import webgpu.gen.transformDoc
 import webgpu.schema.ComplexType
 import webgpu.schema.Name
 import webgpu.schema.Type
@@ -34,7 +35,7 @@ fun generateCMembers(members: List<Member>): List<CMember> {
                 CMember(
                     Identifier("${singularize(member.name.camelCase)}Count"),
                     size_t,
-                    "Array count for ${member.name.camelCase}."
+                    "Array count for [${member.name.camelCase}]."
                 )
             )
 
@@ -42,7 +43,7 @@ fun generateCMembers(members: List<Member>): List<CMember> {
                 CMember(
                     Identifier(member.name.camelCase),
                     CPointer(memberType.toCType()),
-                    member.doc
+                    transformDoc(member.doc)
                 )
             )
         } else {
@@ -51,7 +52,7 @@ fun generateCMembers(members: List<Member>): List<CMember> {
                 CMember(
                     Identifier(member.name.camelCase),
                     if (member.isPointer) CPointer(cType) else cType,
-                    member.doc
+                    transformDoc(member.doc)
                 )
             )
         }

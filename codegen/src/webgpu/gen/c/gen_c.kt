@@ -21,7 +21,6 @@ val WGPUBool = Identifier("WGPUBool")
 val WGPUStringView = Identifier("WGPUStringView")
 
 val WGPUChainedStruct = Identifier("WGPUChainedStruct")
-val WGPUChainedStructOut = Identifier("WGPUChainedStructOut")
 
 
 class GenerateCContext {
@@ -41,11 +40,9 @@ fun generate(schema: Schema) {
 
     structs[WGPUStringView] = wgpuStringViewStruct()
     structs[WGPUChainedStruct] = wgpuChainedStructStruct()
-    structs[WGPUChainedStructOut] = wgpuChainedStructOutStruct()
 
     globals[WGPUStringView] = ScopedIdentifier(IdentifierKind.struct, WGPUStringView)
     globals[WGPUChainedStruct] = ScopedIdentifier(IdentifierKind.struct, WGPUChainedStruct)
-    globals[WGPUChainedStructOut] = ScopedIdentifier(IdentifierKind.struct, WGPUChainedStructOut)
 
 
 
@@ -60,8 +57,13 @@ fun generate(schema: Schema) {
     }
 
     schema.structs.forEach {
-        val struct = generateStruct(it)
+        val (struct, freeFunc) = generateStruct(it)
         structs[struct.id!!] = struct
+
+        if (freeFunc != null) {
+            val (id, func) = freeFunc
+            globals[id] = func
+        }
     }
 
     schema.objects.forEach {

@@ -10,6 +10,7 @@ data class Schema(
     val name: Name,
     @SerialName("enum_prefix")
     val enumPrefix: String,
+    val doc: String,
     val typedefs: List<Typedef>,
     val constants: List<Constant>,
     val enums: List<Enum>,
@@ -82,23 +83,14 @@ data class Struct(
 
 @Serializable
 enum class StructType {
-    @SerialName("base_in")
-    BaseIn,
+    @SerialName("extensible")
+    Extensible,
 
-    @SerialName("base_out")
-    BaseOut,
+    @SerialName("extensible_callback_arg")
+    ExtensibleCallbackArg,
 
-    @SerialName("base_in_or_out")
-    BaseInOrOut,
-
-    @SerialName("extension_in")
-    ExtensionIn,
-
-    @SerialName("extension_out")
-    ExtensionOut,
-
-    @SerialName("extension_in_or_out")
-    ExtensionInOrOut,
+    @SerialName("extension")
+    Extension,
 
     @SerialName("standalone")
     Standalone
