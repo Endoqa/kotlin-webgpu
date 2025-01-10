@@ -11,7 +11,7 @@ import java.lang.invoke.VarHandle
 public value class WGPUInstanceCapabilities(
     public val `$mem`: MemorySegment,
 ) {
-    public var nextInChain: Pointer<WGPUChainedStructOut>
+    public var nextInChain: Pointer<WGPUChainedStruct>
         get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             nextInChainHandle.set(this.`$mem`, 0L, value)
@@ -27,7 +27,7 @@ public value class WGPUInstanceCapabilities(
         }
 
     /**
-     * The maximum number @ref WGPUFutureWaitInfo supported in a call to ::wgpuInstanceWaitAny with `timeoutNS > 0`.
+     * The maximum number [WGPUFutureWaitInfo] supported in a call to ::wgpuInstanceWaitAny with `timeoutNS > 0`.
      */
     public var timedWaitAnyMaxCount: ULong
         get() = (timedWaitAnyMaxCountHandle.get(this.`$mem`, 0L) as Long).toULong()

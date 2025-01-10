@@ -5,8 +5,8 @@ import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
 /**
- * Options to @ref wgpuSurfaceConfigure for defining how a @ref WGPUSurface will be rendered to and presented to the user.
- * See @ref Surface-Configuration for more details.
+ * Options to [wgpuSurfaceConfigure] for defining how a [WGPUSurface] will be rendered to and presented to the user.
+ * See [Surface-Configuration](https://webgpu-native.github.io/webgpu-headers/articles.html) for more details.
  */
 @JvmInline
 public value class WGPUSurfaceConfiguration(
@@ -19,7 +19,7 @@ public value class WGPUSurfaceConfiguration(
         }
 
     /**
-     * The @ref WGPUDevice to use to render to surface's textures.
+     * The [WGPUDevice] to use to render to surface's textures.
      */
     public var device: WGPUDevice
         get() = deviceHandle.get(this.`$mem`, 0L) as MemorySegment
@@ -28,7 +28,7 @@ public value class WGPUSurfaceConfiguration(
         }
 
     /**
-     * The @ref WGPUTextureFormat of the surface's textures.
+     * The [WGPUTextureFormat] of the surface's textures.
      */
     public var format: WGPUTextureFormat
         get() = WGPUTextureFormat.fromInt(formatHandle.get(this.`$mem`, 0L) as Int)
@@ -37,7 +37,7 @@ public value class WGPUSurfaceConfiguration(
         }
 
     /**
-     * The @ref WGPUTextureUsage of the surface's textures.
+     * The [WGPUTextureUsage] of the surface's textures.
      */
     public var usage: ULong
         get() = (usageHandle.get(this.`$mem`, 0L) as Long).toULong()
@@ -64,7 +64,7 @@ public value class WGPUSurfaceConfiguration(
         }
 
     /**
-     * Array count for viewFormats.
+     * Array count for [viewFormats].
      */
     public var viewFormatCount: ULong
         get() = (viewFormatCountHandle.get(this.`$mem`, 0L) as Long).toULong()
@@ -73,7 +73,7 @@ public value class WGPUSurfaceConfiguration(
         }
 
     /**
-     * The additional @ref WGPUTextureFormat for @ref WGPUTextureView format reinterpretation of the surface's textures.
+     * The additional [WGPUTextureFormat] for [WGPUTextureView] format reinterpretation of the surface's textures.
      */
     public var viewFormats: Pointer<WGPUTextureFormat>
         get() = viewFormatsHandle.get(this.`$mem`, 0L) as MemorySegment
@@ -84,9 +84,9 @@ public value class WGPUSurfaceConfiguration(
     /**
      * How the surface's frames will be composited on the screen.
      *
-     * If set to @ref WGPUCompositeAlphaMode_Auto,
-     * [defaults] to @ref WGPUCompositeAlphaMode_Inherit in native (allowing the mode
-     * to be configured externally), and to @ref WGPUCompositeAlphaMode_Opaque in Wasm.
+     * If set to [WGPUCompositeAlphaMode.Auto],
+     * [defaults] to [WGPUCompositeAlphaMode.Inherit] in native (allowing the mode
+     * to be configured externally), and to [WGPUCompositeAlphaMode.Opaque] in Wasm.
      */
     public var alphaMode: WGPUCompositeAlphaMode
         get() = WGPUCompositeAlphaMode.fromInt(alphaModeHandle.get(this.`$mem`, 0L) as Int)
@@ -97,8 +97,8 @@ public value class WGPUSurfaceConfiguration(
     /**
      * When and in which order the surface's frames will be shown on the screen.
      *
-     * If set to @ref WGPUPresentMode_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUPresentMode_Fifo.
+     * If set to [WGPUPresentMode.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUPresentMode.Fifo].
      */
     public var presentMode: WGPUPresentMode
         get() = WGPUPresentMode.fromInt(presentModeHandle.get(this.`$mem`, 0L) as Int)

@@ -37,7 +37,7 @@ public value class WGPUBindGroupDescriptor(
         }
 
     /**
-     * Array count for entries.
+     * Array count for [entries].
      */
     public var entryCount: ULong
         get() = (entryCountHandle.get(this.`$mem`, 0L) as Long).toULong()

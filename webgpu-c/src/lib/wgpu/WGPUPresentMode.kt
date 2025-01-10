@@ -7,7 +7,7 @@ import java.lang.invoke.MethodType
 import kotlin.Int
 
 /**
- * Describes when and in which order frames are presented on the screen when @ref wgpuSurfacePresent is called.
+ * Describes when and in which order frames are presented on the screen when [wgpuSurfacePresent] is called.
  */
 public enum class WGPUPresentMode(
     public val `value`: Int,

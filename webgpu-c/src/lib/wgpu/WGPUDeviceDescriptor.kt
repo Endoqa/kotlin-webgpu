@@ -28,7 +28,7 @@ public value class WGPUDeviceDescriptor(
         }
 
     /**
-     * Array count for requiredFeatures.
+     * Array count for [requiredFeatures].
      */
     public var requiredFeatureCount: ULong
         get() = (requiredFeatureCountHandle.get(this.`$mem`, 0L) as Long).toULong()
@@ -90,7 +90,9 @@ public value class WGPUDeviceDescriptor(
 
     /**
      * Called when there is an uncaptured error on this device, from any thread.
-     * See @ref ErrorScopes.
+     * See [ErrorScopes](https://webgpu-native.github.io/webgpu-headers/articles.html).
+     *
+     * **Important:** This callback does not have a configurable [WGPUCallbackMode]; it may be called at any time (like [WGPUCallbackMode.AllowSpontaneous]). As such, calls into the `webgpu.h` API from this callback are unsafe. See [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/articles.html).
      */
     public var uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
         get() = WGPUUncapturedErrorCallbackInfo(

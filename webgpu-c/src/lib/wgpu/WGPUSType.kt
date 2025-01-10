@@ -58,6 +58,11 @@ public enum class WGPUSType(
      * TODO
      */
     SurfaceSourceXCBWindow(0x00000009),
+
+    /**
+     * TODO
+     */
+    SurfaceColorManagement(0x0000000a),
     ;
 
     public companion object {
@@ -87,6 +92,7 @@ public enum class WGPUSType(
             SurfaceSourceWaylandSurface.value -> SurfaceSourceWaylandSurface
             SurfaceSourceAndroidNativeWindow.value -> SurfaceSourceAndroidNativeWindow
             SurfaceSourceXCBWindow.value -> SurfaceSourceXCBWindow
+            SurfaceColorManagement.value -> SurfaceColorManagement
             else -> error("enum not found")
         }
     }

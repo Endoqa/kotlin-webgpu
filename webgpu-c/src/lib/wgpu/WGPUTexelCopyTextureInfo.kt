@@ -40,8 +40,8 @@ public value class WGPUTexelCopyTextureInfo(
         }
 
     /**
-     * If set to @ref WGPUTextureAspect_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUTextureAspect_All.
+     * If set to [WGPUTextureAspect.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUTextureAspect.All].
      */
     public var aspect: WGPUTextureAspect
         get() = WGPUTextureAspect.fromInt(aspectHandle.get(this.`$mem`, 0L) as Int)
@@ -60,7 +60,6 @@ public value class WGPUTexelCopyTextureInfo(
             ValueLayout.JAVA_INT.withName("mipLevel"),
             WGPUOrigin3D.layout.withName("origin"),
             ValueLayout.JAVA_INT.withName("aspect"),
-            MemoryLayout.paddingLayout(4),
         ).withName("WGPUTexelCopyTextureInfo")
 
         @JvmField

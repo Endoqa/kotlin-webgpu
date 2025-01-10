@@ -37,8 +37,8 @@ public value class WGPUTextureDescriptor(
         }
 
     /**
-     * If set to @ref WGPUTextureDimension_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUTextureDimension_2D.
+     * If set to [WGPUTextureDimension.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUTextureDimension.2D].
      */
     public var dimension: WGPUTextureDimension
         get() = WGPUTextureDimension.fromInt(dimensionHandle.get(this.`$mem`, 0L) as Int)
@@ -83,7 +83,7 @@ public value class WGPUTextureDescriptor(
         }
 
     /**
-     * Array count for viewFormats.
+     * Array count for [viewFormats].
      */
     public var viewFormatCount: ULong
         get() = (viewFormatCountHandle.get(this.`$mem`, 0L) as Long).toULong()
@@ -115,7 +115,6 @@ public value class WGPUTextureDescriptor(
             ValueLayout.JAVA_INT.withName("format"),
             ValueLayout.JAVA_INT.withName("mipLevelCount"),
             ValueLayout.JAVA_INT.withName("sampleCount"),
-            MemoryLayout.paddingLayout(4),
             ValueLayout.JAVA_LONG.withName("viewFormatCount"),
             `$RuntimeHelper`.POINTER.withName("viewFormats"),
         ).withName("WGPUTextureDescriptor")

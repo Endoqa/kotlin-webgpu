@@ -15,6 +15,7 @@ public fun interface WGPUUncapturedErrorCallback {
      * @param type TODO
      * @param message TODO
      */
+    @CFunctionInvoke
     public fun invoke(
         device: Pointer<WGPUDevice>,
         type: WGPUErrorType,
@@ -31,7 +32,7 @@ public fun interface WGPUUncapturedErrorCallback {
         public val invokeHandle: MethodHandle =
             MethodHandles.filterArguments(
                 MethodHandles.lookup().unreflect(WGPUUncapturedErrorCallback::class.java.methods.find {
-                    it.name == "invoke"
+                    it.getAnnotation(CFunctionInvoke::class.java) != null
                 }
                 ),
                 1, null, WGPUErrorType.fromInt, null, null, null,

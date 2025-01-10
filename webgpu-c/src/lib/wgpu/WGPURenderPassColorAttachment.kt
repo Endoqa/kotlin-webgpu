@@ -19,8 +19,8 @@ public value class WGPURenderPassColorAttachment(
         }
 
     /**
-     * If `NULL`, indicates a hole in the parent
-     * @ref WGPURenderPassDescriptor::colorAttachments array.
+     * If [NULL], indicates a hole in the parent
+     * [WGPURenderPassDescriptor]::colorAttachments array.
      */
     public var view: WGPUTextureView
         get() = viewHandle.get(this.`$mem`, 0L) as MemorySegment

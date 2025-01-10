@@ -5,18 +5,18 @@ import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
 /**
- * If `attributes` is empty *and* `stepMode` is @ref WGPUVertexStepMode_Undefined,
- * indicates a "hole" in the parent @ref WGPUVertexState `buffers` array,
- * with behavior equivalent to `null` in the JS API.
+ * If [attributes] is empty *and* [stepMode] is [WGPUVertexStepMode.Undefined],
+ * indicates a "hole" in the parent [WGPUVertexState.buffers] array,
+ * with behavior equivalent to [null] in the JS API.
  *
- * If `attributes` is empty but `stepMode` is *not* @ref WGPUVertexStepMode_Undefined,
+ * If [attributes] is empty but [stepMode] is *not* [WGPUVertexStepMode.Undefined],
  * indicates a vertex buffer with no attributes, with behavior equivalent to
  * `{ attributes: [] }` in the JS API. (TODO: If the JS API changes not to
  * distinguish these cases, then this distinction doesn't matter and we can
  * remove this documentation.)
  *
- * If `stepMode` is @ref WGPUVertexStepMode_Undefined but `attributes` is *not* empty,
- * `stepMode` [defaults](@ref SentinelValues) to @ref WGPUVertexStepMode_Vertex.
+ * If [stepMode] is [WGPUVertexStepMode.Undefined] but [attributes] is *not* empty,
+ * [stepMode] [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUVertexStepMode.Vertex].
  */
 @JvmInline
 public value class WGPUVertexBufferLayout(
@@ -47,7 +47,7 @@ public value class WGPUVertexBufferLayout(
         }
 
     /**
-     * Array count for attributes.
+     * Array count for [attributes].
      */
     public var attributeCount: ULong
         get() = (attributeCountHandle.get(this.`$mem`, 0L) as Long).toULong()

@@ -15,6 +15,7 @@ public fun interface WGPURequestDeviceCallback {
      * @param device TODO
      * @param message TODO
      */
+    @CFunctionInvoke
     public fun invoke(
         status: WGPURequestDeviceStatus,
         device: WGPUDevice,
@@ -31,7 +32,7 @@ public fun interface WGPURequestDeviceCallback {
         public val invokeHandle: MethodHandle =
             MethodHandles.filterArguments(
                 MethodHandles.lookup().unreflect(WGPURequestDeviceCallback::class.java.methods.find {
-                    it.name == "invoke"
+                    it.getAnnotation(CFunctionInvoke::class.java) != null
                 }
                 ),
                 1, WGPURequestDeviceStatus.fromInt, null, null, null, null,

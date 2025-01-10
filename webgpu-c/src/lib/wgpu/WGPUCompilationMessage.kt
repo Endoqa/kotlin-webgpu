@@ -19,7 +19,7 @@ public value class WGPUCompilationMessage(
         }
 
     /**
-     * A @ref LocalizableHumanReadableMessageString.
+     * A [LocalizableHumanReadableMessageString](https://webgpu-native.github.io/webgpu-headers/articles.html).
      */
     public var message: WGPUStringView
         get() = WGPUStringView(messageHandle.invokeExact(this.`$mem`, 0L) as MemorySegment)

@@ -12,8 +12,8 @@ public value class WGPUStencilFaceState(
     public val `$mem`: MemorySegment,
 ) {
     /**
-     * If set to @ref WGPUCompareFunction_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUCompareFunction_Always.
+     * If set to [WGPUCompareFunction.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUCompareFunction.Always].
      */
     public var compare: WGPUCompareFunction
         get() = WGPUCompareFunction.fromInt(compareHandle.get(this.`$mem`, 0L) as Int)
@@ -22,8 +22,8 @@ public value class WGPUStencilFaceState(
         }
 
     /**
-     * If set to @ref WGPUStencilOperation_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUStencilOperation_Keep.
+     * If set to [WGPUStencilOperation.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUStencilOperation.Keep].
      */
     public var failOp: WGPUStencilOperation
         get() = WGPUStencilOperation.fromInt(failOpHandle.get(this.`$mem`, 0L) as Int)
@@ -32,8 +32,8 @@ public value class WGPUStencilFaceState(
         }
 
     /**
-     * If set to @ref WGPUStencilOperation_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUStencilOperation_Keep.
+     * If set to [WGPUStencilOperation.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUStencilOperation.Keep].
      */
     public var depthFailOp: WGPUStencilOperation
         get() = WGPUStencilOperation.fromInt(depthFailOpHandle.get(this.`$mem`, 0L) as Int)
@@ -42,8 +42,8 @@ public value class WGPUStencilFaceState(
         }
 
     /**
-     * If set to @ref WGPUStencilOperation_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUStencilOperation_Keep.
+     * If set to [WGPUStencilOperation.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUStencilOperation.Keep].
      */
     public var passOp: WGPUStencilOperation
         get() = WGPUStencilOperation.fromInt(passOpHandle.get(this.`$mem`, 0L) as Int)

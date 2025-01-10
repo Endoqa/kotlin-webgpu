@@ -7,13 +7,13 @@ import java.lang.invoke.MethodType
 import kotlin.Int
 
 /**
- * Describes how frames are composited with other contents on the screen when @ref wgpuSurfacePresent is called.
+ * Describes how frames are composited with other contents on the screen when [wgpuSurfacePresent] is called.
  */
 public enum class WGPUCompositeAlphaMode(
     public val `value`: Int,
 ) {
     /**
-     * Lets the WebGPU implementation choose the best mode (supported, and with the best performance) between @ref WGPUCompositeAlphaMode_Opaque or @ref WGPUCompositeAlphaMode_Inherit.
+     * Lets the WebGPU implementation choose the best mode (supported, and with the best performance) between [WGPUCompositeAlphaMode.Opaque] or [WGPUCompositeAlphaMode.Inherit].
      */
     Auto(0x00000000),
 

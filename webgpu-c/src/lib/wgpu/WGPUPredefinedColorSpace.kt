@@ -9,51 +9,42 @@ import kotlin.Int
 /**
  * TODO
  */
-public enum class WGPUTextureAspect(
+public enum class WGPUPredefinedColorSpace(
     public val `value`: Int,
 ) {
-    /**
-     * Indicates no value is passed for this argument. See [SentinelValues](https://webgpu-native.github.io/webgpu-headers/articles.html).
-     */
-    Undefined(0x00000000),
+    Null(0x00000000),
 
     /**
      * TODO
      */
-    All(0x00000001),
+    SRGB(0x00000001),
 
     /**
      * TODO
      */
-    StencilOnly(0x00000002),
-
-    /**
-     * TODO
-     */
-    DepthOnly(0x00000003),
+    DisplayP3(0x00000002),
     ;
 
     public companion object {
         @JvmStatic
         public val fromInt: MethodHandle = MethodHandles.lookup().findStatic(
-            WGPUTextureAspect::class.java,
+            WGPUPredefinedColorSpace::class.java,
             "fromInt",
-            MethodType.methodType(WGPUTextureAspect::class.java, Int::class.java)
+            MethodType.methodType(WGPUPredefinedColorSpace::class.java, Int::class.java)
         )
 
         @JvmStatic
         public val toInt: MethodHandle = MethodHandles.lookup().findGetter(
-            WGPUTextureAspect::class.java,
+            WGPUPredefinedColorSpace::class.java,
             "value",
             Int::class.java
         )
 
         @JvmStatic
-        public fun fromInt(`value`: Int): WGPUTextureAspect = when (value) {
-            Undefined.value -> Undefined
-            All.value -> All
-            StencilOnly.value -> StencilOnly
-            DepthOnly.value -> DepthOnly
+        public fun fromInt(`value`: Int): WGPUPredefinedColorSpace = when (value) {
+            Null.value -> Null
+            SRGB.value -> SRGB
+            DisplayP3.value -> DisplayP3
             else -> error("enum not found")
         }
     }

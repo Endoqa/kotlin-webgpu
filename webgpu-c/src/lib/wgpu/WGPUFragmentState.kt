@@ -37,7 +37,7 @@ public value class WGPUFragmentState(
         }
 
     /**
-     * Array count for constants.
+     * Array count for [constants].
      */
     public var constantCount: ULong
         get() = (constantCountHandle.get(this.`$mem`, 0L) as Long).toULong()
@@ -55,7 +55,7 @@ public value class WGPUFragmentState(
         }
 
     /**
-     * Array count for targets.
+     * Array count for [targets].
      */
     public var targetCount: ULong
         get() = (targetCountHandle.get(this.`$mem`, 0L) as Long).toULong()

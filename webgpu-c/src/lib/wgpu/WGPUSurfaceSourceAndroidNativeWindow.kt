@@ -6,7 +6,7 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
 /**
- * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an Android [`ANativeWindow`](https://developer.android.com/ndk/reference/group/a-native-window).
+ * Chained in [WGPUSurfaceDescriptor] to make an [WGPUSurface] wrapping an Android [[ANativeWindow]](https://developer.android.com/ndk/reference/group/a-native-window).
  */
 @JvmInline
 public value class WGPUSurfaceSourceAndroidNativeWindow(
@@ -24,7 +24,7 @@ public value class WGPUSurfaceSourceAndroidNativeWindow(
         }
 
     /**
-     * The pointer to the [`ANativeWindow`](https://developer.android.com/ndk/reference/group/a-native-window) that will be wrapped by the @ref WGPUSurface.
+     * The pointer to the [[ANativeWindow]](https://developer.android.com/ndk/reference/group/a-native-window) that will be wrapped by the [WGPUSurface].
      */
     public var window: Pointer<Unit>
         get() = windowHandle.get(this.`$mem`, 0L) as MemorySegment

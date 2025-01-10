@@ -5,21 +5,21 @@ import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
 /**
- * Filled by @ref wgpuSurfaceGetCapabilities with what's supported for @ref wgpuSurfaceConfigure for a pair of @ref WGPUSurface and @ref WGPUAdapter.
+ * Filled by [wgpuSurfaceGetCapabilities] with what's supported for [wgpuSurfaceConfigure] for a pair of [WGPUSurface] and [WGPUAdapter].
  */
 @JvmInline
 public value class WGPUSurfaceCapabilities(
     public val `$mem`: MemorySegment,
 ) {
-    public var nextInChain: Pointer<WGPUChainedStructOut>
+    public var nextInChain: Pointer<WGPUChainedStruct>
         get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     /**
-     * The bit set of supported @ref WGPUTextureUsage bits.
-     * Guaranteed to contain @ref WGPUTextureUsage_RenderAttachment.
+     * The bit set of supported [WGPUTextureUsage] bits.
+     * Guaranteed to contain [WGPUTextureUsage.RenderAttachment].
      */
     public var usages: ULong
         get() = (usagesHandle.get(this.`$mem`, 0L) as Long).toULong()
@@ -28,7 +28,7 @@ public value class WGPUSurfaceCapabilities(
         }
 
     /**
-     * Array count for formats.
+     * Array count for [formats].
      */
     public var formatCount: ULong
         get() = (formatCountHandle.get(this.`$mem`, 0L) as Long).toULong()
@@ -37,7 +37,7 @@ public value class WGPUSurfaceCapabilities(
         }
 
     /**
-     * A list of supported @ref WGPUTextureFormat values, in order of preference.
+     * A list of supported [WGPUTextureFormat] values, in order of preference.
      */
     public var formats: Pointer<WGPUTextureFormat>
         get() = formatsHandle.get(this.`$mem`, 0L) as MemorySegment
@@ -46,7 +46,7 @@ public value class WGPUSurfaceCapabilities(
         }
 
     /**
-     * Array count for presentModes.
+     * Array count for [presentModes].
      */
     public var presentModeCount: ULong
         get() = (presentModeCountHandle.get(this.`$mem`, 0L) as Long).toULong()
@@ -55,8 +55,8 @@ public value class WGPUSurfaceCapabilities(
         }
 
     /**
-     * A list of supported @ref WGPUPresentMode values.
-     * Guaranteed to contain @ref WGPUPresentMode_Fifo.
+     * A list of supported [WGPUPresentMode] values.
+     * Guaranteed to contain [WGPUPresentMode.Fifo].
      */
     public var presentModes: Pointer<WGPUPresentMode>
         get() = presentModesHandle.get(this.`$mem`, 0L) as MemorySegment
@@ -65,7 +65,7 @@ public value class WGPUSurfaceCapabilities(
         }
 
     /**
-     * Array count for alphaModes.
+     * Array count for [alphaModes].
      */
     public var alphaModeCount: ULong
         get() = (alphaModeCountHandle.get(this.`$mem`, 0L) as Long).toULong()
@@ -74,8 +74,8 @@ public value class WGPUSurfaceCapabilities(
         }
 
     /**
-     * A list of supported @ref WGPUCompositeAlphaMode values.
-     * @ref WGPUCompositeAlphaMode_Auto will be an alias for the first element and will never be present in this array.
+     * A list of supported [WGPUCompositeAlphaMode] values.
+     * [WGPUCompositeAlphaMode.Auto] will be an alias for the first element and will never be present in this array.
      */
     public var alphaModes: Pointer<WGPUCompositeAlphaMode>
         get() = alphaModesHandle.get(this.`$mem`, 0L) as MemorySegment

@@ -5,12 +5,6 @@ public typealias WGPUFlags = ULong
 
 public typealias WGPUBool = UInt
 
-public typealias WGPUStringView = WGPUStringView
-
-public typealias WGPUChainedStruct = WGPUChainedStruct
-
-public typealias WGPUChainedStructOut = WGPUChainedStructOut
-
 /**
  * TODO
  */

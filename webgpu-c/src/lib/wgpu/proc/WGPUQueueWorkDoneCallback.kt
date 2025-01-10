@@ -2,6 +2,7 @@
 package lib.wgpu.proc
 
 import lib.wgpu.`$RuntimeHelper`
+import lib.wgpu.CFunctionInvoke
 import lib.wgpu.Pointer
 import lib.wgpu.WGPUQueueWorkDoneStatus
 import java.lang.foreign.*
@@ -15,6 +16,7 @@ public fun interface WGPUQueueWorkDoneCallback {
     /**
      * @param status TODO
      */
+    @CFunctionInvoke
     public fun invoke(
         status: WGPUQueueWorkDoneStatus,
         userdata1: Pointer<Unit>,
@@ -29,7 +31,7 @@ public fun interface WGPUQueueWorkDoneCallback {
         public val invokeHandle: MethodHandle =
             MethodHandles.filterArguments(
                 MethodHandles.lookup().unreflect(WGPUQueueWorkDoneCallback::class.java.methods.find {
-                    it.name == "invoke"
+                    it.getAnnotation(CFunctionInvoke::class.java) != null
                 }
                 ),
                 1, WGPUQueueWorkDoneStatus.fromInt, null, null,

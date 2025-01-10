@@ -18,8 +18,8 @@ public value class WGPUTextureBindingLayout(
         }
 
     /**
-     * If set to @ref WGPUTextureSampleType_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUTextureSampleType_Float.
+     * If set to [WGPUTextureSampleType.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUTextureSampleType.Float].
      */
     public var sampleType: WGPUTextureSampleType
         get() = WGPUTextureSampleType.fromInt(sampleTypeHandle.get(this.`$mem`, 0L) as Int)
@@ -28,8 +28,8 @@ public value class WGPUTextureBindingLayout(
         }
 
     /**
-     * If set to @ref WGPUTextureViewDimension_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUTextureViewDimension_2D.
+     * If set to [WGPUTextureViewDimension.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUTextureViewDimension.2D].
      */
     public var viewDimension: WGPUTextureViewDimension
         get() = WGPUTextureViewDimension.fromInt(

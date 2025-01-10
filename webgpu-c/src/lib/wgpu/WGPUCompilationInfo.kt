@@ -18,7 +18,7 @@ public value class WGPUCompilationInfo(
         }
 
     /**
-     * Array count for messages.
+     * Array count for [messages].
      */
     public var messageCount: ULong
         get() = (messageCountHandle.get(this.`$mem`, 0L) as Long).toULong()

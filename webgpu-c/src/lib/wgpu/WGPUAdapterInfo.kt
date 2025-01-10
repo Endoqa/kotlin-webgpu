@@ -12,7 +12,7 @@ import java.lang.invoke.VarHandle
 public value class WGPUAdapterInfo(
     public val `$mem`: MemorySegment,
 ) {
-    public var nextInChain: Pointer<WGPUChainedStructOut>
+    public var nextInChain: Pointer<WGPUChainedStruct>
         get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             nextInChainHandle.set(this.`$mem`, 0L, value)
