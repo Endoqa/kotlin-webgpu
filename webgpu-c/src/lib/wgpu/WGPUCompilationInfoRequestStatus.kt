@@ -23,11 +23,6 @@ public enum class WGPUCompilationInfoRequestStatus(
      * TODO
      */
     InstanceDropped(0x00000002),
-
-    /**
-     * TODO
-     */
-    Error(0x00000003),
     ;
 
     public companion object {
@@ -50,7 +45,6 @@ public enum class WGPUCompilationInfoRequestStatus(
             Null.value -> Null
             Success.value -> Success
             InstanceDropped.value -> InstanceDropped
-            Error.value -> Error
             else -> error("enum not found")
         }
     }

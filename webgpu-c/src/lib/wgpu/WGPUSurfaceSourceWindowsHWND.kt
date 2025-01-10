@@ -6,7 +6,7 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
 /**
- * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a Windows [`HWND`](https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd).
+ * Chained in [WGPUSurfaceDescriptor] to make an [WGPUSurface] wrapping a Windows [[HWND]](https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd).
  */
 @JvmInline
 public value class WGPUSurfaceSourceWindowsHWND(
@@ -24,7 +24,7 @@ public value class WGPUSurfaceSourceWindowsHWND(
         }
 
     /**
-     * The [`HINSTANCE`](https://learn.microsoft.com/en-us/windows/win32/learnwin32/winmain--the-application-entry-point) for this application.
+     * The [[HINSTANCE]](https://learn.microsoft.com/en-us/windows/win32/learnwin32/winmain--the-application-entry-point) for this application.
      * Most commonly `GetModuleHandle(nullptr)`.
      */
     public var hinstance: Pointer<Unit>
@@ -34,7 +34,7 @@ public value class WGPUSurfaceSourceWindowsHWND(
         }
 
     /**
-     * The [`HWND`](https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd) that will be wrapped by the @ref WGPUSurface.
+     * The [[HWND]](https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd) that will be wrapped by the [WGPUSurface].
      */
     public var hwnd: Pointer<Unit>
         get() = hwndHandle.get(this.`$mem`, 0L) as MemorySegment

@@ -6,7 +6,7 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
 /**
- * Struct holding a future to wait on, and a `completed` boolean flag.
+ * Struct holding a future to wait on, and a [completed] boolean flag.
  */
 @JvmInline
 public value class WGPUFutureWaitInfo(

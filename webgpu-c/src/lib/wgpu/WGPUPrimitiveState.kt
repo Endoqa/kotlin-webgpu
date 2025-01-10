@@ -18,8 +18,8 @@ public value class WGPUPrimitiveState(
         }
 
     /**
-     * If set to @ref WGPUPrimitiveTopology_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUPrimitiveTopology_TriangleList.
+     * If set to [WGPUPrimitiveTopology.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUPrimitiveTopology.TriangleList].
      */
     public var topology: WGPUPrimitiveTopology
         get() = WGPUPrimitiveTopology.fromInt(topologyHandle.get(this.`$mem`, 0L) as Int)
@@ -37,8 +37,8 @@ public value class WGPUPrimitiveState(
         }
 
     /**
-     * If set to @ref WGPUFrontFace_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUFrontFace_CCW.
+     * If set to [WGPUFrontFace.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUFrontFace.CCW].
      */
     public var frontFace: WGPUFrontFace
         get() = WGPUFrontFace.fromInt(frontFaceHandle.get(this.`$mem`, 0L) as Int)
@@ -47,8 +47,8 @@ public value class WGPUPrimitiveState(
         }
 
     /**
-     * If set to @ref WGPUCullMode_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUCullMode_None.
+     * If set to [WGPUCullMode.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUCullMode.None].
      */
     public var cullMode: WGPUCullMode
         get() = WGPUCullMode.fromInt(cullModeHandle.get(this.`$mem`, 0L) as Int)

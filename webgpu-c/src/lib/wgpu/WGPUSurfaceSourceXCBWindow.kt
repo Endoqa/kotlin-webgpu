@@ -6,7 +6,7 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
 /**
- * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an [XCB](https://xcb.freedesktop.org/) `xcb_window_t`.
+ * Chained in [WGPUSurfaceDescriptor] to make an [WGPUSurface] wrapping an [XCB](https://xcb.freedesktop.org/) [xcb_window_t].
  */
 @JvmInline
 public value class WGPUSurfaceSourceXCBWindow(
@@ -19,7 +19,7 @@ public value class WGPUSurfaceSourceXCBWindow(
         }
 
     /**
-     * The `xcb_connection_t` for the connection to the X server.
+     * The [xcb_connection_t] for the connection to the X server.
      */
     public var connection: Pointer<Unit>
         get() = connectionHandle.get(this.`$mem`, 0L) as MemorySegment
@@ -28,7 +28,7 @@ public value class WGPUSurfaceSourceXCBWindow(
         }
 
     /**
-     * The `xcb_window_t` for the window that will be wrapped by the @ref WGPUSurface.
+     * The [xcb_window_t] for the window that will be wrapped by the [WGPUSurface].
      */
     public var window: UInt
         get() = (windowHandle.get(this.`$mem`, 0L) as Int).toUInt()

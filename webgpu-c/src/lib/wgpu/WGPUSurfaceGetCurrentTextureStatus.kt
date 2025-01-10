@@ -7,7 +7,7 @@ import java.lang.invoke.MethodType
 import kotlin.Int
 
 /**
- * The status enum for @ref wgpuSurfaceGetCurrentTexture.
+ * The status enum for [wgpuSurfaceGetCurrentTexture].
  */
 public enum class WGPUSurfaceGetCurrentTextureStatus(
     public val `value`: Int,
@@ -35,19 +35,14 @@ public enum class WGPUSurfaceGetCurrentTextureStatus(
     Outdated(0x00000004),
 
     /**
-     * The connection to whatever owns the surface was lost.
+     * The connection to whatever owns the surface was lost, or generally needs to be fully reinitialized.
      */
     Lost(0x00000005),
 
     /**
-     * The system ran out of memory.
+     * There was some deterministic error (for example, the surface is not configured, or there was an [OutStructChainError](https://webgpu-native.github.io/webgpu-headers/articles.html)). Should produce [ImplementationDefinedLogging](https://webgpu-native.github.io/webgpu-headers/articles.html) containing details.
      */
-    OutOfMemory(0x00000006),
-
-    /**
-     * The surface is not configured, or there was an @ref OutStructChainError.
-     */
-    Error(0x00000007),
+    Error(0x00000006),
     ;
 
     public companion object {
@@ -73,7 +68,6 @@ public enum class WGPUSurfaceGetCurrentTextureStatus(
             Timeout.value -> Timeout
             Outdated.value -> Outdated
             Lost.value -> Lost
-            OutOfMemory.value -> OutOfMemory
             Error.value -> Error
             else -> error("enum not found")
         }

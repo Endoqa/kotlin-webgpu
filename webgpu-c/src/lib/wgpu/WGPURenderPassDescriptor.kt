@@ -28,7 +28,7 @@ public value class WGPURenderPassDescriptor(
         }
 
     /**
-     * Array count for colorAttachments.
+     * Array count for [colorAttachments].
      */
     public var colorAttachmentCount: ULong
         get() = (colorAttachmentCountHandle.get(this.`$mem`, 0L) as Long).toULong()

@@ -6,9 +6,9 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
 /**
- * The root descriptor for the creation of an @ref WGPUSurface with @ref wgpuInstanceCreateSurface.
+ * The root descriptor for the creation of an [WGPUSurface] with [wgpuInstanceCreateSurface].
  * It isn't sufficient by itself and must have one of the `WGPUSurfaceSource*` in its chain.
- * See @ref Surface-Creation for more details.
+ * See [Surface-Creation](https://webgpu-native.github.io/webgpu-headers/articles.html) for more details.
  */
 @JvmInline
 public value class WGPUSurfaceDescriptor(

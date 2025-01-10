@@ -6,7 +6,7 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
 /**
- * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a [Wayland](https://wayland.freedesktop.org/) [`wl_surface`](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface).
+ * Chained in [WGPUSurfaceDescriptor] to make an [WGPUSurface] wrapping a [Wayland](https://wayland.freedesktop.org/) [[wl_surface]](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface).
  */
 @JvmInline
 public value class WGPUSurfaceSourceWaylandSurface(
@@ -24,7 +24,7 @@ public value class WGPUSurfaceSourceWaylandSurface(
         }
 
     /**
-     * A [`wl_display`](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_display) for this Wayland instance.
+     * A [[wl_display]](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_display) for this Wayland instance.
      */
     public var display: Pointer<Unit>
         get() = displayHandle.get(this.`$mem`, 0L) as MemorySegment
@@ -33,7 +33,7 @@ public value class WGPUSurfaceSourceWaylandSurface(
         }
 
     /**
-     * A [`wl_surface`](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface) that will be wrapped by the @ref WGPUSurface
+     * A [[wl_surface]](https://wayland.freedesktop.org/docs/html/apa.html#protocol-spec-wl_surface) that will be wrapped by the [WGPUSurface]
      */
     public var surface: Pointer<Unit>
         get() = surfaceHandle.get(this.`$mem`, 0L) as MemorySegment

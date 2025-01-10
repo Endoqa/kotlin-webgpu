@@ -15,6 +15,7 @@ public fun interface WGPURequestAdapterCallback {
      * @param adapter TODO
      * @param message TODO
      */
+    @CFunctionInvoke
     public fun invoke(
         status: WGPURequestAdapterStatus,
         adapter: WGPUAdapter,
@@ -31,7 +32,7 @@ public fun interface WGPURequestAdapterCallback {
         public val invokeHandle: MethodHandle =
             MethodHandles.filterArguments(
                 MethodHandles.lookup().unreflect(WGPURequestAdapterCallback::class.java.methods.find {
-                    it.name == "invoke"
+                    it.getAnnotation(CFunctionInvoke::class.java) != null
                 }
                 ),
                 1, WGPURequestAdapterStatus.fromInt, null, null, null, null,

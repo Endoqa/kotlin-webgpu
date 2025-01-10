@@ -18,8 +18,8 @@ public value class WGPUBufferBindingLayout(
         }
 
     /**
-     * If set to @ref WGPUBufferBindingType_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUBufferBindingType_Uniform.
+     * If set to [WGPUBufferBindingType.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUBufferBindingType.Uniform].
      */
     public var type: WGPUBufferBindingType
         get() = WGPUBufferBindingType.fromInt(typeHandle.get(this.`$mem`, 0L) as Int)

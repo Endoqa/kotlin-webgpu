@@ -5,42 +5,32 @@ import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
 /**
- * TODO
+ * An RGBA color. Represents a [f32], [i32], or [u32] color using [DoubleAsSupertype](https://webgpu-native.github.io/webgpu-headers/articles.html).
+ *
+ * If any channel is non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/articles.html).
  */
 @JvmInline
 public value class WGPUColor(
     public val `$mem`: MemorySegment,
 ) {
-    /**
-     * TODO
-     */
     public var r: Double
         get() = rHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
             rHandle.set(this.`$mem`, 0L, value)
         }
 
-    /**
-     * TODO
-     */
     public var g: Double
         get() = gHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
             gHandle.set(this.`$mem`, 0L, value)
         }
 
-    /**
-     * TODO
-     */
     public var b: Double
         get() = bHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {
             bHandle.set(this.`$mem`, 0L, value)
         }
 
-    /**
-     * TODO
-     */
     public var a: Double
         get() = aHandle.get(this.`$mem`, 0L) as Double
         set(`value`) {

@@ -19,17 +19,23 @@ public value class WGPUInstanceDescriptor(
         }
 
     /**
-     * Instance features to enable
+     * Instance capabilities to enable.
      */
-    public var features: WGPUInstanceCapabilities
+    public var capabilities: WGPUInstanceCapabilities
         get() = WGPUInstanceCapabilities(
-            featuresHandle.invokeExact(
+            capabilitiesHandle.invokeExact(
                 this.`$mem`,
                 0L
             ) as MemorySegment
         )
         set(`value`) {
-            MemorySegment.copy(value.`$mem`, 0L, this.features.`$mem`, 0L, WGPUInstanceCapabilities.layout.byteSize())
+            MemorySegment.copy(
+                value.`$mem`,
+                0L,
+                this.capabilities.`$mem`,
+                0L,
+                WGPUInstanceCapabilities.layout.byteSize()
+            )
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
@@ -40,7 +46,7 @@ public value class WGPUInstanceDescriptor(
     public companion object {
         public val layout: StructLayout = MemoryLayout.structLayout(
             `$RuntimeHelper`.POINTER.withName("nextInChain"),
-            WGPUInstanceCapabilities.layout.withName("features"),
+            WGPUInstanceCapabilities.layout.withName("capabilities"),
         ).withName("WGPUInstanceDescriptor")
 
         @JvmField
@@ -48,8 +54,8 @@ public value class WGPUInstanceDescriptor(
             layout.varHandle(MemoryLayout.PathElement.groupElement("nextInChain"))
 
         @JvmField
-        public val featuresHandle: MethodHandle =
-            layout.sliceHandle(MemoryLayout.PathElement.groupElement("features"))
+        public val capabilitiesHandle: MethodHandle =
+            layout.sliceHandle(MemoryLayout.PathElement.groupElement("capabilities"))
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUInstanceDescriptor =

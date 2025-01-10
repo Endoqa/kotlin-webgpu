@@ -12,7 +12,7 @@ public value class WGPUSupportedFeatures(
     public val `$mem`: MemorySegment,
 ) {
     /**
-     * Array count for features.
+     * Array count for [features].
      */
     public var featureCount: ULong
         get() = (featureCountHandle.get(this.`$mem`, 0L) as Long).toULong()

@@ -11,14 +11,15 @@ import java.lang.invoke.MethodHandles
  */
 public fun interface WGPUPopErrorScopeCallback {
     /**
-     * @param status See @ref WGPUPopErrorScopeStatus.
-     * @param type The type of the error caught by the scope, or @ref WGPUErrorType_NoError if there was none.
-     * If the `status` is not @ref WGPUPopErrorScopeStatus_Success, this is @ref WGPUErrorType_NoError.
-     * @param message If the `status` is not @ref WGPUPopErrorScopeStatus_Success **or**
-     * the `type` is not @ref WGPUErrorType_NoError, this is a non-empty
-     * @ref LocalizableHumanReadableMessageString;
+     * @param status See [WGPUPopErrorScopeStatus].
+     * @param type The type of the error caught by the scope, or [WGPUErrorType.NoError] if there was none.
+     * If the [status] is not [WGPUPopErrorScopeStatus.Success], this is [WGPUErrorType.NoError].
+     * @param message If the [status] is not [WGPUPopErrorScopeStatus.Success] **or**
+     * the [type] is not [WGPUErrorType.NoError], this is a non-empty
+     * [LocalizableHumanReadableMessageString](https://webgpu-native.github.io/webgpu-headers/articles.html);
      * otherwise, this is an empty string.
      */
+    @CFunctionInvoke
     public fun invoke(
         status: WGPUPopErrorScopeStatus,
         type: WGPUErrorType,
@@ -35,7 +36,7 @@ public fun interface WGPUPopErrorScopeCallback {
         public val invokeHandle: MethodHandle =
             MethodHandles.filterArguments(
                 MethodHandles.lookup().unreflect(WGPUPopErrorScopeCallback::class.java.methods.find {
-                    it.name == "invoke"
+                    it.getAnnotation(CFunctionInvoke::class.java) != null
                 }
                 ),
                 1, WGPUPopErrorScopeStatus.fromInt, WGPUErrorType.fromInt, null, null, null,

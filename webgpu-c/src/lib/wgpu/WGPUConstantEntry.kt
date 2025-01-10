@@ -28,7 +28,9 @@ public value class WGPUConstantEntry(
         }
 
     /**
-     * TODO
+     * Represents a WGSL numeric or boolean value using [DoubleAsSupertype](https://webgpu-native.github.io/webgpu-headers/articles.html).
+     *
+     * If non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/articles.html).
      */
     public var `value`: Double
         get() = valueHandle.get(this.`$mem`, 0L) as Double

@@ -13,7 +13,7 @@ public enum class WGPUPowerPreference(
     public val `value`: Int,
 ) {
     /**
-     * No preference. (See also @ref SentinelValues.)
+     * No preference. (See also [SentinelValues](https://webgpu-native.github.io/webgpu-headers/articles.html).)
      */
     Undefined(0x00000000),
 

@@ -18,9 +18,9 @@ public value class WGPUColorTargetState(
         }
 
     /**
-     * The texture format of the target. If @ref WGPUTextureFormat_Undefined,
-     * indicates a "hole" in the parent @ref WGPUFragmentState `targets` array:
-     * the pipeline does not output a value at this `location`.
+     * The texture format of the target. If [WGPUTextureFormat.Undefined],
+     * indicates a "hole" in the parent [WGPUFragmentState.targets] array:
+     * the pipeline does not output a value at this [location].
      */
     public var format: WGPUTextureFormat
         get() = WGPUTextureFormat.fromInt(formatHandle.get(this.`$mem`, 0L) as Int)

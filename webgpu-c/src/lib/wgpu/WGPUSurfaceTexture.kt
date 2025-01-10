@@ -5,22 +5,22 @@ import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
 /**
- * Queried each frame from a @ref WGPUSurface to get a @ref WGPUTexture to render to along with some metadata.
- * See @ref Surface-Presenting for more details.
+ * Queried each frame from a [WGPUSurface] to get a [WGPUTexture] to render to along with some metadata.
+ * See [Surface-Presenting](https://webgpu-native.github.io/webgpu-headers/articles.html) for more details.
  */
 @JvmInline
 public value class WGPUSurfaceTexture(
     public val `$mem`: MemorySegment,
 ) {
-    public var nextInChain: Pointer<WGPUChainedStructOut>
+    public var nextInChain: Pointer<WGPUChainedStruct>
         get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
             nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     /**
-     * The @ref WGPUTexture representing the frame that will be shown on the surface.
-     * It is @ref ReturnedWithOwnership from @ref wgpuSurfaceGetCurrentTexture.
+     * The [WGPUTexture] representing the frame that will be shown on the surface.
+     * It is [ReturnedWithOwnership](https://webgpu-native.github.io/webgpu-headers/articles.html) from [wgpuSurfaceGetCurrentTexture].
      */
     public var texture: WGPUTexture
         get() = textureHandle.get(this.`$mem`, 0L) as MemorySegment
@@ -29,7 +29,7 @@ public value class WGPUSurfaceTexture(
         }
 
     /**
-     * Whether the call to @ref wgpuSurfaceGetCurrentTexture succeeded and a hint as to why it might not have.
+     * Whether the call to [wgpuSurfaceGetCurrentTexture] succeeded and a hint as to why it might not have.
      */
     public var status: WGPUSurfaceGetCurrentTextureStatus
         get() = WGPUSurfaceGetCurrentTextureStatus.fromInt(statusHandle.get(this.`$mem`, 0L) as Int)

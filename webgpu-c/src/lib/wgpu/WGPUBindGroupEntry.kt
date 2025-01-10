@@ -48,7 +48,7 @@ public value class WGPUBindGroupEntry(
 
     /**
      * If the binding is a buffer, this is the byte size of the binding range
-     * (@ref WGPU_WHOLE_SIZE means the binding ends at the end of the buffer).
+     * ([WGPU_WHOLE.SIZE] means the binding ends at the end of the buffer).
      * Otherwise ignored.
      */
     public var size: ULong

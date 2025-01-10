@@ -18,8 +18,8 @@ public value class WGPUSamplerBindingLayout(
         }
 
     /**
-     * If set to @ref WGPUSamplerBindingType_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUSamplerBindingType_Filtering.
+     * If set to [WGPUSamplerBindingType.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUSamplerBindingType.Filtering].
      */
     public var type: WGPUSamplerBindingType
         get() = WGPUSamplerBindingType.fromInt(typeHandle.get(this.`$mem`, 0L) as Int)

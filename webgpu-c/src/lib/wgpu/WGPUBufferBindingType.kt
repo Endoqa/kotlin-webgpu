@@ -13,14 +13,14 @@ public enum class WGPUBufferBindingType(
     public val `value`: Int,
 ) {
     /**
-     * Indicates that this @ref WGPUBufferBindingLayout member of
-     * its parent @ref WGPUBindGroupLayoutEntry is not used.
-     * (See also @ref SentinelValues.)
+     * Indicates that this [WGPUBufferBindingLayout] member of
+     * its parent [WGPUBindGroupLayoutEntry] is not used.
+     * (See also [SentinelValues](https://webgpu-native.github.io/webgpu-headers/articles.html).)
      */
     BindingNotUsed(0x00000000),
 
     /**
-     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     * Indicates no value is passed for this argument. See [SentinelValues](https://webgpu-native.github.io/webgpu-headers/articles.html).
      */
     Undefined(0x00000001),
 

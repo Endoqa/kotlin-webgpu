@@ -7,7 +7,7 @@ import java.lang.invoke.MethodType
 import kotlin.Int
 
 /**
- * The callback mode controls how a callback for an asynchronous operation may be fired. See @ref Asynchronous-Operations for how these are used.
+ * The callback mode controls how a callback for an asynchronous operation may be fired. See [Asynchronous-Operations](https://webgpu-native.github.io/webgpu-headers/articles.html) for how these are used.
  */
 public enum class WGPUCallbackMode(
     public val `value`: Int,
@@ -15,27 +15,27 @@ public enum class WGPUCallbackMode(
     Null(0x00000000),
 
     /**
-     * Callbacks created with `WGPUCallbackMode_WaitAnyOnly`:
-     * - fire when the asynchronous operation's future is passed to a call to @ref wgpuInstanceWaitAny
-     *   AND the operation has already completed or it completes inside the call to @ref wgpuInstanceWaitAny.
+     * Callbacks created with [WGPUCallbackMode.WaitAnyOnly]:
+     * - fire when the asynchronous operation's future is passed to a call to [wgpuInstanceWaitAny]
+     *   AND the operation has already completed or it completes inside the call to [wgpuInstanceWaitAny].
      */
     WaitAnyOnly(0x00000001),
 
     /**
-     * Callbacks created with `WGPUCallbackMode_AllowProcessEvents`:
-     * - fire for the same reasons as callbacks created with `WGPUCallbackMode_WaitAnyOnly`
-     * - fire inside a call to @ref wgpuInstanceProcessEvents if the asynchronous operation is complete.
+     * Callbacks created with [WGPUCallbackMode.AllowProcessEvents]:
+     * - fire for the same reasons as callbacks created with [WGPUCallbackMode.WaitAnyOnly]
+     * - fire inside a call to [wgpuInstanceProcessEvents] if the asynchronous operation is complete.
      */
     AllowProcessEvents(0x00000002),
 
     /**
-     * Callbacks created with `WGPUCallbackMode_AllowSpontaneous`:
-     * - fire for the same reasons as callbacks created with `WGPUCallbackMode_AllowProcessEvents`
+     * Callbacks created with [WGPUCallbackMode.AllowSpontaneous]:
+     * - fire for the same reasons as callbacks created with [WGPUCallbackMode.AllowProcessEvents]
      * - **may** fire spontaneously on an arbitrary or application thread, when the WebGPU implementations discovers that the asynchronous operation is complete.
      *
      *   Implementations _should_ fire spontaneous callbacks as soon as possible.
      *
-     * @note Because spontaneous callbacks may fire at an arbitrary time on an arbitrary thread, applications should take extra care when acquiring locks or mutating state inside the callback. It undefined behavior to re-entrantly call into the webgpu.h API if the callback fires while inside the callstack of another webgpu.h function that is not `wgpuInstanceWaitAny` or `wgpuInstanceProcessEvents`.
+     * @note Because spontaneous callbacks may fire at an arbitrary time on an arbitrary thread, applications should take extra care when acquiring locks or mutating state inside the callback. It undefined behavior to re-entrantly call into the webgpu.h API if the callback fires while inside the callstack of another webgpu.h function that is not [wgpuInstanceWaitAny] or [wgpuInstanceProcessEvents].
      */
     AllowSpontaneous(0x00000003),
     ;

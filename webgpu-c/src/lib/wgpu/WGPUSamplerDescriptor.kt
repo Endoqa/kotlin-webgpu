@@ -28,8 +28,8 @@ public value class WGPUSamplerDescriptor(
         }
 
     /**
-     * If set to @ref WGPUAddressMode_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUAddressMode_ClampToEdge.
+     * If set to [WGPUAddressMode.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUAddressMode.ClampToEdge].
      */
     public var addressModeU: WGPUAddressMode
         get() = WGPUAddressMode.fromInt(addressModeUHandle.get(this.`$mem`, 0L) as Int)
@@ -38,8 +38,8 @@ public value class WGPUSamplerDescriptor(
         }
 
     /**
-     * If set to @ref WGPUAddressMode_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUAddressMode_ClampToEdge.
+     * If set to [WGPUAddressMode.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUAddressMode.ClampToEdge].
      */
     public var addressModeV: WGPUAddressMode
         get() = WGPUAddressMode.fromInt(addressModeVHandle.get(this.`$mem`, 0L) as Int)
@@ -48,8 +48,8 @@ public value class WGPUSamplerDescriptor(
         }
 
     /**
-     * If set to @ref WGPUAddressMode_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUAddressMode_ClampToEdge.
+     * If set to [WGPUAddressMode.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUAddressMode.ClampToEdge].
      */
     public var addressModeW: WGPUAddressMode
         get() = WGPUAddressMode.fromInt(addressModeWHandle.get(this.`$mem`, 0L) as Int)
@@ -58,8 +58,8 @@ public value class WGPUSamplerDescriptor(
         }
 
     /**
-     * If set to @ref WGPUFilterMode_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUFilterMode_Nearest.
+     * If set to [WGPUFilterMode.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUFilterMode.Nearest].
      */
     public var magFilter: WGPUFilterMode
         get() = WGPUFilterMode.fromInt(magFilterHandle.get(this.`$mem`, 0L) as Int)
@@ -68,8 +68,8 @@ public value class WGPUSamplerDescriptor(
         }
 
     /**
-     * If set to @ref WGPUFilterMode_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUFilterMode_Nearest.
+     * If set to [WGPUFilterMode.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUFilterMode.Nearest].
      */
     public var minFilter: WGPUFilterMode
         get() = WGPUFilterMode.fromInt(minFilterHandle.get(this.`$mem`, 0L) as Int)
@@ -78,8 +78,8 @@ public value class WGPUSamplerDescriptor(
         }
 
     /**
-     * If set to @ref WGPUFilterMode_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUMipmapFilterMode_Nearest.
+     * If set to [WGPUFilterMode.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUMipmapFilterMode.Nearest].
      */
     public var mipmapFilter: WGPUMipmapFilterMode
         get() = WGPUMipmapFilterMode.fromInt(mipmapFilterHandle.get(this.`$mem`, 0L) as Int)
@@ -89,6 +89,8 @@ public value class WGPUSamplerDescriptor(
 
     /**
      * TODO
+     *
+     * If non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/articles.html).
      */
     public var lodMinClamp: Float
         get() = lodMinClampHandle.get(this.`$mem`, 0L) as Float
@@ -98,6 +100,8 @@ public value class WGPUSamplerDescriptor(
 
     /**
      * TODO
+     *
+     * If non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/articles.html).
      */
     public var lodMaxClamp: Float
         get() = lodMaxClampHandle.get(this.`$mem`, 0L) as Float

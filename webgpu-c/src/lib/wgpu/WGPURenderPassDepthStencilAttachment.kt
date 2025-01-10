@@ -45,7 +45,12 @@ public value class WGPURenderPassDepthStencilAttachment(
         }
 
     /**
-     * TODO
+     * This is a [NullableFloatingPointType](https://webgpu-native.github.io/webgpu-headers/articles.html).
+     *
+     * If [NaN], indicates an [undefined] value (as defined by the JS spec).
+     * Use [WGPU_DEPTH_CLEAR_VALUE.UNDEFINED] to indicate this semantically.
+     *
+     * If infinite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/articles.html).
      */
     public var depthClearValue: Float
         get() = depthClearValueHandle.get(this.`$mem`, 0L) as Float

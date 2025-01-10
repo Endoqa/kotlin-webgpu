@@ -26,6 +26,42 @@ internal val `wgpuGetInstanceCapabilities$mh`: MethodHandle by lazy {
     )
 }
 
+internal val `wgpuAdapterInfoFreeMembers$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuAdapterInfoFreeMembers"),
+        FunctionDescriptor.ofVoid(
+            WGPUAdapterInfo.layout,
+        )
+    )
+}
+
+internal val `wgpuSupportedFeaturesFreeMembers$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuSupportedFeaturesFreeMembers"),
+        FunctionDescriptor.ofVoid(
+            WGPUSupportedFeatures.layout,
+        )
+    )
+}
+
+internal val `wgpuSupportedWGSLLanguageFeaturesFreeMembers$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuSupportedWGSLLanguageFeaturesFreeMembers"),
+        FunctionDescriptor.ofVoid(
+            WGPUSupportedWGSLLanguageFeatures.layout,
+        )
+    )
+}
+
+internal val `wgpuSurfaceCapabilitiesFreeMembers$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuSurfaceCapabilitiesFreeMembers"),
+        FunctionDescriptor.ofVoid(
+            WGPUSurfaceCapabilities.layout,
+        )
+    )
+}
+
 internal val `wgpuAdapterGetLimits$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuAdapterGetLimits"),

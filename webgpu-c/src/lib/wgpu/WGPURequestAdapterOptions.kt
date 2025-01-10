@@ -20,10 +20,10 @@ public value class WGPURequestAdapterOptions(
     /**
      * "Feature level" for the adapter request. If an adapter is returned, it must support the features and limits in the requested feature level.
      *
-     * If set to @ref WGPUFeatureLevel_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUFeatureLevel_Core.
-     * Additionally, implementations may ignore @ref WGPUFeatureLevel_Compatibility
-     * and provide @ref WGPUFeatureLevel_Core instead.
+     * If set to [WGPUFeatureLevel.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUFeatureLevel.Core].
+     * Additionally, implementations may ignore [WGPUFeatureLevel.Compatibility]
+     * and provide [WGPUFeatureLevel.Core] instead.
      */
     public var featureLevel: WGPUFeatureLevel
         get() = WGPUFeatureLevel.fromInt(featureLevelHandle.get(this.`$mem`, 0L) as Int)

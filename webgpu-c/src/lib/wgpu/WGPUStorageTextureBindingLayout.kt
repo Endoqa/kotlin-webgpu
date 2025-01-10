@@ -18,8 +18,8 @@ public value class WGPUStorageTextureBindingLayout(
         }
 
     /**
-     * If set to @ref WGPUStorageTextureAccess_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUStorageTextureAccess_WriteOnly.
+     * If set to [WGPUStorageTextureAccess.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUStorageTextureAccess.WriteOnly].
      */
     public var access: WGPUStorageTextureAccess
         get() = WGPUStorageTextureAccess.fromInt(
@@ -42,8 +42,8 @@ public value class WGPUStorageTextureBindingLayout(
         }
 
     /**
-     * If set to @ref WGPUTextureViewDimension_Undefined,
-     * [defaults](@ref SentinelValues) to @ref WGPUTextureViewDimension_2D.
+     * If set to [WGPUTextureViewDimension.Undefined],
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUTextureViewDimension.2D].
      */
     public var viewDimension: WGPUTextureViewDimension
         get() = WGPUTextureViewDimension.fromInt(

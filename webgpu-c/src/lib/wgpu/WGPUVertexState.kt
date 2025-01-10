@@ -37,7 +37,7 @@ public value class WGPUVertexState(
         }
 
     /**
-     * Array count for constants.
+     * Array count for [constants].
      */
     public var constantCount: ULong
         get() = (constantCountHandle.get(this.`$mem`, 0L) as Long).toULong()
@@ -55,7 +55,7 @@ public value class WGPUVertexState(
         }
 
     /**
-     * Array count for buffers.
+     * Array count for [buffers].
      */
     public var bufferCount: ULong
         get() = (bufferCountHandle.get(this.`$mem`, 0L) as Long).toULong()

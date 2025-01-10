@@ -4,6 +4,9 @@ package lib.wgpu
 import java.lang.foreign.*
 import kotlin.jvm.optionals.getOrElse
 
+@Target(AnnotationTarget.FUNCTION)
+public annotation class CFunctionInvoke
+
 public typealias Pointer<T> = MemorySegment
 
 public typealias NativeArray<T> = MemorySegment

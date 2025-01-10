@@ -33,7 +33,7 @@ public value class WGPURenderBundleEncoderDescriptor(
         }
 
     /**
-     * Array count for colorFormats.
+     * Array count for [colorFormats].
      */
     public var colorFormatCount: ULong
         get() = (colorFormatCountHandle.get(this.`$mem`, 0L) as Long).toULong()

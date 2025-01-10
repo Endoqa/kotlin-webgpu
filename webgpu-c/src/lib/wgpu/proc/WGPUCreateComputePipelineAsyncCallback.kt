@@ -15,6 +15,7 @@ public fun interface WGPUCreateComputePipelineAsyncCallback {
      * @param pipeline TODO
      * @param message TODO
      */
+    @CFunctionInvoke
     public fun invoke(
         status: WGPUCreatePipelineAsyncStatus,
         pipeline: WGPUComputePipeline,
@@ -31,7 +32,7 @@ public fun interface WGPUCreateComputePipelineAsyncCallback {
         public val invokeHandle: MethodHandle =
             MethodHandles.filterArguments(
                 MethodHandles.lookup().unreflect(WGPUCreateComputePipelineAsyncCallback::class.java.methods.find {
-                    it.name == "invoke"
+                    it.getAnnotation(CFunctionInvoke::class.java) != null
                 }
                 ),
                 1, WGPUCreatePipelineAsyncStatus.fromInt, null, null, null, null,

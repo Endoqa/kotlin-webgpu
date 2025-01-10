@@ -9,50 +9,50 @@ public value class WGPUCreateComputePipelineAsyncCallbackInfo(
     public val `$mem`: MemorySegment,
 ) {
     public var nextInChain: Pointer<WGPUChainedStruct>
-        get() = WGPUCreateComputePipelineAsyncCallbackInfo.nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = nextInChainHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUCreateComputePipelineAsyncCallbackInfo.nextInChainHandle.set(this.`$mem`, 0L, value)
+            nextInChainHandle.set(this.`$mem`, 0L, value)
         }
 
     public var mode: WGPUCallbackMode
         get() = WGPUCallbackMode.fromInt(
-            WGPUCreateComputePipelineAsyncCallbackInfo.modeHandle.get(
+            modeHandle.get(
                 this.`$mem`,
                 0L
             ) as Int
         )
         set(`value`) {
-            WGPUCreateComputePipelineAsyncCallbackInfo.modeHandle.set(this.`$mem`, 0L, value.value)
+            modeHandle.set(this.`$mem`, 0L, value.value)
         }
 
     public var callback: WGPUCreateComputePipelineAsyncCallback
-        get() = WGPUCreateComputePipelineAsyncCallbackInfo.callbackHandle.get(this.`$mem`, 0L) as MemorySegment
+        get() = callbackHandle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUCreateComputePipelineAsyncCallbackInfo.callbackHandle.set(this.`$mem`, 0L, value)
+            callbackHandle.set(this.`$mem`, 0L, value)
         }
 
     public var userdata1: Pointer<Unit>
-        get() = WGPUCreateComputePipelineAsyncCallbackInfo.userdata1Handle.get(this.`$mem`, 0L) as MemorySegment
+        get() = userdata1Handle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUCreateComputePipelineAsyncCallbackInfo.userdata1Handle.set(this.`$mem`, 0L, value)
+            userdata1Handle.set(this.`$mem`, 0L, value)
         }
 
     public var userdata2: Pointer<Unit>
-        get() = WGPUCreateComputePipelineAsyncCallbackInfo.userdata2Handle.get(this.`$mem`, 0L) as MemorySegment
+        get() = userdata2Handle.get(this.`$mem`, 0L) as MemorySegment
         set(`value`) {
-            WGPUCreateComputePipelineAsyncCallbackInfo.userdata2Handle.set(this.`$mem`, 0L, value)
+            userdata2Handle.set(this.`$mem`, 0L, value)
         }
 
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
-        Arena.ofAuto().allocate(WGPUCreateComputePipelineAsyncCallbackInfo.layout)
+        Arena.ofAuto().allocate(layout)
     })
 
     public companion object {
         public val layout: StructLayout = MemoryLayout.structLayout(
             `$RuntimeHelper`.POINTER.withName("nextInChain"),
             ValueLayout.JAVA_INT.withName("mode"),
-            java.lang.foreign.MemoryLayout.paddingLayout(4),
+            MemoryLayout.paddingLayout(4),
             `$RuntimeHelper`.POINTER.withName("callback"),
             `$RuntimeHelper`.POINTER.withName("userdata1"),
             `$RuntimeHelper`.POINTER.withName("userdata2"),
@@ -80,6 +80,6 @@ public value class WGPUCreateComputePipelineAsyncCallbackInfo(
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUCreateComputePipelineAsyncCallbackInfo =
-            WGPUCreateComputePipelineAsyncCallbackInfo(alloc.allocate(WGPUCreateComputePipelineAsyncCallbackInfo.layout))
+            WGPUCreateComputePipelineAsyncCallbackInfo(alloc.allocate(layout))
     }
 }

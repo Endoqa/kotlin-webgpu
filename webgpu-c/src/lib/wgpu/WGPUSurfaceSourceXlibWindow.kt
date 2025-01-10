@@ -6,7 +6,7 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
 /**
- * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping an [Xlib](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html) `Window`.
+ * Chained in [WGPUSurfaceDescriptor] to make an [WGPUSurface] wrapping an [Xlib](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html) [Window].
  */
 @JvmInline
 public value class WGPUSurfaceSourceXlibWindow(
@@ -19,7 +19,7 @@ public value class WGPUSurfaceSourceXlibWindow(
         }
 
     /**
-     * A pointer to the [`Display`](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html#Opening_the_Display) connected to the X server.
+     * A pointer to the [[Display]](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html#Opening_the_Display) connected to the X server.
      */
     public var display: Pointer<Unit>
         get() = displayHandle.get(this.`$mem`, 0L) as MemorySegment
@@ -28,7 +28,7 @@ public value class WGPUSurfaceSourceXlibWindow(
         }
 
     /**
-     * The [`Window`](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html#Creating_Windows) that will be wrapped by the @ref WGPUSurface.
+     * The [[Window]](https://www.x.org/releases/current/doc/libX11/libX11/libX11.html#Creating_Windows) that will be wrapped by the [WGPUSurface].
      */
     public var window: ULong
         get() = (windowHandle.get(this.`$mem`, 0L) as Long).toULong()

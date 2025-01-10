@@ -7,13 +7,13 @@ import java.lang.invoke.MethodType
 import kotlin.Int
 
 /**
- * See @ref WGPURequestAdapterOptions::featureLevel.
+ * See [WGPURequestAdapterOptions]::featureLevel.
  */
 public enum class WGPUFeatureLevel(
     public val `value`: Int,
 ) {
     /**
-     * Indicates no value is passed for this argument. See @ref SentinelValues.
+     * Indicates no value is passed for this argument. See [SentinelValues](https://webgpu-native.github.io/webgpu-headers/articles.html).
      */
     Undefined(0x00000000),
 

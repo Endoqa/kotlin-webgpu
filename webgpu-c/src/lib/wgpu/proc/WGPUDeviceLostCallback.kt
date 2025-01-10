@@ -11,10 +11,11 @@ import java.lang.invoke.MethodHandles
  */
 public fun interface WGPUDeviceLostCallback {
     /**
-     * @param device Reference to the device which was lost. If, and only if, the `reason` is @ref WGPUDeviceLostReason_FailedCreation, this is a non-null pointer to a null @ref WGPUDevice.
+     * @param device Reference to the device which was lost. If, and only if, the [reason] is [WGPUDeviceLostReason.FailedCreation], this is a non-null pointer to a null [WGPUDevice].
      * @param reason TODO
      * @param message TODO
      */
+    @CFunctionInvoke
     public fun invoke(
         device: Pointer<WGPUDevice>,
         reason: WGPUDeviceLostReason,
@@ -31,7 +32,7 @@ public fun interface WGPUDeviceLostCallback {
         public val invokeHandle: MethodHandle =
             MethodHandles.filterArguments(
                 MethodHandles.lookup().unreflect(WGPUDeviceLostCallback::class.java.methods.find {
-                    it.name == "invoke"
+                    it.getAnnotation(CFunctionInvoke::class.java) != null
                 }
                 ),
                 1, null, WGPUDeviceLostReason.fromInt, null, null, null,

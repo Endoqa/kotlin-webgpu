@@ -6,7 +6,7 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.VarHandle
 
 /**
- * Chained in @ref WGPUSurfaceDescriptor to make an @ref WGPUSurface wrapping a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc).
+ * Chained in [WGPUSurfaceDescriptor] to make an [WGPUSurface] wrapping a [[CAMetalLayer]](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc).
  */
 @JvmInline
 public value class WGPUSurfaceSourceMetalLayer(
@@ -19,7 +19,7 @@ public value class WGPUSurfaceSourceMetalLayer(
         }
 
     /**
-     * The pointer to the [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc) that will be wrapped by the @ref WGPUSurface.
+     * The pointer to the [[CAMetalLayer]](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc) that will be wrapped by the [WGPUSurface].
      */
     public var layer: Pointer<Unit>
         get() = layerHandle.get(this.`$mem`, 0L) as MemorySegment

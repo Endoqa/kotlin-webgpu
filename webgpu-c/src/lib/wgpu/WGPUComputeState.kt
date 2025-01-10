@@ -37,7 +37,7 @@ public value class WGPUComputeState(
         }
 
     /**
-     * Array count for constants.
+     * Array count for [constants].
      */
     public var constantCount: ULong
         get() = (constantCountHandle.get(this.`$mem`, 0L) as Long).toULong()

@@ -28,7 +28,7 @@ public value class WGPUPipelineLayoutDescriptor(
         }
 
     /**
-     * Array count for bindGroupLayouts.
+     * Array count for [bindGroupLayouts].
      */
     public var bindGroupLayoutCount: ULong
         get() = (bindGroupLayoutCountHandle.get(this.`$mem`, 0L) as Long).toULong()
