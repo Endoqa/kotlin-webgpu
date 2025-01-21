@@ -1,0 +1,73 @@
+
+    [
+        [ "Asynchronous Operations", "Asynchronous-Operations.html", [
+          [ "Creation", "Asynchronous-Operations.html#autotoc_md0", null ],
+          [ "wgpuInstanceWaitAny", "Asynchronous-Operations.html#Wait-Any", [
+            [ "Timed Wait", "Asynchronous-Operations.html#Timed-Wait", null ],
+            [ "Mixed Sources", "Asynchronous-Operations.html#Mixed-Sources", [
+              [ "CPU-Timeline Operations", "Asynchronous-Operations.html#autotoc_md1", null ],
+              [ "Queue-Timeline Operations", "Asynchronous-Operations.html#autotoc_md2", null ]
+            ] ]
+          ] ],
+          [ "wgpuInstanceProcessEvents", "Asynchronous-Operations.html#Process-Events", null ],
+          [ "Device Events", "Asynchronous-Operations.html#autotoc_md3", null ],
+          [ "Callback Reentrancy", "Asynchronous-Operations.html#CallbackReentrancy", null ]
+        ] ],
+        [ "Buffer Mapping", "BufferMapping.html", [
+          [ "GetMappedRange/GetConstMappedRange Behavior", "BufferMapping.html#GetMappedRangeBehavior", null ]
+        ] ],
+        [ "Errors", "Errors.html", [
+          [ "Device Error", "Errors.html#DeviceError", [
+            [ "Error Scopes", "Errors.html#ErrorScopes", null ]
+          ] ],
+          [ "Callback Error", "Errors.html#CallbackError", null ],
+          [ "Synchronous Error", "Errors.html#SynchronousError", [
+            [ "Implementation-Defined Logging", "Errors.html#ImplementationDefinedLogging", null ]
+          ] ]
+        ] ],
+        [ "Extensions", "Extensions.html", [
+          [ "Registry of prefixes and enum blocks", "Extensions.html#autotoc_md4", null ],
+          [ "Bitflag Registry", "Extensions.html#BitflagRegistry", null ]
+        ] ],
+        [ "Floating-Point Numbers", "FloatingPointNumbers.html", [
+          [ "Double-as-Supertype", "FloatingPointNumbers.html#DoubleAsSupertype", null ],
+          [ "Nullable Floating-Point Type", "FloatingPointNumbers.html#NullableFloatingPointType", null ],
+          [ "Non-Finite Float Value Errors", "FloatingPointNumbers.html#NonFiniteFloatValueError", null ]
+        ] ],
+        [ "Multithreading", "Multithreading.html", [
+          [ "Multithreading In WebAssembly", "Multithreading.html#MultithreadingInWasm", null ],
+          [ "Thread Safety", "Multithreading.html#ThreadSafety", null ]
+        ] ],
+        [ "Ownership", "Ownership.html", [
+          [ "Returned with Ownership", "Ownership.html#ReturnedWithOwnership", null ],
+          [ "Callback Arguments", "Ownership.html#CallbackArgs", [
+            [ "Passed with Ownership", "Ownership.html#PassedWithOwnership", null ],
+            [ "Passed without Ownership", "Ownership.html#PassedWithoutOwnership", null ],
+            [ "Implementation-Allocated Struct Chain", "Ownership.html#ImplementationAllocatedStructChain", null ]
+          ] ]
+        ] ],
+        [ "Sentinel Values", "SentinelValues.html", [
+          [ "Undefined and Null", "SentinelValues.html#autotoc_md5", null ],
+          [ "C-Specific Sentinel Values", "SentinelValues.html#autotoc_md6", null ]
+        ] ],
+        [ "Strings", "Strings.html", [
+          [ "Nullable Input String", "Strings.html#NullableInputString", null ],
+          [ "Non-Null Input String", "Strings.html#NonNullInputString", null ],
+          [ "Output String", "Strings.html#OutputString", [
+            [ "Localizable Human-Readable Message String", "Strings.html#LocalizableHumanReadableMessageString", null ]
+          ] ]
+        ] ],
+        [ "Struct-Chaining", "StructChaining.html", [
+          [ "Struct-Chaining Error", "StructChaining.html#StructChainingError", [
+            [ "Out-Struct-Chain Error", "StructChaining.html#OutStructChainError", null ]
+          ] ],
+          [ "Ownership", "StructChaining.html#autotoc_md7", null ],
+          [ "Callbacks", "StructChaining.html#autotoc_md8", null ]
+        ] ],
+        [ "Surfaces", "Surfaces.html", [
+          [ "Surface Creation", "Surfaces.html#Surface-Creation", null ],
+          [ "Querying Surface Capabilities", "Surfaces.html#Surface-Capabilities", null ],
+          [ "Surface Configuration", "Surfaces.html#Surface-Configuration", null ],
+          [ "Presenting to Surface", "Surfaces.html#Surface-Presenting", null ]
+        ] ]
+    ]

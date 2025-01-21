@@ -13,7 +13,7 @@ public enum class WGPUPrimitiveTopology(
     public val `value`: Int,
 ) {
     /**
-     * Indicates no value is passed for this argument. See [SentinelValues](https://webgpu-native.github.io/webgpu-headers/articles.html).
+     * Indicates no value is passed for this argument. See [SentinelValues](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html).
      */
     Undefined(0x00000000),
 

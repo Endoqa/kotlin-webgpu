@@ -134,8 +134,8 @@ public fun wgpuBufferMapAsync(
 
 /**
  * Returns a mutable pointer to beginning of the mapped range.
- * See [GetMappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/articles.html) for error conditions and guarantees.
- * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/articles.html)).
+ * See [GetMappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
+ * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackReentrancy)).
  * @param offset Byte offset relative to the beginning of the buffer.
  * @param size Byte size of the range to get. The returned pointer is valid for exactly this many bytes.
  */
@@ -148,8 +148,8 @@ public fun wgpuBufferGetMappedRange(
 /**
  * Returns a const pointer to beginning of the mapped range.
  * It must not be written; writing to this range causes undefined behavior.
- * See [GetMappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/articles.html) for error conditions and guarantees.
- * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/articles.html)).
+ * See [GetMappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
+ * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackReentrancy)).
  * @param offset Byte offset relative to the beginning of the buffer.
  * @param size Byte size of the range to get. The returned pointer is valid for exactly this many bytes.
  */
@@ -695,7 +695,7 @@ public fun wgpuDeviceGetQueue(device: WGPUDevice): WGPUQueue =
 
 /**
  * Pushes an error scope to the current thread's error scope stack.
- * See [ErrorScopes](https://webgpu-native.github.io/webgpu-headers/articles.html).
+ * See [ErrorScopes](https://webgpu-native.github.io/webgpu-headers/Errors.html#ErrorScopes).
  * @param filter TODO
  */
 public fun wgpuDevicePushErrorScope(device: WGPUDevice, filter: WGPUErrorFilter): Unit =
@@ -703,7 +703,7 @@ public fun wgpuDevicePushErrorScope(device: WGPUDevice, filter: WGPUErrorFilter)
 
 /**
  * Pops an error scope to the current thread's error scope stack,
- * asynchronously returning the result. See [ErrorScopes](https://webgpu-native.github.io/webgpu-headers/articles.html).
+ * asynchronously returning the result. See [ErrorScopes](https://webgpu-native.github.io/webgpu-headers/Errors.html#ErrorScopes).
  */
 context(SegmentAllocator)
 public fun wgpuDevicePopErrorScope(device: WGPUDevice, callbackInfo: WGPUPopErrorScopeCallbackInfo): WGPUFuture =
@@ -727,7 +727,7 @@ public fun wgpuDeviceAddRef(device: WGPUDevice): Unit = `wgpuDeviceAddRef$mh`.in
 public fun wgpuDeviceRelease(device: WGPUDevice): Unit = `wgpuDeviceRelease$mh`.invokeExact(device) as Unit
 
 /**
- * Creates a [WGPUSurface], see [Surface-Creation](https://webgpu-native.github.io/webgpu-headers/articles.html) for more details.
+ * Creates a [WGPUSurface], see [Surface-Creation](https://webgpu-native.github.io/webgpu-headers/Surfaces.html#Surface-Creation) for more details.
  * @param descriptor The description of the [WGPUSurface] to create.
  */
 public fun wgpuInstanceCreateSurface(instance: WGPUInstance, descriptor: Pointer<WGPUSurfaceDescriptor>): WGPUSurface =
@@ -752,7 +752,7 @@ public fun wgpuInstanceHasWGSLLanguageFeature(instance: WGPUInstance, feature: W
 /**
  * Processes asynchronous events on this [WGPUInstance], calling any callbacks for asynchronous operations created with [WGPUCallbackMode.AllowProcessEvents].
  *
- * See [Process-Events](https://webgpu-native.github.io/webgpu-headers/articles.html) for more information.
+ * See [Process-Events](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#Process-Events) for more information.
  */
 public fun wgpuInstanceProcessEvents(instance: WGPUInstance): Unit =
     `wgpuInstanceProcessEvents$mh`.invokeExact(instance) as Unit
@@ -778,7 +778,7 @@ public fun wgpuInstanceRequestAdapter(
 /**
  * Wait for at least one WGPUFuture in [futures] to complete, and call callbacks of the respective completed asynchronous operations.
  *
- * See [Wait-Any](https://webgpu-native.github.io/webgpu-headers/articles.html) for more information.
+ * See [Wait-Any](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#Wait-Any) for more information.
  * @param futureCount TODO
  * @param futures TODO
  * @param timeoutNS TODO
@@ -867,7 +867,7 @@ public fun wgpuQueueOnSubmittedWorkDone(queue: WGPUQueue, callbackInfo: WGPUQueu
     )
 
 /**
- * Produces a [DeviceError](https://webgpu-native.github.io/webgpu-headers/articles.html) both content-timeline ([size] alignment) and device-timeline
+ * Produces a [DeviceError](https://webgpu-native.github.io/webgpu-headers/Errors.html#DeviceError) both content-timeline ([size] alignment) and device-timeline
  * errors defined by the WebGPU specification.
  * @param buffer TODO
  * @param bufferOffset TODO
@@ -1267,7 +1267,7 @@ public fun wgpuRenderPassEncoderSetStencilReference(renderPassEncoder: WGPURende
 
 /**
  * TODO
- * @param color The RGBA blend constant. Represents an [f32] color using [DoubleAsSupertype](https://webgpu-native.github.io/webgpu-headers/articles.html).
+ * @param color The RGBA blend constant. Represents an [f32] color using [DoubleAsSupertype](https://webgpu-native.github.io/webgpu-headers/FloatingPointNumbers.html#DoubleAsSupertype).
  */
 public fun wgpuRenderPassEncoderSetBlendConstant(
     renderPassEncoder: WGPURenderPassEncoder,
@@ -1277,7 +1277,7 @@ public fun wgpuRenderPassEncoderSetBlendConstant(
 /**
  * TODO
  *
- * If any argument is non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/articles.html).
+ * If any argument is non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/FloatingPointNumbers.html#NonFiniteFloatValueError).
  * @param x TODO
  * @param y TODO
  * @param width TODO
@@ -1462,9 +1462,9 @@ public fun wgpuShaderModuleRelease(shaderModule: WGPUShaderModule): Unit =
 
 /**
  * Configures parameters for rendering to [surface].
- * Produces a [DeviceError](https://webgpu-native.github.io/webgpu-headers/articles.html) for all content-timeline errors defined by the WebGPU specification.
+ * Produces a [DeviceError](https://webgpu-native.github.io/webgpu-headers/Errors.html#DeviceError) for all content-timeline errors defined by the WebGPU specification.
  *
- * See [Surface-Configuration](https://webgpu-native.github.io/webgpu-headers/articles.html) for more details.
+ * See [Surface-Configuration](https://webgpu-native.github.io/webgpu-headers/Surfaces.html#Surface-Configuration) for more details.
  * @param config The new configuration to use.
  */
 public fun wgpuSurfaceConfigure(surface: WGPUSurface, config: Pointer<WGPUSurfaceConfiguration>): Unit =
@@ -1472,7 +1472,7 @@ public fun wgpuSurfaceConfigure(surface: WGPUSurface, config: Pointer<WGPUSurfac
 
 /**
  * Provides information on how [adapter] is able to use [surface].
- * See [Surface-Capabilities](https://webgpu-native.github.io/webgpu-headers/articles.html) for more details.
+ * See [Surface-Capabilities](https://webgpu-native.github.io/webgpu-headers/Surfaces.html#Surface-Capabilities) for more details.
  * @param adapter The [WGPUAdapter] to get capabilities for presenting to this [WGPUSurface].
  * @param capabilities The structure to fill capabilities in.
  * It may contain memory allocations so [wgpuSurfaceCapabilitiesFreeMembers] must be called to avoid memory leaks.
@@ -1487,7 +1487,7 @@ public fun wgpuSurfaceGetCapabilities(
  * Returns the [WGPUTexture] to render to [surface] this frame along with metadata on the frame.
  * Returns [NULL] and [WGPUSurfaceGetCurrentTextureStatus.Error] if the surface is not configured.
  *
- * See [Surface-Presenting](https://webgpu-native.github.io/webgpu-headers/articles.html) for more details.
+ * See [Surface-Presenting](https://webgpu-native.github.io/webgpu-headers/Surfaces.html#Surface-Presenting) for more details.
  * @param surfaceTexture The structure to fill the [WGPUTexture] and metadata in.
  */
 public fun wgpuSurfaceGetCurrentTexture(surface: WGPUSurface, surfaceTexture: Pointer<WGPUSurfaceTexture>): Unit =
@@ -1495,14 +1495,14 @@ public fun wgpuSurfaceGetCurrentTexture(surface: WGPUSurface, surfaceTexture: Po
 
 /**
  * Shows [surface]'s current texture to the user.
- * See [Surface-Presenting](https://webgpu-native.github.io/webgpu-headers/articles.html) for more details.
+ * See [Surface-Presenting](https://webgpu-native.github.io/webgpu-headers/Surfaces.html#Surface-Presenting) for more details.
  */
 public fun wgpuSurfacePresent(surface: WGPUSurface): WGPUStatus =
     WGPUStatus.fromInt(`wgpuSurfacePresent$mh`.invokeExact(surface) as Int)
 
 /**
  * Removes the configuration for [surface].
- * See [Surface-Configuration](https://webgpu-native.github.io/webgpu-headers/articles.html) for more details.
+ * See [Surface-Configuration](https://webgpu-native.github.io/webgpu-headers/Surfaces.html#Surface-Configuration) for more details.
  */
 public fun wgpuSurfaceUnconfigure(surface: WGPUSurface): Unit =
     `wgpuSurfaceUnconfigure$mh`.invokeExact(surface) as Unit

@@ -101,7 +101,7 @@ public typealias WGPUSampler = Pointer<WGPUSamplerImpl>
 public typealias WGPUShaderModule = Pointer<WGPUShaderModuleImpl>
 
 /**
- * An object used to continuously present image data to the user, see @ref Surfaces for more details.
+ * An object used to continuously present image data to the user, see [Surfaces](https://webgpu-native.github.io/webgpu-headers/Surfaces.html) for more details.
  */
 public typealias WGPUSurface = Pointer<WGPUSurfaceImpl>
 

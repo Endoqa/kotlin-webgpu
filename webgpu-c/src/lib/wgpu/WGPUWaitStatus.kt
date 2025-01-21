@@ -25,17 +25,17 @@ public enum class WGPUWaitStatus(
     TimedOut(0x00000002),
 
     /**
-     * A [Timed-Wait](https://webgpu-native.github.io/webgpu-headers/articles.html) was performed when WGPUInstanceFeatures::timedWaitAnyEnable is false.
+     * A [Timed-Wait](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#Timed-Wait) was performed when WGPUInstanceFeatures::timedWaitAnyEnable is false.
      */
     UnsupportedTimeout(0x00000003),
 
     /**
-     * The number of futures waited on in a [Timed-Wait](https://webgpu-native.github.io/webgpu-headers/articles.html) is greater than the supported WGPUInstanceFeatures::timedWaitAnyMaxCount.
+     * The number of futures waited on in a [Timed-Wait](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#Timed-Wait) is greater than the supported WGPUInstanceFeatures::timedWaitAnyMaxCount.
      */
     UnsupportedCount(0x00000004),
 
     /**
-     * An invalid wait was performed with [Mixed-Sources](https://webgpu-native.github.io/webgpu-headers/articles.html).
+     * An invalid wait was performed with [Mixed-Sources](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#Mixed-Sources).
      */
     UnsupportedMixedSources(0x00000005),
     ;

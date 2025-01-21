@@ -5,7 +5,7 @@ import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
 /**
- * Opaque handle to an asynchronous operation. See [Asynchronous-Operations](https://webgpu-native.github.io/webgpu-headers/articles.html) for more information.
+ * Opaque handle to an asynchronous operation. See [Asynchronous-Operations](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html) for more information.
  */
 @JvmInline
 public value class WGPUFuture(

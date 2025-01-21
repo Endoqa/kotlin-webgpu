@@ -103,7 +103,7 @@ public value class WGPUDepthStencilState(
     /**
      * TODO
      *
-     * If non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/articles.html).
+     * If non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/FloatingPointNumbers.html#NonFiniteFloatValueError).
      */
     public var depthBiasSlopeScale: Float
         get() = depthBiasSlopeScaleHandle.get(this.`$mem`, 0L) as Float
@@ -114,7 +114,7 @@ public value class WGPUDepthStencilState(
     /**
      * TODO
      *
-     * If non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/articles.html).
+     * If non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/FloatingPointNumbers.html#NonFiniteFloatValueError).
      */
     public var depthBiasClamp: Float
         get() = depthBiasClampHandle.get(this.`$mem`, 0L) as Float

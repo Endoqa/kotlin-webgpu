@@ -90,9 +90,9 @@ public value class WGPUDeviceDescriptor(
 
     /**
      * Called when there is an uncaptured error on this device, from any thread.
-     * See [ErrorScopes](https://webgpu-native.github.io/webgpu-headers/articles.html).
+     * See [ErrorScopes](https://webgpu-native.github.io/webgpu-headers/Errors.html#ErrorScopes).
      *
-     * **Important:** This callback does not have a configurable [WGPUCallbackMode]; it may be called at any time (like [WGPUCallbackMode.AllowSpontaneous]). As such, calls into the `webgpu.h` API from this callback are unsafe. See [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/articles.html).
+     * **Important:** This callback does not have a configurable [WGPUCallbackMode]; it may be called at any time (like [WGPUCallbackMode.AllowSpontaneous]). As such, calls into the `webgpu.h` API from this callback are unsafe. See [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackReentrancy).
      */
     public var uncapturedErrorCallbackInfo: WGPUUncapturedErrorCallbackInfo
         get() = WGPUUncapturedErrorCallbackInfo(

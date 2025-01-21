@@ -8,7 +8,7 @@ import kotlin.Int
 
 /**
  * Status code returned (synchronously) from many operations. Generally
- * indicates an invalid input like an unknown enum value or [OutStructChainError](https://webgpu-native.github.io/webgpu-headers/articles.html).
+ * indicates an invalid input like an unknown enum value or [OutStructChainError](https://webgpu-native.github.io/webgpu-headers/StructChaining.html#OutStructChainError).
  * Read the function's documentation for specific error conditions.
  */
 public enum class WGPUStatus(

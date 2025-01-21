@@ -15,12 +15,12 @@ public enum class WGPUStorageTextureAccess(
     /**
      * Indicates that this [WGPUStorageTextureBindingLayout] member of
      * its parent [WGPUBindGroupLayoutEntry] is not used.
-     * (See also [SentinelValues](https://webgpu-native.github.io/webgpu-headers/articles.html).)
+     * (See also [SentinelValues](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html).)
      */
     BindingNotUsed(0x00000000),
 
     /**
-     * Indicates no value is passed for this argument. See [SentinelValues](https://webgpu-native.github.io/webgpu-headers/articles.html).
+     * Indicates no value is passed for this argument. See [SentinelValues](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html).
      */
     Undefined(0x00000001),
 

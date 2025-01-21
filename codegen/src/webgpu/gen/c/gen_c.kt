@@ -13,6 +13,7 @@ import c.lang.IdentifierKind
 import c.lang.ScopedIdentifier
 import c.lang.TypeModifier
 import webgpu.gen.generateBitflag
+import webgpu.gen.transformDoc
 import webgpu.schema.Schema
 
 
@@ -69,7 +70,7 @@ fun generate(schema: Schema) {
     schema.objects.forEach {
         val (id, implId, implStruct, methods) = generateObject(it)
         structs[implId] = implStruct
-        globals[id] = CPointer(ScopedIdentifier(IdentifierKind.struct, implId), it.doc)
+        globals[id] = CPointer(ScopedIdentifier(IdentifierKind.struct, implId), transformDoc(it.doc))
 
         methods.forEach { (id, func) -> globals[id] = func }
     }

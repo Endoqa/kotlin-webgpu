@@ -19,6 +19,8 @@ val inlineEnumRegex = Regex("`(WGPU\\w+)_(\\w+)`")
 
 val inlineReferenceRegex = Regex("`(\\w+)`")
 
+
+
 fun transformDoc(doc: String): String {
     return doc
         .replace(inlineEnumRegex) { match ->
@@ -28,7 +30,7 @@ fun transformDoc(doc: String): String {
             "[${match.groupValues[1]}.${match.groupValues[2]}]"
         }
         .replace(namedArticleRegex) { match ->
-            "[${match.groupValues[1]}](https://webgpu-native.github.io/webgpu-headers/articles.html)"
+            "[${match.groupValues[1]}](https://webgpu-native.github.io/webgpu-headers/${searchArticle(match.groupValues[2])})"
         }
         .replace(inlineReferenceRegex) { match ->
             "[${match.groupValues[1]}]"
@@ -43,6 +45,6 @@ fun transformDoc(doc: String): String {
             "[${match.groupValues[1]}]"
         }
         .replace(articleRegex) { match ->
-            "[${match.groupValues[1]}](https://webgpu-native.github.io/webgpu-headers/articles.html)"
+            "[${match.groupValues[1]}](https://webgpu-native.github.io/webgpu-headers/${searchArticle(match.groupValues[1])})"
         }
 }

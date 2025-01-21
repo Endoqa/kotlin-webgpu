@@ -40,7 +40,7 @@ public enum class WGPUSurfaceGetCurrentTextureStatus(
     Lost(0x00000005),
 
     /**
-     * There was some deterministic error (for example, the surface is not configured, or there was an [OutStructChainError](https://webgpu-native.github.io/webgpu-headers/articles.html)). Should produce [ImplementationDefinedLogging](https://webgpu-native.github.io/webgpu-headers/articles.html) containing details.
+     * There was some deterministic error (for example, the surface is not configured, or there was an [OutStructChainError](https://webgpu-native.github.io/webgpu-headers/StructChaining.html#OutStructChainError)). Should produce [ImplementationDefinedLogging](https://webgpu-native.github.io/webgpu-headers/Errors.html#ImplementationDefinedLogging) containing details.
      */
     Error(0x00000006),
     ;

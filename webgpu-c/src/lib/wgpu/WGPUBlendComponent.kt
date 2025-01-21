@@ -13,7 +13,7 @@ public value class WGPUBlendComponent(
 ) {
     /**
      * If set to [WGPUBlendOperation.Undefined],
-     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUBlendOperation.Add].
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html) to [WGPUBlendOperation.Add].
      */
     public var operation: WGPUBlendOperation
         get() = WGPUBlendOperation.fromInt(operationHandle.get(this.`$mem`, 0L) as Int)
@@ -23,7 +23,7 @@ public value class WGPUBlendComponent(
 
     /**
      * If set to [WGPUBlendFactor.Undefined],
-     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUBlendFactor.One].
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html) to [WGPUBlendFactor.One].
      */
     public var srcFactor: WGPUBlendFactor
         get() = WGPUBlendFactor.fromInt(srcFactorHandle.get(this.`$mem`, 0L) as Int)
@@ -33,7 +33,7 @@ public value class WGPUBlendComponent(
 
     /**
      * If set to [WGPUBlendFactor.Undefined],
-     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUBlendFactor.Zero].
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html) to [WGPUBlendFactor.Zero].
      */
     public var dstFactor: WGPUBlendFactor
         get() = WGPUBlendFactor.fromInt(dstFactorHandle.get(this.`$mem`, 0L) as Int)

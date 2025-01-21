@@ -38,7 +38,7 @@ public value class WGPUTextureDescriptor(
 
     /**
      * If set to [WGPUTextureDimension.Undefined],
-     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUTextureDimension.2D].
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html) to [WGPUTextureDimension.2D].
      */
     public var dimension: WGPUTextureDimension
         get() = WGPUTextureDimension.fromInt(dimensionHandle.get(this.`$mem`, 0L) as Int)

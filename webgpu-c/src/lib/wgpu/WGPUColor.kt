@@ -5,9 +5,9 @@ import java.lang.foreign.*
 import java.lang.invoke.VarHandle
 
 /**
- * An RGBA color. Represents a [f32], [i32], or [u32] color using [DoubleAsSupertype](https://webgpu-native.github.io/webgpu-headers/articles.html).
+ * An RGBA color. Represents a [f32], [i32], or [u32] color using [DoubleAsSupertype](https://webgpu-native.github.io/webgpu-headers/FloatingPointNumbers.html#DoubleAsSupertype).
  *
- * If any channel is non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/articles.html).
+ * If any channel is non-finite, produces a [NonFiniteFloatValueError](https://webgpu-native.github.io/webgpu-headers/FloatingPointNumbers.html#NonFiniteFloatValueError).
  */
 @JvmInline
 public value class WGPUColor(
