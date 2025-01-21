@@ -16,7 +16,7 @@ public fun interface WGPUPopErrorScopeCallback {
      * If the [status] is not [WGPUPopErrorScopeStatus.Success], this is [WGPUErrorType.NoError].
      * @param message If the [status] is not [WGPUPopErrorScopeStatus.Success] **or**
      * the [type] is not [WGPUErrorType.NoError], this is a non-empty
-     * [LocalizableHumanReadableMessageString](https://webgpu-native.github.io/webgpu-headers/articles.html);
+     * [LocalizableHumanReadableMessageString](https://webgpu-native.github.io/webgpu-headers/Strings.html#LocalizableHumanReadableMessageString);
      * otherwise, this is an empty string.
      */
     @CFunctionInvoke

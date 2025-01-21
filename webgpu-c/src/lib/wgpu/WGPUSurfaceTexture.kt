@@ -6,7 +6,7 @@ import java.lang.invoke.VarHandle
 
 /**
  * Queried each frame from a [WGPUSurface] to get a [WGPUTexture] to render to along with some metadata.
- * See [Surface-Presenting](https://webgpu-native.github.io/webgpu-headers/articles.html) for more details.
+ * See [Surface-Presenting](https://webgpu-native.github.io/webgpu-headers/Surfaces.html#Surface-Presenting) for more details.
  */
 @JvmInline
 public value class WGPUSurfaceTexture(
@@ -20,7 +20,7 @@ public value class WGPUSurfaceTexture(
 
     /**
      * The [WGPUTexture] representing the frame that will be shown on the surface.
-     * It is [ReturnedWithOwnership](https://webgpu-native.github.io/webgpu-headers/articles.html) from [wgpuSurfaceGetCurrentTexture].
+     * It is [ReturnedWithOwnership](https://webgpu-native.github.io/webgpu-headers/Ownership.html#ReturnedWithOwnership) from [wgpuSurfaceGetCurrentTexture].
      */
     public var texture: WGPUTexture
         get() = textureHandle.get(this.`$mem`, 0L) as MemorySegment

@@ -6,7 +6,7 @@ import java.lang.invoke.VarHandle
 
 /**
  * Options to [wgpuSurfaceConfigure] for defining how a [WGPUSurface] will be rendered to and presented to the user.
- * See [Surface-Configuration](https://webgpu-native.github.io/webgpu-headers/articles.html) for more details.
+ * See [Surface-Configuration](https://webgpu-native.github.io/webgpu-headers/Surfaces.html#Surface-Configuration) for more details.
  */
 @JvmInline
 public value class WGPUSurfaceConfiguration(
@@ -98,7 +98,7 @@ public value class WGPUSurfaceConfiguration(
      * When and in which order the surface's frames will be shown on the screen.
      *
      * If set to [WGPUPresentMode.Undefined],
-     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUPresentMode.Fifo].
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html) to [WGPUPresentMode.Fifo].
      */
     public var presentMode: WGPUPresentMode
         get() = WGPUPresentMode.fromInt(presentModeHandle.get(this.`$mem`, 0L) as Int)

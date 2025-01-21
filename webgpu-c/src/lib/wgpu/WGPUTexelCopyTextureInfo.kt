@@ -41,7 +41,7 @@ public value class WGPUTexelCopyTextureInfo(
 
     /**
      * If set to [WGPUTextureAspect.Undefined],
-     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUTextureAspect.All].
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html) to [WGPUTextureAspect.All].
      */
     public var aspect: WGPUTextureAspect
         get() = WGPUTextureAspect.fromInt(aspectHandle.get(this.`$mem`, 0L) as Int)

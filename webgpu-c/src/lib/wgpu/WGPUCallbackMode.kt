@@ -7,7 +7,7 @@ import java.lang.invoke.MethodType
 import kotlin.Int
 
 /**
- * The callback mode controls how a callback for an asynchronous operation may be fired. See [Asynchronous-Operations](https://webgpu-native.github.io/webgpu-headers/articles.html) for how these are used.
+ * The callback mode controls how a callback for an asynchronous operation may be fired. See [Asynchronous-Operations](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html) for how these are used.
  */
 public enum class WGPUCallbackMode(
     public val `value`: Int,

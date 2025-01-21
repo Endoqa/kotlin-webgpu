@@ -12,7 +12,7 @@ import java.lang.invoke.MethodHandles
 public fun interface WGPUCompilationInfoCallback {
     /**
      * @param status TODO
-     * @param compilationInfo This argument contains multiple [ImplementationAllocatedStructChain](https://webgpu-native.github.io/webgpu-headers/articles.html) roots.
+     * @param compilationInfo This argument contains multiple [ImplementationAllocatedStructChain](https://webgpu-native.github.io/webgpu-headers/Ownership.html#ImplementationAllocatedStructChain) roots.
      * Arbitrary chains must be handled gracefully by the application!
      */
     @CFunctionInvoke

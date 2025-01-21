@@ -21,7 +21,7 @@ public value class WGPURequestAdapterOptions(
      * "Feature level" for the adapter request. If an adapter is returned, it must support the features and limits in the requested feature level.
      *
      * If set to [WGPUFeatureLevel.Undefined],
-     * [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUFeatureLevel.Core].
+     * [defaults](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html) to [WGPUFeatureLevel.Core].
      * Additionally, implementations may ignore [WGPUFeatureLevel.Compatibility]
      * and provide [WGPUFeatureLevel.Core] instead.
      */

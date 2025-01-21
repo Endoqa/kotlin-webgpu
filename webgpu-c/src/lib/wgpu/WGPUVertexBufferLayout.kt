@@ -16,7 +16,7 @@ import java.lang.invoke.VarHandle
  * remove this documentation.)
  *
  * If [stepMode] is [WGPUVertexStepMode.Undefined] but [attributes] is *not* empty,
- * [stepMode] [defaults](https://webgpu-native.github.io/webgpu-headers/articles.html) to [WGPUVertexStepMode.Vertex].
+ * [stepMode] [defaults](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html) to [WGPUVertexStepMode.Vertex].
  */
 @JvmInline
 public value class WGPUVertexBufferLayout(
