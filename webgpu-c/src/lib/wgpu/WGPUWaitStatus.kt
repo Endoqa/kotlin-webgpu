@@ -20,24 +20,15 @@ public enum class WGPUWaitStatus(
     Success(0x00000001),
 
     /**
-     * No WGPUFutures completed within the timeout.
+     * The wait operation succeeded, but no WGPUFutures completed within the timeout.
      */
     TimedOut(0x00000002),
 
     /**
-     * A [Timed-Wait](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#Timed-Wait) was performed when WGPUInstanceFeatures::timedWaitAnyEnable is false.
+     * The call was invalid for some reason (see [Wait-Any](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#Wait-Any)).
+     * Should produce [ImplementationDefinedLogging](https://webgpu-native.github.io/webgpu-headers/Errors.html#ImplementationDefinedLogging) containing details.
      */
-    UnsupportedTimeout(0x00000003),
-
-    /**
-     * The number of futures waited on in a [Timed-Wait](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#Timed-Wait) is greater than the supported WGPUInstanceFeatures::timedWaitAnyMaxCount.
-     */
-    UnsupportedCount(0x00000004),
-
-    /**
-     * An invalid wait was performed with [Mixed-Sources](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#Mixed-Sources).
-     */
-    UnsupportedMixedSources(0x00000005),
+    Error(0x00000003),
     ;
 
     public companion object {
@@ -60,9 +51,7 @@ public enum class WGPUWaitStatus(
             Null.value -> Null
             Success.value -> Success
             TimedOut.value -> TimedOut
-            UnsupportedTimeout.value -> UnsupportedTimeout
-            UnsupportedCount.value -> UnsupportedCount
-            UnsupportedMixedSources.value -> UnsupportedMixedSources
+            Error.value -> Error
             else -> error("enum not found")
         }
     }

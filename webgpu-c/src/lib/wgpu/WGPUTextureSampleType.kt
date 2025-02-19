@@ -20,7 +20,7 @@ public enum class WGPUTextureSampleType(
     BindingNotUsed(0x00000000),
 
     /**
-     * Indicates no value is passed for this argument. See [SentinelValues](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html).
+     * [1]. Indicates no value is passed for this argument. See [SentinelValues](https://webgpu-native.github.io/webgpu-headers/SentinelValues.html).
      */
     Undefined(0x00000001),
 
