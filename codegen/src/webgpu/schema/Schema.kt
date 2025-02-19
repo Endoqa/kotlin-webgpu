@@ -9,7 +9,7 @@ data class Schema(
     val copyright: String,
     val name: Name,
     @SerialName("enum_prefix")
-    val enumPrefix: String,
+    val enumPrefix: Int,
     val doc: String,
     val typedefs: List<Typedef>,
     val constants: List<Constant>,

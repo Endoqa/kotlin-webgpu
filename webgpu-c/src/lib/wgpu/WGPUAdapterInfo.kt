@@ -90,6 +90,24 @@ public value class WGPUAdapterInfo(
             deviceIDHandle.set(this.`$mem`, 0L, value.toInt())
         }
 
+    /**
+     * TODO
+     */
+    public var subgroupMinSize: UInt
+        get() = (subgroupMinSizeHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        set(`value`) {
+            subgroupMinSizeHandle.set(this.`$mem`, 0L, value.toInt())
+        }
+
+    /**
+     * TODO
+     */
+    public var subgroupMaxSize: UInt
+        get() = (subgroupMaxSizeHandle.get(this.`$mem`, 0L) as Int).toUInt()
+        set(`value`) {
+            subgroupMaxSizeHandle.set(this.`$mem`, 0L, value.toInt())
+        }
+
     public constructor(gc: Boolean) : this(kotlin.run {
         require(gc) { "Do not call this if gc is not want" }
         Arena.ofAuto().allocate(layout)
@@ -106,6 +124,8 @@ public value class WGPUAdapterInfo(
             ValueLayout.JAVA_INT.withName("adapterType"),
             ValueLayout.JAVA_INT.withName("vendorID"),
             ValueLayout.JAVA_INT.withName("deviceID"),
+            ValueLayout.JAVA_INT.withName("subgroupMinSize"),
+            ValueLayout.JAVA_INT.withName("subgroupMaxSize"),
         ).withName("WGPUAdapterInfo")
 
         @JvmField
@@ -143,6 +163,14 @@ public value class WGPUAdapterInfo(
         @JvmField
         public val deviceIDHandle: VarHandle =
             layout.varHandle(MemoryLayout.PathElement.groupElement("deviceID"))
+
+        @JvmField
+        public val subgroupMinSizeHandle: VarHandle =
+            layout.varHandle(MemoryLayout.PathElement.groupElement("subgroupMinSize"))
+
+        @JvmField
+        public val subgroupMaxSizeHandle: VarHandle =
+            layout.varHandle(MemoryLayout.PathElement.groupElement("subgroupMaxSize"))
 
         @JvmStatic
         public fun allocate(alloc: SegmentAllocator): WGPUAdapterInfo =

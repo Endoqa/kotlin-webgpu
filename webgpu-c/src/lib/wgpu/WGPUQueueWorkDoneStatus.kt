@@ -23,6 +23,12 @@ public enum class WGPUQueueWorkDoneStatus(
      * TODO
      */
     InstanceDropped(0x00000002),
+
+    /**
+     * There was some deterministic error. (Note this is currently never used,
+     * but it will be relevant when it's possible to create a queue object.)
+     */
+    Error(0x00000003),
     ;
 
     public companion object {
@@ -45,6 +51,7 @@ public enum class WGPUQueueWorkDoneStatus(
             Null.value -> Null
             Success.value -> Success
             InstanceDropped.value -> InstanceDropped
+            Error.value -> Error
             else -> error("enum not found")
         }
     }

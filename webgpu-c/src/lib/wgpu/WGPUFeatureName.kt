@@ -96,6 +96,11 @@ public enum class WGPUFeatureName(
      * TODO
      */
     DualSourceBlending(0x00000010),
+
+    /**
+     * TODO
+     */
+    Subgroups(0x00000011),
     ;
 
     public companion object {
@@ -132,6 +137,7 @@ public enum class WGPUFeatureName(
             Float32Blendable.value -> Float32Blendable
             ClipDistances.value -> ClipDistances
             DualSourceBlending.value -> DualSourceBlending
+            Subgroups.value -> Subgroups
             else -> error("enum not found")
         }
     }
