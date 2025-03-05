@@ -111,8 +111,9 @@ public fun wgpuBindGroupLayoutRelease(bindGroupLayout: WGPUBindGroupLayout): Uni
 /**
  * TODO
  * @param mode TODO
- * @param offset TODO
- * @param size TODO
+ * @param offset Byte offset relative to beginning of the buffer.
+ * @param size Byte size of the region to map.
+ * If this is [WGPU_WHOLE_MAP.SIZE], it defaults to `buffer.size - offset`.
  */
 context(SegmentAllocator)
 public fun wgpuBufferMapAsync(
@@ -134,10 +135,15 @@ public fun wgpuBufferMapAsync(
 
 /**
  * Returns a mutable pointer to beginning of the mapped range.
- * See [GetMappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
+ * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
  * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackReentrancy)).
+ *
+ * In Wasm, if [memcpy]ing into this range, prefer using [wgpuBufferWriteMappedRange]
+ * instead for better performance.
  * @param offset Byte offset relative to the beginning of the buffer.
- * @param size Byte size of the range to get. The returned pointer is valid for exactly this many bytes.
+ * @param size Byte size of the range to get.
+ * If this is [WGPU_WHOLE_MAP.SIZE], it defaults to `buffer.size - offset`.
+ * The returned pointer is valid for exactly this many bytes.
  */
 public fun wgpuBufferGetMappedRange(
     buffer: WGPUBuffer,
@@ -148,10 +154,15 @@ public fun wgpuBufferGetMappedRange(
 /**
  * Returns a const pointer to beginning of the mapped range.
  * It must not be written; writing to this range causes undefined behavior.
- * See [GetMappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
+ * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
  * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackReentrancy)).
+ *
+ * In Wasm, if [memcpy]ing from this range, prefer using [wgpuBufferReadMappedRange]
+ * instead for better performance.
  * @param offset Byte offset relative to the beginning of the buffer.
- * @param size Byte size of the range to get. The returned pointer is valid for exactly this many bytes.
+ * @param size Byte size of the range to get.
+ * If this is [WGPU_WHOLE_MAP.SIZE], it defaults to `buffer.size - offset`.
+ * The returned pointer is valid for exactly this many bytes.
  */
 public fun wgpuBufferGetConstMappedRange(
     buffer: WGPUBuffer,
@@ -159,6 +170,56 @@ public fun wgpuBufferGetConstMappedRange(
     size: ULong,
 ): Pointer<Unit> =
     `wgpuBufferGetConstMappedRange$mh`.invokeExact(buffer, offset.toLong(), size.toLong()) as MemorySegment
+
+/**
+ * Copies a range of data from the buffer mapping into the provided destination pointer.
+ * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
+ * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackReentrancy)).
+ *
+ * In Wasm, this is more efficient than copying from a mapped range into a [malloc]'d range.
+ * @param offset Byte offset relative to the beginning of the buffer.
+ * @param data Destination, to read buffer data into.
+ * @param size Number of bytes of data to read from the buffer.
+ * (Note [WGPU_WHOLE_MAP.SIZE] is *not* accepted here.)
+ */
+public fun wgpuBufferReadMappedRange(
+    buffer: WGPUBuffer,
+    offset: ULong,
+    `data`: Pointer<Unit>,
+    size: ULong,
+): WGPUStatus = WGPUStatus.fromInt(
+    `wgpuBufferReadMappedRange$mh`.invokeExact(
+        buffer,
+        offset.toLong(),
+        `data`,
+        size.toLong(),
+    ) as Int
+)
+
+/**
+ * Copies a range of data from the provided source pointer into the buffer mapping.
+ * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
+ * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackReentrancy)).
+ *
+ * In Wasm, this is more efficient than copying from a [malloc]'d range into a mapped range.
+ * @param offset Byte offset relative to the beginning of the buffer.
+ * @param data Source, to write buffer data from.
+ * @param size Number of bytes of data to write to the buffer.
+ * (Note [WGPU_WHOLE_MAP.SIZE] is *not* accepted here.)
+ */
+public fun wgpuBufferWriteMappedRange(
+    buffer: WGPUBuffer,
+    offset: ULong,
+    `data`: Pointer<Unit>,
+    size: ULong,
+): WGPUStatus = WGPUStatus.fromInt(
+    `wgpuBufferWriteMappedRange$mh`.invokeExact(
+        buffer,
+        offset.toLong(),
+        `data`,
+        size.toLong(),
+    ) as Int
+)
 
 /**
  * TODO

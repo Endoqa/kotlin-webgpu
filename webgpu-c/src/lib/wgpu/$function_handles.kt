@@ -229,6 +229,32 @@ internal val `wgpuBufferGetConstMappedRange$mh`: MethodHandle by lazy {
     )
 }
 
+internal val `wgpuBufferReadMappedRange$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuBufferReadMappedRange"),
+        FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
+            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
+        )
+    )
+}
+
+internal val `wgpuBufferWriteMappedRange$mh`: MethodHandle by lazy {
+    Linker.nativeLinker().downcallHandle(
+        `$RuntimeHelper`.findSymbol("wgpuBufferWriteMappedRange"),
+        FunctionDescriptor.of(
+            ValueLayout.JAVA_INT,
+            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
+            `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
+        )
+    )
+}
+
 internal val `wgpuBufferSetLabel$mh`: MethodHandle by lazy {
     Linker.nativeLinker().downcallHandle(
         `$RuntimeHelper`.findSymbol("wgpuBufferSetLabel"),
