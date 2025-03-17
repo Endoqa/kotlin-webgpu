@@ -1,0 +1,21 @@
+product: jvm/app
+
+
+
+repositories:
+  - https://maven.endoqa.io
+
+
+dependencies:
+  - io.endoqa:libtree_sitter:0.0.7
+  - io.endoqa:tree-sitter:0.0.7
+  - ../webidl-nodes
+
+
+apply:
+  - ../../common.module-template.yaml
+
+settings:
+  jvm:
+    mainClass: wgpu.gen.MainKt
+    release: 22

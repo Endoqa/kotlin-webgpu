@@ -1,3 +1,16 @@
+// Copyright (C) [2025] World Wide Web Consortium,
+// (Massachusetts Institute of Technology, European Research Consortium for
+// Informatics and Mathematics, Keio University, Beihang).
+// All Rights Reserved.
+//
+// This work is distributed under the W3C (R) Software License [1] in the hope
+// that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+// warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+// [1] http://www.w3.org/Consortium/Legal/copyright-software
+
+// **** This file is auto-generated. Do not edit. ****
+
 interface mixin GPUObjectBase {
     attribute USVString label;
 };
@@ -57,6 +70,8 @@ interface GPUAdapterInfo {
     readonly attribute DOMString architecture;
     readonly attribute DOMString device;
     readonly attribute DOMString description;
+    readonly attribute unsigned long subgroupMinSize;
+    readonly attribute unsigned long subgroupMaxSize;
 };
 
 interface mixin NavigatorGPU {
@@ -118,6 +133,7 @@ enum GPUFeatureName {
     "float32-blendable",
     "clip-distances",
     "dual-source-blending",
+    "subgroups",
 };
 
 [Exposed=(Window, Worker), SecureContext]
@@ -1329,3 +1345,4 @@ dictionary GPUExtent3DDict {
     GPUIntegerCoordinate depthOrArrayLayers = 1;
 };
 typedef (sequence<GPUIntegerCoordinate> or GPUExtent3DDict) GPUExtent3D;
+

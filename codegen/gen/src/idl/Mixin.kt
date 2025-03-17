@@ -1,0 +1,5 @@
+package idl
+
+class Mixin {
+
+}

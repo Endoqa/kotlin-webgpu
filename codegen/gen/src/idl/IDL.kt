@@ -1,0 +1,4 @@
+package idl
+
+class IDL {
+}

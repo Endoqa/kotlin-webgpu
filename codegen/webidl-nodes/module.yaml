@@ -1,0 +1,17 @@
+product:
+  type: lib
+  platforms:
+    - jvm
+
+repositories:
+  - https://maven.endoqa.io
+
+dependencies:
+  - io.endoqa:libtree_sitter:0.0.7
+  - io.endoqa:tree-sitter:0.0.7
+
+
+
+settings:
+  jvm:
+    release: 22
