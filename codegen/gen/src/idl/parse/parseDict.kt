@@ -1,23 +1,42 @@
 package idl.parse
 
+import idl.Dictionary
+import idl.DictionaryMember
 import tree_sitter.idl.node.DictionaryMemberNode
 import tree_sitter.idl.node.DictionaryNode
+import tree_sitter.idl.node.PartialDictionaryNode
 
 context(SourceAvailable)
-fun parseDict(node: DictionaryNode) {
+fun parseDict(node: DictionaryNode): Dictionary {
     val name = node.name.content()
-    println(name)
+    val dictionary = Dictionary(name)
 
     node.body.members.forEach { member ->
-        parseDictMember(member)
+        val dictMember = parseDictMember(member)
+        dictionary.members.add(dictMember)
     }
+
+    return dictionary
 }
 
 context(SourceAvailable)
-private fun parseDictMember(member: DictionaryMemberNode) {
-    val name = member.name.content()
-    println(name)
-    val type = member.type
+fun parsePartialDict(node: PartialDictionaryNode): Dictionary {
+    val name = node.name.content()
+    val dictionary = Dictionary(name, isPartial = true)
 
-    println(parseType(type))
+    node.body.members.forEach { member ->
+        val dictMember = parseDictMember(member)
+        dictionary.members.add(dictMember)
+    }
+
+    return dictionary
+}
+
+context(SourceAvailable)
+private fun parseDictMember(member: DictionaryMemberNode): DictionaryMember {
+    val name = member.name.content()
+    val type = parseType(member.type)
+    val isRequired = member.content().contains("required")
+
+    return DictionaryMember(name, type, isRequired)
 }

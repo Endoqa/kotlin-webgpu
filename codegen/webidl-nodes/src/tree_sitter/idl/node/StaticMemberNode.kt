@@ -3,12 +3,13 @@ package tree_sitter.idl.node
 import tree_sitter.Node
 
 public class StaticMemberNode(
-  override val `$node`: Node,
+    override val `$node`: Node,
 ) : IDLTSBaseNode,
     _InterfaceMemberBodyNode,
     _MixinMemberBodyNode,
     _PartialInterfaceMemberBodyNode {
-  public val member: _StaticMemberBodyNode
-    get() = _StaticMemberBodyNode(`$node`.getChildByFieldName("member") ?:
-        error("required field member is null"))
+    public val member: _StaticMemberBodyNode
+        get() = _StaticMemberBodyNode(
+            `$node`.getChildByFieldName("member") ?: error("required field member is null")
+        )
 }

@@ -43,7 +43,14 @@ fun main(args: Array<String>) {
     val sa = StringSourceAvailable(idlContent)
 
     with(sa) {
-        parseIDL(source)
+        val idl = parseIDL(source)
+        println("Parsed IDL:")
+        println("- Interfaces: ${idl.interfaces.size}")
+        println("- Mixins: ${idl.mixins.size}")
+        println("- Dictionaries: ${idl.dictionaries.size}")
+        println("- Enums: ${idl.enums.size}")
+        println("- Typedefs: ${idl.typedefs.size}")
+        println("- Includes: ${idl.includes.size}")
     }
 
 

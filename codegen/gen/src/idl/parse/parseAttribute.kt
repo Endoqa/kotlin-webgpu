@@ -1,14 +1,14 @@
 package idl.parse
 
+import idl.Attribute
 import tree_sitter.idl.node.AttributeNode
 
 context(SourceAvailable)
-fun parseAttribute(node: AttributeNode) {
-    println(node.readonly != null)
+fun parseAttribute(node: AttributeNode): Attribute {
+    val isReadOnly = node.readonly != null
     val name = node.name.content()
-    println(name)
-    val type = node.type
+    val type = parseType(node.type.type)
+    val isInherit = node.inherit != null
 
-    println(parseType(type.type))
-
+    return Attribute(name, type, isReadOnly, isInherit = isInherit)
 }
