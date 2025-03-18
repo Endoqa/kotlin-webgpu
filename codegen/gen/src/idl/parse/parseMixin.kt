@@ -14,44 +14,44 @@ fun parseMixin(node: MixinNode): Mixin {
         when (val member = it.member) {
             is ConstNode -> {
                 val constant = parseConst(member)
-                mixin.constants.add(constant)
+                mixin.members.add(constant)
             }
 
             is MaplikeNode -> {
                 val maplike = parseMaplike(member)
-                mixin.maplikes.add(maplike)
+                mixin.members.add(maplike)
             }
 
             is SetlikeNode -> {
                 val setlike = parseSetlike(member)
-                mixin.setlikes.add(setlike)
+                mixin.members.add(setlike)
             }
 
             is StaticMemberNode -> {
                 when (val staticMember = parseStaticMember(member)) {
-                    is Attribute -> mixin.attributes.add(staticMember)
-                    is Operation -> mixin.operations.add(staticMember)
+                    is Attribute -> mixin.members.add(staticMember)
+                    is Operation -> mixin.members.add(staticMember)
                 }
             }
 
             is StringifierNode -> {
                 val stringifier = parseStringifier(member)
-                mixin.stringifiers.add(stringifier)
+                mixin.members.add(stringifier)
             }
 
             is AttributeNode -> {
                 val attribute = parseAttribute(member)
-                mixin.attributes.add(attribute)
+                mixin.members.add(attribute)
             }
 
             is RegularOperationNode -> {
                 val operation = parseRegularOperation(member)
-                mixin.operations.add(operation)
+                mixin.members.add(operation)
             }
 
             is SpecialOperationNode -> {
                 val operation = parseSpecialOperation(member)
-                mixin.operations.add(operation)
+                mixin.members.add(operation)
             }
         }
     }

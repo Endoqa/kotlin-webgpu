@@ -17,7 +17,7 @@ fun parseIDL(node: SourceNode): IDL {
         when (child) {
             is CallbackInterfaceNode -> {
                 val callbackInterface = parseCallbackInterface(child)
-                idl.callbackInterfaces.add(callbackInterface)
+                idl.definitions.add(callbackInterface)
             }
 
             is CommentNode -> {
@@ -26,52 +26,52 @@ fun parseIDL(node: SourceNode): IDL {
 
             is DictionaryNode -> {
                 val dictionary = parseDict(child)
-                idl.dictionaries.add(dictionary)
+                idl.definitions.add(dictionary)
             }
 
             is EnumNode -> {
                 val enum = parseEnum(child)
-                idl.enums.add(enum)
+                idl.definitions.add(enum)
             }
 
             is IncludesStatementNode -> {
                 val include = parseIncludesStatement(child)
-                idl.includes.add(include)
+                idl.definitions.add(include)
             }
 
             is InterfaceNode -> {
                 val interface_ = parseInterface(child)
-                idl.interfaces.add(interface_)
+                idl.definitions.add(interface_)
             }
 
             is MixinNode -> {
                 val mixin = parseMixin(child)
-                idl.mixins.add(mixin)
+                idl.definitions.add(mixin)
             }
 
             is NamespaceNode -> {
                 val namespace = parseNamespace(child)
-                idl.namespaces.add(namespace)
+                idl.definitions.add(namespace)
             }
 
             is PartialDictionaryNode -> {
                 val dictionary = parsePartialDict(child)
-                idl.dictionaries.add(dictionary)
+                idl.definitions.add(dictionary)
             }
 
             is PartialInterfaceNode -> {
                 val interface_ = parsePartialInterface(child)
-                idl.interfaces.add(interface_)
+                idl.definitions.add(interface_)
             }
 
             is PartialNamespaceNode -> {
                 val namespace = parsePartialNamespace(child)
-                idl.namespaces.add(namespace)
+                idl.definitions.add(namespace)
             }
 
             is TypedefNode -> {
                 val typedef = parseTypedef(child)
-                idl.typedefs.add(typedef)
+                idl.definitions.add(typedef)
             }
         }
     }

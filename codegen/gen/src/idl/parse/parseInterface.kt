@@ -23,59 +23,59 @@ private fun parseInterfaceMember(member: _InterfaceMemberBodyNode, interface_: I
     when (member) {
         is AsyncIterableNode -> {
             val asyncIterable = parseAsyncIterable(member)
-            interface_.asyncIterables.add(asyncIterable)
+            interface_.members.add(asyncIterable)
         }
 
         is ConstNode -> {
             val constant = parseConst(member)
-            interface_.constants.add(constant)
+            interface_.members.add(constant)
         }
 
         is ConstructorNode -> {
             val constructor = Constructor()
-            interface_.constructors.add(constructor)
+            interface_.members.add(constructor)
         }
 
         is IterableNode -> {
             val iterable = parseIterable(member)
-            interface_.iterables.add(iterable)
+            interface_.members.add(iterable)
         }
 
         is MaplikeNode -> {
             val maplike = parseMaplike(member)
-            interface_.maplikes.add(maplike)
+            interface_.members.add(maplike)
         }
 
         is SetlikeNode -> {
             val setlike = parseSetlike(member)
-            interface_.setlikes.add(setlike)
+            interface_.members.add(setlike)
         }
 
         is StaticMemberNode -> {
             when (val staticMember = parseStaticMember(member)) {
-                is Attribute -> interface_.attributes.add(staticMember)
-                is Operation -> interface_.operations.add(staticMember)
+                is Attribute -> interface_.members.add(staticMember)
+                is Operation -> interface_.members.add(staticMember)
             }
         }
 
         is StringifierNode -> {
             val stringifier = parseStringifier(member)
-            interface_.stringifiers.add(stringifier)
+            interface_.members.add(stringifier)
         }
 
         is AttributeNode -> {
             val attribute = parseAttribute(member)
-            interface_.attributes.add(attribute)
+            interface_.members.add(attribute)
         }
 
         is RegularOperationNode -> {
             val operation = parseRegularOperation(member)
-            interface_.operations.add(operation)
+            interface_.members.add(operation)
         }
 
         is SpecialOperationNode -> {
             val operation = parseSpecialOperation(member)
-            interface_.operations.add(operation)
+            interface_.members.add(operation)
         }
     }
 }

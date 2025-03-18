@@ -32,17 +32,17 @@ private fun parseNamespaceMember(member: _NamespaceMemberNode, namespace: Namesp
     when (member) {
         is AttributeNode -> {
             val attribute = parseAttribute(member)
-            namespace.attributes.add(attribute)
+            namespace.members.add(attribute)
         }
 
         is RegularOperationNode -> {
             val operation = parseRegularOperation(member)
-            namespace.operations.add(operation)
+            namespace.members.add(operation)
         }
 
         is ConstNode -> {
             val constant = parseConst(member)
-            namespace.constants.add(constant)
+            namespace.members.add(constant)
         }
 
         else -> {

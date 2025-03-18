@@ -20,17 +20,17 @@ private fun parseInterfaceMember(member: _InterfaceMemberBodyNode, callbackInter
     when (member) {
         is AttributeNode -> {
             val attribute = parseAttribute(member)
-            callbackInterface.attributes.add(attribute)
+            callbackInterface.members.add(attribute)
         }
 
         is RegularOperationNode -> {
             val operation = parseRegularOperation(member)
-            callbackInterface.operations.add(operation)
+            callbackInterface.members.add(operation)
         }
 
         is ConstNode -> {
             val constant = parseConst(member)
-            callbackInterface.constants.add(constant)
+            callbackInterface.members.add(constant)
         }
 
         else -> {

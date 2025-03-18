@@ -45,12 +45,12 @@ fun main(args: Array<String>) {
     with(sa) {
         val idl = parseIDL(source)
         println("Parsed IDL:")
-        println("- Interfaces: ${idl.interfaces.size}")
-        println("- Mixins: ${idl.mixins.size}")
-        println("- Dictionaries: ${idl.dictionaries.size}")
-        println("- Enums: ${idl.enums.size}")
-        println("- Typedefs: ${idl.typedefs.size}")
-        println("- Includes: ${idl.includes.size}")
+        println("- Interfaces: ${idl.definitions.filterIsInstance<idl.Interface>().size}")
+        println("- Mixins: ${idl.definitions.filterIsInstance<idl.Mixin>().size}")
+        println("- Dictionaries: ${idl.definitions.filterIsInstance<idl.Dictionary>().size}")
+        println("- Enums: ${idl.definitions.filterIsInstance<idl.Enum>().size}")
+        println("- Typedefs: ${idl.definitions.filterIsInstance<idl.Typedef>().size}")
+        println("- Includes: ${idl.definitions.filterIsInstance<idl.Include>().size}")
     }
 
 
