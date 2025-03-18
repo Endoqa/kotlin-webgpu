@@ -6,7 +6,8 @@ import tree_sitter.idl.node.*
 context(SourceAvailable)
 fun parseNamespace(node: NamespaceNode): Namespace {
     val name = node.name.content()
-    val namespace = Namespace(name)
+    val extendedAttributes = parseExtendedAttributeList(node.attributes)
+    val namespace = Namespace(name, extendedAttributes = extendedAttributes)
 
     node.members.forEach { member ->
         parseNamespaceMember(member, namespace)
@@ -18,7 +19,8 @@ fun parseNamespace(node: NamespaceNode): Namespace {
 context(SourceAvailable)
 fun parsePartialNamespace(node: PartialNamespaceNode): Namespace {
     val name = node.name.content()
-    val namespace = Namespace(name, isPartial = true)
+    val extendedAttributes = parseExtendedAttributeList(node.attributes)
+    val namespace = Namespace(name, isPartial = true, extendedAttributes = extendedAttributes)
 
     node.members.forEach { member ->
         parseNamespaceMember(member, namespace)

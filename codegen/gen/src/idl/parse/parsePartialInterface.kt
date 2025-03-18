@@ -8,7 +8,8 @@ import tree_sitter.idl.node.*
 context(SourceAvailable)
 fun parsePartialInterface(node: PartialInterfaceNode): Interface {
     val name = node.name.content()
-    val interface_ = Interface(name, isPartial = true)
+    val extendedAttributes = parseExtendedAttributeList(node.attributes)
+    val interface_ = Interface(name, isPartial = true, extendedAttributes = extendedAttributes)
 
     node.members.forEach { member ->
         parsePartialInterfaceMember(member.member, interface_)

@@ -9,7 +9,8 @@ import tree_sitter.idl.node.PartialDictionaryNode
 context(SourceAvailable)
 fun parseDict(node: DictionaryNode): Dictionary {
     val name = node.name.content()
-    val dictionary = Dictionary(name)
+    val extendedAttributes = parseExtendedAttributeList(node.attributes)
+    val dictionary = Dictionary(name, extendedAttributes = extendedAttributes)
 
     node.body.members.forEach { member ->
         val dictMember = parseDictMember(member)
@@ -22,7 +23,8 @@ fun parseDict(node: DictionaryNode): Dictionary {
 context(SourceAvailable)
 fun parsePartialDict(node: PartialDictionaryNode): Dictionary {
     val name = node.name.content()
-    val dictionary = Dictionary(name, isPartial = true)
+    val extendedAttributes = parseExtendedAttributeList(node.attributes)
+    val dictionary = Dictionary(name, isPartial = true, extendedAttributes = extendedAttributes)
 
     node.body.members.forEach { member ->
         val dictMember = parseDictMember(member)

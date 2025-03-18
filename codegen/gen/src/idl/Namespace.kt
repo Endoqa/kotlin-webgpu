@@ -6,5 +6,6 @@ package idl
 data class Namespace(
     val name: String,
     val members: MutableList<InterfaceMember> = mutableListOf(),
-    val isPartial: Boolean = false
+    val isPartial: Boolean = false,
+    val extendedAttributes: ExtendedAttributeList = ExtendedAttributeList()
 ) : IDLDefinition

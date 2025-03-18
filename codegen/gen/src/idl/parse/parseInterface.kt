@@ -9,7 +9,8 @@ import tree_sitter.idl.node.*
 context(SourceAvailable)
 fun parseInterface(node: InterfaceNode): Interface {
     val name = node.name.content()
-    val interface_ = Interface(name)
+    val extendedAttributes = parseExtendedAttributeList(node.attributes)
+    val interface_ = Interface(name, extendedAttributes = extendedAttributes)
 
     node.body.members.forEach { member ->
         parseInterfaceMember(member.member, interface_)

@@ -22,7 +22,8 @@ class IDL {
 data class Interface(
     val name: String,
     val members: MutableList<InterfaceMember> = mutableListOf(),
-    val isPartial: Boolean = false
+    val isPartial: Boolean = false,
+    val extendedAttributes: ExtendedAttributeList = ExtendedAttributeList()
 ) : IDLDefinition
 
 /**
@@ -82,7 +83,8 @@ data class Dictionary(
     val name: String,
     val members: MutableList<DictionaryMember> = mutableListOf(),
     val isPartial: Boolean = false,
-    val inherits: String? = null
+    val inherits: String? = null,
+    val extendedAttributes: ExtendedAttributeList = ExtendedAttributeList()
 ) : IDLDefinition
 
 /**
