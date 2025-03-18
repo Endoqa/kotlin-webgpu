@@ -12,6 +12,7 @@ import tree_sitter.idl.node.IDLTSBaseNode
 import tree_sitter.idl.node.SourceNode
 import webgpu.schema.Schema
 import wgpu.gen.enum.generateEnum
+import wgpu.gen.interfaces.generateMixin
 import wgpu.gen.typedef.generateTypedef
 import java.io.File
 
@@ -76,13 +77,17 @@ fun main(args: Array<String>) {
 
 }
 
+private val interfaceExclude = listOf(
+    "NavigatorGPU"
+)
+
 context(GenerateContext)
 private fun generate(idl: IDL) {
 
     val typedefs = FileSpec.builder(WGPU_PACKAGE, "\$typedefs")
     includeSource(typedefs)
 
-    idl.definitions.forEach { def ->
+    for (def in idl.definitions) {
         when (def) {
             is Enum -> {
                 this@GenerateContext includeSource generateEnum(def)
@@ -90,6 +95,13 @@ private fun generate(idl: IDL) {
 
             is Typedef -> {
                 typedefs.addTypeAlias(generateTypedef(def))
+            }
+
+            is Mixin -> {
+                if (def.name in interfaceExclude) {
+                    continue
+                }
+                includeSource(generateMixin(def))
             }
 
             else -> {}
