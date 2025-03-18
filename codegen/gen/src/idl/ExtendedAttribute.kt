@@ -27,7 +27,8 @@ sealed class ExtendedAttribute {
     /**
      * Represents a Web IDL extended attribute with a named argument list, like `[NamedConstructor=Audio(DOMString src)]`.
      */
-    data class NamedArgList(val name: String, val identifier: String, val arguments: List<Parameter>) : ExtendedAttribute()
+    data class NamedArgList(val name: String, val identifier: String, val arguments: List<Parameter>) :
+        ExtendedAttribute()
 }
 
 /**

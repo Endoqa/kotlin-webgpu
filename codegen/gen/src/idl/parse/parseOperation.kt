@@ -32,12 +32,5 @@ fun parseSpecialOperation(node: SpecialOperationNode): Operation {
 
 context(SourceAvailable)
 private fun parseArguments(arguments: List<ArgumentNode>): List<Parameter> {
-    return arguments.map { arg ->
-        val name = arg.name.content()
-        val type = parseType(arg.type)
-        val isOptional = arg.default != null
-        val defaultValue = if (isOptional) arg.default?.content() else null
-
-        Parameter(name, type, isOptional, defaultValue)
-    }
+    return arguments.map { parseArgument(it) }
 }

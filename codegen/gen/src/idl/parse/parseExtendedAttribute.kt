@@ -56,12 +56,5 @@ private fun parseExtendedAttribute(node: _ExtendedAttributeNode): ExtendedAttrib
 
 context(SourceAvailable)
 private fun parseArgumentList(node: ArgumentListNode): List<Parameter> {
-    return node.argument?.map { arg ->
-        val name = arg.name.content()
-        val type = parseType(arg.type)
-        val isOptional = arg.default != null
-        val defaultValue = if (isOptional) arg.default?.content() else null
-
-        Parameter(name, type, isOptional, defaultValue)
-    } ?: emptyList()
+    return node.argument.map { parseArgument(it) }
 }

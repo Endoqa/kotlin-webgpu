@@ -1,0 +1,17 @@
+product:
+  type: lib
+  platforms:
+    - jvm
+
+
+settings:
+  kotlin:
+    serialization:
+      enabled: true
+      format: json
+
+    freeCompilerArgs:
+      - -Xcontext-receivers
+
+apply:
+  - ../../common.module-template.yaml

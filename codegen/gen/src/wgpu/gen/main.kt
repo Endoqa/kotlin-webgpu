@@ -1,13 +1,19 @@
 package wgpu.gen
 
 
+import idl.*
+import idl.Enum
 import idl.parse.SourceAvailable
 import idl.parse.parseIDL
 import tree_sitter.Language
 import tree_sitter.Parser
 import tree_sitter.idl.node.IDLTSBaseNode
 import tree_sitter.idl.node.SourceNode
+import webgpu.schema.Schema
+import wgpu.gen.enum.generateEnum
 import java.io.File
+
+const val WGPU_PACKAGE = "wgpu"
 
 private fun loadTreeSitter() {
     val tsPath = System.getenv("TREE_SITTER_PATH")
@@ -42,16 +48,41 @@ fun main(args: Array<String>) {
 
     val sa = StringSourceAvailable(idlContent)
 
-    with(sa) {
-        val idl = parseIDL(source)
-        println("Parsed IDL:")
-        println("- Interfaces: ${idl.definitions.filterIsInstance<idl.Interface>().size}")
-        println("- Mixins: ${idl.definitions.filterIsInstance<idl.Mixin>().size}")
-        println("- Dictionaries: ${idl.definitions.filterIsInstance<idl.Dictionary>().size}")
-        println("- Enums: ${idl.definitions.filterIsInstance<idl.Enum>().size}")
-        println("- Typedefs: ${idl.definitions.filterIsInstance<idl.Typedef>().size}")
-        println("- Includes: ${idl.definitions.filterIsInstance<idl.Include>().size}")
+    val idl = with(sa) {
+        parseIDL(source)
+    }
+
+    println("Parsed IDL:")
+    println("- Interfaces: ${idl.definitions.filterIsInstance<Interface>().size}")
+    println("- Mixins: ${idl.definitions.filterIsInstance<Mixin>().size}")
+    println("- Dictionaries: ${idl.definitions.filterIsInstance<Dictionary>().size}")
+    println("- Enums: ${idl.definitions.filterIsInstance<Enum>().size}")
+    println("- Typedefs: ${idl.definitions.filterIsInstance<Typedef>().size}")
+    println("- Includes: ${idl.definitions.filterIsInstance<Include>().size}")
+
+    val webgpuJson = File("webgpu.json").readText()
+
+
+    val ctx = GenerateContext(Schema.parse(webgpuJson))
+
+    with(ctx) {
+        generate(idl)
     }
 
 
+    ctx.emit(File("../webgpu/src").toPath())
+
+}
+
+context(GenerateContext)
+private fun generate(idl: IDL) {
+    idl.definitions.forEach { def ->
+        when (def) {
+            is Enum -> {
+                this@GenerateContext includeSource generateEnum(def)
+            }
+
+            else -> {}
+        }
+    }
 }

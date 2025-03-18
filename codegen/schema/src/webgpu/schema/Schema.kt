@@ -2,7 +2,7 @@ package webgpu.schema
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-
+import kotlinx.serialization.json.Json
 
 @Serializable
 data class Schema(
@@ -19,7 +19,20 @@ data class Schema(
     val callbacks: List<Callback>,
     val functions: List<Function>,
     val objects: List<Object>,
-)
+) {
+    companion object {
+        fun parse(webgpuJson: String): Schema {
+            val json = Json {
+                ignoreUnknownKeys = true
+                explicitNulls = false
+            }
+
+
+            val schema: Schema = json.decodeFromString(webgpuJson)
+            return schema
+        }
+    }
+}
 
 
 @Serializable

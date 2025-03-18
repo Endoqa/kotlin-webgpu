@@ -10,6 +10,8 @@ dependencies:
   - io.endoqa:libtree_sitter:0.0.7
   - io.endoqa:tree-sitter:0.0.7
   - ../webidl-nodes
+  - com.squareup:kotlinpoet:2.1.0
+  - ../schema
 
 
 apply:
@@ -19,3 +21,7 @@ settings:
   jvm:
     mainClass: wgpu.gen.MainKt
     release: 22
+  kotlin:
+    serialization:
+      format: json
+      enabled: true
