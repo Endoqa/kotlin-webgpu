@@ -1,6 +1,7 @@
 package wgpu.gen
 
 
+import com.squareup.kotlinpoet.FileSpec
 import idl.*
 import idl.Enum
 import idl.parse.SourceAvailable
@@ -11,6 +12,7 @@ import tree_sitter.idl.node.IDLTSBaseNode
 import tree_sitter.idl.node.SourceNode
 import webgpu.schema.Schema
 import wgpu.gen.enum.generateEnum
+import wgpu.gen.typedef.generateTypedef
 import java.io.File
 
 const val WGPU_PACKAGE = "wgpu"
@@ -76,10 +78,18 @@ fun main(args: Array<String>) {
 
 context(GenerateContext)
 private fun generate(idl: IDL) {
+
+    val typedefs = FileSpec.builder(WGPU_PACKAGE, "\$typedefs")
+    includeSource(typedefs)
+
     idl.definitions.forEach { def ->
         when (def) {
             is Enum -> {
                 this@GenerateContext includeSource generateEnum(def)
+            }
+
+            is Typedef -> {
+                typedefs.addTypeAlias(generateTypedef(def))
             }
 
             else -> {}

@@ -22,7 +22,7 @@ fun parseType(type: _TypeNode): Type {
         is RecordTypeNode -> RecordType(StringType, parseType(type.valueType))
         is SequenceTypeNode -> SequenceType(parseType(type.elementType))
         is StringTypeNode -> StringType
-        is FloatTypeNode -> FloatType(type.content(), type.unrestricted != null)
-        is IntegerTypeNode -> IntegerType(type.content(), type.unsigned != null)
+        is FloatTypeNode -> FloatType(type.base.content(), type.unrestricted != null)
+        is IntegerTypeNode -> IntegerType(type.base.content(), type.unsigned != null)
     }
 }

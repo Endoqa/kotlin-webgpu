@@ -13,7 +13,5 @@ public sealed interface IDLTSBaseNode {
         FloatLiteralNode,
         PrimitiveTypeNode,
         EnumNodeValues,
-        FloatTypeNodeBase,
-        IntegerTypeNodeBase,
-        UnionTypeNodeMemberTypes
+        FloatTypeNodeBase
 }

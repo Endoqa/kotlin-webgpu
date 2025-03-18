@@ -46,6 +46,8 @@ public class TSIDLLanguage(
 
     public val attribute: UShort = lang.idForNodeKind("attribute", true)
 
+    public val base_integer_type: UShort = lang.idForNodeKind("base_integer_type", true)
+
     public val boolean_literal: UShort = lang.idForNodeKind("boolean_literal", true)
 
     public val buffer_related_type: UShort = lang.idForNodeKind("buffer_related_type", true)

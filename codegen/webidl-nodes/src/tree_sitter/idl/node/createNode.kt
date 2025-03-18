@@ -27,6 +27,7 @@ public fun createNode(node: Node): IDLTSBaseNode {
         TSIDLLanguage.Lang.argument_list -> ArgumentListNode(node)
         TSIDLLanguage.Lang.async_iterable -> AsyncIterableNode(node)
         TSIDLLanguage.Lang.attribute -> AttributeNode(node)
+        TSIDLLanguage.Lang.base_integer_type -> BaseIntegerTypeNode(node)
         TSIDLLanguage.Lang.boolean_literal -> BooleanLiteralNode(node)
         TSIDLLanguage.Lang.buffer_related_type -> BufferRelatedTypeNode(node)
         TSIDLLanguage.Lang.callback_interface -> CallbackInterfaceNode(node)
