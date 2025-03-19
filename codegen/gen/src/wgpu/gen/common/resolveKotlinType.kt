@@ -5,12 +5,12 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.asTypeName
 import idl.*
+import wgpu.gen.NativeBufferClass
 import wgpu.gen.WGPU_PACKAGE
-import java.lang.foreign.MemorySegment
 
 fun resolveKotlinType(type: Type): TypeName {
     return when (type) {
-        is BufferRelatedType -> MemorySegment::class.asTypeName()
+        is BufferRelatedType -> NativeBufferClass
         is FloatType -> resolveFloatType(type)
         is FrozenArrayType -> Array::class.asTypeName().parameterizedBy(resolveKotlinType(type.elementType))
         is Identifier -> ClassName(WGPU_PACKAGE, type.name)

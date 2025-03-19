@@ -45,6 +45,16 @@ fun generateInterface(
         generateInterfaceMember(spec, member, override = false)
     }
 
+    val partialInterfaces = idl.definitions
+        .filterIsInstance<Interface>()
+        .filter { it.name == iface.name }
+        .filter { it.isPartial }
+        .flatMap { it.members }
+
+    for (member in partialInterfaces) {
+        generateInterfaceMember(spec, member, override = false)
+    }
+
     val file = FileSpec.builder(WGPU_PACKAGE, iface.name)
     file.addType(spec.build())
     return file

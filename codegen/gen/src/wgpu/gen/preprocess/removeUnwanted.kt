@@ -4,8 +4,10 @@ import idl.*
 import wgpu.gen.common.WithIDL
 import wgpu.gen.common.resolveType
 
+private val excludeMixin = listOf("NavigatorGPU")
+
 private val excludeInterface =
-    listOf("GPUCanvasContext", "GPUCanvasConfiguration", "GPUCanvasAlphaMode", "GPUCanvasToneMappingMode")
+    listOf("GPUCanvasContext", "GPUCanvasConfiguration", "GPUCanvasAlphaMode", "EventHandler")
 
 private val excludeTypedefs = listOf("GPUCopyExternalImageSource")
 
@@ -13,11 +15,12 @@ private val excludeDictionaries = listOf(
     "GPUExternalTextureDescriptor",
     "GPUExternalTextureBindingLayout",
     "GPUCopyExternalImageDestInfo",
-    "GPUCopyExternalImageSourceInfo"
+    "GPUCopyExternalImageSourceInfo",
+    "GPUCanvasToneMapping",
+    "GPUCanvasConfiguration"
 )
 
 private val excludeEnums = listOf(
-    "GPUAutoLayoutMode",
     "GPUCanvasAlphaMode",
     "GPUCanvasToneMappingMode"
 )
@@ -35,9 +38,6 @@ private fun isInExclude(type: Type): Boolean {
 context(WithIDL)
 internal fun removeUnwanted() {
 
-    idl.definitions.removeIf { type ->
-        type is idl.Enum && type.name in excludeEnums
-    }
 
     idl.definitions
         .filterIsInstance<Dictionary>()
@@ -137,5 +137,12 @@ internal fun removeUnwanted() {
         type is Dictionary && type.name in excludeDictionaries
     }
 
+    idl.definitions.removeIf { type ->
+        type is idl.Enum && type.name in excludeEnums
+    }
+
+    idl.definitions.removeIf { type ->
+        type is Mixin && type.name in excludeMixin
+    }
 
 }

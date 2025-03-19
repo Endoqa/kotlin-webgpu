@@ -1,7 +1,10 @@
 package wgpu.gen
 
 
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.TypeSpec
 import idl.*
 import idl.Enum
 import idl.parse.SourceAvailable
@@ -20,6 +23,8 @@ import wgpu.gen.typedef.generateTypedef
 import java.io.File
 
 const val WGPU_PACKAGE = "wgpu"
+
+val NativeBufferClass = ClassName(WGPU_PACKAGE, "NativeBuffer")
 
 private fun loadTreeSitter() {
     val tsPath = System.getenv("TREE_SITTER_PATH")
@@ -85,9 +90,6 @@ fun main(args: Array<String>) {
 
 }
 
-private val interfaceExclude = listOf(
-    "NavigatorGPU"
-)
 
 context(GenerateContext)
 private fun generate(idl: IDL) {
@@ -104,6 +106,18 @@ private fun generate(idl: IDL) {
     val typedefs = FileSpec.builder(WGPU_PACKAGE, "\$typedefs")
     includeSource(typedefs)
 
+    typedefs.addType(
+        TypeSpec.classBuilder(ClassName(WGPU_PACKAGE, "AllowSharedBufferSource"))
+            .addModifiers(KModifier.EXPECT)
+            .build()
+    )
+
+    typedefs.addType(
+        TypeSpec.classBuilder(NativeBufferClass)
+            .addModifiers(KModifier.EXPECT)
+            .build()
+    )
+
     // Process all definitions
     for (def in idl.definitions) {
         when (def) {
@@ -116,14 +130,12 @@ private fun generate(idl: IDL) {
             }
 
             is Mixin -> {
-                if (def.name in interfaceExclude) {
-                    continue
-                }
                 includeSource(generateMixin(def))
             }
 
             is Interface -> {
-                if (def.name in interfaceExclude) {
+
+                if (def.isPartial) {
                     continue
                 }
 
@@ -137,12 +149,14 @@ private fun generate(idl: IDL) {
                 includeSource(generateDict(def, idl))
             }
 
-//            is CallbackInterface -> TODO()
-//            is Dictionary -> TODO()
-//            is Include -> TODO()
-//            is Namespace -> TODO()
 
-            else -> {}
+            is Include -> {
+                // do nothing
+            }
+
+            is Namespace -> {}
+
+            else -> error("Unhandled definition type: ${def::class.simpleName}")
         }
     }
 }

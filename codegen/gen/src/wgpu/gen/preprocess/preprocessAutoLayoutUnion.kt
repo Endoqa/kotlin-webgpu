@@ -14,6 +14,8 @@ import idl.UnionType
 fun preprocessAutoLayoutUnion(idl: IDL) {
     transform(idl, "GPUShaderModuleCompilationHint")
     transform(idl, "GPUPipelineDescriptorBase")
+
+    idl.definitions.removeIf { it is idl.Enum && it.name == "GPUAutoLayoutMode" }
 }
 
 private fun transform(idl: IDL, identifier: String) {
