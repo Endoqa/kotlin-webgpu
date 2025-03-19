@@ -4,6 +4,7 @@ import com.squareup.kotlinpoet.*
 import webgpu.schema.Enum
 import wgpu.gen.GenerateContext
 import wgpu.gen.WGPU_PACKAGE
+import wgpu.gen.common.kebabToPascalCase
 
 
 context(GenerateContext)
@@ -70,11 +71,7 @@ private fun idlGen(enum: idl.Enum): TypeSpec.Builder {
     val spec = TypeSpec.enumBuilder(enum.name)
 
     enum.values.forEach { name ->
-        val transformedName = name
-            .split("-")
-            .joinToString { part ->
-                part.replaceFirstChar { it.uppercase() }
-            }
+        val transformedName = kebabToPascalCase(name)
 
         spec.addEnumConstant(transformedName)
     }

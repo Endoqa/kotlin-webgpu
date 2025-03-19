@@ -5,6 +5,7 @@ import com.squareup.kotlinpoet.CodeBlock
 import idl.*
 import wgpu.gen.GenerateContext
 import wgpu.gen.WGPU_PACKAGE
+import wgpu.gen.enum.resolveEnumFromString
 
 context(GenerateContext)
 fun generateInitializer(initializer: DefaultValue, type: Type): CodeBlock {
@@ -20,7 +21,14 @@ fun generateInitializer(initializer: DefaultValue, type: Type): CodeBlock {
 
         DefaultValue.ListInitializer -> CodeBlock.of("listOf()")
         DefaultValue.Null -> TODO()
-        is DefaultValue.StringValue -> CodeBlock.of("%S", initializer.value)
+        is DefaultValue.StringValue -> {
+            if (isTypeEnum(type)) {
+                resolveEnumFromString(type, initializer.value)
+            } else {
+                CodeBlock.of("%S", initializer.value)
+            }
+        }
+
         DefaultValue.Undefined -> TODO()
         is DefaultValue.PreGenerated -> initializer.cb
         is DefaultValue.BooleanValue -> CodeBlock.of("%L", initializer.value)
