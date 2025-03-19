@@ -114,9 +114,6 @@ private fun generateOperation(op: Operation, override: Boolean): FunSpec.Builder
 context(GenerateContext)
 private fun generateConstructor(constructor: Constructor): FunSpec.Builder {
     val func = FunSpec.constructorBuilder()
-
-    println(constructor)
-
     generateFunSpec(func, constructor.parameters, UndefinedType)
 
     return func

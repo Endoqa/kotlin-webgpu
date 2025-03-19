@@ -9,6 +9,7 @@ import idl.Interface
 import idl.Mixin
 import wgpu.gen.GenerateContext
 import wgpu.gen.WGPU_PACKAGE
+import wgpu.gen.typedef.getUnionSuperclasses
 
 context(GenerateContext)
 fun generateInterface(
@@ -24,6 +25,8 @@ fun generateInterface(
     if (iface.superClass == "DOMException") {
         spec.superclass(Exception::class)
     }
+
+    spec.addSuperinterfaces(getUnionSuperclasses(iface.name))
 
 
     for (superInterface in superInterfaces) {

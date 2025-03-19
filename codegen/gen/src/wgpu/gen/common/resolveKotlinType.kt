@@ -27,10 +27,8 @@ fun resolveKotlinType(type: Type): TypeName {
         is SequenceType -> List::class.asTypeName().parameterizedBy(resolveKotlinType(type.elementType))
         StringType -> String::class.asTypeName()
 
-        // assume first is a seq, send is dict
-        // TODO: add verification for the assumption
         is UnionType -> {
-            resolveKotlinType(type.memberTypes[1])
+            error("Union types are not supported, it should be preprocessed")
         }
 
         UndefinedType -> Unit::class.asTypeName()

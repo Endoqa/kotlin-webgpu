@@ -73,9 +73,10 @@ fun main(args: Array<String>) {
 
     val ctx = GenerateContext(Schema.parse(webgpuJson), idl)
 
-    preprocess(idl, ctx.schema)
+
 
     with(ctx) {
+        preprocess()
         generate(idl)
     }
 
@@ -111,7 +112,7 @@ private fun generate(idl: IDL) {
             }
 
             is Typedef -> {
-                typedefs.addTypeAlias(generateTypedef(def))
+                generateTypedef(def, typedefs)
             }
 
             is Mixin -> {
