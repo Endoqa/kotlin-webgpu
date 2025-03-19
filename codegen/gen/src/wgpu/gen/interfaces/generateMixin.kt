@@ -10,7 +10,7 @@ fun generateMixin(mixin: idl.Mixin): FileSpec.Builder {
     val spec = TypeSpec.interfaceBuilder(ClassName(WGPU_PACKAGE, mixin.name))
 
     for (member in mixin.members) {
-        generateInterfaceMember(spec, member)
+        generateInterfaceMember(spec, member, false, inMixin = true)
     }
 
 

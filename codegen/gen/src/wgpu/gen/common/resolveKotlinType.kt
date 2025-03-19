@@ -12,12 +12,12 @@ fun resolveKotlinType(type: Type): TypeName {
     return when (type) {
         is BufferRelatedType -> MemorySegment::class.asTypeName()
         is FloatType -> resolveFloatType(type)
-        is FrozenArrayType -> TODO()
+        is FrozenArrayType -> Array::class.asTypeName().parameterizedBy(resolveKotlinType(type.elementType))
         is Identifier -> ClassName(WGPU_PACKAGE, type.name)
         is IntegerType -> resolveIntegerType(type)
         is NullableType -> resolveKotlinType(type.innerType).copy(nullable = true)
         is ObservableArrayType -> TODO()
-        is PromiseType -> TODO()
+        is PromiseType -> resolveKotlinType(type.resolveType)
         is RecordType -> TODO()
         is SequenceType -> List::class.asTypeName().parameterizedBy(resolveKotlinType(type.elementType))
         StringType -> String::class.asTypeName()
@@ -27,6 +27,9 @@ fun resolveKotlinType(type: Type): TypeName {
         is UnionType -> {
             resolveKotlinType(type.memberTypes[1])
         }
+
+        UndefinedType -> Unit::class.asTypeName()
+        BooleanType -> BooleanType::class.asTypeName()
     }
 }
 

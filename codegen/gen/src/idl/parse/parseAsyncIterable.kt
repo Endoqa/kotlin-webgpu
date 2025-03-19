@@ -1,7 +1,6 @@
 package idl.parse
 
 import idl.AsyncIterable
-import idl.Parameter
 import tree_sitter.idl.node.AsyncIterableNode
 
 context(SourceAvailable)

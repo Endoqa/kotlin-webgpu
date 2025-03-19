@@ -23,6 +23,7 @@ data class Interface(
     val name: String,
     val members: MutableList<InterfaceMember> = mutableListOf(),
     val isPartial: Boolean = false,
+    val superClass: String? = null,
     val extendedAttributes: ExtendedAttributeList = ExtendedAttributeList()
 ) : IDLDefinition
 
@@ -56,7 +57,7 @@ data class Parameter(
     val name: String,
     val type: Type,
     val isOptional: Boolean = false,
-    val defaultValue: Any? = null
+    val defaultValue: DefaultValue? = null
 )
 
 /**
@@ -66,7 +67,7 @@ data class Constant(
     val name: String,
     val type: Type,
     val value: Any
-) : InterfaceMember
+) : InterfaceMember, DefaultValue
 
 /**
  * Represents a Web IDL constructor.
@@ -161,3 +162,12 @@ data class AsyncIterable(
     val valueType: Type? = null,
     val parameters: List<Parameter> = emptyList()
 ) : InterfaceMember
+
+
+sealed interface DefaultValue {
+    data class StringValue(val value: String) : DefaultValue
+    data object Null : DefaultValue
+    data object Undefined : DefaultValue
+    data object DictInitializer : DefaultValue
+    data object ListInitializer : DefaultValue
+}

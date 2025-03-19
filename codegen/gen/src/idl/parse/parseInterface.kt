@@ -1,7 +1,6 @@
 package idl.parse
 
 import idl.Attribute
-import idl.Constructor
 import idl.Interface
 import idl.Operation
 import tree_sitter.idl.node.*
@@ -10,11 +9,15 @@ context(SourceAvailable)
 fun parseInterface(node: InterfaceNode): Interface {
     val name = node.name.content()
     val extendedAttributes = parseExtendedAttributeList(node.attributes)
-    val interface_ = Interface(name, extendedAttributes = extendedAttributes)
+    val superClass = node.`super`?.content()
+    val interface_ = Interface(name, extendedAttributes = extendedAttributes, superClass = superClass)
 
     node.body.members.forEach { member ->
         parseInterfaceMember(member.member, interface_)
     }
+
+
+
 
     return interface_
 }
@@ -33,7 +36,7 @@ private fun parseInterfaceMember(member: _InterfaceMemberBodyNode, interface_: I
         }
 
         is ConstructorNode -> {
-            val constructor = Constructor()
+            val constructor = parseConstructor(member)
             interface_.members.add(constructor)
         }
 

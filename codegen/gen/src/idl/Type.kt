@@ -2,6 +2,11 @@ package idl
 
 sealed interface Type
 
+
+data object UndefinedType : Type
+
+data object BooleanType : Type
+
 @JvmInline
 value class Identifier(val name: String) : Type
 

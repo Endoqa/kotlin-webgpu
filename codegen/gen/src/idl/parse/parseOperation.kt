@@ -11,7 +11,6 @@ fun parseRegularOperation(node: RegularOperationNode): Operation {
     val name = node.name?.content()
     val returnType = parseType(node.returnType)
     val parameters = parseArguments(node.arguments.argument)
-
     return Operation(name, returnType, parameters)
 }
 

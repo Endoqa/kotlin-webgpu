@@ -9,7 +9,7 @@ fun parseType(type: _TypeNode): Type {
         is PromiseTypeNode -> PromiseType(parseType(type.resolveType))
         is UnionTypeNode -> {
             // Since _TypeNode extends UnionTypeNodeMemberTypes, we can safely cast
-            val memberTypes = type.memberTypes.filterIsInstance<_TypeNode>().map { parseType(it) }
+            val memberTypes = type.memberTypes.map { parseType(it) }
             UnionType(memberTypes)
         }
 
@@ -18,7 +18,14 @@ fun parseType(type: _TypeNode): Type {
         is IdentifierNode -> Identifier(type.content())
         is NullableTypeNode -> NullableType(parseType(type.type))
         is ObservableArrayTypeNode -> ObservableArrayType(parseType(type.elementType))
-        is IDLTSBaseNode.Unnamed -> Identifier(type.content())
+        is IDLTSBaseNode.Unnamed -> {
+            when (val content = type.content()) {
+                "undefined" -> UndefinedType
+                "boolean" -> BooleanType
+                else -> error("Unknown type: $content")
+            }
+        }
+
         is RecordTypeNode -> RecordType(StringType, parseType(type.valueType))
         is SequenceTypeNode -> SequenceType(parseType(type.elementType))
         is StringTypeNode -> StringType

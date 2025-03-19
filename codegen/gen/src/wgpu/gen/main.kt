@@ -12,6 +12,7 @@ import tree_sitter.idl.node.IDLTSBaseNode
 import tree_sitter.idl.node.SourceNode
 import webgpu.schema.Schema
 import wgpu.gen.enum.generateEnum
+import wgpu.gen.interfaces.generateInterface
 import wgpu.gen.interfaces.generateMixin
 import wgpu.gen.typedef.generateTypedef
 import java.io.File
@@ -83,10 +84,20 @@ private val interfaceExclude = listOf(
 
 context(GenerateContext)
 private fun generate(idl: IDL) {
+    // Map to track inheritance relationships (interface -> list of superinterfaces)
+    val inheritanceMap = mutableMapOf<String, MutableList<String>>()
+
+    // First pass: collect all includes
+    for (def in idl.definitions) {
+        if (def is Include) {
+            inheritanceMap.getOrPut(def.interfaceName) { mutableListOf() }.add(def.mixinName)
+        }
+    }
 
     val typedefs = FileSpec.builder(WGPU_PACKAGE, "\$typedefs")
     includeSource(typedefs)
 
+    // Process all definitions
     for (def in idl.definitions) {
         when (def) {
             is Enum -> {
@@ -102,6 +113,17 @@ private fun generate(idl: IDL) {
                     continue
                 }
                 includeSource(generateMixin(def))
+            }
+
+            is Interface -> {
+                if (def.name in interfaceExclude) {
+                    continue
+                }
+
+                // Get superinterfaces for this interface
+                val superInterfaces = inheritanceMap[def.name] ?: emptyList()
+
+                includeSource(generateInterface(def, superInterfaces, idl))
             }
 
             else -> {}
