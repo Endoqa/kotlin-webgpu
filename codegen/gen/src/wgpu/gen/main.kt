@@ -11,9 +11,11 @@ import tree_sitter.Parser
 import tree_sitter.idl.node.IDLTSBaseNode
 import tree_sitter.idl.node.SourceNode
 import webgpu.schema.Schema
+import wgpu.gen.dict.generateDict
 import wgpu.gen.enum.generateEnum
 import wgpu.gen.interfaces.generateInterface
 import wgpu.gen.interfaces.generateMixin
+import wgpu.gen.preprocess.preprocess
 import wgpu.gen.typedef.generateTypedef
 import java.io.File
 
@@ -56,6 +58,8 @@ fun main(args: Array<String>) {
         parseIDL(source)
     }
 
+
+
     println("Parsed IDL:")
     println("- Interfaces: ${idl.definitions.filterIsInstance<Interface>().size}")
     println("- Mixins: ${idl.definitions.filterIsInstance<Mixin>().size}")
@@ -67,7 +71,9 @@ fun main(args: Array<String>) {
     val webgpuJson = File("webgpu.json").readText()
 
 
-    val ctx = GenerateContext(Schema.parse(webgpuJson))
+    val ctx = GenerateContext(Schema.parse(webgpuJson), idl)
+
+    preprocess(idl, ctx.schema)
 
     with(ctx) {
         generate(idl)
@@ -125,6 +131,15 @@ private fun generate(idl: IDL) {
 
                 includeSource(generateInterface(def, superInterfaces, idl))
             }
+
+            is Dictionary -> {
+                includeSource(generateDict(def, idl))
+            }
+
+//            is CallbackInterface -> TODO()
+//            is Dictionary -> TODO()
+//            is Include -> TODO()
+//            is Namespace -> TODO()
 
             else -> {}
         }

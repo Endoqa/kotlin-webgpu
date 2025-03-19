@@ -4,20 +4,22 @@ import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import idl.*
 import idl.Iterable
+import wgpu.gen.GenerateContext
 import wgpu.gen.common.generateInitializer
 import wgpu.gen.common.resolveKotlinType
 
+context(GenerateContext)
 fun generateInterfaceMember(
     typeSpec: TypeSpec.Builder,
     member: InterfaceMember,
-    inherit: Boolean,
+    override: Boolean,
     inMixin: Boolean = false
 ) {
     when (member) {
         is AsyncIterable -> TODO()
         is Attribute -> {
             val attribute = generateAttribute(member)
-            if (inherit) {
+            if (override) {
                 attribute.addModifiers(KModifier.OVERRIDE)
             }
             typeSpec.addProperty(attribute.build())
@@ -31,8 +33,8 @@ fun generateInterfaceMember(
         is Iterable -> TODO()
         is Maplike -> TODO()
         is Operation -> {
-            val operation = generateOperation(member)
-            if (inherit) {
+            val operation = generateOperation(member, override = override)
+            if (override) {
                 operation.addModifiers(KModifier.OVERRIDE)
             }
 
@@ -64,7 +66,13 @@ private fun generateAttribute(member: Attribute): PropertySpec.Builder {
     return property
 }
 
-private fun generateFunSpec(func: FunSpec.Builder, params: List<Parameter>, returnType: Type): FunSpec.Builder {
+context(GenerateContext)
+private fun generateFunSpec(
+    func: FunSpec.Builder,
+    params: List<Parameter>,
+    returnType: Type,
+    override: Boolean = false,
+): FunSpec.Builder {
     for (param in params) {
         var pType = resolveKotlinType(param.type)
 
@@ -74,9 +82,12 @@ private fun generateFunSpec(func: FunSpec.Builder, params: List<Parameter>, retu
 
         val p = ParameterSpec.builder(param.name, pType)
 
-        if (param.defaultValue != null) {
-            val cb = generateInitializer(param.defaultValue, param.type)
-            p.defaultValue(cb)
+
+        if (!override) {
+            if (param.defaultValue != null) {
+                val cb = generateInitializer(param.defaultValue, param.type)
+                p.defaultValue(cb)
+            }
         }
 
 
@@ -93,12 +104,14 @@ private fun generateFunSpec(func: FunSpec.Builder, params: List<Parameter>, retu
     return func
 }
 
-private fun generateOperation(op: Operation): FunSpec.Builder {
+context(GenerateContext)
+private fun generateOperation(op: Operation, override: Boolean): FunSpec.Builder {
     val func = FunSpec.builder(op.name ?: error("Operation has no name"))
-    generateFunSpec(func, op.parameters, op.returnType)
+    generateFunSpec(func, op.parameters, op.returnType, override)
     return func
 }
 
+context(GenerateContext)
 private fun generateConstructor(constructor: Constructor): FunSpec.Builder {
     val func = FunSpec.constructorBuilder()
 

@@ -18,7 +18,12 @@ fun resolveKotlinType(type: Type): TypeName {
         is NullableType -> resolveKotlinType(type.innerType).copy(nullable = true)
         is ObservableArrayType -> TODO()
         is PromiseType -> resolveKotlinType(type.resolveType)
-        is RecordType -> TODO()
+        is RecordType -> {
+            val k = resolveKotlinType(type.keyType)
+            val v = resolveKotlinType(type.valueType)
+            HashMap::class.asTypeName().parameterizedBy(k, v)
+        }
+
         is SequenceType -> List::class.asTypeName().parameterizedBy(resolveKotlinType(type.elementType))
         StringType -> String::class.asTypeName()
 
@@ -29,7 +34,7 @@ fun resolveKotlinType(type: Type): TypeName {
         }
 
         UndefinedType -> Unit::class.asTypeName()
-        BooleanType -> BooleanType::class.asTypeName()
+        BooleanType -> Boolean::class.asTypeName()
     }
 }
 
@@ -38,6 +43,7 @@ fun resolveIntegerType(type: IntegerType): TypeName {
     val baseType = when (type.name) {
         "long" -> Int::class.asTypeName()
         "long long" -> Long::class.asTypeName()
+        "short" -> Short::class.asTypeName()
         else -> error("Unknown integer type: $type")
     }
 

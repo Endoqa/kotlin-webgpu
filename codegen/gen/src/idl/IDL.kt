@@ -1,5 +1,7 @@
 package idl
 
+import com.squareup.kotlinpoet.CodeBlock
+
 /**
  * Sealed interface for all IDL definitions.
  */
@@ -95,7 +97,7 @@ data class DictionaryMember(
     val name: String,
     val type: Type,
     val isRequired: Boolean = false,
-    val defaultValue: Any? = null
+    val defaultValue: DefaultValue? = null
 )
 
 /**
@@ -166,8 +168,13 @@ data class AsyncIterable(
 
 sealed interface DefaultValue {
     data class StringValue(val value: String) : DefaultValue
+    data class BooleanValue(val value: Boolean) : DefaultValue
+    data class IntegerValue(val raw: String) : DefaultValue
+    data class FloatValue(val raw: String) : DefaultValue
     data object Null : DefaultValue
     data object Undefined : DefaultValue
     data object DictInitializer : DefaultValue
     data object ListInitializer : DefaultValue
+
+    data class PreGenerated(val cb: CodeBlock) : DefaultValue
 }

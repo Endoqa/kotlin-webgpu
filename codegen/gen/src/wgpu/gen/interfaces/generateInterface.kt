@@ -7,8 +7,10 @@ import com.squareup.kotlinpoet.TypeSpec
 import idl.IDL
 import idl.Interface
 import idl.Mixin
+import wgpu.gen.GenerateContext
 import wgpu.gen.WGPU_PACKAGE
 
+context(GenerateContext)
 fun generateInterface(
     iface: Interface,
     superInterfaces: List<String> = emptyList(),
@@ -32,12 +34,12 @@ fun generateInterface(
         val mixin = idl.definitions.filterIsInstance<Mixin>().find { it.name == superInterface }
         mixin ?: continue
         for (member in mixin.members) {
-            generateInterfaceMember(spec, member, inherit = true)
+            generateInterfaceMember(spec, member, override = true)
         }
     }
 
     for (member in iface.members) {
-        generateInterfaceMember(spec, member, inherit = false)
+        generateInterfaceMember(spec, member, override = false)
     }
 
     val file = FileSpec.builder(WGPU_PACKAGE, iface.name)

@@ -18,20 +18,20 @@ fun parseDefaultValue(node: _DefaultValueNode): DefaultValue {
         is BooleanLiteralNode -> {
             // Boolean values are "true" or "false"
             when (node.content().lowercase()) {
-                "true" -> DefaultValue.StringValue("true")
-                "false" -> DefaultValue.StringValue("false")
-                else -> DefaultValue.StringValue(node.content())
+                "true" -> DefaultValue.BooleanValue(true)
+                "false" -> DefaultValue.BooleanValue(false)
+                else -> error("Invalid boolean value: ${node.content()}")
             }
         }
 
         is IntegerNode -> {
             // Integer values
-            DefaultValue.StringValue(node.content())
+            DefaultValue.IntegerValue(node.content())
         }
 
         is FloatLiteralNode -> {
             // Float values
-            DefaultValue.StringValue(node.content())
+            DefaultValue.FloatValue(node.content())
         }
 
         is DefaultDictionaryNode -> {
