@@ -9,14 +9,13 @@ import java.lang.invoke.MethodHandles
 /**
  * TODO
  */
-public actual interface WGPUBufferMapCallback {
-
+public fun interface WGPUBufferMapCallback {
     /**
      * @param status TODO
      * @param message TODO
      */
     @CFunctionInvoke
-    public actual fun invoke(
+    public fun invoke(
         status: WGPUMapAsyncStatus,
         message: WGPUStringView,
         userdata1: Pointer<Unit>,

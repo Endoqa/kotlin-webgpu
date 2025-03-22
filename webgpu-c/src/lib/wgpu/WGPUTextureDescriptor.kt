@@ -115,6 +115,7 @@ public value class WGPUTextureDescriptor(
             ValueLayout.JAVA_INT.withName("format"),
             ValueLayout.JAVA_INT.withName("mipLevelCount"),
             ValueLayout.JAVA_INT.withName("sampleCount"),
+            MemoryLayout.paddingLayout(4),
             ValueLayout.JAVA_LONG.withName("viewFormatCount"),
             `$RuntimeHelper`.POINTER.withName("viewFormats"),
         ).withName("WGPUTextureDescriptor")

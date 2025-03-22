@@ -60,6 +60,7 @@ public value class WGPUTexelCopyTextureInfo(
             ValueLayout.JAVA_INT.withName("mipLevel"),
             WGPUOrigin3D.layout.withName("origin"),
             ValueLayout.JAVA_INT.withName("aspect"),
+            MemoryLayout.paddingLayout(4),
         ).withName("WGPUTexelCopyTextureInfo")
 
         @JvmField

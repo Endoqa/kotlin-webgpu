@@ -146,7 +146,7 @@ public value class WGPUSamplerDescriptor(
             ValueLayout.JAVA_FLOAT.withName("lodMaxClamp"),
             ValueLayout.JAVA_INT.withName("compare"),
             ValueLayout.JAVA_SHORT.withName("maxAnisotropy"),
-            MemoryLayout.paddingLayout(2),
+            MemoryLayout.paddingLayout(6),
         ).withName("WGPUSamplerDescriptor")
 
         @JvmField
