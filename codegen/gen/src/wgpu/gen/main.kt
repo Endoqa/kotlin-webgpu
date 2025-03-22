@@ -18,6 +18,7 @@ import wgpu.gen.dict.generateDict
 import wgpu.gen.enum.generateEnum
 import wgpu.gen.interfaces.generateInterface
 import wgpu.gen.interfaces.generateMixin
+import wgpu.gen.namespace.generateNamespace
 import wgpu.gen.preprocess.preprocess
 import wgpu.gen.typedef.generateTypedef
 import java.io.File
@@ -154,7 +155,9 @@ private fun generate(idl: IDL) {
                 // do nothing
             }
 
-            is Namespace -> {}
+            is Namespace -> {
+                includeSource(generateNamespace(def))
+            }
 
             else -> error("Unhandled definition type: ${def::class.simpleName}")
         }
