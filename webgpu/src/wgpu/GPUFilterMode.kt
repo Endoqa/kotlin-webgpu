@@ -1,11 +1,6 @@
 package wgpu
 
-import lib.wgpu.WGPUFilterMode
-
-public enum class GPUFilterMode(
-    public val interop: WGPUFilterMode,
-) {
-    Nearest(WGPUFilterMode.Nearest),
-    Linear(WGPUFilterMode.Linear),
-    ;
+public expect enum class GPUFilterMode {
+    Nearest,
+    Linear,
 }

@@ -28,40 +28,61 @@ fun generateEnum(enum: idl.Enum): FileSpec.Builder {
 
 context(GenerateContext)
 private fun interopGen(enum: idl.Enum, schemaEnum: Enum): TypeSpec.Builder {
-    val spec = TypeSpec.enumBuilder(enum.name)
+//    val specClass = ClassName(WGPU_PACKAGE, enum.name)
+//    val interopClass = specClass.nestedClass("Interop")
+//
+//    val interopSpec = TypeSpec.enumBuilder("Interop")
+//        .addModifiers(KModifier.INTERNAL, KModifier.EXPECT)
 
-    spec
-        .addProperty(
-            PropertySpec
-                .builder(
-                    "interop",
-                    ClassName("lib.wgpu", "WGPU${schemaEnum.name.pascalCase}")
-                )
-                .initializer("interop")
-                .build()
-        )
-        .primaryConstructor(
-            FunSpec.constructorBuilder()
-                .addParameter("interop", ClassName("lib.wgpu", "WGPU${schemaEnum.name.pascalCase}"))
-                .build()
-        )
+
+    val spec = TypeSpec.enumBuilder(enum.name)
+        .addModifiers(KModifier.EXPECT)
+
+
+//    spec
+//        .addProperty(
+//            PropertySpec
+//                .builder(
+//                    "interop",
+////                    ClassName("lib.wgpu", "WGPU${schemaEnum.name.pascalCase}"), // this is for ffi
+//                    interopClass
+//                )
+//                .initializer("interop")
+//                .addModifiers(KModifier.INTERNAL)
+//                .build()
+//        )
+//        .primaryConstructor(
+//            FunSpec.constructorBuilder()
+//                .addParameter(
+//                    "interop",
+////                    ClassName("lib.wgpu", "WGPU${schemaEnum.name.pascalCase}") // this is for ffi
+//                    interopClass
+//                )
+//                .build()
+//        )
 
 
     (schemaEnum.entries ?: emptyList())
         .filterNotNull()
         .filter { it.name.pascalCase != "Undefined" || it.name.pascalCase == "Null" }
         .forEach { entry ->
+
+//            interopSpec.addEnumConstant(entry.name.pascalCase)
+
             spec.addEnumConstant(
                 entry.name.pascalCase,
-                TypeSpec.anonymousClassBuilder()
-                    .addSuperclassConstructorParameter(
-                        "%T.%N",
-                        ClassName("lib.wgpu", "WGPU${schemaEnum.name.pascalCase}"),
-                        entry.name.pascalCase
-                    )
-                    .build()
+//                TypeSpec.anonymousClassBuilder()
+//                    .addSuperclassConstructorParameter(
+//                        "%T.%N",
+////                        ClassName("lib.wgpu", "WGPU${schemaEnum.name.pascalCase}"), // this is for ffi
+//                        interopClass,
+//                        entry.name.pascalCase
+//                    )
+//                    .build()
             )
         }
+
+//    spec.addType(interopSpec.build())
 
     return spec
 }
