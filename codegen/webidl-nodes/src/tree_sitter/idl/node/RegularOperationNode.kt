@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class RegularOperationNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _NamespaceMemberNode,
     _OperationNode,
     _StaticMemberBodyNode {

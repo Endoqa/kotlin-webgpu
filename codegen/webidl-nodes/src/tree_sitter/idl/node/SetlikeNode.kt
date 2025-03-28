@@ -4,12 +4,12 @@ import tree_sitter.Node
 
 public class SetlikeNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _InterfaceMemberBodyNode,
     _MixinMemberBodyNode,
     _PartialInterfaceMemberBodyNode {
-    public val readonly: IDLTSBaseNode.Unnamed?
-        get() = (`$node`.getChildByFieldName("readonly"))?.let { IDLTSBaseNode.Unnamed(it) }
+    public val readonly: IDLNodeBase.Unnamed?
+        get() = (`$node`.getChildByFieldName("readonly"))?.let { IDLNodeBase.Unnamed(it) }
 
     public val valueType: _TypeNode
         get() = _TypeNode(

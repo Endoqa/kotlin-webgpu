@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class FrozenArrayTypeNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _SingleTypeNode {
     public val elementType: _TypeNode
         get() = _TypeNode(

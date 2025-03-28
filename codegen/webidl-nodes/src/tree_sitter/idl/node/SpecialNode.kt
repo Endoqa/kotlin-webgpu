@@ -4,4 +4,4 @@ import tree_sitter.Node
 
 public class SpecialNode(
     override val `$node`: Node,
-) : IDLTSBaseNode
+) : IDLNodeBase

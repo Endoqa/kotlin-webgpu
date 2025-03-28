@@ -2,7 +2,7 @@ package tree_sitter.idl.node
 
 import tree_sitter.Node
 
-public sealed interface FloatLiteralNode : IDLTSBaseNode, _ConstValueNode {
+public sealed interface FloatLiteralNode : IDLNodeBase, _ConstValueNode {
     public companion object {
         public operator fun invoke(node: Node): FloatLiteralNode {
             val n = createNode(node)

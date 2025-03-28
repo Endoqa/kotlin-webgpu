@@ -4,6 +4,6 @@ import tree_sitter.Node
 
 public class StringNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _DefaultValueNode,
     EnumNodeValues

@@ -4,13 +4,13 @@ import tree_sitter.Node
 
 public class IntegerTypeNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     PrimitiveTypeNode {
     public val base: BaseIntegerTypeNode
         get() = BaseIntegerTypeNode(
             `$node`.getChildByFieldName("base") ?: error("required field base is null")
         )
 
-    public val unsigned: IDLTSBaseNode.Unnamed?
-        get() = (`$node`.getChildByFieldName("unsigned"))?.let { IDLTSBaseNode.Unnamed(it) }
+    public val unsigned: IDLNodeBase.Unnamed?
+        get() = (`$node`.getChildByFieldName("unsigned"))?.let { IDLNodeBase.Unnamed(it) }
 }

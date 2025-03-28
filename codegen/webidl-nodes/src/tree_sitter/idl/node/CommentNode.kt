@@ -4,6 +4,6 @@ import tree_sitter.Node
 
 public class CommentNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     SourceNodeChildren,
     StringifierNodeChildren

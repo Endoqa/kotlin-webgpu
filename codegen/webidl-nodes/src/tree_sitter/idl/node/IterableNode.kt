@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class IterableNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _InterfaceMemberBodyNode,
     _PartialInterfaceMemberBodyNode {
     public val type: _TypeNode

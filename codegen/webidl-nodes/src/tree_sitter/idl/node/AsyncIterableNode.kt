@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class AsyncIterableNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _InterfaceMemberBodyNode,
     _PartialInterfaceMemberBodyNode {
     public val arguments: ArgumentListNode?

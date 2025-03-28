@@ -2,9 +2,9 @@ package tree_sitter.idl.node
 
 import tree_sitter.Node
 
-public fun createNode(node: Node): IDLTSBaseNode {
+public fun createNode(node: Node): IDLNodeBase {
     if (!node.isNamed) {
-        return IDLTSBaseNode.Unnamed(node)
+        return IDLNodeBase.Unnamed(node)
     }
     return when (node.kindID) {
         TSIDLLanguage.Lang._attribute -> _AttributeNode(node)

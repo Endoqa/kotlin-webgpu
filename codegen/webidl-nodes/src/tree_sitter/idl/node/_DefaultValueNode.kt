@@ -2,7 +2,7 @@ package tree_sitter.idl.node
 
 import tree_sitter.Node
 
-public sealed interface _DefaultValueNode : IDLTSBaseNode {
+public sealed interface _DefaultValueNode : IDLNodeBase {
     public companion object {
         public operator fun invoke(node: Node): _DefaultValueNode {
             val n = createNode(node)

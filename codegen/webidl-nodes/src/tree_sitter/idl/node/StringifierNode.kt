@@ -2,7 +2,7 @@ package tree_sitter.idl.node
 
 import tree_sitter.Node
 
-public sealed interface StringifierNodeChildren : IDLTSBaseNode {
+public sealed interface StringifierNodeChildren : IDLNodeBase {
     public companion object {
         public operator fun invoke(node: Node): StringifierNodeChildren {
             val n = createNode(node)
@@ -16,7 +16,7 @@ public sealed interface StringifierNodeChildren : IDLTSBaseNode {
 
 public class StringifierNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _InterfaceMemberBodyNode,
     _MixinMemberBodyNode,
     _PartialInterfaceMemberBodyNode {
@@ -24,6 +24,8 @@ public class StringifierNode(
         if (`$node`.namedChildCount == 0U) {
             return null
         }
-        return StringifierNodeChildren(`$node`.getChild(0u) ?: error("no child found for stringifier"))
+        return StringifierNodeChildren(
+            `$node`.getNamedChild(0u) ?: error("no child found for stringifier")
+        )
     }
 }

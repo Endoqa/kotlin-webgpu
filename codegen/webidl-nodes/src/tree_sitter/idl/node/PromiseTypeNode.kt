@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class PromiseTypeNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _TypeNode {
     public val resolveType: _TypeNode
         get() = _TypeNode(

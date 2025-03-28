@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class ExtendedAttributeNamedArgListNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _ExtendedAttributeNode {
     public val arguments: ArgumentListNode
         get() = ArgumentListNode(

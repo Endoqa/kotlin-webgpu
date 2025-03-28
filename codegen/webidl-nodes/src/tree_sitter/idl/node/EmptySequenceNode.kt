@@ -4,5 +4,5 @@ import tree_sitter.Node
 
 public class EmptySequenceNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _DefaultValueNode

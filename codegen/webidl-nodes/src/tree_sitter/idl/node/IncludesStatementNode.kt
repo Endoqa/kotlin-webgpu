@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class IncludesStatementNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _DefinitionNode {
     public val mixin: IdentifierNode
         get() = IdentifierNode(

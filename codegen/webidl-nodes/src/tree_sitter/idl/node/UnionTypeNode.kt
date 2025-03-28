@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class UnionTypeNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _TypeNode {
     public val memberTypes: List<_TypeNode>
         get() = useCursor { cursor ->

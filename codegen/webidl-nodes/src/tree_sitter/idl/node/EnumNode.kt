@@ -2,7 +2,7 @@ package tree_sitter.idl.node
 
 import tree_sitter.Node
 
-public sealed interface EnumNodeValues : IDLTSBaseNode {
+public sealed interface EnumNodeValues : IDLNodeBase {
     public companion object {
         public operator fun invoke(node: Node): EnumNodeValues {
             val n = createNode(node)
@@ -16,7 +16,7 @@ public sealed interface EnumNodeValues : IDLTSBaseNode {
 
 public class EnumNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _DefinitionNode {
     public val attributes: ExtendedAttributeListNode?
         get() = (`$node`.getChildByFieldName("attributes"))?.let { ExtendedAttributeListNode(it) }

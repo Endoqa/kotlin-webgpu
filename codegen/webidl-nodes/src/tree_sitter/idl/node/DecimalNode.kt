@@ -4,5 +4,5 @@ import tree_sitter.Node
 
 public class DecimalNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     FloatLiteralNode

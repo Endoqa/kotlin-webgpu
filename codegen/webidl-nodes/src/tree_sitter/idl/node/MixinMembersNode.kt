@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class MixinMembersNode(
     override val `$node`: Node,
-) : IDLTSBaseNode {
+) : IDLNodeBase {
     public val members: List<MixinMemberNode>
         get() = useCursor { cursor ->
             `$node`.childrenByFieldName("members", cursor)

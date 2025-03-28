@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class RecordTypeNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _SingleTypeNode {
     public val keyType: StringTypeNode
         get() = StringTypeNode(

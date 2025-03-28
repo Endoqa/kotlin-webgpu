@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class InterfaceMembersNode(
     override val `$node`: Node,
-) : IDLTSBaseNode {
+) : IDLNodeBase {
     public val members: List<InterfaceMemberNode>
         get() = useCursor { cursor ->
             `$node`.childrenByFieldName("members", cursor)

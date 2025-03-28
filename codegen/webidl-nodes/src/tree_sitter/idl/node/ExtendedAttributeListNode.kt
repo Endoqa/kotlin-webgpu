@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class ExtendedAttributeListNode(
     override val `$node`: Node,
-) : IDLTSBaseNode {
+) : IDLNodeBase {
     public val attribute: List<_ExtendedAttributeNode>
         get() = useCursor { cursor ->
             `$node`.childrenByFieldName("attribute", cursor)

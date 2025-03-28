@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class ArgumentListNode(
     override val `$node`: Node,
-) : IDLTSBaseNode {
+) : IDLNodeBase {
     public val argument: List<ArgumentNode>
         get() = useCursor { cursor ->
             `$node`.childrenByFieldName("argument", cursor)

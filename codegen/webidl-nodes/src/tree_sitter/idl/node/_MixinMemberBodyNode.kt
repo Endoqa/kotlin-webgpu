@@ -2,7 +2,7 @@ package tree_sitter.idl.node
 
 import tree_sitter.Node
 
-public sealed interface _MixinMemberBodyNode : IDLTSBaseNode {
+public sealed interface _MixinMemberBodyNode : IDLNodeBase {
     public companion object {
         public operator fun invoke(node: Node): _MixinMemberBodyNode {
             val n = createNode(node)

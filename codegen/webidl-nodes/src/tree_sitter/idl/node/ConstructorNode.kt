@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class ConstructorNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _InterfaceMemberBodyNode {
     public val arguments: ArgumentListNode
         get() = ArgumentListNode(

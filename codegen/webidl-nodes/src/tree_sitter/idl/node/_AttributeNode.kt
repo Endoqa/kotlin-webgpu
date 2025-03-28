@@ -2,7 +2,7 @@ package tree_sitter.idl.node
 
 import tree_sitter.Node
 
-public sealed interface _AttributeNode : IDLTSBaseNode, _InterfaceMemberBodyNode,
+public sealed interface _AttributeNode : IDLNodeBase, _InterfaceMemberBodyNode,
     _MixinMemberBodyNode, _PartialInterfaceMemberBodyNode {
     public companion object {
         public operator fun invoke(node: Node): _AttributeNode {

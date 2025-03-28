@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class StaticMemberNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _InterfaceMemberBodyNode,
     _MixinMemberBodyNode,
     _PartialInterfaceMemberBodyNode {

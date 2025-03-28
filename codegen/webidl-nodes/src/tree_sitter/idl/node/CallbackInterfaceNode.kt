@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class CallbackInterfaceNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _DefinitionNode {
     public val attributes: ExtendedAttributeListNode?
         get() = (`$node`.getChildByFieldName("attributes"))?.let { ExtendedAttributeListNode(it) }

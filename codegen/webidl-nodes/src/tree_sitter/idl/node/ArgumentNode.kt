@@ -4,7 +4,7 @@ import tree_sitter.Node
 
 public class ArgumentNode(
     override val `$node`: Node,
-) : IDLTSBaseNode {
+) : IDLNodeBase {
     public val default: _DefaultValueNode?
         get() = (`$node`.getChildByFieldName("default"))?.let { _DefaultValueNode(it) }
 

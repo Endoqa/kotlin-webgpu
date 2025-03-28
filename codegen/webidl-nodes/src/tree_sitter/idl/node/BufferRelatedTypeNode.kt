@@ -4,5 +4,5 @@ import tree_sitter.Node
 
 public class BufferRelatedTypeNode(
     override val `$node`: Node,
-) : IDLTSBaseNode,
+) : IDLNodeBase,
     _SingleTypeNode
