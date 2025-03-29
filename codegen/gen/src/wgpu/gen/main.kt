@@ -11,7 +11,7 @@ import idl.parse.SourceAvailable
 import idl.parse.parseIDL
 import tree_sitter.Language
 import tree_sitter.Parser
-import tree_sitter.idl.node.IDLTSBaseNode
+import tree_sitter.idl.node.IDLNodeBase
 import tree_sitter.idl.node.SourceNode
 import webgpu.schema.Schema
 import wgpu.gen.dict.generateDict
@@ -34,7 +34,7 @@ private fun loadTreeSitter() {
 }
 
 class StringSourceAvailable(private val source: String) : SourceAvailable {
-    override fun IDLTSBaseNode.content(): String {
+    override fun IDLNodeBase.content(): String {
         val range = `$node`.byteRange
         return source.substring(range.first.toInt(), range.last.toInt())
     }

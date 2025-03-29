@@ -18,7 +18,7 @@ fun parseType(type: _TypeNode): Type {
         is IdentifierNode -> Identifier(type.content())
         is NullableTypeNode -> NullableType(parseType(type.type))
         is ObservableArrayTypeNode -> ObservableArrayType(parseType(type.elementType))
-        is IDLTSBaseNode.Unnamed -> {
+        is IDLNodeBase.Unnamed -> {
             when (val content = type.content()) {
                 "undefined" -> UndefinedType
                 "boolean" -> BooleanType

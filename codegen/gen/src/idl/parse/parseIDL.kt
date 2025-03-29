@@ -5,7 +5,7 @@ import tree_sitter.idl.node.*
 
 
 interface SourceAvailable {
-    fun IDLTSBaseNode.content(): String
+    fun IDLNodeBase.content(): String
 }
 
 
