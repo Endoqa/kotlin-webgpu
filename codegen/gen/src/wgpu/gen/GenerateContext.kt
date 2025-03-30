@@ -10,7 +10,8 @@ class GenerateContext(
     val schema: Schema,
     override val idl: IDL
 ) : WithIDL {
-    private val sources = mutableListOf<FileSpec.Builder>()
+    private val expectSources = mutableListOf<FileSpec.Builder>()
+    private val actualSources = mutableListOf<FileSpec.Builder>()
 
 
     val excludeIdentifiers = listOf(
@@ -18,10 +19,18 @@ class GenerateContext(
     )
 
     fun emit(path: Path) {
-        sources.forEach { it.build().writeTo(path) }
+        expectSources.forEach { it.build().writeTo(path) }
+    }
+
+    fun emitActual(path: Path) {
+        actualSources.forEach { it.build().writeTo(path) }
     }
 
     infix fun includeSource(file: FileSpec.Builder) {
-        sources += file
+        expectSources += file
+    }
+
+    fun actualSource(file: FileSpec.Builder) {
+        actualSources += file
     }
 }

@@ -20,7 +20,6 @@ val inlineEnumRegex = Regex("`(WGPU\\w+)_(\\w+)`")
 val inlineReferenceRegex = Regex("`(\\w+)`")
 
 
-
 fun transformDoc(doc: String): String {
     return doc
         .replace(inlineEnumRegex) { match ->

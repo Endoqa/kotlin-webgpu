@@ -20,9 +20,9 @@ public enum class WGPUPopErrorScopeStatus(
     Success(0x00000001),
 
     /**
-     * TODO
+     * See [CallbackStatuses](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackStatuses).
      */
-    InstanceDropped(0x00000002),
+    CallbackCancelled(0x00000002),
 
     /**
      * The error scope stack could not be popped, because it was empty.
@@ -49,7 +49,7 @@ public enum class WGPUPopErrorScopeStatus(
         public fun fromInt(`value`: Int): WGPUPopErrorScopeStatus = when (value) {
             Null.value -> Null
             Success.value -> Success
-            InstanceDropped.value -> InstanceDropped
+            CallbackCancelled.value -> CallbackCancelled
             Error.value -> Error
             else -> error("enum not found")
         }

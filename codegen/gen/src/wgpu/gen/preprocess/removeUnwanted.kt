@@ -2,7 +2,7 @@ package wgpu.gen.preprocess
 
 import idl.*
 import wgpu.gen.common.WithIDL
-import wgpu.gen.common.resolveType
+import wgpu.gen.common.resolveActualType
 
 private val excludeMixin = listOf("NavigatorGPU")
 
@@ -27,7 +27,7 @@ private val excludeEnums = listOf(
 
 context(WithIDL)
 private fun isInExclude(type: Type): Boolean {
-    return when (val t = resolveType(type)) {
+    return when (val t = resolveActualType(type)) {
         is Identifier -> t.name in excludeInterface || t.name in excludeTypedefs || t.name in excludeDictionaries
         is NullableType -> isInExclude(t.innerType)
         else -> false

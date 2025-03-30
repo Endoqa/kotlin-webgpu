@@ -1,8 +1,7 @@
 package webgpu.schema
 
-import kotlinx.serialization.Serializable
-
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Serializable
 enum class Pointer(val string: String) {

@@ -3,6 +3,6 @@ package wgpu
 public expect enum class GPUDeviceLostReason {
     Unknown,
     Destroyed,
-    InstanceDropped,
+    CallbackCancelled,
     FailedCreation,
 }

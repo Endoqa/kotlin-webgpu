@@ -135,7 +135,7 @@ public fun wgpuBufferMapAsync(
 
 /**
  * Returns a mutable pointer to beginning of the mapped range.
- * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
+ * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#MappedRangeBehavior) for error conditions and guarantees.
  * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackReentrancy)).
  *
  * In Wasm, if [memcpy]ing into this range, prefer using [wgpuBufferWriteMappedRange]
@@ -154,7 +154,7 @@ public fun wgpuBufferGetMappedRange(
 /**
  * Returns a const pointer to beginning of the mapped range.
  * It must not be written; writing to this range causes undefined behavior.
- * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
+ * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#MappedRangeBehavior) for error conditions and guarantees.
  * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackReentrancy)).
  *
  * In Wasm, if [memcpy]ing from this range, prefer using [wgpuBufferReadMappedRange]
@@ -173,7 +173,7 @@ public fun wgpuBufferGetConstMappedRange(
 
 /**
  * Copies a range of data from the buffer mapping into the provided destination pointer.
- * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
+ * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#MappedRangeBehavior) for error conditions and guarantees.
  * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackReentrancy)).
  *
  * In Wasm, this is more efficient than copying from a mapped range into a [malloc]'d range.
@@ -198,7 +198,7 @@ public fun wgpuBufferReadMappedRange(
 
 /**
  * Copies a range of data from the provided source pointer into the buffer mapping.
- * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#GetMappedRangeBehavior) for error conditions and guarantees.
+ * See [MappedRangeBehavior](https://webgpu-native.github.io/webgpu-headers/BufferMapping.html#MappedRangeBehavior) for error conditions and guarantees.
  * This function is safe to call inside spontaneous callbacks (see [CallbackReentrancy](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackReentrancy)).
  *
  * In Wasm, this is more efficient than copying from a [malloc]'d range into a mapped range.
@@ -716,6 +716,9 @@ public fun wgpuDeviceCreateTexture(device: WGPUDevice, descriptor: Pointer<WGPUT
  */
 public fun wgpuDeviceDestroy(device: WGPUDevice): Unit = `wgpuDeviceDestroy$mh`.invokeExact(device) as Unit
 
+/**
+ *
+ */
 context(SegmentAllocator)
 public fun wgpuDeviceGetLostFuture(device: WGPUDevice): WGPUFuture =
     WGPUFuture(`wgpuDeviceGetLostFuture$mh`.invokeExact(this@SegmentAllocator, device) as MemorySegment)

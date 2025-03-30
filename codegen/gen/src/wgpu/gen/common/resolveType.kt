@@ -1,9 +1,6 @@
 package wgpu.gen.common
 
-import idl.IDL
-import idl.Identifier
-import idl.Type
-import idl.Typedef
+import idl.*
 
 
 interface WithIDL {
@@ -11,12 +8,12 @@ interface WithIDL {
 }
 
 context(WithIDL)
-fun resolveType(type: Type): Type {
+fun resolveActualType(type: Type): Type {
     return when (type) {
         is Identifier -> {
 
             val iface = idl.definitions
-                .filterIsInstance<idl.Interface>()
+                .filterIsInstance<Interface>()
                 .find { it.name == type.name }
 
             if (iface != null) {
@@ -24,7 +21,7 @@ fun resolveType(type: Type): Type {
             }
 
             val dict = idl.definitions
-                .filterIsInstance<idl.Dictionary>()
+                .filterIsInstance<Dictionary>()
                 .find { it.name == type.name }
 
             if (dict != null) {
@@ -44,12 +41,14 @@ fun resolveType(type: Type): Type {
                 .find { it.name == type.name }
 
             if (typedef != null) {
-                return resolveType(typedef.type)
+                return resolveActualType(typedef.type)
             }
 
 
             type
         }
+
+        is NullableType -> NullableType(resolveActualType(type.innerType))
 
         else -> type
     }

@@ -15,6 +15,12 @@ public expect class GPUCommandEncoder : GPUObjectBase, GPUCommandsMixin, GPUDebu
 
     public fun copyBufferToBuffer(
         source: GPUBuffer,
+        destination: GPUBuffer,
+        size: GPUSize64,
+    )
+
+    public fun copyBufferToBuffer(
+        source: GPUBuffer,
         sourceOffset: GPUSize64,
         destination: GPUBuffer,
         destinationOffset: GPUSize64,

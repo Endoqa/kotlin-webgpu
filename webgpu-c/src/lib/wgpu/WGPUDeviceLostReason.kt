@@ -25,9 +25,9 @@ public enum class WGPUDeviceLostReason(
     Destroyed(0x00000002),
 
     /**
-     * TODO
+     * See [CallbackStatuses](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html#CallbackStatuses).
      */
-    InstanceDropped(0x00000003),
+    CallbackCancelled(0x00000003),
 
     /**
      * TODO
@@ -55,7 +55,7 @@ public enum class WGPUDeviceLostReason(
             Null.value -> Null
             Unknown.value -> Unknown
             Destroyed.value -> Destroyed
-            InstanceDropped.value -> InstanceDropped
+            CallbackCancelled.value -> CallbackCancelled
             FailedCreation.value -> FailedCreation
             else -> error("enum not found")
         }

@@ -1,6 +1,6 @@
 product:
   type: lib
-  platforms: [ jvm ]
+  platforms: [ jvm, android ]
 
 dependencies:
   - ../webgpu-c
@@ -11,3 +11,5 @@ apply:
 settings:
   kotlin:
     optIns: [ kotlin.ExperimentalUnsignedTypes ]
+    freeCompilerArgs:
+      - -Xexpect-actual-classes

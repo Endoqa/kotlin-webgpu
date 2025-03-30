@@ -368,8 +368,8 @@
           "doc": "TODO\n"
         },
         {
-          "name": "instance_dropped",
-          "doc": "TODO\n"
+          "name": "callback_cancelled",
+          "doc": "See @ref CallbackStatuses.\n"
         }
       ]
     },
@@ -428,8 +428,8 @@
           "doc": "TODO\n"
         },
         {
-          "name": "instance_dropped",
-          "doc": "TODO\n"
+          "name": "callback_cancelled",
+          "doc": "See @ref CallbackStatuses.\n"
         },
         {
           "name": "validation_error",
@@ -477,8 +477,8 @@
           "doc": "TODO\n"
         },
         {
-          "name": "instance_dropped",
-          "doc": "TODO\n"
+          "name": "callback_cancelled",
+          "doc": "See @ref CallbackStatuses.\n"
         },
         {
           "name": "failed_creation",
@@ -710,8 +710,8 @@
           "doc": "TODO\n"
         },
         {
-          "name": "instance_dropped",
-          "doc": "TODO\n"
+          "name": "callback_cancelled",
+          "doc": "See @ref CallbackStatuses.\n"
         },
         {
           "name": "error",
@@ -769,8 +769,8 @@
           "doc": "The error scope stack was successfully popped and a result was reported.\n"
         },
         {
-          "name": "instance_dropped",
-          "doc": "TODO\n"
+          "name": "callback_cancelled",
+          "doc": "See @ref CallbackStatuses.\n"
         },
         {
           "name": "error",
@@ -892,8 +892,8 @@
           "doc": "TODO\n"
         },
         {
-          "name": "instance_dropped",
-          "doc": "TODO\n"
+          "name": "callback_cancelled",
+          "doc": "See @ref CallbackStatuses.\n"
         },
         {
           "name": "error",
@@ -911,8 +911,8 @@
           "doc": "TODO\n"
         },
         {
-          "name": "instance_dropped",
-          "doc": "TODO\n"
+          "name": "callback_cancelled",
+          "doc": "See @ref CallbackStatuses.\n"
         },
         {
           "name": "unavailable",
@@ -934,8 +934,8 @@
           "doc": "TODO\n"
         },
         {
-          "name": "instance_dropped",
-          "doc": "TODO\n"
+          "name": "callback_cancelled",
+          "doc": "See @ref CallbackStatuses.\n"
         },
         {
           "name": "error",

@@ -7,7 +7,5 @@ public expect class GPUAdapter {
 
     public val info: GPUAdapterInfo
 
-    public val isFallbackAdapter: Boolean
-
     public suspend fun requestDevice(descriptor: GPUDeviceDescriptor = GPUDeviceDescriptor()): GPUDevice
 }

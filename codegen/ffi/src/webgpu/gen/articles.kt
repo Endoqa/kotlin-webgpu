@@ -17,10 +17,10 @@ private fun loadArticles(indexPath: File = File("articles.json")): MutableList<A
 
     val articles = mutableListOf<Article>()
 
-   for (topLevel in index) {
-       require(topLevel is JsonArray)
-       loadArticle(topLevel, articles)
-   }
+    for (topLevel in index) {
+        require(topLevel is JsonArray)
+        loadArticle(topLevel, articles)
+    }
 
     return articles
 }

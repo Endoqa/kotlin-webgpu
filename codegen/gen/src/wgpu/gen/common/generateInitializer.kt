@@ -39,7 +39,7 @@ private fun generateStringInitializer(value: String, type: Type): CodeBlock =
 
 context(GenerateContext)
 private fun generateNumericInitializer(initializer: DefaultValue, type: Type): CodeBlock {
-    val resolvedType = resolveType(type)
+    val resolvedType = resolveActualType(type)
     val rawValue = extractRawValue(initializer)
 
     return when (resolvedType) {

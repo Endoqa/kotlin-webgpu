@@ -12,4 +12,6 @@ public expect class GPUAdapterInfo {
     public val subgroupMinSize: UInt
 
     public val subgroupMaxSize: UInt
+
+    public val isFallbackAdapter: Boolean
 }

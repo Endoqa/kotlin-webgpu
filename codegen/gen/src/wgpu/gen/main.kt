@@ -14,8 +14,10 @@ import tree_sitter.Parser
 import tree_sitter.idl.node.IDLNodeBase
 import tree_sitter.idl.node.SourceNode
 import webgpu.schema.Schema
+import wgpu.gen.dict.generateConverters
 import wgpu.gen.dict.generateDict
 import wgpu.gen.enum.generateEnum
+import wgpu.gen.helpers.generateCallbackHelpers
 import wgpu.gen.interfaces.generateInterface
 import wgpu.gen.interfaces.generateMixin
 import wgpu.gen.namespace.generateNamespace
@@ -87,13 +89,18 @@ fun main(args: Array<String>) {
     }
 
 
-    ctx.emit(File("../webgpu/src").toPath())
+    ctx.emit(File("output/common").toPath())
+    ctx.emitActual(File("output/actual").toPath())
 
 }
 
 
 context(GenerateContext)
 private fun generate(idl: IDL) {
+
+    actualSource(generateConverters(idl))
+    actualSource(generateCallbackHelpers(schema))
+
     // Map to track inheritance relationships (interface -> list of superinterfaces)
     val inheritanceMap = mutableMapOf<String, MutableList<String>>()
 
@@ -123,7 +130,8 @@ private fun generate(idl: IDL) {
     for (def in idl.definitions) {
         when (def) {
             is Enum -> {
-                this@GenerateContext includeSource generateEnum(def)
+                actualSource(generateEnum(def, true))
+                includeSource(generateEnum(def))
             }
 
             is Typedef -> {
