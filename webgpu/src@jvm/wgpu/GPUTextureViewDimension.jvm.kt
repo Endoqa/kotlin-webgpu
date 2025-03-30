@@ -15,5 +15,17 @@ public actual enum class GPUTextureViewDimension(
     `3D`(GPUTextureViewDimensionInterop.`3D`),
     ;
 
-    public fun into(`out`: GPUTextureViewDimensionInterop): GPUTextureViewDimensionInterop = interop
+    public fun into(): GPUTextureViewDimensionInterop = interop
+
+    public companion object {
+        public fun from(v: GPUTextureViewDimensionInterop): GPUTextureViewDimension = when (v) {
+            GPUTextureViewDimensionInterop.`1D` -> `1D`
+            GPUTextureViewDimensionInterop.`2D` -> `2D`
+            GPUTextureViewDimensionInterop.`2DArray` -> `2DArray`
+            GPUTextureViewDimensionInterop.Cube -> Cube
+            GPUTextureViewDimensionInterop.CubeArray -> CubeArray
+            GPUTextureViewDimensionInterop.`3D` -> `3D`
+            else -> error("Invalid GPUTextureViewDimension: ${'$'}v")
+        }
+    }
 }

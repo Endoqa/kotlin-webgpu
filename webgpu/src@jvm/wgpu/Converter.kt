@@ -18,7 +18,7 @@ public fun GPURequestAdapterOptions.into(
     )
 ): NativeGPURequestAdapterOptions {
     out.featureLevel = this.featureLevel.into(out.featureLevel)
-    out.powerPreference = this.powerPreference?.into(out.powerPreference) ?: WGPUPowerPreference.Undefined
+    out.powerPreference = this.powerPreference?.into() ?: WGPUPowerPreference.Undefined
     this.forceFallbackAdapter.into(out.forceFallbackAdapter)
     // todo: no interop for this.xrCompatible
     return out
@@ -50,7 +50,7 @@ public fun GPUBufferDescriptor.into(`out`: Pointer<NativeGPUBufferDescriptor>): 
 context(Arena)
 public fun GPUBufferDescriptor.into(`out`: NativeGPUBufferDescriptor = NativeGPUBufferDescriptor.allocate(this@Arena)): NativeGPUBufferDescriptor {
     this.label.into(out.label)
-    out.size = this.size
+    out.size = this.size.toULong()
     out.usage = this.usage.toULong()
     this.mappedAtCreation.into(out.mappedAtCreation)
     return out
@@ -66,10 +66,10 @@ context(Arena)
 public fun GPUTextureDescriptor.into(`out`: NativeGPUTextureDescriptor = NativeGPUTextureDescriptor.allocate(this@Arena)): NativeGPUTextureDescriptor {
     this.label.into(out.label)
     this.size.into(out.size)
-    out.mipLevelCount = this.mipLevelCount
-    out.sampleCount = this.sampleCount
-    out.dimension = this.dimension.into(out.dimension)
-    out.format = this.format.into(out.format)
+    out.mipLevelCount = this.mipLevelCount.toUInt()
+    out.sampleCount = this.sampleCount.toUInt()
+    out.dimension = this.dimension.into()
+    out.format = this.format.into()
     out.usage = this.usage.toULong()
     out.viewFormatCount = this.viewFormats.size.toULong()
     out.viewFormats = allocateFrom(ValueLayout.JAVA_INT, *this.viewFormats.map { it.interop.value }.toIntArray())
@@ -89,14 +89,14 @@ public fun GPUTextureViewDescriptor.into(
     )
 ): NativeGPUTextureViewDescriptor {
     this.label.into(out.label)
-    out.format = this.format?.into(out.format) ?: WGPUTextureFormat.Undefined
-    out.dimension = this.dimension?.into(out.dimension) ?: WGPUTextureViewDimension.Undefined
+    out.format = this.format?.into() ?: WGPUTextureFormat.Undefined
+    out.dimension = this.dimension?.into() ?: WGPUTextureViewDimension.Undefined
     out.usage = this.usage.toULong()
-    out.aspect = this.aspect.into(out.aspect)
-    out.baseMipLevel = this.baseMipLevel
-    out.mipLevelCount = this.mipLevelCount ?: 0u
-    out.baseArrayLayer = this.baseArrayLayer
-    out.arrayLayerCount = this.arrayLayerCount ?: 0u
+    out.aspect = this.aspect.into()
+    out.baseMipLevel = this.baseMipLevel.toUInt()
+    out.mipLevelCount = this.mipLevelCount?.toUInt() ?: 0u
+    out.baseArrayLayer = this.baseArrayLayer.toUInt()
+    out.arrayLayerCount = this.arrayLayerCount?.toUInt() ?: 0u
     return out
 }
 
@@ -109,16 +109,16 @@ public fun GPUSamplerDescriptor.into(`out`: Pointer<NativeGPUSamplerDescriptor>)
 context(Arena)
 public fun GPUSamplerDescriptor.into(`out`: NativeGPUSamplerDescriptor = NativeGPUSamplerDescriptor.allocate(this@Arena)): NativeGPUSamplerDescriptor {
     this.label.into(out.label)
-    out.addressModeU = this.addressModeU.into(out.addressModeU)
-    out.addressModeV = this.addressModeV.into(out.addressModeV)
-    out.addressModeW = this.addressModeW.into(out.addressModeW)
-    out.magFilter = this.magFilter.into(out.magFilter)
-    out.minFilter = this.minFilter.into(out.minFilter)
-    out.mipmapFilter = this.mipmapFilter.into(out.mipmapFilter)
-    out.lodMinClamp = this.lodMinClamp
-    out.lodMaxClamp = this.lodMaxClamp
-    out.compare = this.compare?.into(out.compare) ?: WGPUCompareFunction.Undefined
-    out.maxAnisotropy = this.maxAnisotropy
+    out.addressModeU = this.addressModeU.into()
+    out.addressModeV = this.addressModeV.into()
+    out.addressModeW = this.addressModeW.into()
+    out.magFilter = this.magFilter.into()
+    out.minFilter = this.minFilter.into()
+    out.mipmapFilter = this.mipmapFilter.into()
+    out.lodMinClamp = this.lodMinClamp.toFloat()
+    out.lodMaxClamp = this.lodMaxClamp.toFloat()
+    out.compare = this.compare?.into() ?: WGPUCompareFunction.Undefined
+    out.maxAnisotropy = this.maxAnisotropy.toUShort()
     return out
 }
 
@@ -136,7 +136,7 @@ public fun GPUBindGroupLayoutDescriptor.into(
 ): NativeGPUBindGroupLayoutDescriptor {
     this.label.into(out.label)
     out.entryCount = this.entries.size.toULong()
-    out.entries = allocateList(this.entries) { it.into().`$mem` }
+    out.entries = allocateList(this.entries) { it.into()?.`$mem` ?: MemorySegment.NULL }
     return out
 }
 
@@ -152,7 +152,7 @@ public fun GPUBindGroupLayoutEntry.into(
         this@Arena
     )
 ): NativeGPUBindGroupLayoutEntry {
-    out.binding = this.binding
+    out.binding = this.binding.toUInt()
     out.visibility = this.visibility.toULong()
     this.buffer?.into(out.buffer)
     this.sampler?.into(out.sampler)
@@ -169,9 +169,9 @@ public fun GPUBufferBindingLayout.into(`out`: Pointer<NativeGPUBufferBindingLayo
 
 context(Arena)
 public fun GPUBufferBindingLayout.into(`out`: NativeGPUBufferBindingLayout = NativeGPUBufferBindingLayout.allocate(this@Arena)): NativeGPUBufferBindingLayout {
-    out.type = this.type.into(out.type)
+    out.type = this.type.into()
     this.hasDynamicOffset.into(out.hasDynamicOffset)
-    out.minBindingSize = this.minBindingSize
+    out.minBindingSize = this.minBindingSize.toULong()
     return out
 }
 
@@ -187,7 +187,7 @@ public fun GPUSamplerBindingLayout.into(
         this@Arena
     )
 ): NativeGPUSamplerBindingLayout {
-    out.type = this.type.into(out.type)
+    out.type = this.type.into()
     return out
 }
 
@@ -203,8 +203,8 @@ public fun GPUTextureBindingLayout.into(
         this@Arena
     )
 ): NativeGPUTextureBindingLayout {
-    out.sampleType = this.sampleType.into(out.sampleType)
-    out.viewDimension = this.viewDimension.into(out.viewDimension)
+    out.sampleType = this.sampleType.into()
+    out.viewDimension = this.viewDimension.into()
     this.multisampled.into(out.multisampled)
     return out
 }
@@ -221,9 +221,9 @@ public fun GPUStorageTextureBindingLayout.into(
         this@Arena
     )
 ): NativeGPUStorageTextureBindingLayout {
-    out.access = this.access.into(out.access)
-    out.format = this.format.into(out.format)
-    out.viewDimension = this.viewDimension.into(out.viewDimension)
+    out.access = this.access.into()
+    out.format = this.format.into()
+    out.viewDimension = this.viewDimension.into()
     return out
 }
 
@@ -238,7 +238,7 @@ public fun GPUBindGroupDescriptor.into(`out`: NativeGPUBindGroupDescriptor = Nat
     this.label.into(out.label)
     out.layout = this.layout.into()?.`$mem`
     out.entryCount = this.entries.size.toULong()
-    out.entries = allocateList(this.entries) { it.into().`$mem` }
+    out.entries = allocateList(this.entries) { it.into()?.`$mem` ?: MemorySegment.NULL }
     return out
 }
 
@@ -250,7 +250,7 @@ public fun GPUBindGroupEntry.into(`out`: Pointer<NativeGPUBindGroupEntry>): Poin
 
 context(Arena)
 public fun GPUBindGroupEntry.into(`out`: NativeGPUBindGroupEntry = NativeGPUBindGroupEntry.allocate(this@Arena)): NativeGPUBindGroupEntry {
-    out.binding = this.binding
+    out.binding = this.binding.toUInt()
     // todo: no interop for this.resource
     return out
 }
@@ -386,10 +386,10 @@ public fun GPUPrimitiveState.into(`out`: Pointer<NativeGPUPrimitiveState>): Poin
 
 context(Arena)
 public fun GPUPrimitiveState.into(`out`: NativeGPUPrimitiveState = NativeGPUPrimitiveState.allocate(this@Arena)): NativeGPUPrimitiveState {
-    out.topology = this.topology.into(out.topology)
-    out.stripIndexFormat = this.stripIndexFormat?.into(out.stripIndexFormat) ?: WGPUIndexFormat.Undefined
-    out.frontFace = this.frontFace.into(out.frontFace)
-    out.cullMode = this.cullMode.into(out.cullMode)
+    out.topology = this.topology.into()
+    out.stripIndexFormat = this.stripIndexFormat?.into() ?: WGPUIndexFormat.Undefined
+    out.frontFace = this.frontFace.into()
+    out.cullMode = this.cullMode.into()
     this.unclippedDepth.into(out.unclippedDepth)
     return out
 }
@@ -402,8 +402,8 @@ public fun GPUMultisampleState.into(`out`: Pointer<NativeGPUMultisampleState>): 
 
 context(Arena)
 public fun GPUMultisampleState.into(`out`: NativeGPUMultisampleState = NativeGPUMultisampleState.allocate(this@Arena)): NativeGPUMultisampleState {
-    out.count = this.count
-    out.mask = this.mask
+    out.count = this.count.toUInt()
+    out.mask = this.mask.toUInt()
     this.alphaToCoverageEnabled.into(out.alphaToCoverageEnabled)
     return out
 }
@@ -433,7 +433,7 @@ public fun GPUColorTargetState.into(`out`: Pointer<NativeGPUColorTargetState>): 
 
 context(Arena)
 public fun GPUColorTargetState.into(`out`: NativeGPUColorTargetState = NativeGPUColorTargetState.allocate(this@Arena)): NativeGPUColorTargetState {
-    out.format = this.format.into(out.format)
+    out.format = this.format.into()
     this.blend?.into(out.blend)
     out.writeMask = this.writeMask.toULong()
     return out
@@ -460,9 +460,9 @@ public fun GPUBlendComponent.into(`out`: Pointer<NativeGPUBlendComponent>): Poin
 
 context(Arena)
 public fun GPUBlendComponent.into(`out`: NativeGPUBlendComponent = NativeGPUBlendComponent.allocate(this@Arena)): NativeGPUBlendComponent {
-    out.operation = this.operation.into(out.operation)
-    out.srcFactor = this.srcFactor.into(out.srcFactor)
-    out.dstFactor = this.dstFactor.into(out.dstFactor)
+    out.operation = this.operation.into()
+    out.srcFactor = this.srcFactor.into()
+    out.dstFactor = this.dstFactor.into()
     return out
 }
 
@@ -474,16 +474,16 @@ public fun GPUDepthStencilState.into(`out`: Pointer<NativeGPUDepthStencilState>)
 
 context(Arena)
 public fun GPUDepthStencilState.into(`out`: NativeGPUDepthStencilState = NativeGPUDepthStencilState.allocate(this@Arena)): NativeGPUDepthStencilState {
-    out.format = this.format.into(out.format)
-    out.depthWriteEnabled = this.depthWriteEnabled.into(out.depthWriteEnabled)
-    out.depthCompare = this.depthCompare?.into(out.depthCompare) ?: WGPUCompareFunction.Undefined
+    out.format = this.format.into()
+    out.depthWriteEnabled = this.depthWriteEnabled.into()
+    out.depthCompare = this.depthCompare?.into() ?: WGPUCompareFunction.Undefined
     this.stencilFront.into(out.stencilFront)
     this.stencilBack.into(out.stencilBack)
-    out.stencilReadMask = this.stencilReadMask
-    out.stencilWriteMask = this.stencilWriteMask
-    out.depthBias = this.depthBias
-    out.depthBiasSlopeScale = this.depthBiasSlopeScale
-    out.depthBiasClamp = this.depthBiasClamp
+    out.stencilReadMask = this.stencilReadMask.toUInt()
+    out.stencilWriteMask = this.stencilWriteMask.toUInt()
+    out.depthBias = this.depthBias.toInt()
+    out.depthBiasSlopeScale = this.depthBiasSlopeScale.toFloat()
+    out.depthBiasClamp = this.depthBiasClamp.toFloat()
     return out
 }
 
@@ -495,10 +495,10 @@ public fun GPUStencilFaceState.into(`out`: Pointer<NativeGPUStencilFaceState>): 
 
 context(Arena)
 public fun GPUStencilFaceState.into(`out`: NativeGPUStencilFaceState = NativeGPUStencilFaceState.allocate(this@Arena)): NativeGPUStencilFaceState {
-    out.compare = this.compare.into(out.compare)
-    out.failOp = this.failOp.into(out.failOp)
-    out.depthFailOp = this.depthFailOp.into(out.depthFailOp)
-    out.passOp = this.passOp.into(out.passOp)
+    out.compare = this.compare.into()
+    out.failOp = this.failOp.into()
+    out.depthFailOp = this.depthFailOp.into()
+    out.passOp = this.passOp.into()
     return out
 }
 
@@ -527,10 +527,10 @@ public fun GPUVertexBufferLayout.into(`out`: Pointer<NativeGPUVertexBufferLayout
 
 context(Arena)
 public fun GPUVertexBufferLayout.into(`out`: NativeGPUVertexBufferLayout = NativeGPUVertexBufferLayout.allocate(this@Arena)): NativeGPUVertexBufferLayout {
-    out.arrayStride = this.arrayStride
-    out.stepMode = this.stepMode.into(out.stepMode)
+    out.arrayStride = this.arrayStride.toULong()
+    out.stepMode = this.stepMode.into()
     out.attributeCount = this.attributes.size.toULong()
-    out.attributes = allocateList(this.attributes) { it.into().`$mem` }
+    out.attributes = allocateList(this.attributes) { it.into()?.`$mem` ?: MemorySegment.NULL }
     return out
 }
 
@@ -542,9 +542,9 @@ public fun GPUVertexAttribute.into(`out`: Pointer<NativeGPUVertexAttribute>): Po
 
 context(Arena)
 public fun GPUVertexAttribute.into(`out`: NativeGPUVertexAttribute = NativeGPUVertexAttribute.allocate(this@Arena)): NativeGPUVertexAttribute {
-    out.format = this.format.into(out.format)
-    out.offset = this.offset
-    out.shaderLocation = this.shaderLocation
+    out.format = this.format.into()
+    out.offset = this.offset.toULong()
+    out.shaderLocation = this.shaderLocation.toUInt()
     return out
 }
 
@@ -576,9 +576,9 @@ public fun GPUTexelCopyTextureInfo.into(
     )
 ): NativeGPUTexelCopyTextureInfo {
     out.texture = this.texture.into()?.`$mem`
-    out.mipLevel = this.mipLevel
+    out.mipLevel = this.mipLevel.toUInt()
     this.origin.into(out.origin)
-    out.aspect = this.aspect.into(out.aspect)
+    out.aspect = this.aspect.into()
     return out
 }
 
@@ -700,11 +700,11 @@ public fun GPURenderPassColorAttachment.into(
     )
 ): NativeGPURenderPassColorAttachment {
     out.view = this.view.into()?.`$mem`
-    out.depthSlice = this.depthSlice ?: 0u
+    out.depthSlice = this.depthSlice?.toUInt() ?: 0u
     out.resolveTarget = this.resolveTarget?.into()?.`$mem`
     this.clearValue?.into(out.clearValue)
-    out.loadOp = this.loadOp.into(out.loadOp)
-    out.storeOp = this.storeOp.into(out.storeOp)
+    out.loadOp = this.loadOp.into()
+    out.storeOp = this.storeOp.into()
     return out
 }
 
@@ -721,13 +721,13 @@ public fun GPURenderPassDepthStencilAttachment.into(
     )
 ): NativeGPURenderPassDepthStencilAttachment {
     out.view = this.view.into()?.`$mem`
-    out.depthClearValue = this.depthClearValue ?: Float.NaN
-    out.depthLoadOp = this.depthLoadOp?.into(out.depthLoadOp) ?: WGPULoadOp.Undefined
-    out.depthStoreOp = this.depthStoreOp?.into(out.depthStoreOp) ?: WGPUStoreOp.Undefined
+    out.depthClearValue = this.depthClearValue?.toFloat() ?: Float.NaN
+    out.depthLoadOp = this.depthLoadOp?.into() ?: WGPULoadOp.Undefined
+    out.depthStoreOp = this.depthStoreOp?.into() ?: WGPUStoreOp.Undefined
     this.depthReadOnly.into(out.depthReadOnly)
-    out.stencilClearValue = this.stencilClearValue
-    out.stencilLoadOp = this.stencilLoadOp?.into(out.stencilLoadOp) ?: WGPULoadOp.Undefined
-    out.stencilStoreOp = this.stencilStoreOp?.into(out.stencilStoreOp) ?: WGPUStoreOp.Undefined
+    out.stencilClearValue = this.stencilClearValue.toUInt()
+    out.stencilLoadOp = this.stencilLoadOp?.into() ?: WGPULoadOp.Undefined
+    out.stencilStoreOp = this.stencilStoreOp?.into() ?: WGPUStoreOp.Undefined
     this.stencilReadOnly.into(out.stencilReadOnly)
     return out
 }
@@ -763,8 +763,8 @@ public fun GPURenderBundleEncoderDescriptor.into(
     this.label.into(out.label)
     out.colorFormatCount = this.colorFormats.size.toULong()
     out.colorFormats = allocateFrom(ValueLayout.JAVA_INT, *this.colorFormats.map { it.interop.value }.toIntArray())
-    out.depthStencilFormat = this.depthStencilFormat?.into(out.depthStencilFormat) ?: WGPUTextureFormat.Undefined
-    out.sampleCount = this.sampleCount
+    out.depthStencilFormat = this.depthStencilFormat?.into() ?: WGPUTextureFormat.Undefined
+    out.sampleCount = this.sampleCount.toUInt()
     this.depthReadOnly.into(out.depthReadOnly)
     this.stencilReadOnly.into(out.stencilReadOnly)
     return out
@@ -791,8 +791,8 @@ public fun GPUQuerySetDescriptor.into(`out`: Pointer<NativeGPUQuerySetDescriptor
 context(Arena)
 public fun GPUQuerySetDescriptor.into(`out`: NativeGPUQuerySetDescriptor = NativeGPUQuerySetDescriptor.allocate(this@Arena)): NativeGPUQuerySetDescriptor {
     this.label.into(out.label)
-    out.type = this.type.into(out.type)
-    out.count = this.count
+    out.type = this.type.into()
+    out.count = this.count.toUInt()
     return out
 }
 
@@ -818,10 +818,10 @@ public fun GPUColor.into(`out`: Pointer<NativeGPUColor>): Pointer<NativeGPUColor
 
 context(Arena)
 public fun GPUColor.into(`out`: NativeGPUColor = NativeGPUColor.allocate(this@Arena)): NativeGPUColor {
-    out.r = this.r
-    out.g = this.g
-    out.b = this.b
-    out.a = this.a
+    out.r = this.r.toDouble()
+    out.g = this.g.toDouble()
+    out.b = this.b.toDouble()
+    out.a = this.a.toDouble()
     return out
 }
 
@@ -848,9 +848,9 @@ public fun GPUOrigin3D.into(`out`: Pointer<NativeGPUOrigin3D>): Pointer<NativeGP
 
 context(Arena)
 public fun GPUOrigin3D.into(`out`: NativeGPUOrigin3D = NativeGPUOrigin3D.allocate(this@Arena)): NativeGPUOrigin3D {
-    out.x = this.x
-    out.y = this.y
-    out.z = this.z
+    out.x = this.x.toUInt()
+    out.y = this.y.toUInt()
+    out.z = this.z.toUInt()
     return out
 }
 
@@ -862,9 +862,9 @@ public fun GPUExtent3D.into(`out`: Pointer<NativeGPUExtent3D>): Pointer<NativeGP
 
 context(Arena)
 public fun GPUExtent3D.into(`out`: NativeGPUExtent3D = NativeGPUExtent3D.allocate(this@Arena)): NativeGPUExtent3D {
-    out.width = this.width
-    out.height = this.height
-    out.depthOrArrayLayers = this.depthOrArrayLayers
+    out.width = this.width.toUInt()
+    out.height = this.height.toUInt()
+    out.depthOrArrayLayers = this.depthOrArrayLayers.toUInt()
     return out
 }
 
@@ -875,36 +875,36 @@ public fun GPULimits.into(`out`: Pointer<NativeGPULimits>): Pointer<NativeGPULim
 
 context(Arena)
 public fun GPULimits.into(`out`: NativeGPULimits = NativeGPULimits.allocate(this@Arena)): NativeGPULimits {
-    out.maxTextureDimension1D = this.maxTextureDimension1D
-    out.maxTextureDimension2D = this.maxTextureDimension2D
-    out.maxTextureDimension3D = this.maxTextureDimension3D
-    out.maxTextureArrayLayers = this.maxTextureArrayLayers
-    out.maxBindGroups = this.maxBindGroups
-    out.maxBindGroupsPlusVertexBuffers = this.maxBindGroupsPlusVertexBuffers
-    out.maxBindingsPerBindGroup = this.maxBindingsPerBindGroup
-    out.maxDynamicUniformBuffersPerPipelineLayout = this.maxDynamicUniformBuffersPerPipelineLayout
-    out.maxDynamicStorageBuffersPerPipelineLayout = this.maxDynamicStorageBuffersPerPipelineLayout
-    out.maxSampledTexturesPerShaderStage = this.maxSampledTexturesPerShaderStage
-    out.maxSamplersPerShaderStage = this.maxSamplersPerShaderStage
-    out.maxStorageBuffersPerShaderStage = this.maxStorageBuffersPerShaderStage
-    out.maxStorageTexturesPerShaderStage = this.maxStorageTexturesPerShaderStage
-    out.maxUniformBuffersPerShaderStage = this.maxUniformBuffersPerShaderStage
-    out.maxUniformBufferBindingSize = this.maxUniformBufferBindingSize
-    out.maxStorageBufferBindingSize = this.maxStorageBufferBindingSize
-    out.minUniformBufferOffsetAlignment = this.minUniformBufferOffsetAlignment
-    out.minStorageBufferOffsetAlignment = this.minStorageBufferOffsetAlignment
-    out.maxVertexBuffers = this.maxVertexBuffers
-    out.maxBufferSize = this.maxBufferSize
-    out.maxVertexAttributes = this.maxVertexAttributes
-    out.maxVertexBufferArrayStride = this.maxVertexBufferArrayStride
-    out.maxInterStageShaderVariables = this.maxInterStageShaderVariables
-    out.maxColorAttachments = this.maxColorAttachments
-    out.maxColorAttachmentBytesPerSample = this.maxColorAttachmentBytesPerSample
-    out.maxComputeWorkgroupStorageSize = this.maxComputeWorkgroupStorageSize
-    out.maxComputeInvocationsPerWorkgroup = this.maxComputeInvocationsPerWorkgroup
-    out.maxComputeWorkgroupSizeX = this.maxComputeWorkgroupSizeX
-    out.maxComputeWorkgroupSizeY = this.maxComputeWorkgroupSizeY
-    out.maxComputeWorkgroupSizeZ = this.maxComputeWorkgroupSizeZ
-    out.maxComputeWorkgroupsPerDimension = this.maxComputeWorkgroupsPerDimension
+    out.maxTextureDimension1D = this.maxTextureDimension1D.toUInt()
+    out.maxTextureDimension2D = this.maxTextureDimension2D.toUInt()
+    out.maxTextureDimension3D = this.maxTextureDimension3D.toUInt()
+    out.maxTextureArrayLayers = this.maxTextureArrayLayers.toUInt()
+    out.maxBindGroups = this.maxBindGroups.toUInt()
+    out.maxBindGroupsPlusVertexBuffers = this.maxBindGroupsPlusVertexBuffers.toUInt()
+    out.maxBindingsPerBindGroup = this.maxBindingsPerBindGroup.toUInt()
+    out.maxDynamicUniformBuffersPerPipelineLayout = this.maxDynamicUniformBuffersPerPipelineLayout.toUInt()
+    out.maxDynamicStorageBuffersPerPipelineLayout = this.maxDynamicStorageBuffersPerPipelineLayout.toUInt()
+    out.maxSampledTexturesPerShaderStage = this.maxSampledTexturesPerShaderStage.toUInt()
+    out.maxSamplersPerShaderStage = this.maxSamplersPerShaderStage.toUInt()
+    out.maxStorageBuffersPerShaderStage = this.maxStorageBuffersPerShaderStage.toUInt()
+    out.maxStorageTexturesPerShaderStage = this.maxStorageTexturesPerShaderStage.toUInt()
+    out.maxUniformBuffersPerShaderStage = this.maxUniformBuffersPerShaderStage.toUInt()
+    out.maxUniformBufferBindingSize = this.maxUniformBufferBindingSize.toULong()
+    out.maxStorageBufferBindingSize = this.maxStorageBufferBindingSize.toULong()
+    out.minUniformBufferOffsetAlignment = this.minUniformBufferOffsetAlignment.toUInt()
+    out.minStorageBufferOffsetAlignment = this.minStorageBufferOffsetAlignment.toUInt()
+    out.maxVertexBuffers = this.maxVertexBuffers.toUInt()
+    out.maxBufferSize = this.maxBufferSize.toULong()
+    out.maxVertexAttributes = this.maxVertexAttributes.toUInt()
+    out.maxVertexBufferArrayStride = this.maxVertexBufferArrayStride.toUInt()
+    out.maxInterStageShaderVariables = this.maxInterStageShaderVariables.toUInt()
+    out.maxColorAttachments = this.maxColorAttachments.toUInt()
+    out.maxColorAttachmentBytesPerSample = this.maxColorAttachmentBytesPerSample.toUInt()
+    out.maxComputeWorkgroupStorageSize = this.maxComputeWorkgroupStorageSize.toUInt()
+    out.maxComputeInvocationsPerWorkgroup = this.maxComputeInvocationsPerWorkgroup.toUInt()
+    out.maxComputeWorkgroupSizeX = this.maxComputeWorkgroupSizeX.toUInt()
+    out.maxComputeWorkgroupSizeY = this.maxComputeWorkgroupSizeY.toUInt()
+    out.maxComputeWorkgroupSizeZ = this.maxComputeWorkgroupSizeZ.toUInt()
+    out.maxComputeWorkgroupsPerDimension = this.maxComputeWorkgroupsPerDimension.toUInt()
     return out
 }

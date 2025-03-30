@@ -12,5 +12,14 @@ public actual enum class GPUCullMode(
     Back(GPUCullModeInterop.Back),
     ;
 
-    public fun into(`out`: GPUCullModeInterop): GPUCullModeInterop = interop
+    public fun into(): GPUCullModeInterop = interop
+
+    public companion object {
+        public fun from(v: GPUCullModeInterop): GPUCullMode = when (v) {
+            GPUCullModeInterop.None -> None
+            GPUCullModeInterop.Front -> Front
+            GPUCullModeInterop.Back -> Back
+            else -> error("Invalid GPUCullMode: ${'$'}v")
+        }
+    }
 }

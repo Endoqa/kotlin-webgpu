@@ -151,6 +151,7 @@ private fun addMember(func: FunSpec.Builder, member: DictionaryMember, schema: S
     if (handleStringType(func, member, inSchema)) return
     if (handleStructType(func, member, inSchema)) return
     if (handleNullableEnumType(func, member, inSchema)) return
+    if (handleEnumType(func, member, inSchema)) return
     if (handleObjectType(func, member, inSchema)) return
 
     handleOtherType(func, member, inSchema)
@@ -259,8 +260,7 @@ private fun handleNullableEnumType(
     // special optional boolean
     if (resolveKotlinType(member.type) == Boolean::class.asTypeName()) {
         func.addStatement(
-            "out.%N = this.%N.into(out.%N)",
-            member.name,
+            "out.%N = this.%N.into()",
             member.name,
             member.name,
         )
@@ -269,8 +269,7 @@ private fun handleNullableEnumType(
 
 
     func.addStatement(
-        "out.%N = this.%N?.into(out.%N) ?: %T.Undefined",
-        member.name,
+        "out.%N = this.%N?.into() ?: %T.Undefined",
         member.name,
         member.name,
         inSchema.type.toKotlinType()
@@ -278,6 +277,32 @@ private fun handleNullableEnumType(
 
     return true
 }
+
+context(GenerateContext, ConverterContext)
+private fun handleEnumType(
+    func: FunSpec.Builder,
+    member: DictionaryMember,
+    inSchema: ParameterType
+): Boolean {
+
+    val isEnum = inSchema.type is ComplexType &&
+            (inSchema.type as ComplexType).namespace == TypeNamespace.Enum
+            && member.type !is StringType
+
+    if (!isEnum) {
+        return false
+    }
+
+
+    func.addStatement(
+        "out.%N = this.%N.into()",
+        member.name,
+        member.name,
+    )
+
+    return true
+}
+
 
 context(GenerateContext, ConverterContext)
 private fun handleObjectType(
@@ -368,7 +393,7 @@ private fun handleStringType(
 
 context(GenerateContext, ConverterContext)
 private fun handleOtherType(func: FunSpec.Builder, member: DictionaryMember, inSchema: ParameterType) {
-    if (!member.isRequired) {
+    if (!member.isRequired && member.defaultValue == null) {
         func.addStatement(
             "out.%N = this.%N?.into(out.%N) ?: %T.NULL",
             member.name,

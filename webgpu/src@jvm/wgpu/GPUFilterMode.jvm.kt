@@ -11,5 +11,13 @@ public actual enum class GPUFilterMode(
     Linear(GPUFilterModeInterop.Linear),
     ;
 
-    public fun into(`out`: GPUFilterModeInterop): GPUFilterModeInterop = interop
+    public fun into(): GPUFilterModeInterop = interop
+
+    public companion object {
+        public fun from(v: GPUFilterModeInterop): GPUFilterMode = when (v) {
+            GPUFilterModeInterop.Nearest -> Nearest
+            GPUFilterModeInterop.Linear -> Linear
+            else -> error("Invalid GPUFilterMode: ${'$'}v")
+        }
+    }
 }

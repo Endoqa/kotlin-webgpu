@@ -12,5 +12,14 @@ public actual enum class GPUCompilationMessageType(
     Info(GPUCompilationMessageTypeInterop.Info),
     ;
 
-    public fun into(`out`: GPUCompilationMessageTypeInterop): GPUCompilationMessageTypeInterop = interop
+    public fun into(): GPUCompilationMessageTypeInterop = interop
+
+    public companion object {
+        public fun from(v: GPUCompilationMessageTypeInterop): GPUCompilationMessageType = when (v) {
+            GPUCompilationMessageTypeInterop.Error -> Error
+            GPUCompilationMessageTypeInterop.Warning -> Warning
+            GPUCompilationMessageTypeInterop.Info -> Info
+            else -> error("Invalid GPUCompilationMessageType: ${'$'}v")
+        }
+    }
 }

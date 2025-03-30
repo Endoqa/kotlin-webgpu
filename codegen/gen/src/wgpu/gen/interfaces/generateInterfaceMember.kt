@@ -55,8 +55,15 @@ fun generateInterfaceMember(
 }
 
 private fun generateAttribute(member: Attribute): PropertySpec.Builder {
+
+    var propertyType = resolveKotlinType(member.type)
+
+    if (member.type is PromiseType) {
+        propertyType = ClassName("kotlinx.coroutines", "Deferred").parameterizedBy(propertyType)
+    }
+
     val property = PropertySpec
-        .builder(member.name, resolveKotlinType(member.type))
+        .builder(member.name, propertyType)
         .mutable(true)
 
     if (member.isReadOnly) {

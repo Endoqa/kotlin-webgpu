@@ -17,5 +17,19 @@ public actual enum class GPUStencilOperation(
     DecrementWrap(GPUStencilOperationInterop.DecrementWrap),
     ;
 
-    public fun into(`out`: GPUStencilOperationInterop): GPUStencilOperationInterop = interop
+    public fun into(): GPUStencilOperationInterop = interop
+
+    public companion object {
+        public fun from(v: GPUStencilOperationInterop): GPUStencilOperation = when (v) {
+            GPUStencilOperationInterop.Keep -> Keep
+            GPUStencilOperationInterop.Zero -> Zero
+            GPUStencilOperationInterop.Replace -> Replace
+            GPUStencilOperationInterop.Invert -> Invert
+            GPUStencilOperationInterop.IncrementClamp -> IncrementClamp
+            GPUStencilOperationInterop.DecrementClamp -> DecrementClamp
+            GPUStencilOperationInterop.IncrementWrap -> IncrementWrap
+            GPUStencilOperationInterop.DecrementWrap -> DecrementWrap
+            else -> error("Invalid GPUStencilOperation: ${'$'}v")
+        }
+    }
 }

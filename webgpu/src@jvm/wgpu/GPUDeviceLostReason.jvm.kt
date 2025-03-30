@@ -13,5 +13,15 @@ public actual enum class GPUDeviceLostReason(
     FailedCreation(GPUDeviceLostReasonInterop.FailedCreation),
     ;
 
-    public fun into(`out`: GPUDeviceLostReasonInterop): GPUDeviceLostReasonInterop = interop
+    public fun into(): GPUDeviceLostReasonInterop = interop
+
+    public companion object {
+        public fun from(v: GPUDeviceLostReasonInterop): GPUDeviceLostReason = when (v) {
+            GPUDeviceLostReasonInterop.Unknown -> Unknown
+            GPUDeviceLostReasonInterop.Destroyed -> Destroyed
+            GPUDeviceLostReasonInterop.CallbackCancelled -> CallbackCancelled
+            GPUDeviceLostReasonInterop.FailedCreation -> FailedCreation
+            else -> error("Invalid GPUDeviceLostReason: ${'$'}v")
+        }
+    }
 }

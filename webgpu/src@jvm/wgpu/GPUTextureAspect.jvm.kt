@@ -12,5 +12,14 @@ public actual enum class GPUTextureAspect(
     DepthOnly(GPUTextureAspectInterop.DepthOnly),
     ;
 
-    public fun into(`out`: GPUTextureAspectInterop): GPUTextureAspectInterop = interop
+    public fun into(): GPUTextureAspectInterop = interop
+
+    public companion object {
+        public fun from(v: GPUTextureAspectInterop): GPUTextureAspect = when (v) {
+            GPUTextureAspectInterop.All -> All
+            GPUTextureAspectInterop.StencilOnly -> StencilOnly
+            GPUTextureAspectInterop.DepthOnly -> DepthOnly
+            else -> error("Invalid GPUTextureAspect: ${'$'}v")
+        }
+    }
 }

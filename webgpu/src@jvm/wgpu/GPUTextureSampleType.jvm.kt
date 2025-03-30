@@ -15,5 +15,17 @@ public actual enum class GPUTextureSampleType(
     Uint(GPUTextureSampleTypeInterop.Uint),
     ;
 
-    public fun into(`out`: GPUTextureSampleTypeInterop): GPUTextureSampleTypeInterop = interop
+    public fun into(): GPUTextureSampleTypeInterop = interop
+
+    public companion object {
+        public fun from(v: GPUTextureSampleTypeInterop): GPUTextureSampleType = when (v) {
+            GPUTextureSampleTypeInterop.BindingNotUsed -> BindingNotUsed
+            GPUTextureSampleTypeInterop.Float -> Float
+            GPUTextureSampleTypeInterop.UnfilterableFloat -> UnfilterableFloat
+            GPUTextureSampleTypeInterop.Depth -> Depth
+            GPUTextureSampleTypeInterop.Sint -> Sint
+            GPUTextureSampleTypeInterop.Uint -> Uint
+            else -> error("Invalid GPUTextureSampleType: ${'$'}v")
+        }
+    }
 }

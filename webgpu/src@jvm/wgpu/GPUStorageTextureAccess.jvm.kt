@@ -13,5 +13,15 @@ public actual enum class GPUStorageTextureAccess(
     ReadWrite(GPUStorageTextureAccessInterop.ReadWrite),
     ;
 
-    public fun into(`out`: GPUStorageTextureAccessInterop): GPUStorageTextureAccessInterop = interop
+    public fun into(): GPUStorageTextureAccessInterop = interop
+
+    public companion object {
+        public fun from(v: GPUStorageTextureAccessInterop): GPUStorageTextureAccess = when (v) {
+            GPUStorageTextureAccessInterop.BindingNotUsed -> BindingNotUsed
+            GPUStorageTextureAccessInterop.WriteOnly -> WriteOnly
+            GPUStorageTextureAccessInterop.ReadOnly -> ReadOnly
+            GPUStorageTextureAccessInterop.ReadWrite -> ReadWrite
+            else -> error("Invalid GPUStorageTextureAccess: ${'$'}v")
+        }
+    }
 }

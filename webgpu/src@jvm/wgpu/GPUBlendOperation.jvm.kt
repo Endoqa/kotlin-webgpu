@@ -14,5 +14,16 @@ public actual enum class GPUBlendOperation(
     Max(GPUBlendOperationInterop.Max),
     ;
 
-    public fun into(`out`: GPUBlendOperationInterop): GPUBlendOperationInterop = interop
+    public fun into(): GPUBlendOperationInterop = interop
+
+    public companion object {
+        public fun from(v: GPUBlendOperationInterop): GPUBlendOperation = when (v) {
+            GPUBlendOperationInterop.Add -> Add
+            GPUBlendOperationInterop.Subtract -> Subtract
+            GPUBlendOperationInterop.ReverseSubtract -> ReverseSubtract
+            GPUBlendOperationInterop.Min -> Min
+            GPUBlendOperationInterop.Max -> Max
+            else -> error("Invalid GPUBlendOperation: ${'$'}v")
+        }
+    }
 }

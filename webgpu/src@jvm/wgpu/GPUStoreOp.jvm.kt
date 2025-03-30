@@ -11,5 +11,13 @@ public actual enum class GPUStoreOp(
     Discard(GPUStoreOpInterop.Discard),
     ;
 
-    public fun into(`out`: GPUStoreOpInterop): GPUStoreOpInterop = interop
+    public fun into(): GPUStoreOpInterop = interop
+
+    public companion object {
+        public fun from(v: GPUStoreOpInterop): GPUStoreOp = when (v) {
+            GPUStoreOpInterop.Store -> Store
+            GPUStoreOpInterop.Discard -> Discard
+            else -> error("Invalid GPUStoreOp: ${'$'}v")
+        }
+    }
 }

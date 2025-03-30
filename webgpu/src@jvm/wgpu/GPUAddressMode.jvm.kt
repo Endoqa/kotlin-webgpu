@@ -12,5 +12,14 @@ public actual enum class GPUAddressMode(
     MirrorRepeat(GPUAddressModeInterop.MirrorRepeat),
     ;
 
-    public fun into(`out`: GPUAddressModeInterop): GPUAddressModeInterop = interop
+    public fun into(): GPUAddressModeInterop = interop
+
+    public companion object {
+        public fun from(v: GPUAddressModeInterop): GPUAddressMode = when (v) {
+            GPUAddressModeInterop.ClampToEdge -> ClampToEdge
+            GPUAddressModeInterop.Repeat -> Repeat
+            GPUAddressModeInterop.MirrorRepeat -> MirrorRepeat
+            else -> error("Invalid GPUAddressMode: ${'$'}v")
+        }
+    }
 }

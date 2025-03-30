@@ -11,5 +11,13 @@ public actual enum class GPULoadOp(
     Clear(GPULoadOpInterop.Clear),
     ;
 
-    public fun into(`out`: GPULoadOpInterop): GPULoadOpInterop = interop
+    public fun into(): GPULoadOpInterop = interop
+
+    public companion object {
+        public fun from(v: GPULoadOpInterop): GPULoadOp = when (v) {
+            GPULoadOpInterop.Load -> Load
+            GPULoadOpInterop.Clear -> Clear
+            else -> error("Invalid GPULoadOp: ${'$'}v")
+        }
+    }
 }

@@ -11,5 +11,13 @@ public actual enum class GPUQueryType(
     Timestamp(GPUQueryTypeInterop.Timestamp),
     ;
 
-    public fun into(`out`: GPUQueryTypeInterop): GPUQueryTypeInterop = interop
+    public fun into(): GPUQueryTypeInterop = interop
+
+    public companion object {
+        public fun from(v: GPUQueryTypeInterop): GPUQueryType = when (v) {
+            GPUQueryTypeInterop.Occlusion -> Occlusion
+            GPUQueryTypeInterop.Timestamp -> Timestamp
+            else -> error("Invalid GPUQueryType: ${'$'}v")
+        }
+    }
 }

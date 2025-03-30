@@ -32,7 +32,7 @@ internal fun String.Companion.from(view: WGPUStringView): String {
     return view.data.reinterpret(view.length.toLong()).toArray(ValueLayout.JAVA_BYTE).decodeToString()
 }
 
-internal fun Boolean?.into(bool: WGPUOptionalBool): WGPUOptionalBool {
+internal fun Boolean?.into(): WGPUOptionalBool {
     if (this == null) {
         return WGPUOptionalBool.Undefined
     }

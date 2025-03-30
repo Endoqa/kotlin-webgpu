@@ -11,5 +11,13 @@ public actual enum class GPUVertexStepMode(
     Instance(GPUVertexStepModeInterop.Instance),
     ;
 
-    public fun into(`out`: GPUVertexStepModeInterop): GPUVertexStepModeInterop = interop
+    public fun into(): GPUVertexStepModeInterop = interop
+
+    public companion object {
+        public fun from(v: GPUVertexStepModeInterop): GPUVertexStepMode = when (v) {
+            GPUVertexStepModeInterop.Vertex -> Vertex
+            GPUVertexStepModeInterop.Instance -> Instance
+            else -> error("Invalid GPUVertexStepMode: ${'$'}v")
+        }
+    }
 }

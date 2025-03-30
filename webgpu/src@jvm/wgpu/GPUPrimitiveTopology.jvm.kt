@@ -14,5 +14,16 @@ public actual enum class GPUPrimitiveTopology(
     TriangleStrip(GPUPrimitiveTopologyInterop.TriangleStrip),
     ;
 
-    public fun into(`out`: GPUPrimitiveTopologyInterop): GPUPrimitiveTopologyInterop = interop
+    public fun into(): GPUPrimitiveTopologyInterop = interop
+
+    public companion object {
+        public fun from(v: GPUPrimitiveTopologyInterop): GPUPrimitiveTopology = when (v) {
+            GPUPrimitiveTopologyInterop.PointList -> PointList
+            GPUPrimitiveTopologyInterop.LineList -> LineList
+            GPUPrimitiveTopologyInterop.LineStrip -> LineStrip
+            GPUPrimitiveTopologyInterop.TriangleList -> TriangleList
+            GPUPrimitiveTopologyInterop.TriangleStrip -> TriangleStrip
+            else -> error("Invalid GPUPrimitiveTopology: ${'$'}v")
+        }
+    }
 }

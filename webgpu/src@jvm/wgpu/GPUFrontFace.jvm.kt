@@ -11,5 +11,13 @@ public actual enum class GPUFrontFace(
     CW(GPUFrontFaceInterop.CW),
     ;
 
-    public fun into(`out`: GPUFrontFaceInterop): GPUFrontFaceInterop = interop
+    public fun into(): GPUFrontFaceInterop = interop
+
+    public companion object {
+        public fun from(v: GPUFrontFaceInterop): GPUFrontFace = when (v) {
+            GPUFrontFaceInterop.CCW -> CCW
+            GPUFrontFaceInterop.CW -> CW
+            else -> error("Invalid GPUFrontFace: ${'$'}v")
+        }
+    }
 }

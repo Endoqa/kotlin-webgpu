@@ -12,7 +12,7 @@ public typealias GPUTextureUsageFlags = UInt
 
 public typealias GPUShaderStageFlags = UInt
 
-public sealed interface GPUBindingResource
+public expect sealed interface GPUBindingResource
 
 public typealias GPUPipelineConstantValue = Double
 

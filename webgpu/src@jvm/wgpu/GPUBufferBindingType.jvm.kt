@@ -13,5 +13,15 @@ public actual enum class GPUBufferBindingType(
     ReadOnlyStorage(GPUBufferBindingTypeInterop.ReadOnlyStorage),
     ;
 
-    public fun into(`out`: GPUBufferBindingTypeInterop): GPUBufferBindingTypeInterop = interop
+    public fun into(): GPUBufferBindingTypeInterop = interop
+
+    public companion object {
+        public fun from(v: GPUBufferBindingTypeInterop): GPUBufferBindingType = when (v) {
+            GPUBufferBindingTypeInterop.BindingNotUsed -> BindingNotUsed
+            GPUBufferBindingTypeInterop.Uniform -> Uniform
+            GPUBufferBindingTypeInterop.Storage -> Storage
+            GPUBufferBindingTypeInterop.ReadOnlyStorage -> ReadOnlyStorage
+            else -> error("Invalid GPUBufferBindingType: ${'$'}v")
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package wgpu
 
+import kotlinx.coroutines.Deferred
+
 public expect class GPUDevice : GPUObjectBase {
     override var label: String
 
@@ -11,7 +13,7 @@ public expect class GPUDevice : GPUObjectBase {
 
     public val queue: GPUQueue
 
-    public val lost: GPUDeviceLostInfo
+    public val lost: Deferred<GPUDeviceLostInfo>
 
     public fun destroy()
 

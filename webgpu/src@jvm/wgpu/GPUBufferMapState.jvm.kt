@@ -12,5 +12,14 @@ public actual enum class GPUBufferMapState(
     Mapped(GPUBufferMapStateInterop.Mapped),
     ;
 
-    public fun into(`out`: GPUBufferMapStateInterop): GPUBufferMapStateInterop = interop
+    public fun into(): GPUBufferMapStateInterop = interop
+
+    public companion object {
+        public fun from(v: GPUBufferMapStateInterop): GPUBufferMapState = when (v) {
+            GPUBufferMapStateInterop.Unmapped -> Unmapped
+            GPUBufferMapStateInterop.Pending -> Pending
+            GPUBufferMapStateInterop.Mapped -> Mapped
+            else -> error("Invalid GPUBufferMapState: ${'$'}v")
+        }
+    }
 }

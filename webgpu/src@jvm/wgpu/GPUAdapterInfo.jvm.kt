@@ -2,6 +2,9 @@ package wgpu
 
 import lib.wgpu.WGPUAdapterInfo
 import lib.wgpu.WGPUAdapterType
+import lib.wgpu.WGPUStatus
+import java.lang.foreign.MemorySegment
+import java.lang.foreign.ValueLayout
 
 public data class GPUAdapterInfo(
     actual val vendor: String,
@@ -12,6 +15,16 @@ public data class GPUAdapterInfo(
     actual val subgroupMaxSize: UInt,
     actual val isFallbackAdapter: Boolean,
 ) {
+
+    public constructor(func: (MemorySegment) -> WGPUStatus) : this(
+        unsafe { temp ->
+            val infoPtr = temp.allocate(ValueLayout.ADDRESS)
+            when (val status = func(infoPtr)) {
+                WGPUStatus.Success -> WGPUAdapterInfo(infoPtr)
+                else -> error("Failed to get info for adapter. Status: $status")
+            }
+        }
+    )
 
 
     public constructor(info: WGPUAdapterInfo) : this(

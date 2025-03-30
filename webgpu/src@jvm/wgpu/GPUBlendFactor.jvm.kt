@@ -26,5 +26,28 @@ public actual enum class GPUBlendFactor(
     OneMinusSrc1Alpha(GPUBlendFactorInterop.OneMinusSrc1Alpha),
     ;
 
-    public fun into(`out`: GPUBlendFactorInterop): GPUBlendFactorInterop = interop
+    public fun into(): GPUBlendFactorInterop = interop
+
+    public companion object {
+        public fun from(v: GPUBlendFactorInterop): GPUBlendFactor = when (v) {
+            GPUBlendFactorInterop.Zero -> Zero
+            GPUBlendFactorInterop.One -> One
+            GPUBlendFactorInterop.Src -> Src
+            GPUBlendFactorInterop.OneMinusSrc -> OneMinusSrc
+            GPUBlendFactorInterop.SrcAlpha -> SrcAlpha
+            GPUBlendFactorInterop.OneMinusSrcAlpha -> OneMinusSrcAlpha
+            GPUBlendFactorInterop.Dst -> Dst
+            GPUBlendFactorInterop.OneMinusDst -> OneMinusDst
+            GPUBlendFactorInterop.DstAlpha -> DstAlpha
+            GPUBlendFactorInterop.OneMinusDstAlpha -> OneMinusDstAlpha
+            GPUBlendFactorInterop.SrcAlphaSaturated -> SrcAlphaSaturated
+            GPUBlendFactorInterop.Constant -> Constant
+            GPUBlendFactorInterop.OneMinusConstant -> OneMinusConstant
+            GPUBlendFactorInterop.Src1 -> Src1
+            GPUBlendFactorInterop.OneMinusSrc1 -> OneMinusSrc1
+            GPUBlendFactorInterop.Src1Alpha -> Src1Alpha
+            GPUBlendFactorInterop.OneMinusSrc1Alpha -> OneMinusSrc1Alpha
+            else -> error("Invalid GPUBlendFactor: ${'$'}v")
+        }
+    }
 }

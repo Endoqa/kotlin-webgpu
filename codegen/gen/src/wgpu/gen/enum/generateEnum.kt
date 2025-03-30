@@ -78,13 +78,19 @@ private fun interopGen(
     if (isActual) {
         spec.addFunction(
             FunSpec.builder("into")
-                .addParameter("out", interopClass)
                 .returns(interopClass)
                 .addCode("return interop")
                 .build()
         )
     }
 
+
+    val companion = TypeSpec.companionObjectBuilder()
+
+    val fromFunc = FunSpec.builder("from")
+        .addParameter("v", interopClass)
+        .returns(specClass)
+        .beginControlFlow("return when(v)")
 
 
 
@@ -93,6 +99,17 @@ private fun interopGen(
         .filterNotNull()
         .filter { it.name.pascalCase != "Undefined" || it.name.pascalCase == "Null" }
         .forEach { entry ->
+
+            if (isActual) {
+                fromFunc.addStatement(
+                    "%T.%N -> %T.%N",
+                    interopClass,
+                    entry.name.pascalCase,
+                    specClass,
+                    entry.name.pascalCase
+                )
+            }
+
 
             if (isActual) {
                 spec.addEnumConstant(
@@ -114,6 +131,12 @@ private fun interopGen(
 
 
         }
+
+    if (isActual) {
+        fromFunc.addStatement("else -> error(%S)", "Invalid ${enum.name}: \$v")
+        companion.addFunction(fromFunc.endControlFlow().build())
+        spec.addType(companion.build())
+    }
 
 //    spec.addType(interopSpec.build())
 

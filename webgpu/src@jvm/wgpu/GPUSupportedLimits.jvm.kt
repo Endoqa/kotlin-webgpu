@@ -1,6 +1,9 @@
 package wgpu
 
 import lib.wgpu.WGPULimits
+import lib.wgpu.WGPUStatus
+import java.lang.foreign.MemorySegment
+import java.lang.foreign.ValueLayout
 
 public actual data class GPUSupportedLimits(
     actual val maxTextureDimension1D: UInt,
@@ -35,6 +38,18 @@ public actual data class GPUSupportedLimits(
     actual val maxComputeWorkgroupSizeZ: UInt,
     actual val maxComputeWorkgroupsPerDimension: UInt,
 ) {
+
+
+    public constructor(func: (MemorySegment) -> WGPUStatus) : this(
+        unsafe { temp ->
+            val limitsPtr = temp.allocate(ValueLayout.ADDRESS)
+            when (val status = func(limitsPtr)) {
+                WGPUStatus.Success -> WGPULimits(limitsPtr)
+                else -> error("Failed to get limits for adapter. Status: $status")
+            }
+        }
+    )
+
     public constructor(limits: WGPULimits) : this(
         maxTextureDimension1D = limits.maxTextureDimension1D,
         maxTextureDimension2D = limits.maxTextureDimension2D,
