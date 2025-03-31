@@ -8,12 +8,20 @@ public fun GPUSupportedFeatures(
     action: (MemorySegment) -> Unit
 ): GPUSupportedFeatures {
     return unsafe { temp ->
-        val featuresPtr = temp.allocate(ValueLayout.ADDRESS)
-        action(featuresPtr)
-        val features = WGPUSupportedFeatures(featuresPtr)
-
+        val features = WGPUSupportedFeatures.allocate(temp)
+        action(features.`$mem`)
         List(features.featureCount.toInt()) {
-            features.features.getAtIndex(ValueLayout.ADDRESS, it.toLong()).getString(0)
-        }.toSet()
+            try {
+                GPUFeatureName.from(
+                    GPUFeatureNameInterop.fromInt(
+                        features.features.getAtIndex(ValueLayout.JAVA_INT, it.toLong())
+                    )
+                )
+            } catch (_: IllegalStateException) {
+                // Ignore unknown features
+                null
+            }
+        }.filterNotNull()
+            .toSet()
     }
 }

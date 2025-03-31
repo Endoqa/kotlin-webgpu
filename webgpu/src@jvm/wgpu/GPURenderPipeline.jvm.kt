@@ -1,6 +1,7 @@
 package wgpu
 
 import lib.wgpu.WGPURenderPipeline
+import lib.wgpu.wgpuRenderPipelineGetBindGroupLayout
 
 public actual class GPURenderPipeline(
     private val pipeline: WGPURenderPipeline
@@ -10,7 +11,7 @@ public actual class GPURenderPipeline(
         set(value) {}
 
     actual override fun getBindGroupLayout(index: UInt): GPUBindGroupLayout {
-        TODO("Not yet implemented")
+        return GPUBindGroupLayout(wgpuRenderPipelineGetBindGroupLayout(pipeline, index))
     }
 
     public fun into(): WGPURenderPipeline = pipeline

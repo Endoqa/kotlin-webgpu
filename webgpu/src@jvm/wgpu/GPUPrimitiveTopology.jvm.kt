@@ -23,7 +23,7 @@ public actual enum class GPUPrimitiveTopology(
             GPUPrimitiveTopologyInterop.LineStrip -> LineStrip
             GPUPrimitiveTopologyInterop.TriangleList -> TriangleList
             GPUPrimitiveTopologyInterop.TriangleStrip -> TriangleStrip
-            else -> error("Invalid GPUPrimitiveTopology: ${'$'}v")
+            else -> error("Invalid GPUPrimitiveTopology: $v")
         }
     }
 }

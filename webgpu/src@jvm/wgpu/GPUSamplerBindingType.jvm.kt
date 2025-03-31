@@ -21,7 +21,7 @@ public actual enum class GPUSamplerBindingType(
             GPUSamplerBindingTypeInterop.Filtering -> Filtering
             GPUSamplerBindingTypeInterop.NonFiltering -> NonFiltering
             GPUSamplerBindingTypeInterop.Comparison -> Comparison
-            else -> error("Invalid GPUSamplerBindingType: ${'$'}v")
+            else -> error("Invalid GPUSamplerBindingType: $v")
         }
     }
 }

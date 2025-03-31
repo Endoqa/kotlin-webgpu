@@ -17,7 +17,7 @@ public actual enum class GPULoadOp(
         public fun from(v: GPULoadOpInterop): GPULoadOp = when (v) {
             GPULoadOpInterop.Load -> Load
             GPULoadOpInterop.Clear -> Clear
-            else -> error("Invalid GPULoadOp: ${'$'}v")
+            else -> error("Invalid GPULoadOp: $v")
         }
     }
 }

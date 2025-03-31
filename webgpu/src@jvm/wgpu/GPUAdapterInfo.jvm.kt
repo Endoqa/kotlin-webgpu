@@ -4,7 +4,6 @@ import lib.wgpu.WGPUAdapterInfo
 import lib.wgpu.WGPUAdapterType
 import lib.wgpu.WGPUStatus
 import java.lang.foreign.MemorySegment
-import java.lang.foreign.ValueLayout
 
 public actual data class GPUAdapterInfo(
     actual val vendor: String,
@@ -16,25 +15,29 @@ public actual data class GPUAdapterInfo(
     actual val isFallbackAdapter: Boolean,
 ) {
 
-    public constructor(func: (MemorySegment) -> WGPUStatus) : this(
-        unsafe { temp ->
-            val infoPtr = temp.allocate(ValueLayout.ADDRESS)
-            when (val status = func(infoPtr)) {
-                WGPUStatus.Success -> WGPUAdapterInfo(infoPtr)
-                else -> error("Failed to get info for adapter. Status: $status")
+
+    public companion object {
+        public fun from(func: (MemorySegment) -> WGPUStatus): GPUAdapterInfo {
+            unsafe { temp ->
+                val info = WGPUAdapterInfo.allocate(temp)
+                val status = func(info.`$mem`)
+                when (status) {
+                    WGPUStatus.Success -> {}
+                    else -> error("Failed to get info for adapter. Status: $status")
+                }
+
+                return GPUAdapterInfo(
+                    vendor = String.from(info.vendor),
+                    architecture = String.from(info.architecture),
+                    device = String.from(info.device),
+                    description = String.from(info.description),
+                    subgroupMinSize = info.subgroupMinSize,
+                    subgroupMaxSize = info.subgroupMaxSize,
+                    isFallbackAdapter = info.adapterType == WGPUAdapterType.CPU,
+                )
             }
         }
-    )
+    }
 
-
-    public constructor(info: WGPUAdapterInfo) : this(
-        vendor = String.from(info.vendor),
-        architecture = String.from(info.architecture),
-        device = String.from(info.device),
-        description = String.from(info.description),
-        subgroupMinSize = info.subgroupMinSize,
-        subgroupMaxSize = info.subgroupMaxSize,
-        isFallbackAdapter = info.adapterType == WGPUAdapterType.CPU,
-    )
 
 }

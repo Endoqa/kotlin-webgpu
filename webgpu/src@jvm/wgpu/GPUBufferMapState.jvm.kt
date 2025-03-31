@@ -19,7 +19,7 @@ public actual enum class GPUBufferMapState(
             GPUBufferMapStateInterop.Unmapped -> Unmapped
             GPUBufferMapStateInterop.Pending -> Pending
             GPUBufferMapStateInterop.Mapped -> Mapped
-            else -> error("Invalid GPUBufferMapState: ${'$'}v")
+            else -> error("Invalid GPUBufferMapState: $v")
         }
     }
 }

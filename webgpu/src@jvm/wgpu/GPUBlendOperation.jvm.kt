@@ -23,7 +23,7 @@ public actual enum class GPUBlendOperation(
             GPUBlendOperationInterop.ReverseSubtract -> ReverseSubtract
             GPUBlendOperationInterop.Min -> Min
             GPUBlendOperationInterop.Max -> Max
-            else -> error("Invalid GPUBlendOperation: ${'$'}v")
+            else -> error("Invalid GPUBlendOperation: $v")
         }
     }
 }

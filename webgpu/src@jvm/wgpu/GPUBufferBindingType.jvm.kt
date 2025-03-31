@@ -21,7 +21,7 @@ public actual enum class GPUBufferBindingType(
             GPUBufferBindingTypeInterop.Uniform -> Uniform
             GPUBufferBindingTypeInterop.Storage -> Storage
             GPUBufferBindingTypeInterop.ReadOnlyStorage -> ReadOnlyStorage
-            else -> error("Invalid GPUBufferBindingType: ${'$'}v")
+            else -> error("Invalid GPUBufferBindingType: $v")
         }
     }
 }

@@ -12,10 +12,10 @@ public actual class GPUAdapter(
         GPUSupportedFeatures { ptr -> wgpuAdapterGetFeatures(adapter, ptr) }
     }
     public actual val limits: GPUSupportedLimits by lazy {
-        GPUSupportedLimits { ptr -> wgpuAdapterGetLimits(adapter, ptr) }
+        GPUSupportedLimits.from { ptr -> wgpuAdapterGetLimits(adapter, ptr) }
     }
     public actual val info: GPUAdapterInfo by lazy {
-        GPUAdapterInfo { ptr -> wgpuAdapterGetInfo(adapter, ptr) }
+        GPUAdapterInfo.from { ptr -> wgpuAdapterGetInfo(adapter, ptr) }
     }
 
     // TODO 1

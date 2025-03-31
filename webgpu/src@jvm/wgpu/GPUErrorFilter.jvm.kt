@@ -19,7 +19,7 @@ public actual enum class GPUErrorFilter(
             GPUErrorFilterInterop.Validation -> Validation
             GPUErrorFilterInterop.OutOfMemory -> OutOfMemory
             GPUErrorFilterInterop.Internal -> Internal
-            else -> error("Invalid GPUErrorFilter: ${'$'}v")
+            else -> error("Invalid GPUErrorFilter: $v")
         }
     }
 }

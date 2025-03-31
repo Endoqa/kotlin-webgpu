@@ -1,6 +1,8 @@
 package wgpu
 
 import lib.wgpu.*
+import java.lang.foreign.MemorySegment
+import java.lang.foreign.ValueLayout
 
 public actual class GPUComputePassEncoder(
     private val encoder: WGPUComputePassEncoder,
@@ -24,12 +26,23 @@ public actual class GPUComputePassEncoder(
         unsafeScope { wgpuComputePassEncoderInsertDebugMarker(encoder, markerLabel.into()) }
     }
 
+
+    public fun setBindGroup(index: GPUIndex32, bindGroup: GPUBindGroup?, dynamicOffsets: UIntArray) {
+        unsafeScope {
+            wgpuComputePassEncoderSetBindGroup(
+                encoder,
+                index, bindGroup?.into() ?: MemorySegment.NULL,
+                allocateFrom(ValueLayout.JAVA_INT, *dynamicOffsets.asIntArray())
+            )
+        }
+    }
+
     actual override fun setBindGroup(
         index: GPUIndex32,
         bindGroup: GPUBindGroup?,
         dynamicOffsets: List<GPUBufferDynamicOffset>,
     ) {
-        TODO()
+        return setBindGroup(index, bindGroup, dynamicOffsets.toUIntArray())
     }
 
     actual override fun setBindGroup(
@@ -39,7 +52,15 @@ public actual class GPUComputePassEncoder(
         dynamicOffsetsDataStart: GPUSize64,
         dynamicOffsetsDataLength: GPUSize32,
     ) {
-        TODO()
+
+//        wgpuComputePassEncoderSetBindGroup(
+//            encoder,
+//            index,
+//            bindGroup?.into() ?: MemorySegment.NULL,
+//
+//        )
+        TODO("Kotlin multiplatform actual typealias issue")
+
     }
 
     public actual fun setPipeline(pipeline: GPUComputePipeline) {

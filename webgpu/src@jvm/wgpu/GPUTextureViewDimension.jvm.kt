@@ -25,7 +25,7 @@ public actual enum class GPUTextureViewDimension(
             GPUTextureViewDimensionInterop.Cube -> Cube
             GPUTextureViewDimensionInterop.CubeArray -> CubeArray
             GPUTextureViewDimensionInterop.`3D` -> `3D`
-            else -> error("Invalid GPUTextureViewDimension: ${'$'}v")
+            else -> error("Invalid GPUTextureViewDimension: $v")
         }
     }
 }

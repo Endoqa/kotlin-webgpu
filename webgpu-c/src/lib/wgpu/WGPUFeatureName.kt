@@ -137,7 +137,7 @@ public enum class WGPUFeatureName(
             ClipDistances.value -> ClipDistances
             DualSourceBlending.value -> DualSourceBlending
             Subgroups.value -> Subgroups
-            else -> error("enum not found")
+            else -> error("enum not found $value")
         }
     }
 }

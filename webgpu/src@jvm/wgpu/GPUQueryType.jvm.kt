@@ -17,7 +17,7 @@ public actual enum class GPUQueryType(
         public fun from(v: GPUQueryTypeInterop): GPUQueryType = when (v) {
             GPUQueryTypeInterop.Occlusion -> Occlusion
             GPUQueryTypeInterop.Timestamp -> Timestamp
-            else -> error("Invalid GPUQueryType: ${'$'}v")
+            else -> error("Invalid GPUQueryType: $v")
         }
     }
 }

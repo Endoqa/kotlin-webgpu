@@ -17,10 +17,10 @@ public actual class GPUDevice(
         GPUSupportedFeatures { ptr -> wgpuDeviceGetFeatures(device, ptr) }
     }
     public actual val limits: GPUSupportedLimits by lazy {
-        GPUSupportedLimits { ptr -> wgpuDeviceGetLimits(device, ptr) }
+        GPUSupportedLimits.from { ptr -> wgpuDeviceGetLimits(device, ptr) }
     }
     public actual val adapterInfo: GPUAdapterInfo by lazy {
-        GPUAdapterInfo { ptr -> wgpuDeviceGetAdapterInfo(device, ptr) }
+        GPUAdapterInfo.from { ptr -> wgpuDeviceGetAdapterInfo(device, ptr) }
     }
     public actual val queue: GPUQueue by lazy {
         GPUQueue(wgpuDeviceGetQueue(device))

@@ -133,7 +133,7 @@ private fun interopGen(
         }
 
     if (isActual) {
-        fromFunc.addStatement("else -> error(%S)", "Invalid ${enum.name}: \$v")
+        fromFunc.addStatement("else -> error(\"Invalid ${enum.name}: \$v\")")
         companion.addFunction(fromFunc.endControlFlow().build())
         spec.addType(companion.build())
     }

@@ -29,7 +29,7 @@ public actual enum class GPUStencilOperation(
             GPUStencilOperationInterop.DecrementClamp -> DecrementClamp
             GPUStencilOperationInterop.IncrementWrap -> IncrementWrap
             GPUStencilOperationInterop.DecrementWrap -> DecrementWrap
-            else -> error("Invalid GPUStencilOperation: ${'$'}v")
+            else -> error("Invalid GPUStencilOperation: $v")
         }
     }
 }

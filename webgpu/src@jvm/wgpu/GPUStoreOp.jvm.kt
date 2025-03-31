@@ -17,7 +17,7 @@ public actual enum class GPUStoreOp(
         public fun from(v: GPUStoreOpInterop): GPUStoreOp = when (v) {
             GPUStoreOpInterop.Store -> Store
             GPUStoreOpInterop.Discard -> Discard
-            else -> error("Invalid GPUStoreOp: ${'$'}v")
+            else -> error("Invalid GPUStoreOp: $v")
         }
     }
 }

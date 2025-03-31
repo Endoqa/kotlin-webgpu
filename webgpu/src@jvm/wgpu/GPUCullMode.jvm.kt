@@ -19,7 +19,7 @@ public actual enum class GPUCullMode(
             GPUCullModeInterop.None -> None
             GPUCullModeInterop.Front -> Front
             GPUCullModeInterop.Back -> Back
-            else -> error("Invalid GPUCullMode: ${'$'}v")
+            else -> error("Invalid GPUCullMode: $v")
         }
     }
 }

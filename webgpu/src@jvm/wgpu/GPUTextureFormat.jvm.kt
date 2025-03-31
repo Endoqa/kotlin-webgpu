@@ -203,7 +203,7 @@ public actual enum class GPUTextureFormat(
             GPUTextureFormatInterop.ASTC12x10UnormSrgb -> ASTC12x10UnormSrgb
             GPUTextureFormatInterop.ASTC12x12Unorm -> ASTC12x12Unorm
             GPUTextureFormatInterop.ASTC12x12UnormSrgb -> ASTC12x12UnormSrgb
-            else -> error("Invalid GPUTextureFormat: ${'$'}v")
+            else -> error("Invalid GPUTextureFormat: $v")
         }
     }
 }

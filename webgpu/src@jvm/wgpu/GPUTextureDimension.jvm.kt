@@ -19,7 +19,7 @@ public actual enum class GPUTextureDimension(
             GPUTextureDimensionInterop.`1D` -> `1D`
             GPUTextureDimensionInterop.`2D` -> `2D`
             GPUTextureDimensionInterop.`3D` -> `3D`
-            else -> error("Invalid GPUTextureDimension: ${'$'}v")
+            else -> error("Invalid GPUTextureDimension: $v")
         }
     }
 }

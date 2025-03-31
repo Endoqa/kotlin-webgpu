@@ -21,7 +21,7 @@ public actual enum class GPUStorageTextureAccess(
             GPUStorageTextureAccessInterop.WriteOnly -> WriteOnly
             GPUStorageTextureAccessInterop.ReadOnly -> ReadOnly
             GPUStorageTextureAccessInterop.ReadWrite -> ReadWrite
-            else -> error("Invalid GPUStorageTextureAccess: ${'$'}v")
+            else -> error("Invalid GPUStorageTextureAccess: $v")
         }
     }
 }

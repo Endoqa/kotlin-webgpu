@@ -19,7 +19,7 @@ public actual enum class GPUAddressMode(
             GPUAddressModeInterop.ClampToEdge -> ClampToEdge
             GPUAddressModeInterop.Repeat -> Repeat
             GPUAddressModeInterop.MirrorRepeat -> MirrorRepeat
-            else -> error("Invalid GPUAddressMode: ${'$'}v")
+            else -> error("Invalid GPUAddressMode: $v")
         }
     }
 }

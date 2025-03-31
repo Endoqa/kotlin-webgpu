@@ -29,7 +29,7 @@ public actual enum class GPUCompareFunction(
             GPUCompareFunctionInterop.NotEqual -> NotEqual
             GPUCompareFunctionInterop.GreaterEqual -> GreaterEqual
             GPUCompareFunctionInterop.Always -> Always
-            else -> error("Invalid GPUCompareFunction: ${'$'}v")
+            else -> error("Invalid GPUCompareFunction: $v")
         }
     }
 }

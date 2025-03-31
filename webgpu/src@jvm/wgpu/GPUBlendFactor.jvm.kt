@@ -47,7 +47,7 @@ public actual enum class GPUBlendFactor(
             GPUBlendFactorInterop.OneMinusSrc1 -> OneMinusSrc1
             GPUBlendFactorInterop.Src1Alpha -> Src1Alpha
             GPUBlendFactorInterop.OneMinusSrc1Alpha -> OneMinusSrc1Alpha
-            else -> error("Invalid GPUBlendFactor: ${'$'}v")
+            else -> error("Invalid GPUBlendFactor: $v")
         }
     }
 }

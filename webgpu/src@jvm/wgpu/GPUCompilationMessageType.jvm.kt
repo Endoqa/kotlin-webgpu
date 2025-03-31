@@ -19,7 +19,7 @@ public actual enum class GPUCompilationMessageType(
             GPUCompilationMessageTypeInterop.Error -> Error
             GPUCompilationMessageTypeInterop.Warning -> Warning
             GPUCompilationMessageTypeInterop.Info -> Info
-            else -> error("Invalid GPUCompilationMessageType: ${'$'}v")
+            else -> error("Invalid GPUCompilationMessageType: $v")
         }
     }
 }

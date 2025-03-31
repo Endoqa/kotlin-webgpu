@@ -45,7 +45,7 @@ public actual class GPUCommandEncoder(
         destination: GPUBuffer,
         size: GPUSize64,
     ) {
-
+        return copyBufferToBuffer(source, 0UL, destination, 0UL, size)
     }
 
     public actual fun copyBufferToBuffer(
@@ -55,7 +55,14 @@ public actual class GPUCommandEncoder(
         destinationOffset: GPUSize64,
         size: GPUSize64,
     ) {
-
+        wgpuCommandEncoderCopyBufferToBuffer(
+            encoder,
+            source.into(),
+            sourceOffset,
+            destination.into(),
+            destinationOffset,
+            size
+        )
     }
 
     public actual fun copyBufferToTexture(
@@ -63,7 +70,14 @@ public actual class GPUCommandEncoder(
         destination: GPUTexelCopyTextureInfo,
         copySize: GPUExtent3D,
     ) {
-
+        return unsafeScope {
+            wgpuCommandEncoderCopyBufferToTexture(
+                encoder,
+                source.into().`$mem`,
+                destination.into().`$mem`,
+                copySize.into().`$mem`
+            )
+        }
     }
 
     public actual fun copyTextureToBuffer(
@@ -71,7 +85,14 @@ public actual class GPUCommandEncoder(
         destination: GPUTexelCopyBufferInfo,
         copySize: GPUExtent3D,
     ) {
-
+        return unsafeScope {
+            wgpuCommandEncoderCopyTextureToBuffer(
+                encoder,
+                source.into().`$mem`,
+                destination.into().`$mem`,
+                copySize.into().`$mem`
+            )
+        }
     }
 
     public actual fun copyTextureToTexture(
@@ -79,7 +100,14 @@ public actual class GPUCommandEncoder(
         destination: GPUTexelCopyTextureInfo,
         copySize: GPUExtent3D,
     ) {
-
+        return unsafeScope {
+            wgpuCommandEncoderCopyTextureToTexture(
+                encoder,
+                source.into().`$mem`,
+                destination.into().`$mem`,
+                copySize.into().`$mem`
+            )
+        }
     }
 
     public actual fun clearBuffer(
@@ -87,7 +115,7 @@ public actual class GPUCommandEncoder(
         offset: GPUSize64,
         size: GPUSize64,
     ) {
-
+        wgpuCommandEncoderClearBuffer(encoder, buffer.into(), offset, size)
     }
 
     public actual fun resolveQuerySet(
@@ -97,7 +125,14 @@ public actual class GPUCommandEncoder(
         destination: GPUBuffer,
         destinationOffset: GPUSize64,
     ) {
-
+        wgpuCommandEncoderResolveQuerySet(
+            encoder,
+            querySet.into(),
+            firstQuery,
+            queryCount,
+            destination.into(),
+            destinationOffset,
+        )
     }
 
     public actual fun finish(descriptor: GPUCommandBufferDescriptor): GPUCommandBuffer {

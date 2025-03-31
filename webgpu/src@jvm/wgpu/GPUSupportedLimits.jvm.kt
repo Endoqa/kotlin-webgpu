@@ -3,7 +3,6 @@ package wgpu
 import lib.wgpu.WGPULimits
 import lib.wgpu.WGPUStatus
 import java.lang.foreign.MemorySegment
-import java.lang.foreign.ValueLayout
 
 public actual data class GPUSupportedLimits(
     actual val maxTextureDimension1D: UInt,
@@ -40,47 +39,51 @@ public actual data class GPUSupportedLimits(
 ) {
 
 
-    public constructor(func: (MemorySegment) -> WGPUStatus) : this(
-        unsafe { temp ->
-            val limitsPtr = temp.allocate(ValueLayout.ADDRESS)
-            when (val status = func(limitsPtr)) {
-                WGPUStatus.Success -> WGPULimits(limitsPtr)
-                else -> error("Failed to get limits for adapter. Status: $status")
+    public companion object {
+        public fun from(func: (MemorySegment) -> WGPUStatus): GPUSupportedLimits {
+            return unsafe { temp ->
+                val limits = WGPULimits.allocate(temp)
+                when (val status = func(limits.`$mem`)) {
+                    WGPUStatus.Success -> {}
+                    else -> error("Failed to get limits for adapter. Status: $status")
+                }
+
+                GPUSupportedLimits(
+                    maxTextureDimension1D = limits.maxTextureDimension1D,
+                    maxTextureDimension2D = limits.maxTextureDimension2D,
+                    maxTextureDimension3D = limits.maxTextureDimension3D,
+                    maxTextureArrayLayers = limits.maxTextureArrayLayers,
+                    maxBindGroups = limits.maxBindGroups,
+                    maxBindGroupsPlusVertexBuffers = limits.maxBindGroupsPlusVertexBuffers,
+                    maxBindingsPerBindGroup = limits.maxBindingsPerBindGroup,
+                    maxDynamicUniformBuffersPerPipelineLayout = limits.maxDynamicUniformBuffersPerPipelineLayout,
+                    maxDynamicStorageBuffersPerPipelineLayout = limits.maxDynamicStorageBuffersPerPipelineLayout,
+                    maxSampledTexturesPerShaderStage = limits.maxSampledTexturesPerShaderStage,
+                    maxSamplersPerShaderStage = limits.maxSamplersPerShaderStage,
+                    maxStorageBuffersPerShaderStage = limits.maxStorageBuffersPerShaderStage,
+                    maxStorageTexturesPerShaderStage = limits.maxStorageTexturesPerShaderStage,
+                    maxUniformBuffersPerShaderStage = limits.maxUniformBuffersPerShaderStage,
+                    maxUniformBufferBindingSize = limits.maxUniformBufferBindingSize,
+                    maxStorageBufferBindingSize = limits.maxStorageBufferBindingSize,
+                    minUniformBufferOffsetAlignment = limits.minUniformBufferOffsetAlignment,
+                    minStorageBufferOffsetAlignment = limits.minStorageBufferOffsetAlignment,
+                    maxVertexBuffers = limits.maxVertexBuffers,
+                    maxBufferSize = limits.maxBufferSize,
+                    maxVertexAttributes = limits.maxVertexAttributes,
+                    maxVertexBufferArrayStride = limits.maxVertexBufferArrayStride,
+                    maxInterStageShaderVariables = limits.maxInterStageShaderVariables,
+                    maxColorAttachments = limits.maxColorAttachments,
+                    maxColorAttachmentBytesPerSample = limits.maxColorAttachmentBytesPerSample,
+                    maxComputeWorkgroupStorageSize = limits.maxComputeWorkgroupStorageSize,
+                    maxComputeInvocationsPerWorkgroup = limits.maxComputeInvocationsPerWorkgroup,
+                    maxComputeWorkgroupSizeX = limits.maxComputeWorkgroupSizeX,
+                    maxComputeWorkgroupSizeY = limits.maxComputeWorkgroupSizeY,
+                    maxComputeWorkgroupSizeZ = limits.maxComputeWorkgroupSizeZ,
+                    maxComputeWorkgroupsPerDimension = limits.maxComputeWorkgroupsPerDimension,
+                )
             }
         }
-    )
+    }
 
-    public constructor(limits: WGPULimits) : this(
-        maxTextureDimension1D = limits.maxTextureDimension1D,
-        maxTextureDimension2D = limits.maxTextureDimension2D,
-        maxTextureDimension3D = limits.maxTextureDimension3D,
-        maxTextureArrayLayers = limits.maxTextureArrayLayers,
-        maxBindGroups = limits.maxBindGroups,
-        maxBindGroupsPlusVertexBuffers = limits.maxBindGroupsPlusVertexBuffers,
-        maxBindingsPerBindGroup = limits.maxBindingsPerBindGroup,
-        maxDynamicUniformBuffersPerPipelineLayout = limits.maxDynamicUniformBuffersPerPipelineLayout,
-        maxDynamicStorageBuffersPerPipelineLayout = limits.maxDynamicStorageBuffersPerPipelineLayout,
-        maxSampledTexturesPerShaderStage = limits.maxSampledTexturesPerShaderStage,
-        maxSamplersPerShaderStage = limits.maxSamplersPerShaderStage,
-        maxStorageBuffersPerShaderStage = limits.maxStorageBuffersPerShaderStage,
-        maxStorageTexturesPerShaderStage = limits.maxStorageTexturesPerShaderStage,
-        maxUniformBuffersPerShaderStage = limits.maxUniformBuffersPerShaderStage,
-        maxUniformBufferBindingSize = limits.maxUniformBufferBindingSize,
-        maxStorageBufferBindingSize = limits.maxStorageBufferBindingSize,
-        minUniformBufferOffsetAlignment = limits.minUniformBufferOffsetAlignment,
-        minStorageBufferOffsetAlignment = limits.minStorageBufferOffsetAlignment,
-        maxVertexBuffers = limits.maxVertexBuffers,
-        maxBufferSize = limits.maxBufferSize,
-        maxVertexAttributes = limits.maxVertexAttributes,
-        maxVertexBufferArrayStride = limits.maxVertexBufferArrayStride,
-        maxInterStageShaderVariables = limits.maxInterStageShaderVariables,
-        maxColorAttachments = limits.maxColorAttachments,
-        maxColorAttachmentBytesPerSample = limits.maxColorAttachmentBytesPerSample,
-        maxComputeWorkgroupStorageSize = limits.maxComputeWorkgroupStorageSize,
-        maxComputeInvocationsPerWorkgroup = limits.maxComputeInvocationsPerWorkgroup,
-        maxComputeWorkgroupSizeX = limits.maxComputeWorkgroupSizeX,
-        maxComputeWorkgroupSizeY = limits.maxComputeWorkgroupSizeY,
-        maxComputeWorkgroupSizeZ = limits.maxComputeWorkgroupSizeZ,
-        maxComputeWorkgroupsPerDimension = limits.maxComputeWorkgroupsPerDimension,
-    )
+
 }

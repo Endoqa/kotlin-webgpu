@@ -2,6 +2,7 @@ package wgpu
 
 import lib.wgpu.*
 import java.lang.foreign.MemorySegment
+import java.lang.foreign.ValueLayout
 
 public actual class GPURenderPassEncoder(
     private val encoder: WGPURenderPassEncoder,
@@ -30,7 +31,17 @@ public actual class GPURenderPassEncoder(
         bindGroup: GPUBindGroup?,
         dynamicOffsets: List<GPUBufferDynamicOffset>,
     ) {
-        TODO()
+        return setBindGroup(index, bindGroup, dynamicOffsets.toUIntArray())
+    }
+
+    public fun setBindGroup(index: GPUIndex32, bindGroup: GPUBindGroup?, dynamicOffsets: UIntArray) {
+        unsafeScope {
+            wgpuRenderPassEncoderSetBindGroup(
+                encoder,
+                index, bindGroup?.into() ?: MemorySegment.NULL,
+                allocateFrom(ValueLayout.JAVA_INT, *dynamicOffsets.asIntArray())
+            )
+        }
     }
 
     actual override fun setBindGroup(

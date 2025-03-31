@@ -17,7 +17,7 @@ public actual enum class GPUPowerPreference(
         public fun from(v: GPUPowerPreferenceInterop): GPUPowerPreference = when (v) {
             GPUPowerPreferenceInterop.LowPower -> LowPower
             GPUPowerPreferenceInterop.HighPerformance -> HighPerformance
-            else -> error("Invalid GPUPowerPreference: ${'$'}v")
+            else -> error("Invalid GPUPowerPreference: $v")
         }
     }
 }

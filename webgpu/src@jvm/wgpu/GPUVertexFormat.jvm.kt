@@ -95,7 +95,7 @@ public actual enum class GPUVertexFormat(
             GPUVertexFormatInterop.Sint32x4 -> Sint32x4
             GPUVertexFormatInterop.Unorm1010102 -> Unorm1010102
             GPUVertexFormatInterop.Unorm8x4BGRA -> Unorm8x4BGRA
-            else -> error("Invalid GPUVertexFormat: ${'$'}v")
+            else -> error("Invalid GPUVertexFormat: $v")
         }
     }
 }

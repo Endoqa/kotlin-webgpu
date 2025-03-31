@@ -1,6 +1,9 @@
 package wgpu
 
 import lib.wgpu.*
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 public actual class GPUBuffer(
     private val buffer: WGPUBuffer
@@ -20,7 +23,17 @@ public actual class GPUBuffer(
         offset: GPUSize64,
         size: GPUSize64,
     ) {
-        TODO()
+        return unsafeScope {
+            suspendCoroutine { cont ->
+                val info = createBufferMapCallback { status, message, _, _ ->
+                    when (status) {
+                        WGPUMapAsyncStatus.Success -> cont.resume(Unit)
+                        else -> cont.resumeWithException(Error(String.from(message)))
+                    }
+                }
+                wgpuBufferMapAsync(buffer, mode.toULong(), offset, size, info)
+            }
+        }
     }
 
     public actual fun getMappedRange(offset: GPUSize64, size: GPUSize64): NativeBuffer {

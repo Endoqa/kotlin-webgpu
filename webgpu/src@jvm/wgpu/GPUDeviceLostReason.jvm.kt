@@ -21,7 +21,7 @@ public actual enum class GPUDeviceLostReason(
             GPUDeviceLostReasonInterop.Destroyed -> Destroyed
             GPUDeviceLostReasonInterop.CallbackCancelled -> CallbackCancelled
             GPUDeviceLostReasonInterop.FailedCreation -> FailedCreation
-            else -> error("Invalid GPUDeviceLostReason: ${'$'}v")
+            else -> error("Invalid GPUDeviceLostReason: $v")
         }
     }
 }

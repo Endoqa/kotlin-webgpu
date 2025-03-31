@@ -25,7 +25,7 @@ public actual enum class GPUTextureSampleType(
             GPUTextureSampleTypeInterop.Depth -> Depth
             GPUTextureSampleTypeInterop.Sint -> Sint
             GPUTextureSampleTypeInterop.Uint -> Uint
-            else -> error("Invalid GPUTextureSampleType: ${'$'}v")
+            else -> error("Invalid GPUTextureSampleType: $v")
         }
     }
 }

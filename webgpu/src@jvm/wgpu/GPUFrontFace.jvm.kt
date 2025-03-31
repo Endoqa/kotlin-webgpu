@@ -17,7 +17,7 @@ public actual enum class GPUFrontFace(
         public fun from(v: GPUFrontFaceInterop): GPUFrontFace = when (v) {
             GPUFrontFaceInterop.CCW -> CCW
             GPUFrontFaceInterop.CW -> CW
-            else -> error("Invalid GPUFrontFace: ${'$'}v")
+            else -> error("Invalid GPUFrontFace: $v")
         }
     }
 }

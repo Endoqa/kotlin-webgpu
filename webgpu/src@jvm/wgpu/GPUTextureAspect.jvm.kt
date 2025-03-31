@@ -19,7 +19,7 @@ public actual enum class GPUTextureAspect(
             GPUTextureAspectInterop.All -> All
             GPUTextureAspectInterop.StencilOnly -> StencilOnly
             GPUTextureAspectInterop.DepthOnly -> DepthOnly
-            else -> error("Invalid GPUTextureAspect: ${'$'}v")
+            else -> error("Invalid GPUTextureAspect: $v")
         }
     }
 }

@@ -17,7 +17,7 @@ private val excludeDictionaries = listOf(
     "GPUCopyExternalImageDestInfo",
     "GPUCopyExternalImageSourceInfo",
     "GPUCanvasToneMapping",
-    "GPUCanvasConfiguration"
+    "GPUCanvasConfiguration",
 )
 
 private val excludeEnums = listOf(

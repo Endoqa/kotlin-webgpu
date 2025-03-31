@@ -47,7 +47,7 @@ public actual enum class GPUFeatureName(
             GPUFeatureNameInterop.ClipDistances -> ClipDistances
             GPUFeatureNameInterop.DualSourceBlending -> DualSourceBlending
             GPUFeatureNameInterop.Subgroups -> Subgroups
-            else -> error("Invalid GPUFeatureName: ${'$'}v")
+            else -> error("Invalid GPUFeatureName: $v")
         }
     }
 }

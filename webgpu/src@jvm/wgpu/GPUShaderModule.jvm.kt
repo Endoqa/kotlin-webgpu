@@ -1,6 +1,12 @@
 package wgpu
 
+import lib.wgpu.WGPUCompilationInfo
+import lib.wgpu.WGPUCompilationInfoRequestStatus
 import lib.wgpu.WGPUShaderModule
+import lib.wgpu.wgpuShaderModuleGetCompilationInfo
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 public actual class GPUShaderModule(
     private val module: WGPUShaderModule
@@ -10,7 +16,20 @@ public actual class GPUShaderModule(
         set(value) {}
 
     public actual suspend fun getCompilationInfo(): GPUCompilationInfo {
-        TODO("Not yet implemented")
+        return unsafeScope {
+            suspendCoroutine { cont ->
+                val info = createCompilationInfoCallback { status, info, _, _ ->
+                    when (status) {
+                        WGPUCompilationInfoRequestStatus.Success
+                            -> cont.resume(GPUCompilationInfo(WGPUCompilationInfo(info)))
+
+                        else -> cont.resumeWithException(Error("Shader module compilation failed: $status"))
+                    }
+                }
+
+                wgpuShaderModuleGetCompilationInfo(module, info)
+            }
+        }
     }
 
 
