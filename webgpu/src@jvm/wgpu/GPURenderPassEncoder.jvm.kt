@@ -3,8 +3,8 @@ package wgpu
 import lib.wgpu.*
 import java.lang.foreign.MemorySegment
 
-public actual class GPURenderBundleEncoder(
-    private val encoder: WGPURenderBundleEncoder,
+public actual class GPURenderPassEncoder(
+    private val encoder: WGPURenderPassEncoder,
 ) : GPUObjectBase, GPUCommandsMixin, GPUDebugCommandsMixin,
     GPUBindingCommandsMixin, GPURenderCommandsMixin {
     actual override var label: String
@@ -14,15 +14,15 @@ public actual class GPURenderBundleEncoder(
         }
 
     actual override fun pushDebugGroup(groupLabel: String) {
-        return unsafeScope { wgpuRenderBundleEncoderPushDebugGroup(encoder, groupLabel.into()) }
+        unsafeScope { wgpuRenderPassEncoderPushDebugGroup(encoder, groupLabel.into()) }
     }
 
     actual override fun popDebugGroup() {
-        wgpuRenderBundleEncoderPopDebugGroup(encoder)
+        wgpuRenderPassEncoderPopDebugGroup(encoder)
     }
 
     actual override fun insertDebugMarker(markerLabel: String) {
-        return unsafeScope { wgpuRenderBundleEncoderInsertDebugMarker(encoder, markerLabel.into()) }
+        unsafeScope { wgpuRenderPassEncoderInsertDebugMarker(encoder, markerLabel.into()) }
     }
 
     actual override fun setBindGroup(
@@ -30,7 +30,7 @@ public actual class GPURenderBundleEncoder(
         bindGroup: GPUBindGroup?,
         dynamicOffsets: List<GPUBufferDynamicOffset>,
     ) {
-
+        TODO()
     }
 
     actual override fun setBindGroup(
@@ -40,11 +40,11 @@ public actual class GPURenderBundleEncoder(
         dynamicOffsetsDataStart: GPUSize64,
         dynamicOffsetsDataLength: GPUSize32,
     ) {
-
+        TODO()
     }
 
     actual override fun setPipeline(pipeline: GPURenderPipeline) {
-        wgpuRenderBundleEncoderSetPipeline(encoder, pipeline.into())
+        wgpuRenderPassEncoderSetPipeline(encoder, pipeline.into())
     }
 
     actual override fun setIndexBuffer(
@@ -53,7 +53,7 @@ public actual class GPURenderBundleEncoder(
         offset: GPUSize64,
         size: GPUSize64,
     ) {
-        wgpuRenderBundleEncoderSetIndexBuffer(
+        wgpuRenderPassEncoderSetIndexBuffer(
             encoder,
             buffer.into(),
             indexFormat.into(),
@@ -68,7 +68,7 @@ public actual class GPURenderBundleEncoder(
         offset: GPUSize64,
         size: GPUSize64,
     ) {
-        wgpuRenderBundleEncoderSetVertexBuffer(
+        wgpuRenderPassEncoderSetVertexBuffer(
             encoder,
             slot.toUInt(),
             buffer?.into() ?: MemorySegment.NULL,
@@ -83,7 +83,7 @@ public actual class GPURenderBundleEncoder(
         firstVertex: GPUSize32,
         firstInstance: GPUSize32,
     ) {
-        wgpuRenderBundleEncoderDraw(
+        wgpuRenderPassEncoderDraw(
             encoder,
             vertexCount,
             instanceCount,
@@ -99,7 +99,7 @@ public actual class GPURenderBundleEncoder(
         baseVertex: GPUSignedOffset32,
         firstInstance: GPUSize32,
     ) {
-        wgpuRenderBundleEncoderDrawIndexed(
+        wgpuRenderPassEncoderDrawIndexed(
             encoder,
             indexCount,
             instanceCount,
@@ -110,7 +110,7 @@ public actual class GPURenderBundleEncoder(
     }
 
     actual override fun drawIndirect(indirectBuffer: GPUBuffer, indirectOffset: GPUSize64) {
-        wgpuRenderBundleEncoderDrawIndirect(
+        wgpuRenderPassEncoderDrawIndirect(
             encoder,
             indirectBuffer.into(),
             indirectOffset,
@@ -118,18 +118,64 @@ public actual class GPURenderBundleEncoder(
     }
 
     actual override fun drawIndexedIndirect(indirectBuffer: GPUBuffer, indirectOffset: GPUSize64) {
-        wgpuRenderBundleEncoderDrawIndexedIndirect(
+        wgpuRenderPassEncoderDrawIndexedIndirect(
             encoder,
             indirectBuffer.into(),
             indirectOffset,
         )
     }
 
-    public actual fun finish(descriptor: GPURenderBundleDescriptor): GPURenderBundle {
-        return unsafeScope {
-            GPURenderBundle(wgpuRenderBundleEncoderFinish(encoder, descriptor.into().`$mem`))
+    public actual fun setViewport(
+        x: Float,
+        y: Float,
+        width: Float,
+        height: Float,
+        minDepth: Float,
+        maxDepth: Float,
+    ) {
+        wgpuRenderPassEncoderSetViewport(
+            encoder,
+            x,
+            y,
+            width,
+            height,
+            minDepth,
+            maxDepth,
+        )
+    }
+
+    public actual fun setScissorRect(
+        x: GPUIntegerCoordinate,
+        y: GPUIntegerCoordinate,
+        width: GPUIntegerCoordinate,
+        height: GPUIntegerCoordinate,
+    ) {
+        wgpuRenderPassEncoderSetScissorRect(encoder, x, y, width, height)
+    }
+
+    public actual fun setBlendConstant(color: GPUColor) {
+        unsafeScope {
+            wgpuRenderPassEncoderSetBlendConstant(encoder, color.into().`$mem`)
         }
     }
 
-    public fun into(): WGPURenderBundleEncoder = encoder
+    public actual fun setStencilReference(reference: GPUStencilValue) {
+        wgpuRenderPassEncoderSetStencilReference(encoder, reference)
+    }
+
+    public actual fun beginOcclusionQuery(queryIndex: GPUSize32) {
+        wgpuRenderPassEncoderBeginOcclusionQuery(encoder, queryIndex)
+    }
+
+    public actual fun endOcclusionQuery() {
+        wgpuRenderPassEncoderEndOcclusionQuery(encoder)
+    }
+
+    public actual fun executeBundles(bundles: List<GPURenderBundle>) {
+        TODO()
+    }
+
+    public actual fun end() {
+        wgpuRenderPassEncoderEnd(encoder)
+    }
 }

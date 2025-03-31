@@ -29,11 +29,15 @@ public actual class GPUCommandEncoder(
     }
 
     public actual fun beginRenderPass(descriptor: GPURenderPassDescriptor): GPURenderPassEncoder {
-
+        return unsafeScope {
+            GPURenderPassEncoder(wgpuCommandEncoderBeginRenderPass(encoder, descriptor.into().`$mem`))
+        }
     }
 
     public actual fun beginComputePass(descriptor: GPUComputePassDescriptor): GPUComputePassEncoder {
-
+        return unsafeScope {
+            GPUComputePassEncoder(wgpuCommandEncoderBeginComputePass(encoder, descriptor.into().`$mem`))
+        }
     }
 
     public actual fun copyBufferToBuffer(

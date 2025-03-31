@@ -1,8 +1,8 @@
 package wgpu
 
-public expect class AllowSharedBufferSource
+public typealias AllowSharedBufferSource = Long
 
-public expect class NativeBuffer
+public typealias NativeBuffer = Long
 
 public typealias GPUBufferUsageFlags = UInt
 

@@ -2,15 +2,10 @@ package examples.triangle
 
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
-import lib.wgpu.*
 import wgpu.GPU
 import wgpu.GPUPowerPreference
 import wgpu.GPURequestAdapterOptions
 import java.io.File
-import java.lang.foreign.*
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
-
 
 
 fun main() {

@@ -4,7 +4,6 @@ package lib.wgpu
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
-import kotlin.Int
 
 /**
  * Status returned from a call to ::wgpuInstanceWaitAny.

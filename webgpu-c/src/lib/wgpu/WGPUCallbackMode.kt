@@ -4,7 +4,6 @@ package lib.wgpu
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
-import kotlin.Int
 
 /**
  * The callback mode controls how a callback for an asynchronous operation may be fired. See [Asynchronous-Operations](https://webgpu-native.github.io/webgpu-headers/Asynchronous-Operations.html) for how these are used.

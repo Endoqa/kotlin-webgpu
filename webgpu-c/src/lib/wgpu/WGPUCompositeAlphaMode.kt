@@ -4,7 +4,6 @@ package lib.wgpu
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.invoke.MethodType
-import kotlin.Int
 
 /**
  * Describes how frames are composited with other contents on the screen when [wgpuSurfacePresent] is called.

@@ -24,7 +24,7 @@ public actual class GPUBuffer(
     }
 
     public actual fun getMappedRange(offset: GPUSize64, size: GPUSize64): NativeBuffer {
-        return wgpuBufferGetMappedRange(buffer, offset, size)
+        return wgpuBufferGetMappedRange(buffer, offset, size).address()
     }
 
     public actual fun unmap() {

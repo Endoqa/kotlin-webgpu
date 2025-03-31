@@ -4,8 +4,6 @@ import lib.wgpu.WGPUSupportedFeatures
 import java.lang.foreign.MemorySegment
 import java.lang.foreign.ValueLayout
 
-public typealias GPUSupportedFeatures = Set<String>
-
 public fun GPUSupportedFeatures(
     action: (MemorySegment) -> Unit
 ): GPUSupportedFeatures {

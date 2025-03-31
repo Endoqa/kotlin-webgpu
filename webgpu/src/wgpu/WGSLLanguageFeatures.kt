@@ -1,3 +1,3 @@
 package wgpu
 
-public expect class WGSLLanguageFeatures : Set<String>
+public typealias WGSLLanguageFeatures = Set<String>

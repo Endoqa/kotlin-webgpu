@@ -1,5 +1,11 @@
 package lib.wgpu
 
+import lib.wgpu.WGPUColorWriteMask.Alpha
+import lib.wgpu.WGPUColorWriteMask.Blue
+import lib.wgpu.WGPUColorWriteMask.Green
+import lib.wgpu.WGPUColorWriteMask.Red
+
+
 /**
  * TODO
  */

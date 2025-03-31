@@ -6,7 +6,7 @@ import lib.wgpu.WGPUStatus
 import java.lang.foreign.MemorySegment
 import java.lang.foreign.ValueLayout
 
-public data class GPUAdapterInfo(
+public actual data class GPUAdapterInfo(
     actual val vendor: String,
     actual val architecture: String,
     actual val device: String,
