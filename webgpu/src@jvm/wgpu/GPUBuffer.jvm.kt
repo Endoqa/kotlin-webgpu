@@ -34,4 +34,6 @@ public actual class GPUBuffer(
     public actual fun destroy() {
         wgpuBufferDestroy(buffer)
     }
+
+    public fun into(): WGPUBuffer = buffer
 }

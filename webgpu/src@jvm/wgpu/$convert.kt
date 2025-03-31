@@ -17,7 +17,7 @@ internal fun String.into(view: WGPUStringView = WGPUStringView.allocate(this@Are
 }
 
 internal fun String.into(level: WGPUFeatureLevel): WGPUFeatureLevel {
-    TODO()
+    return WGPUFeatureLevel.entries.first { it.name.equals(this, ignoreCase = true) }
 }
 
 internal fun Boolean.into(bool: WGPUBool): WGPUBool {
@@ -42,6 +42,13 @@ internal fun Boolean?.into(): WGPUOptionalBool {
     } else {
         WGPUOptionalBool.False
     }
+}
+
+context(Arena)
+public fun GPUProgrammableStage.into(out: WGPUComputeState) {
+    out.module = this.module.into()
+    this.entryPoint?.into(out.entryPoint)
+    out.constants = allocateList(this.constants) { it.into().`$mem` }
 }
 
 context(Arena)

@@ -4,3 +4,4 @@ settings:
   kotlin:
     freeCompilerArgs:
       - -Xcontext-receivers
+      - -Xsuppress-warning=CONTEXT_RECEIVERS_DEPRECATED

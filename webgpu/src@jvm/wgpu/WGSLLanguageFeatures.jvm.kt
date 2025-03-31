@@ -1,3 +1,3 @@
 package wgpu
 
-public typealias WGSLLanguageFeatures = Set<String>
+public actual typealias WGSLLanguageFeatures = Set<String>

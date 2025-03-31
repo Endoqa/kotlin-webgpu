@@ -231,11 +231,21 @@ private fun handleStructType(
         return false
     }
 
-    func.addStatement(
-        "this.%N?.into(out.%N)",
-        member.name,
-        member.name,
-    )
+    val nullable = member.isNullable()
+
+    if (nullable) {
+        func.addStatement(
+            "this.%N?.into(out.%N)",
+            member.name,
+            member.name,
+        )
+    } else {
+        func.addStatement(
+            "this.%N.into(out.%N)",
+            member.name,
+            member.name,
+        )
+    }
 
     return true
 }
@@ -303,6 +313,10 @@ private fun handleEnumType(
     return true
 }
 
+context(GenerateContext)
+private fun DictionaryMember.isNullable() =
+    (!isRequired && defaultValue == null) || resolveActualType(type) is NullableType
+
 
 context(GenerateContext, ConverterContext)
 private fun handleObjectType(
@@ -318,12 +332,23 @@ private fun handleObjectType(
         return false
     }
 
-    func.addStatement(
-        "out.%N = this.%N?.into()?.%N",
-        member.name,
-        member.name,
-        "\$mem"
-    )
+    val nullable = member.isNullable()
+
+    if (nullable) {
+        func.addStatement(
+            "out.%N = this.%N?.into() ?: %T.NULL",
+            member.name,
+            member.name,
+            MemorySegment::class.asClassName()
+        )
+    } else {
+        func.addStatement(
+            "out.%N = this.%N.into()",
+            member.name,
+            member.name
+        )
+    }
+
     return true
 }
 

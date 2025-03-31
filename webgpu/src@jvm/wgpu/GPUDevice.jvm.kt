@@ -114,11 +114,18 @@ public actual class GPUDevice(
     }
 
     public actual fun createRenderBundleEncoder(descriptor: GPURenderBundleEncoderDescriptor): GPURenderBundleEncoder {
-        TODO("Not yet implemented")
+        return unsafeScope {
+            GPURenderBundleEncoder(
+                wgpuDeviceCreateRenderBundleEncoder(
+                    device,
+                    descriptor.into().`$mem`
+                )
+            )
+        }
     }
 
     public actual fun createQuerySet(descriptor: GPUQuerySetDescriptor): GPUQuerySet {
-        TODO("Not yet implemented")
+        return unsafeScope { GPUQuerySet(wgpuDeviceCreateQuerySet(device, descriptor.into().`$mem`)) }
     }
 
     public actual fun pushErrorScope(filter: GPUErrorFilter) {

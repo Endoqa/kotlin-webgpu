@@ -25,3 +25,5 @@ settings:
     serialization:
       format: json
       enabled: true
+    freeCompilerArgs:
+      - -Xsuppress-warning=CONTEXT_RECEIVERS_DEPRECATED

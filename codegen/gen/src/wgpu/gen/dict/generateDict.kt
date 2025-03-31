@@ -8,6 +8,7 @@ import wgpu.gen.GenerateContext
 import wgpu.gen.WGPU_PACKAGE
 import wgpu.gen.common.generateInitializer
 import wgpu.gen.common.resolveKotlinType
+import wgpu.gen.typedef.getUnionSuperclasses
 
 context(GenerateContext)
 fun generateDict(dict: Dictionary, idl: IDL): FileSpec.Builder {
@@ -17,6 +18,8 @@ fun generateDict(dict: Dictionary, idl: IDL): FileSpec.Builder {
     val haveInheritChildren = hasChildInheritance(idl, dict)
 
     val spec = TypeSpec.classBuilder(className)
+
+    spec.addSuperinterfaces(getUnionSuperclasses(dict.name))
 
     if (haveInheritChildren) {
         spec.addModifiers(KModifier.ABSTRACT)
