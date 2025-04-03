@@ -8,15 +8,10 @@ import java.lang.foreign.ValueLayout
 internal typealias NativeGPURequestAdapterOptions = WGPURequestAdapterOptions
 
 context(Arena)
-internal fun GPURequestAdapterOptions.into(`out`: Pointer<NativeGPURequestAdapterOptions>): NativeGPURequestAdapterOptions =
-    into()
+internal fun GPURequestAdapterOptions.into(`out`: Pointer<NativeGPURequestAdapterOptions>): NativeGPURequestAdapterOptions = into()
 
 context(Arena)
-internal fun GPURequestAdapterOptions.into(
-    `out`: NativeGPURequestAdapterOptions = NativeGPURequestAdapterOptions.allocate(
-        this@Arena
-    )
-): NativeGPURequestAdapterOptions {
+internal fun GPURequestAdapterOptions.into(`out`: NativeGPURequestAdapterOptions = NativeGPURequestAdapterOptions.allocate(this@Arena)): NativeGPURequestAdapterOptions {
     out.featureLevel = this.featureLevel.into(out.featureLevel)
     out.powerPreference = this.powerPreference?.into() ?: WGPUPowerPreference.Undefined
     this.forceFallbackAdapter.into(out.forceFallbackAdapter)
@@ -33,8 +28,7 @@ context(Arena)
 internal fun GPUDeviceDescriptor.into(`out`: NativeGPUDeviceDescriptor = NativeGPUDeviceDescriptor.allocate(this@Arena)): NativeGPUDeviceDescriptor {
     this.label.into(out.label)
     out.requiredFeatureCount = this.requiredFeatures.size.toULong()
-    out.requiredFeatures =
-        allocateFrom(ValueLayout.JAVA_INT, *this.requiredFeatures.map { it.interop.value }.toIntArray())
+    out.requiredFeatures = allocateFrom(ValueLayout.JAVA_INT, *this.requiredFeatures.map { it.interop.value }.toIntArray())
     out.requiredLimits = this.requiredLimits.into(out.requiredLimits).`$mem`
     this.defaultQueue.into(out.defaultQueue)
     return out
@@ -76,15 +70,10 @@ internal fun GPUTextureDescriptor.into(`out`: NativeGPUTextureDescriptor = Nativ
 internal typealias NativeGPUTextureViewDescriptor = WGPUTextureViewDescriptor
 
 context(Arena)
-internal fun GPUTextureViewDescriptor.into(`out`: Pointer<NativeGPUTextureViewDescriptor>): NativeGPUTextureViewDescriptor =
-    into()
+internal fun GPUTextureViewDescriptor.into(`out`: Pointer<NativeGPUTextureViewDescriptor>): NativeGPUTextureViewDescriptor = into()
 
 context(Arena)
-internal fun GPUTextureViewDescriptor.into(
-    `out`: NativeGPUTextureViewDescriptor = NativeGPUTextureViewDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPUTextureViewDescriptor {
+internal fun GPUTextureViewDescriptor.into(`out`: NativeGPUTextureViewDescriptor = NativeGPUTextureViewDescriptor.allocate(this@Arena)): NativeGPUTextureViewDescriptor {
     this.label.into(out.label)
     out.format = this.format?.into() ?: WGPUTextureFormat.Undefined
     out.dimension = this.dimension?.into() ?: WGPUTextureViewDimension.Undefined
@@ -121,33 +110,23 @@ internal fun GPUSamplerDescriptor.into(`out`: NativeGPUSamplerDescriptor = Nativ
 internal typealias NativeGPUBindGroupLayoutDescriptor = WGPUBindGroupLayoutDescriptor
 
 context(Arena)
-internal fun GPUBindGroupLayoutDescriptor.into(`out`: Pointer<NativeGPUBindGroupLayoutDescriptor>): NativeGPUBindGroupLayoutDescriptor =
-    into()
+internal fun GPUBindGroupLayoutDescriptor.into(`out`: Pointer<NativeGPUBindGroupLayoutDescriptor>): NativeGPUBindGroupLayoutDescriptor = into()
 
 context(Arena)
-internal fun GPUBindGroupLayoutDescriptor.into(
-    `out`: NativeGPUBindGroupLayoutDescriptor = NativeGPUBindGroupLayoutDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPUBindGroupLayoutDescriptor {
+internal fun GPUBindGroupLayoutDescriptor.into(`out`: NativeGPUBindGroupLayoutDescriptor = NativeGPUBindGroupLayoutDescriptor.allocate(this@Arena)): NativeGPUBindGroupLayoutDescriptor {
     this.label.into(out.label)
     out.entryCount = this.entries.size.toULong()
-    out.entries = allocateList(this.entries) { it.into().`$mem` }
+    out.entries = allocateList(this.entries, WGPUBindGroupLayoutEntry.layout, ::WGPUBindGroupLayoutEntry, { src, out -> src.into(out) })
     return out
 }
 
 internal typealias NativeGPUBindGroupLayoutEntry = WGPUBindGroupLayoutEntry
 
 context(Arena)
-internal fun GPUBindGroupLayoutEntry.into(`out`: Pointer<NativeGPUBindGroupLayoutEntry>): NativeGPUBindGroupLayoutEntry =
-    into()
+internal fun GPUBindGroupLayoutEntry.into(`out`: Pointer<NativeGPUBindGroupLayoutEntry>): NativeGPUBindGroupLayoutEntry = into()
 
 context(Arena)
-internal fun GPUBindGroupLayoutEntry.into(
-    `out`: NativeGPUBindGroupLayoutEntry = NativeGPUBindGroupLayoutEntry.allocate(
-        this@Arena
-    )
-): NativeGPUBindGroupLayoutEntry {
+internal fun GPUBindGroupLayoutEntry.into(`out`: NativeGPUBindGroupLayoutEntry = NativeGPUBindGroupLayoutEntry.allocate(this@Arena)): NativeGPUBindGroupLayoutEntry {
     out.binding = this.binding
     out.visibility = this.visibility.toULong()
     this.buffer?.into(out.buffer)
@@ -160,15 +139,10 @@ internal fun GPUBindGroupLayoutEntry.into(
 internal typealias NativeGPUBufferBindingLayout = WGPUBufferBindingLayout
 
 context(Arena)
-internal fun GPUBufferBindingLayout.into(`out`: Pointer<NativeGPUBufferBindingLayout>): NativeGPUBufferBindingLayout =
-    into()
+internal fun GPUBufferBindingLayout.into(`out`: Pointer<NativeGPUBufferBindingLayout>): NativeGPUBufferBindingLayout = into()
 
 context(Arena)
-internal fun GPUBufferBindingLayout.into(
-    `out`: NativeGPUBufferBindingLayout = NativeGPUBufferBindingLayout.allocate(
-        this@Arena
-    )
-): NativeGPUBufferBindingLayout {
+internal fun GPUBufferBindingLayout.into(`out`: NativeGPUBufferBindingLayout = NativeGPUBufferBindingLayout.allocate(this@Arena)): NativeGPUBufferBindingLayout {
     out.type = this.type.into()
     this.hasDynamicOffset.into(out.hasDynamicOffset)
     out.minBindingSize = this.minBindingSize
@@ -178,15 +152,10 @@ internal fun GPUBufferBindingLayout.into(
 internal typealias NativeGPUSamplerBindingLayout = WGPUSamplerBindingLayout
 
 context(Arena)
-internal fun GPUSamplerBindingLayout.into(`out`: Pointer<NativeGPUSamplerBindingLayout>): NativeGPUSamplerBindingLayout =
-    into()
+internal fun GPUSamplerBindingLayout.into(`out`: Pointer<NativeGPUSamplerBindingLayout>): NativeGPUSamplerBindingLayout = into()
 
 context(Arena)
-internal fun GPUSamplerBindingLayout.into(
-    `out`: NativeGPUSamplerBindingLayout = NativeGPUSamplerBindingLayout.allocate(
-        this@Arena
-    )
-): NativeGPUSamplerBindingLayout {
+internal fun GPUSamplerBindingLayout.into(`out`: NativeGPUSamplerBindingLayout = NativeGPUSamplerBindingLayout.allocate(this@Arena)): NativeGPUSamplerBindingLayout {
     out.type = this.type.into()
     return out
 }
@@ -194,15 +163,10 @@ internal fun GPUSamplerBindingLayout.into(
 internal typealias NativeGPUTextureBindingLayout = WGPUTextureBindingLayout
 
 context(Arena)
-internal fun GPUTextureBindingLayout.into(`out`: Pointer<NativeGPUTextureBindingLayout>): NativeGPUTextureBindingLayout =
-    into()
+internal fun GPUTextureBindingLayout.into(`out`: Pointer<NativeGPUTextureBindingLayout>): NativeGPUTextureBindingLayout = into()
 
 context(Arena)
-internal fun GPUTextureBindingLayout.into(
-    `out`: NativeGPUTextureBindingLayout = NativeGPUTextureBindingLayout.allocate(
-        this@Arena
-    )
-): NativeGPUTextureBindingLayout {
+internal fun GPUTextureBindingLayout.into(`out`: NativeGPUTextureBindingLayout = NativeGPUTextureBindingLayout.allocate(this@Arena)): NativeGPUTextureBindingLayout {
     out.sampleType = this.sampleType.into()
     out.viewDimension = this.viewDimension.into()
     this.multisampled.into(out.multisampled)
@@ -212,15 +176,10 @@ internal fun GPUTextureBindingLayout.into(
 internal typealias NativeGPUStorageTextureBindingLayout = WGPUStorageTextureBindingLayout
 
 context(Arena)
-internal fun GPUStorageTextureBindingLayout.into(`out`: Pointer<NativeGPUStorageTextureBindingLayout>): NativeGPUStorageTextureBindingLayout =
-    into()
+internal fun GPUStorageTextureBindingLayout.into(`out`: Pointer<NativeGPUStorageTextureBindingLayout>): NativeGPUStorageTextureBindingLayout = into()
 
 context(Arena)
-internal fun GPUStorageTextureBindingLayout.into(
-    `out`: NativeGPUStorageTextureBindingLayout = NativeGPUStorageTextureBindingLayout.allocate(
-        this@Arena
-    )
-): NativeGPUStorageTextureBindingLayout {
+internal fun GPUStorageTextureBindingLayout.into(`out`: NativeGPUStorageTextureBindingLayout = NativeGPUStorageTextureBindingLayout.allocate(this@Arena)): NativeGPUStorageTextureBindingLayout {
     out.access = this.access.into()
     out.format = this.format.into()
     out.viewDimension = this.viewDimension.into()
@@ -230,19 +189,14 @@ internal fun GPUStorageTextureBindingLayout.into(
 internal typealias NativeGPUBindGroupDescriptor = WGPUBindGroupDescriptor
 
 context(Arena)
-internal fun GPUBindGroupDescriptor.into(`out`: Pointer<NativeGPUBindGroupDescriptor>): NativeGPUBindGroupDescriptor =
-    into()
+internal fun GPUBindGroupDescriptor.into(`out`: Pointer<NativeGPUBindGroupDescriptor>): NativeGPUBindGroupDescriptor = into()
 
 context(Arena)
-internal fun GPUBindGroupDescriptor.into(
-    `out`: NativeGPUBindGroupDescriptor = NativeGPUBindGroupDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPUBindGroupDescriptor {
+internal fun GPUBindGroupDescriptor.into(`out`: NativeGPUBindGroupDescriptor = NativeGPUBindGroupDescriptor.allocate(this@Arena)): NativeGPUBindGroupDescriptor {
     this.label.into(out.label)
     out.layout = this.layout.into()
     out.entryCount = this.entries.size.toULong()
-    out.entries = allocateList(this.entries) { it.into().`$mem` }
+    out.entries = allocateList(this.entries, WGPUBindGroupEntry.layout, ::WGPUBindGroupEntry, { src, out -> src.into(out) })
     return out
 }
 
@@ -261,15 +215,10 @@ internal fun GPUBindGroupEntry.into(`out`: NativeGPUBindGroupEntry = NativeGPUBi
 internal typealias NativeGPUPipelineLayoutDescriptor = WGPUPipelineLayoutDescriptor
 
 context(Arena)
-internal fun GPUPipelineLayoutDescriptor.into(`out`: Pointer<NativeGPUPipelineLayoutDescriptor>): NativeGPUPipelineLayoutDescriptor =
-    into()
+internal fun GPUPipelineLayoutDescriptor.into(`out`: Pointer<NativeGPUPipelineLayoutDescriptor>): NativeGPUPipelineLayoutDescriptor = into()
 
 context(Arena)
-internal fun GPUPipelineLayoutDescriptor.into(
-    `out`: NativeGPUPipelineLayoutDescriptor = NativeGPUPipelineLayoutDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPUPipelineLayoutDescriptor {
+internal fun GPUPipelineLayoutDescriptor.into(`out`: NativeGPUPipelineLayoutDescriptor = NativeGPUPipelineLayoutDescriptor.allocate(this@Arena)): NativeGPUPipelineLayoutDescriptor {
     this.label.into(out.label)
     out.bindGroupLayoutCount = this.bindGroupLayouts.size.toULong()
     out.bindGroupLayouts = allocateList(this.bindGroupLayouts) { it?.into() ?: MemorySegment.NULL }
@@ -279,15 +228,10 @@ internal fun GPUPipelineLayoutDescriptor.into(
 internal typealias NativeGPUShaderModuleDescriptor = WGPUShaderModuleDescriptor
 
 context(Arena)
-internal fun GPUShaderModuleDescriptor.into(`out`: Pointer<NativeGPUShaderModuleDescriptor>): NativeGPUShaderModuleDescriptor =
-    into()
+internal fun GPUShaderModuleDescriptor.into(`out`: Pointer<NativeGPUShaderModuleDescriptor>): NativeGPUShaderModuleDescriptor = into()
 
 context(Arena)
-internal fun GPUShaderModuleDescriptor.into(
-    `out`: NativeGPUShaderModuleDescriptor = NativeGPUShaderModuleDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPUShaderModuleDescriptor {
+internal fun GPUShaderModuleDescriptor.into(`out`: NativeGPUShaderModuleDescriptor = NativeGPUShaderModuleDescriptor.allocate(this@Arena)): NativeGPUShaderModuleDescriptor {
     this.label.into(out.label)
     // todo: no interop for this.code
     // todo: no interop for this.compilationHints
@@ -298,15 +242,10 @@ internal fun GPUShaderModuleDescriptor.into(
 internal typealias NativeGPUComputePipelineDescriptor = WGPUComputePipelineDescriptor
 
 context(Arena)
-internal fun GPUComputePipelineDescriptor.into(`out`: Pointer<NativeGPUComputePipelineDescriptor>): NativeGPUComputePipelineDescriptor =
-    into()
+internal fun GPUComputePipelineDescriptor.into(`out`: Pointer<NativeGPUComputePipelineDescriptor>): NativeGPUComputePipelineDescriptor = into()
 
 context(Arena)
-internal fun GPUComputePipelineDescriptor.into(
-    `out`: NativeGPUComputePipelineDescriptor = NativeGPUComputePipelineDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPUComputePipelineDescriptor {
+internal fun GPUComputePipelineDescriptor.into(`out`: NativeGPUComputePipelineDescriptor = NativeGPUComputePipelineDescriptor.allocate(this@Arena)): NativeGPUComputePipelineDescriptor {
     this.label.into(out.label)
     out.layout = this.layout?.into() ?: MemorySegment.NULL
     this.compute.into(out.compute)
@@ -316,15 +255,10 @@ internal fun GPUComputePipelineDescriptor.into(
 internal typealias NativeGPURenderPipelineDescriptor = WGPURenderPipelineDescriptor
 
 context(Arena)
-internal fun GPURenderPipelineDescriptor.into(`out`: Pointer<NativeGPURenderPipelineDescriptor>): NativeGPURenderPipelineDescriptor =
-    into()
+internal fun GPURenderPipelineDescriptor.into(`out`: Pointer<NativeGPURenderPipelineDescriptor>): NativeGPURenderPipelineDescriptor = into()
 
 context(Arena)
-internal fun GPURenderPipelineDescriptor.into(
-    `out`: NativeGPURenderPipelineDescriptor = NativeGPURenderPipelineDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPURenderPipelineDescriptor {
+internal fun GPURenderPipelineDescriptor.into(`out`: NativeGPURenderPipelineDescriptor = NativeGPURenderPipelineDescriptor.allocate(this@Arena)): NativeGPURenderPipelineDescriptor {
     this.label.into(out.label)
     out.layout = this.layout?.into() ?: MemorySegment.NULL
     this.vertex.into(out.vertex)
@@ -373,9 +307,9 @@ internal fun GPUFragmentState.into(`out`: NativeGPUFragmentState = NativeGPUFrag
     out.module = this.module.into()
     this.entryPoint?.into(out.entryPoint)
     out.constantCount = this.constants.size.toULong()
-    out.constants = allocateList(this.constants) { it.into().`$mem` }
+    out.constants = allocateList(this.constants, WGPUConstantEntry.layout, ::WGPUConstantEntry, { src, out -> src.into(out) })
     out.targetCount = this.targets.size.toULong()
-    out.targets = allocateList(this.targets) { it?.into()?.`$mem` ?: MemorySegment.NULL }
+    out.targets = allocateList(this.targets, WGPUColorTargetState.layout, ::WGPUColorTargetState, { src, out -> src?.into(out) })
     return out
 }
 
@@ -461,24 +395,23 @@ internal fun GPUVertexState.into(`out`: NativeGPUVertexState = NativeGPUVertexSt
     out.module = this.module.into()
     this.entryPoint?.into(out.entryPoint)
     out.constantCount = this.constants.size.toULong()
-    out.constants = allocateList(this.constants) { it.into().`$mem` }
+    out.constants = allocateList(this.constants, WGPUConstantEntry.layout, ::WGPUConstantEntry, { src, out -> src.into(out) })
     out.bufferCount = this.buffers.size.toULong()
-    out.buffers = allocateList(this.buffers) { it?.into()?.`$mem` ?: MemorySegment.NULL }
+    out.buffers = allocateList(this.buffers, WGPUVertexBufferLayout.layout, ::WGPUVertexBufferLayout, { src, out -> src?.into(out) })
     return out
 }
 
 internal typealias NativeGPUVertexBufferLayout = WGPUVertexBufferLayout
 
 context(Arena)
-internal fun GPUVertexBufferLayout.into(`out`: Pointer<NativeGPUVertexBufferLayout>): NativeGPUVertexBufferLayout =
-    into()
+internal fun GPUVertexBufferLayout.into(`out`: Pointer<NativeGPUVertexBufferLayout>): NativeGPUVertexBufferLayout = into()
 
 context(Arena)
 internal fun GPUVertexBufferLayout.into(`out`: NativeGPUVertexBufferLayout = NativeGPUVertexBufferLayout.allocate(this@Arena)): NativeGPUVertexBufferLayout {
     out.arrayStride = this.arrayStride
     out.stepMode = this.stepMode.into()
     out.attributeCount = this.attributes.size.toULong()
-    out.attributes = allocateList(this.attributes) { it.into().`$mem` }
+    out.attributes = allocateList(this.attributes, WGPUVertexAttribute.layout, ::WGPUVertexAttribute, { src, out -> src.into(out) })
     return out
 }
 
@@ -499,15 +432,10 @@ internal fun GPUVertexAttribute.into(`out`: NativeGPUVertexAttribute = NativeGPU
 internal typealias NativeGPUTexelCopyTextureInfo = WGPUTexelCopyTextureInfo
 
 context(Arena)
-internal fun GPUTexelCopyTextureInfo.into(`out`: Pointer<NativeGPUTexelCopyTextureInfo>): NativeGPUTexelCopyTextureInfo =
-    into()
+internal fun GPUTexelCopyTextureInfo.into(`out`: Pointer<NativeGPUTexelCopyTextureInfo>): NativeGPUTexelCopyTextureInfo = into()
 
 context(Arena)
-internal fun GPUTexelCopyTextureInfo.into(
-    `out`: NativeGPUTexelCopyTextureInfo = NativeGPUTexelCopyTextureInfo.allocate(
-        this@Arena
-    )
-): NativeGPUTexelCopyTextureInfo {
+internal fun GPUTexelCopyTextureInfo.into(`out`: NativeGPUTexelCopyTextureInfo = NativeGPUTexelCopyTextureInfo.allocate(this@Arena)): NativeGPUTexelCopyTextureInfo {
     out.texture = this.texture.into()
     out.mipLevel = this.mipLevel
     this.origin.into(out.origin)
@@ -518,15 +446,10 @@ internal fun GPUTexelCopyTextureInfo.into(
 internal typealias NativeGPUCommandBufferDescriptor = WGPUCommandBufferDescriptor
 
 context(Arena)
-internal fun GPUCommandBufferDescriptor.into(`out`: Pointer<NativeGPUCommandBufferDescriptor>): NativeGPUCommandBufferDescriptor =
-    into()
+internal fun GPUCommandBufferDescriptor.into(`out`: Pointer<NativeGPUCommandBufferDescriptor>): NativeGPUCommandBufferDescriptor = into()
 
 context(Arena)
-internal fun GPUCommandBufferDescriptor.into(
-    `out`: NativeGPUCommandBufferDescriptor = NativeGPUCommandBufferDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPUCommandBufferDescriptor {
+internal fun GPUCommandBufferDescriptor.into(`out`: NativeGPUCommandBufferDescriptor = NativeGPUCommandBufferDescriptor.allocate(this@Arena)): NativeGPUCommandBufferDescriptor {
     this.label.into(out.label)
     return out
 }
@@ -534,15 +457,10 @@ internal fun GPUCommandBufferDescriptor.into(
 internal typealias NativeGPUCommandEncoderDescriptor = WGPUCommandEncoderDescriptor
 
 context(Arena)
-internal fun GPUCommandEncoderDescriptor.into(`out`: Pointer<NativeGPUCommandEncoderDescriptor>): NativeGPUCommandEncoderDescriptor =
-    into()
+internal fun GPUCommandEncoderDescriptor.into(`out`: Pointer<NativeGPUCommandEncoderDescriptor>): NativeGPUCommandEncoderDescriptor = into()
 
 context(Arena)
-internal fun GPUCommandEncoderDescriptor.into(
-    `out`: NativeGPUCommandEncoderDescriptor = NativeGPUCommandEncoderDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPUCommandEncoderDescriptor {
+internal fun GPUCommandEncoderDescriptor.into(`out`: NativeGPUCommandEncoderDescriptor = NativeGPUCommandEncoderDescriptor.allocate(this@Arena)): NativeGPUCommandEncoderDescriptor {
     this.label.into(out.label)
     return out
 }
@@ -551,15 +469,10 @@ internal fun GPUCommandEncoderDescriptor.into(
 internal typealias NativeGPUComputePassDescriptor = WGPUComputePassDescriptor
 
 context(Arena)
-internal fun GPUComputePassDescriptor.into(`out`: Pointer<NativeGPUComputePassDescriptor>): NativeGPUComputePassDescriptor =
-    into()
+internal fun GPUComputePassDescriptor.into(`out`: Pointer<NativeGPUComputePassDescriptor>): NativeGPUComputePassDescriptor = into()
 
 context(Arena)
-internal fun GPUComputePassDescriptor.into(
-    `out`: NativeGPUComputePassDescriptor = NativeGPUComputePassDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPUComputePassDescriptor {
+internal fun GPUComputePassDescriptor.into(`out`: NativeGPUComputePassDescriptor = NativeGPUComputePassDescriptor.allocate(this@Arena)): NativeGPUComputePassDescriptor {
     this.label.into(out.label)
     out.timestampWrites = this.timestampWrites?.into()?.`$mem` ?: MemorySegment.NULL
     return out
@@ -569,18 +482,14 @@ internal fun GPUComputePassDescriptor.into(
 internal typealias NativeGPURenderPassDescriptor = WGPURenderPassDescriptor
 
 context(Arena)
-internal fun GPURenderPassDescriptor.into(`out`: Pointer<NativeGPURenderPassDescriptor>): NativeGPURenderPassDescriptor =
-    into()
+internal fun GPURenderPassDescriptor.into(`out`: Pointer<NativeGPURenderPassDescriptor>): NativeGPURenderPassDescriptor = into()
 
 context(Arena)
-internal fun GPURenderPassDescriptor.into(
-    `out`: NativeGPURenderPassDescriptor = NativeGPURenderPassDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPURenderPassDescriptor {
+internal fun GPURenderPassDescriptor.into(`out`: NativeGPURenderPassDescriptor = NativeGPURenderPassDescriptor.allocate(this@Arena)): NativeGPURenderPassDescriptor {
     this.label.into(out.label)
     out.colorAttachmentCount = this.colorAttachments.size.toULong()
-    out.colorAttachments = allocateList(this.colorAttachments) { it?.into()?.`$mem` ?: MemorySegment.NULL }
+    out.colorAttachments =
+        allocateList(this.colorAttachments, WGPURenderPassColorAttachment.layout, ::WGPURenderPassColorAttachment, { src, out -> src?.into(out) })
     out.depthStencilAttachment = this.depthStencilAttachment?.into(out.depthStencilAttachment)?.`$mem` ?: MemorySegment.NULL
     out.occlusionQuerySet = this.occlusionQuerySet?.into() ?: MemorySegment.NULL
     out.timestampWrites = this.timestampWrites?.into()?.`$mem` ?: MemorySegment.NULL
@@ -596,15 +505,10 @@ internal fun GPURenderPassDescriptor.into(
 internal typealias NativeGPURenderPassColorAttachment = WGPURenderPassColorAttachment
 
 context(Arena)
-internal fun GPURenderPassColorAttachment.into(`out`: Pointer<NativeGPURenderPassColorAttachment>): NativeGPURenderPassColorAttachment =
-    into()
+internal fun GPURenderPassColorAttachment.into(`out`: Pointer<NativeGPURenderPassColorAttachment>): NativeGPURenderPassColorAttachment = into()
 
 context(Arena)
-internal fun GPURenderPassColorAttachment.into(
-    `out`: NativeGPURenderPassColorAttachment = NativeGPURenderPassColorAttachment.allocate(
-        this@Arena
-    )
-): NativeGPURenderPassColorAttachment {
+internal fun GPURenderPassColorAttachment.into(`out`: NativeGPURenderPassColorAttachment = NativeGPURenderPassColorAttachment.allocate(this@Arena)): NativeGPURenderPassColorAttachment {
     out.view = this.view.into()
     out.depthSlice = this.depthSlice ?: 0u
     out.resolveTarget = this.resolveTarget?.into() ?: MemorySegment.NULL
@@ -621,11 +525,7 @@ internal fun GPURenderPassDepthStencilAttachment.into(`out`: Pointer<NativeGPURe
     into()
 
 context(Arena)
-internal fun GPURenderPassDepthStencilAttachment.into(
-    `out`: NativeGPURenderPassDepthStencilAttachment = NativeGPURenderPassDepthStencilAttachment.allocate(
-        this@Arena
-    )
-): NativeGPURenderPassDepthStencilAttachment {
+internal fun GPURenderPassDepthStencilAttachment.into(`out`: NativeGPURenderPassDepthStencilAttachment = NativeGPURenderPassDepthStencilAttachment.allocate(this@Arena)): NativeGPURenderPassDepthStencilAttachment {
     out.view = this.view.into()
     out.depthClearValue = this.depthClearValue ?: Float.NaN
     out.depthLoadOp = this.depthLoadOp?.into() ?: WGPULoadOp.Undefined
@@ -641,15 +541,10 @@ internal fun GPURenderPassDepthStencilAttachment.into(
 internal typealias NativeGPURenderBundleDescriptor = WGPURenderBundleDescriptor
 
 context(Arena)
-internal fun GPURenderBundleDescriptor.into(`out`: Pointer<NativeGPURenderBundleDescriptor>): NativeGPURenderBundleDescriptor =
-    into()
+internal fun GPURenderBundleDescriptor.into(`out`: Pointer<NativeGPURenderBundleDescriptor>): NativeGPURenderBundleDescriptor = into()
 
 context(Arena)
-internal fun GPURenderBundleDescriptor.into(
-    `out`: NativeGPURenderBundleDescriptor = NativeGPURenderBundleDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPURenderBundleDescriptor {
+internal fun GPURenderBundleDescriptor.into(`out`: NativeGPURenderBundleDescriptor = NativeGPURenderBundleDescriptor.allocate(this@Arena)): NativeGPURenderBundleDescriptor {
     this.label.into(out.label)
     return out
 }
@@ -657,15 +552,10 @@ internal fun GPURenderBundleDescriptor.into(
 internal typealias NativeGPURenderBundleEncoderDescriptor = WGPURenderBundleEncoderDescriptor
 
 context(Arena)
-internal fun GPURenderBundleEncoderDescriptor.into(`out`: Pointer<NativeGPURenderBundleEncoderDescriptor>): NativeGPURenderBundleEncoderDescriptor =
-    into()
+internal fun GPURenderBundleEncoderDescriptor.into(`out`: Pointer<NativeGPURenderBundleEncoderDescriptor>): NativeGPURenderBundleEncoderDescriptor = into()
 
 context(Arena)
-internal fun GPURenderBundleEncoderDescriptor.into(
-    `out`: NativeGPURenderBundleEncoderDescriptor = NativeGPURenderBundleEncoderDescriptor.allocate(
-        this@Arena
-    )
-): NativeGPURenderBundleEncoderDescriptor {
+internal fun GPURenderBundleEncoderDescriptor.into(`out`: NativeGPURenderBundleEncoderDescriptor = NativeGPURenderBundleEncoderDescriptor.allocate(this@Arena)): NativeGPURenderBundleEncoderDescriptor {
     this.label.into(out.label)
     out.colorFormatCount = this.colorFormats.size.toULong()
     out.colorFormats = allocateFrom(ValueLayout.JAVA_INT, *this.colorFormats.map { it?.interop?.value ?: 0 }.toIntArray())
@@ -690,8 +580,7 @@ internal fun GPUQueueDescriptor.into(`out`: NativeGPUQueueDescriptor = NativeGPU
 internal typealias NativeGPUQuerySetDescriptor = WGPUQuerySetDescriptor
 
 context(Arena)
-internal fun GPUQuerySetDescriptor.into(`out`: Pointer<NativeGPUQuerySetDescriptor>): NativeGPUQuerySetDescriptor =
-    into()
+internal fun GPUQuerySetDescriptor.into(`out`: Pointer<NativeGPUQuerySetDescriptor>): NativeGPUQuerySetDescriptor = into()
 
 context(Arena)
 internal fun GPUQuerySetDescriptor.into(`out`: NativeGPUQuerySetDescriptor = NativeGPUQuerySetDescriptor.allocate(this@Arena)): NativeGPUQuerySetDescriptor {

@@ -1,0 +1,18 @@
+
+enum GPUCompositeAlphaMode {
+""
+}
+enum GPUPresentMode {
+""
+}
+
+dictionary GPUSurfaceConfiguration {
+    required GPUDevice device;
+    required GPUTextureFormat format;
+    required unsigned long long usage;
+    required unsigned long width;
+    required unsigned long height;
+    required sequence<GPUTextureFormat> viewFormats;
+    required GPUCompositeAlphaMode alphaMode;
+    required GPUPresentMode presentMode;
+}

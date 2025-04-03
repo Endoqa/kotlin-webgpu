@@ -146,4 +146,6 @@ public actual class GPUDevice(
         }
     }
 
+
+    public fun into(): WGPUDevice = device
 }

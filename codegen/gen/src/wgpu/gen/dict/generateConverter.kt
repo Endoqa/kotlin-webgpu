@@ -54,11 +54,12 @@ private fun generateConverter(file: FileSpec.Builder, dictionary: Dictionary) {
                     Any::class.asTypeName()
                 )
                 .addKdoc("TODO")
+                .addModifiers(KModifier.INTERNAL)
                 .build()
         )
     } else {
         file.addTypeAlias(
-            TypeAliasSpec.builder("Native${dictionary.name}", ClassName("lib.wgpu", "W${dictionary.name}")).build()
+            TypeAliasSpec.builder("Native${dictionary.name}", ClassName("lib.wgpu", "W${dictionary.name}")).addModifiers(KModifier.INTERNAL).build()
         )
     }
 
@@ -70,7 +71,7 @@ private fun generateConverter(file: FileSpec.Builder, dictionary: Dictionary) {
     }
 
     // ptr convert func
-    kotlin.run {
+    run {
         val ptrType = ClassName("lib.wgpu", "Pointer").parameterizedBy(nativeName)
         val func = FunSpec.builder("into")
             .receiver(interopName)
@@ -82,11 +83,12 @@ private fun generateConverter(file: FileSpec.Builder, dictionary: Dictionary) {
                     ).build()
             )
             .contextReceivers(Arena::class.asClassName())
-            .returns(ptrType)
+            .returns(nativeName)
+            .addModifiers(KModifier.INTERNAL)
 
 
         if (schema != null) {
-            func.addCode("return into(%T(out)).%N", nativeName, "\$mem")
+            func.addCode("return into()")
         } else {
             func.addCode("return TODO()")
         }
@@ -98,6 +100,7 @@ private fun generateConverter(file: FileSpec.Builder, dictionary: Dictionary) {
         .addParameter(propertySpec.build())
         .contextReceivers(Arena::class.asClassName())
         .returns(nativeName)
+        .addModifiers(KModifier.INTERNAL)
 
     val ctx = ConverterContext(interopName, nativeName)
 
@@ -233,18 +236,21 @@ private fun handleStructType(
 
     val nullable = member.isNullable()
 
-    if (nullable) {
-        func.addStatement(
-            "this.%N?.into(out.%N)",
-            member.name,
-            member.name,
-        )
+    if (inSchema.pointer != null) {
+        func.addCode("out.%N = ", member.name)
+    }
+
+    func.addCode(
+        "this.%N?.into(out.%N)", // ?.%N ?: %T.NULL
+        member.name,
+        member.name,
+    )
+
+
+    if (inSchema.pointer != null) {
+        func.addStatement("?.%N ?: %T.NULL", "\$mem", MemorySegment::class.asClassName())
     } else {
-        func.addStatement(
-            "this.%N.into(out.%N)",
-            member.name,
-            member.name,
-        )
+        func.addStatement("")
     }
 
     return true
@@ -369,6 +375,7 @@ private fun handleArrayType(func: FunSpec.Builder, member: DictionaryMember, inS
     // if it is enum
     // example: out.viewFormats = allocateFrom(ValueLayout.JAVA_INT, *this.viewFormats.map { it.interop.value }.toIntArray())
     val isEnum = (inSchema.type as ComplexType).namespace == TypeNamespace.Enum
+    val isStruct = (inSchema.type as ComplexType).namespace == TypeNamespace.Struct
 
     if (isEnum) {
         val cb = CodeBlock.builder()
@@ -378,6 +385,27 @@ private fun handleArrayType(func: FunSpec.Builder, member: DictionaryMember, inS
             member.name
         )
         func.addStatement("out.%N = %L", member.name, cb.build())
+    } else if (isStruct) {
+        // example:     out.targets = allocateList(
+        //        this.targets,
+        //        WGPUColorTargetState.layout,
+        //        ::WGPUColorTargetState,
+        //        { src, out -> src?.into(out) }
+        //    )
+        val cb = CodeBlock.builder()
+        cb.add("out.%N", member.name)
+
+        val ffiType = inSchema.type.toKotlinType()
+
+        cb.addStatement(
+            " = allocateList(this.%N, %T.layout, ::%T, { src, out -> src?.into(out) })",
+            member.name,
+            ffiType,
+            ffiType
+        )
+        func.addCode(cb.build())
+
+
     } else {
         // else
         // example: out.buffers = allocateList(this.buffers) { it?.into()?.`$mem` ?: MemorySegment.NULL }

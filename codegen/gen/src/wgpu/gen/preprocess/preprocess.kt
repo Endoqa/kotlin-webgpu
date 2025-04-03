@@ -1,5 +1,6 @@
 package wgpu.gen.preprocess
 
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import idl.*
 import webgpu.schema.PrimitiveType
@@ -31,11 +32,22 @@ private fun replaceGPULimits(idl: IDL, schema: Schema) {
         val ktType = resolveKotlinType(type)
 
 
+        require(ktType is ClassName)
         members.add(
             DictionaryMember(
                 member.name.camelCase,
                 type,
-                defaultValue = DefaultValue.PreGenerated(CodeBlock.of("%T.MAX_VALUE", ktType))
+                defaultValue = DefaultValue.PreGenerated(
+                    CodeBlock.of(
+                    run {
+                        val name = ktType.simpleName
+                        when {
+                            name.endsWith("Long") -> "0UL"
+                            name.endsWith("Int") -> "0U"
+                            else -> error("Unknown type $name for gpu limits")
+                        }
+                    }
+                ))
             )
         )
     }

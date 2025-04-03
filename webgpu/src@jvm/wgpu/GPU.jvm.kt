@@ -38,6 +38,18 @@ public actual class GPU {
         }
     }
 
+    public fun createSurface(display: Long, window: Long): GPUSurface {
+        return unsafeScope {
+            val desc = WGPUSurfaceDescriptor.allocate(this)
+            val chained = WGPUSurfaceSourceWaylandSurface.allocate(this)
+            desc.nextInChain = chained.`$mem`
+            chained.surface = MemorySegment.ofAddress(window)
+            chained.display = MemorySegment.ofAddress(display)
+            chained.chain.sType = WGPUSType.SurfaceSourceWaylandSurface
+            GPUSurface(wgpuInstanceCreateSurface(instance, desc.`$mem`))
+        }
+    }
+
     public actual suspend fun requestAdapter(options: GPURequestAdapterOptions): GPUAdapter? {
         return unsafeScope {
             val nativeOptions = options.into()

@@ -2,6 +2,7 @@ package wgpu
 
 import lib.wgpu.*
 import java.lang.foreign.Arena
+import java.lang.foreign.MemoryLayout
 import java.lang.foreign.MemorySegment
 import java.lang.foreign.ValueLayout
 
@@ -97,6 +98,13 @@ internal fun GPUProgrammableStage.into(out: WGPUComputeState) {
 
 context(Arena)
 internal fun String.into(view: WGPUStringView = WGPUStringView.allocate(this@Arena)): WGPUStringView {
+    if (this.isEmpty()) {
+        view.data = MemorySegment.NULL
+        view.length = 0u
+        return view
+    }
+
+
     val bytes = allocateFrom(this)
     view.data = bytes
     view.length = (bytes.byteSize() - 1).toULong()
@@ -140,7 +148,7 @@ internal fun <T> allocateList(
     list: List<T>,
     converter: Arena.(T) -> MemorySegment,
 ): MemorySegment {
-    val a = allocate(ValueLayout.ADDRESS)
+    val a = allocate(ValueLayout.ADDRESS, list.size.toLong())
     list.forEachIndexed { index, t ->
         a.setAtIndex(ValueLayout.ADDRESS, index.toLong(), converter(this@Arena, t))
     }
@@ -148,11 +156,51 @@ internal fun <T> allocateList(
 }
 
 context(Arena)
+internal fun <T, N> allocateList(
+    list: List<T>,
+    layout: MemoryLayout,
+    mapper: (MemorySegment) -> N,
+    converter: context(Arena) (T, N) -> Unit,
+): MemorySegment {
+    val a = allocate(layout, list.size.toLong())
+
+    list.forEachIndexed { index, t ->
+        val seg = a.asSlice(index.toLong(), layout.byteSize())
+        val n = mapper(seg)
+        converter(this@Arena, t, n)
+
+    }
+
+    return a
+}
+
+
+context(Arena)
+internal fun <K, V, N> allocateList(
+    list: Map<K, V>,
+    layout: MemoryLayout,
+    mapper: (MemorySegment) -> N,
+    converter: context(Arena) (Map.Entry<K, V>, N) -> Unit,
+): MemorySegment {
+    val a = allocate(layout, list.size.toLong())
+
+    list.entries.forEachIndexed { index, t ->
+        val seg = a.asSlice(index.toLong(), layout.byteSize())
+        val n = mapper(seg)
+        converter(this@Arena, t, n)
+
+    }
+
+    return a
+}
+
+
+context(Arena)
 internal fun <K, V> allocateList(
     list: Map<K, V>,
     converter: Arena.(Map.Entry<K, V>) -> MemorySegment,
 ): MemorySegment {
-    val a = allocate(ValueLayout.ADDRESS)
+    val a = allocate(ValueLayout.ADDRESS, list.size.toLong())
     list.entries.forEachIndexed { index, t ->
         a.setAtIndex(ValueLayout.ADDRESS, index.toLong(), converter(this@Arena, t))
     }

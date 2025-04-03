@@ -48,7 +48,7 @@ fun main(args: Array<String>) {
 
     val webidl = Language.getLanguage("webidl")
 
-    val idlContent = File("webgpu.idl").readText()
+    val idlContent = File("webgpu.idl").readText() + File("addon.idl").readText()
 
     val parser = Parser()
 
