@@ -11,7 +11,9 @@ public actual class GPUDevice(
 ) : GPUObjectBase {
     actual override var label: String
         get() = TODO("Not yet implemented")
-        set(value) {}
+        set(value) {
+            unsafeScope { wgpuDeviceSetLabel(device, value.into()) }
+        }
 
     public actual val features: GPUSupportedFeatures by lazy {
         GPUSupportedFeatures { ptr -> wgpuDeviceGetFeatures(device, ptr) }

@@ -10,7 +10,9 @@ public actual class GPUBuffer(
 ) : GPUObjectBase {
     public actual override var label: String
         get() = TODO()
-        set(value) {}
+        set(value) {
+            unsafeScope { wgpuBufferSetLabel(buffer, value.into()) }
+        }
 
     public actual val size: GPUSize64Out get() = wgpuBufferGetSize(buffer)
 

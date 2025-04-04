@@ -8,7 +8,7 @@ public actual class GPUCommandEncoder(
     actual override var label: String
         get() = TODO()
         set(value) {
-            TODO()
+            unsafeScope { wgpuCommandEncoderSetLabel(encoder, value.into()) }
         }
 
     actual override fun pushDebugGroup(groupLabel: String) {

@@ -8,7 +8,7 @@ public actual class GPUTexture(
     actual override var label: String
         get() = TODO()
         set(value) {
-            TODO()
+            unsafeScope { wgpuTextureSetLabel(texture, value.into()) }
         }
 
     public actual val width: GPUIntegerCoordinateOut get() = wgpuTextureGetWidth(texture)

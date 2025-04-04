@@ -4,6 +4,7 @@ import lib.wgpu.WGPUCompilationInfo
 import lib.wgpu.WGPUCompilationInfoRequestStatus
 import lib.wgpu.WGPUShaderModule
 import lib.wgpu.wgpuShaderModuleGetCompilationInfo
+import lib.wgpu.wgpuShaderModuleSetLabel
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -13,7 +14,9 @@ public actual class GPUShaderModule(
 ) : GPUObjectBase {
     actual override var label: String
         get() = TODO("Not yet implemented")
-        set(value) {}
+        set(value) {
+            unsafeScope { wgpuShaderModuleSetLabel(module, value.into()) }
+        }
 
     public actual suspend fun getCompilationInfo(): GPUCompilationInfo {
         return unsafeScope {

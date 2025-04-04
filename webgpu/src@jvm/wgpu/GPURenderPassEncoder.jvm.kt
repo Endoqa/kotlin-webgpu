@@ -11,7 +11,7 @@ public actual class GPURenderPassEncoder(
     actual override var label: String
         get() = TODO()
         set(value) {
-
+            unsafeScope { wgpuRenderPassEncoderSetLabel(encoder, value.into()) }
         }
 
     actual override fun pushDebugGroup(groupLabel: String) {

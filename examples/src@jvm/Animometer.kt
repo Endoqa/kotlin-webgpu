@@ -181,7 +181,7 @@ private suspend fun appMain(args: Array<String>) {
         pass.setPipeline(pipeline)
         for (i in 0 until numTriangles) {
             val offset = i.toLong() * ShaderData.layout.byteSize()
-            pass.setBindGroup(0u, bindGroup, listOf(offset.toUInt()))
+            pass.setBindGroup(0u, bindGroup, uintArrayOf(offset.toUInt()))
             pass.draw(3u)
         }
         pass.end()

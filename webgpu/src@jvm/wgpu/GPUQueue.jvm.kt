@@ -11,7 +11,9 @@ public actual class GPUQueue(
 ) : GPUObjectBase {
     actual override var label: String
         get() = TODO()
-        set(value) {}
+        set(value) {
+            unsafeScope { wgpuQueueSetLabel(queue, value.into()) }
+        }
 
     public actual fun submit(commandBuffers: List<GPUCommandBuffer>) {
         return unsafeScope {
@@ -45,7 +47,7 @@ public actual class GPUQueue(
             queue,
             buffer.into(),
             bufferOffset,
-            MemorySegment.ofAddress(data).reinterpret(Long.MAX_VALUE),
+            MemorySegment.ofAddress(data).reinterpret(Long.MAX_VALUE).asSlice(dataOffset.toLong()),
             size
         )
     }
