@@ -1,69 +1,74 @@
-import kotlinx.coroutines.newSingleThreadContext
-import kotlinx.coroutines.runBlocking
-import org.lwjgl.glfw.GLFW.*
-import org.lwjgl.glfw.GLFWNativeWayland.glfwGetWaylandDisplay
-import org.lwjgl.glfw.GLFWNativeWayland.glfwGetWaylandWindow
 import wgpu.*
 import wgpu.limits.GPULimitPreset
-import java.io.File
 import java.lang.foreign.Arena
 import java.lang.foreign.MemorySegment
+import runApp
+import initGPU
+import createWindow
+import createSurface
+import configureSurface
+import createShaderModule
+import createTextureView
+import createRenderPass
+import windowShouldClose
+import handleEvents
+import randomFloat
+import memorySegmentEach
 
 
 private val vsShader = """
-    struct Constants {
-            scale : f32,
-            time : f32,
-            offsetX : f32,
-            offsetY : f32,
-            scalar : f32,
-            scalarOffset : f32,
-        };
-        @group(0) @binding(0) var<uniform> c : Constants;
+struct Constants_std140_0
+{
+    @align(16) scale_0 : f32,
+    @align(4) time_0 : f32,
+    @align(8) offsetX_0 : f32,
+    @align(4) offsetY_0 : f32,
+    @align(16) scalar_0 : f32,
+    @align(4) scalarOffset_0 : f32,
+};
 
-        struct VertexOut {
-            @location(0) v_color : vec4f,
-            @builtin(position) Position : vec4f,
-        };
+struct SLANG_ParameterGroup_ConstantsBuffer_std140_0
+{
+    @align(16) c_0 : Constants_std140_0,
+};
 
-        @vertex fn main(@builtin(vertex_index) VertexIndex : u32) -> VertexOut {
-            var positions : array<vec4f, 3> = array(
-                vec4f( 0.0,  0.1, 0.0, 1.0),
-                vec4f(-0.1, -0.1, 0.0, 1.0),
-                vec4f( 0.1, -0.1, 0.0, 1.0)
-            );
+@binding(0) @group(0) var<uniform> ConstantsBuffer_0 : SLANG_ParameterGroup_ConstantsBuffer_std140_0;
+struct VertexOut_0
+{
+    @location(0) v_color_0 : vec4<f32>,
+    @builtin(position) Position_0 : vec4<f32>,
+};
 
-            var colors : array<vec4f, 3> = array(
-                vec4f(1.0, 0.0, 0.0, 1.0),
-                vec4f(0.0, 1.0, 0.0, 1.0),
-                vec4f(0.0, 0.0, 1.0, 1.0)
-            );
+@vertex
+fn main(@builtin(vertex_index) VertexIndex_0 : u32) -> VertexOut_0
+{
+    var positions_0 : array<vec4<f32>, i32(3)> = array<vec4<f32>, i32(3)>( vec4<f32>(0.0f, 0.10000000149011612f, 0.0f, 1.0f), vec4<f32>(-0.10000000149011612f, -0.10000000149011612f, 0.0f, 1.0f), vec4<f32>(0.10000000149011612f, -0.10000000149011612f, 0.0f, 1.0f) );
+    var colors_0 : array<vec4<f32>, i32(3)> = array<vec4<f32>, i32(3)>( vec4<f32>(1.0f, 0.0f, 0.0f, 1.0f), vec4<f32>(0.0f, 1.0f, 0.0f, 1.0f), vec4<f32>(0.0f, 0.0f, 1.0f, 1.0f) );
+    var fade_0 : f32 = ConstantsBuffer_0.c_0.scalarOffset_0 + ConstantsBuffer_0.c_0.time_0 * ConstantsBuffer_0.c_0.scalar_0 / 10.0f;
+    var fade_1 : f32 = fade_0 - floor(fade_0);
+    var fade_2 : f32;
+    if(fade_1 < 0.5f)
+    {
+        fade_2 = fade_1 * 2.0f;
+    }
+    else
+    {
+        fade_2 = (1.0f - fade_1) * 2.0f;
+    }
+    var xpos_0 : f32 = positions_0[VertexIndex_0].x * ConstantsBuffer_0.c_0.scale_0;
+    var ypos_0 : f32 = positions_0[VertexIndex_0].y * ConstantsBuffer_0.c_0.scale_0;
+    var angle_0 : f32 = 6.28318023681640625f * fade_2;
+    var _S1 : f32 = cos(angle_0);
+    var _S2 : f32 = sin(angle_0);
+    var xpos_1 : f32 = xpos_0 * _S1 - ypos_0 * _S2 + ConstantsBuffer_0.c_0.offsetX_0;
+    var ypos_1 : f32 = xpos_0 * _S2 + ypos_0 * _S1 + ConstantsBuffer_0.c_0.offsetY_0;
+    var output_0 : VertexOut_0;
+    output_0.v_color_0 = vec4<f32>(fade_2, 1.0f - fade_2, 0.0f, 1.0f) + colors_0[VertexIndex_0];
+    output_0.Position_0 = vec4<f32>(xpos_1, ypos_1, 0.0f, 1.0f);
+    return output_0;
+}
 
-            var position : vec4f = positions[VertexIndex];
-            var color : vec4f = colors[VertexIndex];
 
-            // TODO(dawn:572): Revisit once modf has been reworked in WGSL.
-            var fade : f32 = c.scalarOffset + c.time * c.scalar / 10.0;
-            fade = fade - floor(fade);
-            if (fade < 0.5) {
-                fade = fade * 2.0;
-            } else {
-                fade = (1.0 - fade) * 2.0;
-            }
-
-            var xpos : f32 = position.x * c.scale;
-            var ypos : f32 = position.y * c.scale;
-            let angle : f32 = 3.14159 * 2.0 * fade;
-            let xrot : f32 = xpos * cos(angle) - ypos * sin(angle);
-            let yrot : f32 = xpos * sin(angle) + ypos * cos(angle);
-            xpos = xrot + c.offsetX;
-            ypos = yrot + c.offsetY;
-
-            var output : VertexOut;
-            output.v_color = vec4f(fade, 1.0 - fade, 0.0, 1.0) + color;
-            output.Position = vec4f(xpos, ypos, 0.0, 1.0);
-            return output;
-        }
 """.trimIndent()
 
 private val fsShader = """
@@ -76,56 +81,30 @@ private val fsShader = """
 private const val numTriangles = 10000
 
 fun main() {
-    System.load(File("../libs/libwgpu_native.so").absolutePath)
-    runBlocking(newSingleThreadContext("App")) {
-        appMain(emptyArray())
+    runApp("../libs/libwgpu_native.so") { args ->
+        appMain(args)
     }
 }
 
 private suspend fun appMain(args: Array<String>) {
-    val gpu = GPU()
+    val (gpu, adapter) = initGPU()
 
-    val adapter = gpu.requestAdapter(GPURequestAdapterOptions(powerPreference = GPUPowerPreference.HighPerformance))
-    require(adapter != null) { "Failed to find a suitable GPU" }
-    println(adapter.features)
-    println(adapter.info)
-    println(adapter.limits)
+    val window = createWindow(800, 600, "Animometer")
 
-    if (!glfwInit()) {
-        error("Failed to initialize GLFW")
-    }
-    glfwInitHint(GLFW_PLATFORM, GLFW_PLATFORM_WAYLAND)
-    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API)
-    val window = glfwCreateWindow(800, 600, "Animometer", 0, 0)
+    val surface = createSurface(gpu, window)
 
-    val surface = gpu.createSurface(glfwGetWaylandDisplay(), glfwGetWaylandWindow(window))
 
     val capabilities = surface.getCapabilities(adapter)
-
     val preferredFormat = capabilities.formats.first()
-
-
-
     println("Preferred format: $preferredFormat")
 
     val device = adapter.requestDevice(GPUDeviceDescriptor(requiredLimits = GPULimitPreset.Default.limits))
 
-    surface.configure(
-        GPUSurfaceConfiguration(
-            device = device,
-            format = preferredFormat,
-            usage = GPUTextureUsage.RENDER_ATTACHMENT,
-            presentMode = GPUPresentMode.Fifo,
-            alphaMode = GPUCompositeAlphaMode.Auto,
-            width = 800u,
-            height = 600u,
-            viewFormats = emptyList()
-        )
-    )
+    configureSurface(surface, device, preferredFormat, 800u, 600u)
 
 
-    val vsModule = device.createShaderModule(GPUShaderModuleDescriptor(code = vsShader))
-    val fsModule = device.createShaderModule(GPUShaderModuleDescriptor(code = fsShader))
+    val vsModule = createShaderModule(device, vsShader)
+    val fsModule = createShaderModule(device, fsShader)
 
     val bgl = device.createBindGroupLayout(
         GPUBindGroupLayoutDescriptor(
@@ -194,7 +173,7 @@ private suspend fun appMain(args: Array<String>) {
     val queue = device.queue
     var frameCount = 0
 
-    while (!glfwWindowShouldClose(window)) {
+    while (!windowShouldClose(window)) {
 
         frameCount++
         shaderDataEach(shaderData) { data ->
@@ -206,26 +185,10 @@ private suspend fun appMain(args: Array<String>) {
 
         val surfaceTexture = surface.getCurrentTexture()
         val texture = surfaceTexture.texture
-        val view = texture.createView(
-            GPUTextureViewDescriptor(
-                format = texture.format,
-                mipLevelCount = 1u,
-                arrayLayerCount = 1u
-            )
-        )
+        val view = createTextureView(texture)
 
         val encoder = device.createCommandEncoder()
-        val pass = encoder.beginRenderPass(
-            GPURenderPassDescriptor(
-                colorAttachments = listOf(
-                    GPURenderPassColorAttachment(
-                        view = view,
-                        loadOp = GPULoadOp.Clear,
-                        storeOp = GPUStoreOp.Store,
-                    )
-                )
-            )
-        )
+        val pass = createRenderPass(encoder, view)
 
         pass.setPipeline(pipeline)
         for (i in 0 until numTriangles) {
@@ -242,22 +205,12 @@ private suspend fun appMain(args: Array<String>) {
 
         surface.present()
 
-
-
-
-        glfwPollEvents()
-        glfwSwapBuffers(window)
+        handleEvents(window)
     }
 
 }
 
 
-fun randomFloat(min: Float, max: Float): Float {
-    return (Math.random() * (max - min)).toFloat() + min
-}
-
 private fun shaderDataEach(seg: MemorySegment, block: (ShaderData) -> Unit) {
-    seg
-        .spliterator(ShaderData.layout)
-        .forEachRemaining { block(ShaderData(it)) }
+    memorySegmentEach(seg, ShaderData.layout) { block(ShaderData(it)) }
 }

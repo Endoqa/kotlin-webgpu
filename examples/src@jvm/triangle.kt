@@ -1,19 +1,22 @@
 package examples.triangle
 
-import kotlinx.coroutines.newSingleThreadContext
-import kotlinx.coroutines.runBlocking
-import org.lwjgl.glfw.GLFW.*
-import org.lwjgl.glfw.GLFWNativeWayland.glfwGetWaylandDisplay
-import org.lwjgl.glfw.GLFWNativeWayland.glfwGetWaylandWindow
+import runApp
+import initGPU
+import createWindow
+import createSurface
+import configureSurface
+import createShaderModule
+import createTextureView
+import createRenderPass
+import windowShouldClose
+import handleEvents
 import wgpu.*
 import wgpu.limits.GPULimitPreset
-import java.io.File
 
 
 fun main() {
-    System.load(File("../../libs/libwgpu_native.so").absolutePath)
-    runBlocking(newSingleThreadContext("App")) {
-        appMain(emptyArray())
+    runApp("../../libs/libwgpu_native.so") { args ->
+        appMain(args)
     }
 }
 
@@ -38,51 +41,24 @@ fn fs_main() -> @location(0) vec4f {
 """.trimIndent()
 
 private suspend fun appMain(args: Array<String>) {
-    val gpu = GPU()
+    val (gpu, adapter) = initGPU()
 
-    val adapter = gpu.requestAdapter(GPURequestAdapterOptions(powerPreference = GPUPowerPreference.HighPerformance))
-    require(adapter != null) { "Failed to find a suitable GPU" }
-    println(adapter.features)
-    println(adapter.info)
-    println(adapter.limits)
+    val window = createWindow(800, 600, "Hello Triangle")
 
-    if (!glfwInit()) {
-        error("Failed to initialize GLFW")
-    }
-    glfwInitHint(GLFW_PLATFORM, GLFW_PLATFORM_WAYLAND)
-    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API)
-    val window = glfwCreateWindow(800, 600, "Hello Triangle", 0, 0)
-
-    val surface = gpu.createSurface(glfwGetWaylandDisplay(), glfwGetWaylandWindow(window))
+    val surface = createSurface(gpu, window)
 
     val capabilities = surface.getCapabilities(adapter)
-
     println(capabilities)
-
     val preferredFormat = capabilities.formats.first()
-
     println("Preferred format: $preferredFormat")
 
     println(GPULimitPreset.Default.limits)
     val device = adapter.requestDevice(GPUDeviceDescriptor(requiredLimits = GPULimitPreset.Default.limits))
-
     println(device)
 
-    val shader = device.createShaderModule(GPUShaderModuleDescriptor(code = shaderSource))
+    val shader = createShaderModule(device, shaderSource)
 
-
-    surface.configure(
-        GPUSurfaceConfiguration(
-            device = device,
-            format = preferredFormat,
-            usage = GPUTextureUsage.RENDER_ATTACHMENT,
-            presentMode = GPUPresentMode.Fifo,
-            alphaMode = GPUCompositeAlphaMode.Auto,
-            width = 800u,
-            height = 600u,
-            viewFormats = emptyList()
-        )
-    )
+    configureSurface(surface, device, preferredFormat, 800u, 600u)
 
 
     val pipeline = device.createRenderPipeline(
@@ -102,26 +78,10 @@ private suspend fun appMain(args: Array<String>) {
 
     val surfaceTexture = surface.getCurrentTexture()
     val texture = surfaceTexture.texture
-    val view = texture.createView(
-        GPUTextureViewDescriptor(
-            format = texture.format,
-            mipLevelCount = 1u,
-            arrayLayerCount = 1u
-        )
-    )
+    val view = createTextureView(texture)
 
     val encoder = device.createCommandEncoder()
-    val pass = encoder.beginRenderPass(
-        GPURenderPassDescriptor(
-            colorAttachments = listOf(
-                GPURenderPassColorAttachment(
-                    view = view,
-                    loadOp = GPULoadOp.Clear,
-                    storeOp = GPUStoreOp.Store,
-                )
-            )
-        )
-    )
+    val pass = createRenderPass(encoder, view)
     pass.setPipeline(pipeline)
     pass.draw(3u)
     pass.end()
@@ -132,9 +92,7 @@ private suspend fun appMain(args: Array<String>) {
 
     surface.present()
 
-    while (!glfwWindowShouldClose(window)) {
-        glfwPollEvents()
-        glfwSwapBuffers(window)
+    while (!windowShouldClose(window)) {
+        handleEvents(window)
     }
 }
-
