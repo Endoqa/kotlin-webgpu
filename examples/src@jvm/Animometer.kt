@@ -2,18 +2,6 @@ import wgpu.*
 import wgpu.limits.GPULimitPreset
 import java.lang.foreign.Arena
 import java.lang.foreign.MemorySegment
-import runApp
-import initGPU
-import createWindow
-import createSurface
-import configureSurface
-import createShaderModule
-import createTextureView
-import createRenderPass
-import windowShouldClose
-import handleEvents
-import randomFloat
-import memorySegmentEach
 
 
 private val vsShader = """

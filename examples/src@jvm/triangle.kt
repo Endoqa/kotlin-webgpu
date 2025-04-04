@@ -1,15 +1,3 @@
-package examples.triangle
-
-import runApp
-import initGPU
-import createWindow
-import createSurface
-import configureSurface
-import createShaderModule
-import createTextureView
-import createRenderPass
-import windowShouldClose
-import handleEvents
 import wgpu.*
 import wgpu.limits.GPULimitPreset
 
