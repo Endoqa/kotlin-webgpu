@@ -485,17 +485,20 @@ public fun wgpuComputePassEncoderSetPipeline(
  * TODO
  * @param groupIndex TODO
  * @param group TODO
+ * @param dynamicOffsetCount Array count for [dynamicOffsets].
  * @param dynamicOffsets TODO
  */
 public fun wgpuComputePassEncoderSetBindGroup(
     computePassEncoder: WGPUComputePassEncoder,
     groupIndex: UInt,
     group: WGPUBindGroup,
-    dynamicOffsets: Pointer<NativeArray<UInt>>,
+    dynamicOffsetCount: ULong,
+    dynamicOffsets: NativeArray<UInt>,
 ): Unit = `wgpuComputePassEncoderSetBindGroup$mh`.invokeExact(
     computePassEncoder,
     groupIndex.toInt(),
     group,
+    dynamicOffsetCount.toLong(),
     dynamicOffsets,
 ) as Unit
 
@@ -1007,17 +1010,20 @@ public fun wgpuRenderBundleEncoderSetPipeline(
  * TODO
  * @param groupIndex TODO
  * @param group TODO
+ * @param dynamicOffsetCount Array count for [dynamicOffsets].
  * @param dynamicOffsets TODO
  */
 public fun wgpuRenderBundleEncoderSetBindGroup(
     renderBundleEncoder: WGPURenderBundleEncoder,
     groupIndex: UInt,
     group: WGPUBindGroup,
-    dynamicOffsets: Pointer<NativeArray<UInt>>,
+    dynamicOffsetCount: ULong,
+    dynamicOffsets: NativeArray<UInt>,
 ): Unit = `wgpuRenderBundleEncoderSetBindGroup$mh`.invokeExact(
     renderBundleEncoder,
     groupIndex.toInt(),
     group,
+    dynamicOffsetCount.toLong(),
     dynamicOffsets,
 ) as Unit
 
@@ -1197,17 +1203,20 @@ public fun wgpuRenderPassEncoderSetPipeline(
  * TODO
  * @param groupIndex TODO
  * @param group TODO
+ * @param dynamicOffsetCount Array count for [dynamicOffsets].
  * @param dynamicOffsets TODO
  */
 public fun wgpuRenderPassEncoderSetBindGroup(
     renderPassEncoder: WGPURenderPassEncoder,
     groupIndex: UInt,
     group: WGPUBindGroup,
-    dynamicOffsets: Pointer<NativeArray<UInt>>,
+    dynamicOffsetCount: ULong,
+    dynamicOffsets: NativeArray<UInt>,
 ): Unit = `wgpuRenderPassEncoderSetBindGroup$mh`.invokeExact(
     renderPassEncoder,
     groupIndex.toInt(),
     group,
+    dynamicOffsetCount.toLong(),
     dynamicOffsets,
 ) as Unit
 

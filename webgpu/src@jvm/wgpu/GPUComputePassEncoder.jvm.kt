@@ -32,6 +32,7 @@ public actual class GPUComputePassEncoder(
             wgpuComputePassEncoderSetBindGroup(
                 encoder,
                 index, bindGroup?.into() ?: MemorySegment.NULL,
+                dynamicOffsets.size.toULong(),
                 allocateFrom(ValueLayout.JAVA_INT, *dynamicOffsets.asIntArray())
             )
         }

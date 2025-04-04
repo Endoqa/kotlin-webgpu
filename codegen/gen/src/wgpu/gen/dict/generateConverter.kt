@@ -151,10 +151,12 @@ private fun addMember(func: FunSpec.Builder, member: DictionaryMember, schema: S
 
     if (handleArrayType(func, member, inSchema)) return
     if (handleNumberType(func, member, type, inSchema)) return
-    if (handleStringType(func, member, inSchema)) return
     if (handleStructType(func, member, inSchema)) return
     if (handleNullableEnumType(func, member, inSchema)) return
+
     if (handleEnumType(func, member, inSchema)) return
+    if (handleStringType(func, member, inSchema)) return // enum-ify strings
+
     if (handleObjectType(func, member, inSchema)) return
 
     handleOtherType(func, member, inSchema)
@@ -429,10 +431,12 @@ private fun handleStringType(
     member: DictionaryMember,
     inSchema: ParameterType
 ): Boolean {
-    val nativeType = inSchema.type
-    if (nativeType !is PrimitiveType) {
+    val nativeType = member.type
+    if (nativeType !is StringType) {
         return false
     }
+
+    println(member)
 
     // example: this.entryPoint?.into(out.entryPoint)
     func.addStatement(

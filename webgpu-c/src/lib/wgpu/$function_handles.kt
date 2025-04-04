@@ -582,6 +582,7 @@ internal val `wgpuComputePassEncoderSetBindGroup$mh`: MethodHandle by lazy {
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_INT,
             `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
             `$RuntimeHelper`.POINTER,
         )
     )
@@ -1255,6 +1256,7 @@ internal val `wgpuRenderBundleEncoderSetBindGroup$mh`: MethodHandle by lazy {
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_INT,
             `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
             `$RuntimeHelper`.POINTER,
         )
     )
@@ -1420,6 +1422,7 @@ internal val `wgpuRenderPassEncoderSetBindGroup$mh`: MethodHandle by lazy {
             `$RuntimeHelper`.POINTER,
             ValueLayout.JAVA_INT,
             `$RuntimeHelper`.POINTER,
+            ValueLayout.JAVA_LONG,
             `$RuntimeHelper`.POINTER,
         )
     )

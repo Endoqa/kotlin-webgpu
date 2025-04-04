@@ -37,7 +37,7 @@ fn fs_main() -> @location(0) vec4f {
 }
 """.trimIndent()
 
-suspend fun appMain(args: Array<String>) {
+private suspend fun appMain(args: Array<String>) {
     val gpu = GPU()
 
     val adapter = gpu.requestAdapter(GPURequestAdapterOptions(powerPreference = GPUPowerPreference.HighPerformance))
@@ -131,5 +131,10 @@ suspend fun appMain(args: Array<String>) {
 
 
     surface.present()
+
+    while (!glfwWindowShouldClose(window)) {
+        glfwPollEvents()
+        glfwSwapBuffers(window)
+    }
 }
 

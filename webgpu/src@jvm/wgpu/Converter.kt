@@ -12,9 +12,9 @@ internal fun GPURequestAdapterOptions.into(`out`: Pointer<NativeGPURequestAdapte
 
 context(Arena)
 internal fun GPURequestAdapterOptions.into(`out`: NativeGPURequestAdapterOptions = NativeGPURequestAdapterOptions.allocate(this@Arena)): NativeGPURequestAdapterOptions {
-    out.featureLevel = this.featureLevel.into(out.featureLevel)
+    this.featureLevel.into(out.featureLevel)
     out.powerPreference = this.powerPreference?.into() ?: WGPUPowerPreference.Undefined
-    this.forceFallbackAdapter.into(out.forceFallbackAdapter)
+    out.forceFallbackAdapter = this.forceFallbackAdapter.into(out.forceFallbackAdapter)
     // todo: no interop for this.xrCompatible
     return out
 }
@@ -44,7 +44,7 @@ internal fun GPUBufferDescriptor.into(`out`: NativeGPUBufferDescriptor = NativeG
     this.label.into(out.label)
     out.size = this.size
     out.usage = this.usage.toULong()
-    this.mappedAtCreation.into(out.mappedAtCreation)
+    out.mappedAtCreation = this.mappedAtCreation.into(out.mappedAtCreation)
     return out
 }
 
@@ -144,7 +144,7 @@ internal fun GPUBufferBindingLayout.into(`out`: Pointer<NativeGPUBufferBindingLa
 context(Arena)
 internal fun GPUBufferBindingLayout.into(`out`: NativeGPUBufferBindingLayout = NativeGPUBufferBindingLayout.allocate(this@Arena)): NativeGPUBufferBindingLayout {
     out.type = this.type.into()
-    this.hasDynamicOffset.into(out.hasDynamicOffset)
+    out.hasDynamicOffset = this.hasDynamicOffset.into(out.hasDynamicOffset)
     out.minBindingSize = this.minBindingSize
     return out
 }
@@ -169,7 +169,7 @@ context(Arena)
 internal fun GPUTextureBindingLayout.into(`out`: NativeGPUTextureBindingLayout = NativeGPUTextureBindingLayout.allocate(this@Arena)): NativeGPUTextureBindingLayout {
     out.sampleType = this.sampleType.into()
     out.viewDimension = this.viewDimension.into()
-    this.multisampled.into(out.multisampled)
+    out.multisampled = this.multisampled.into(out.multisampled)
     return out
 }
 
@@ -280,7 +280,7 @@ internal fun GPUPrimitiveState.into(`out`: NativeGPUPrimitiveState = NativeGPUPr
     out.stripIndexFormat = this.stripIndexFormat?.into() ?: WGPUIndexFormat.Undefined
     out.frontFace = this.frontFace.into()
     out.cullMode = this.cullMode.into()
-    this.unclippedDepth.into(out.unclippedDepth)
+    out.unclippedDepth = this.unclippedDepth.into(out.unclippedDepth)
     return out
 }
 
@@ -293,7 +293,7 @@ context(Arena)
 internal fun GPUMultisampleState.into(`out`: NativeGPUMultisampleState = NativeGPUMultisampleState.allocate(this@Arena)): NativeGPUMultisampleState {
     out.count = this.count
     out.mask = this.mask
-    this.alphaToCoverageEnabled.into(out.alphaToCoverageEnabled)
+    out.alphaToCoverageEnabled = this.alphaToCoverageEnabled.into(out.alphaToCoverageEnabled)
     return out
 }
 
@@ -530,11 +530,11 @@ internal fun GPURenderPassDepthStencilAttachment.into(`out`: NativeGPURenderPass
     out.depthClearValue = this.depthClearValue ?: Float.NaN
     out.depthLoadOp = this.depthLoadOp?.into() ?: WGPULoadOp.Undefined
     out.depthStoreOp = this.depthStoreOp?.into() ?: WGPUStoreOp.Undefined
-    this.depthReadOnly.into(out.depthReadOnly)
+    out.depthReadOnly = this.depthReadOnly.into(out.depthReadOnly)
     out.stencilClearValue = this.stencilClearValue
     out.stencilLoadOp = this.stencilLoadOp?.into() ?: WGPULoadOp.Undefined
     out.stencilStoreOp = this.stencilStoreOp?.into() ?: WGPUStoreOp.Undefined
-    this.stencilReadOnly.into(out.stencilReadOnly)
+    out.stencilReadOnly = this.stencilReadOnly.into(out.stencilReadOnly)
     return out
 }
 
@@ -561,8 +561,8 @@ internal fun GPURenderBundleEncoderDescriptor.into(`out`: NativeGPURenderBundleE
     out.colorFormats = allocateFrom(ValueLayout.JAVA_INT, *this.colorFormats.map { it?.interop?.value ?: 0 }.toIntArray())
     out.depthStencilFormat = this.depthStencilFormat?.into() ?: WGPUTextureFormat.Undefined
     out.sampleCount = this.sampleCount
-    this.depthReadOnly.into(out.depthReadOnly)
-    this.stencilReadOnly.into(out.stencilReadOnly)
+    out.depthReadOnly = this.depthReadOnly.into(out.depthReadOnly)
+    out.stencilReadOnly = this.stencilReadOnly.into(out.stencilReadOnly)
     return out
 }
 

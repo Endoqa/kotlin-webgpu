@@ -38,7 +38,9 @@ public actual class GPURenderPassEncoder(
         unsafeScope {
             wgpuRenderPassEncoderSetBindGroup(
                 encoder,
-                index, bindGroup?.into() ?: MemorySegment.NULL,
+                index,
+                bindGroup?.into() ?: MemorySegment.NULL,
+                dynamicOffsets.size.toULong(),
                 allocateFrom(ValueLayout.JAVA_INT, *dynamicOffsets.asIntArray())
             )
         }

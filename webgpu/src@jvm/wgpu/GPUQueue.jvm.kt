@@ -45,7 +45,7 @@ public actual class GPUQueue(
             queue,
             buffer.into(),
             bufferOffset,
-            MemorySegment.ofAddress(data).asSlice(dataOffset.toLong(), size.toLong()),
+            MemorySegment.ofAddress(data).reinterpret(Long.MAX_VALUE),
             size
         )
     }
