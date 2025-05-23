@@ -1,5 +1,6 @@
 package wgpu.gen.dict
 
+import bikeshed.DictDocs
 import com.squareup.kotlinpoet.*
 import idl.Dictionary
 import idl.DictionaryMember
@@ -39,12 +40,22 @@ fun generateDict(dict: Dictionary, idl: IDL): FileSpec.Builder {
     handleInheritance(idl, dict, spec, constructor)
     addMembers(spec, constructor, dict.members, open = haveInheritChildren)
 
+    docs.getDict(dict.name)?.let { spec.addKdoc(generateDictKDoc(it)) }
 
 
 
     spec.primaryConstructor(constructor.build())
     file.addType(spec.build())
     return file
+}
+
+context(GenerateContext)
+private fun generateDictKDoc(doc: DictDocs): String {
+    val sb = StringBuilder()
+    doc.members.forEach { (name, desc) ->
+        sb.appendLine("@param $name - $desc")
+    }
+    return sb.toString()
 }
 
 context(GenerateContext)

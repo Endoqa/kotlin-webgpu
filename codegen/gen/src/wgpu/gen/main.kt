@@ -1,6 +1,8 @@
 package wgpu.gen
 
 
+import bikeshed.extractComments
+import com.fleeksoft.ksoup.Ksoup
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
@@ -79,7 +81,7 @@ fun main(args: Array<String>) {
     val webgpuJson = File("webgpu.json").readText()
 
 
-    val ctx = GenerateContext(Schema.parse(webgpuJson), idl)
+    val ctx = GenerateContext(Schema.parse(webgpuJson), idl,  extractComments(Ksoup.parse(File("./index.bs").readText())))
 
 
 

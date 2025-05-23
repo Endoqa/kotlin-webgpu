@@ -1,5 +1,9 @@
 package wgpu
 
+/**
+ * @param targets - A list of [wgpu.GPUColorTargetState] defining the formats and behaviors of the color targets
+ * this pipeline writes to.
+ */
 public data class GPUFragmentState(
     override var module: GPUShaderModule,
     override var entryPoint: String? = null,

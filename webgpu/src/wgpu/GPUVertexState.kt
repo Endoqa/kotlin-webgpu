@@ -1,5 +1,9 @@
 package wgpu
 
+/**
+ * @param buffers - A list of [wgpu.GPUVertexBufferLayout]s, each defining the layout of vertex attribute data in a
+ * vertex buffer used by this pipeline.
+ */
 public data class GPUVertexState(
     override var module: GPUShaderModule,
     override var entryPoint: String? = null,

@@ -12,6 +12,8 @@ dependencies:
   - ../webidl-nodes
   - com.squareup:kotlinpoet:2.1.0
   - ../schema
+  - com.fleeksoft.ksoup:ksoup:0.2.2
+  - co.touchlab:stately-concurrent-collections:2.0.0
 
 
 apply:

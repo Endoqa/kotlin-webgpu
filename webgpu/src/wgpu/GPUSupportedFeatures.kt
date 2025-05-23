@@ -1,3 +1,3 @@
 package wgpu
 
-public typealias GPUSupportedFeatures = Set<GPUFeatureName>
+public expect class GPUSupportedFeatures : Set<String>

@@ -1,5 +1,6 @@
 package wgpu.gen
 
+import bikeshed.SpecDoc
 import com.squareup.kotlinpoet.FileSpec
 import idl.IDL
 import webgpu.schema.Schema
@@ -8,7 +9,8 @@ import java.nio.file.Path
 
 class GenerateContext(
     val schema: Schema,
-    override val idl: IDL
+    override val idl: IDL,
+    val docs: SpecDoc,
 ) : WithIDL {
     private val expectSources = mutableListOf<FileSpec.Builder>()
     private val actualSources = mutableListOf<FileSpec.Builder>()
